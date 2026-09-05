@@ -2,570 +2,1325 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Emotion Performance Guide · V9.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emotion Performance Guide · V9.3.1</title>
+
+<meta
+  name="description"
+  content="Human acting reference for emotion, facial language, scene context, performance style and intensity."
+>
 
 <style>
 :root{
   --bg:#0a0a0f;
   --panel:#15151c;
-  --panel2:#1c1c25;
+  --panel2:#1b1b23;
+  --panel3:#20202a;
   --border:#2d2d39;
+  --softborder:#25252f;
+
   --text:#f5f3f7;
   --muted:#aaa7b2;
   --soft:#77737f;
+
   --pink:#ff6497;
   --pink2:#ff9bbb;
   --pinkbg:rgba(255,100,151,.10);
-  --pinkborder:rgba(255,100,151,.38);
-  --green:#69d49f;
-  --yellow:#e8be62;
+  --pinkborder:rgba(255,100,151,.40);
+
+  --green:#72d5a9;
+  --yellow:#edc66d;
+  --red:#ef777f;
+
+  --radius:18px;
+  --shadow:0 18px 55px rgba(0,0,0,.28);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  margin:0;background:
-  radial-gradient(circle at 0 0,rgba(255,100,151,.10),transparent 28%),
-  #0a0a0f;
+  margin:0;
+
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  background:
+    radial-gradient(circle at 5% 0%,rgba(255,100,151,.11),transparent 26%),
+    radial-gradient(circle at 100% 5%,rgba(108,91,255,.07),transparent 30%),
+    var(--bg);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  line-height:1.5;
 }
-button,input{font:inherit}
-button{color:inherit}
-.app{max-width:1580px;margin:auto;padding:22px}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  color:inherit;
+}
+
+.app{
+  width:min(1580px,100%);
+  margin:auto;
+  padding:22px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .top{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;margin-bottom:20px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+
+  margin-bottom:20px;
 }
-.brand{display:flex;gap:11px;align-items:center}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
 .logo{
-  width:43px;height:43px;border:1px solid var(--pinkborder);
-  background:var(--pinkbg);border-radius:13px;display:grid;place-items:center
+  width:44px;
+  height:44px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--pinkborder);
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,100,151,.23),
+      rgba(255,100,151,.04)
+    );
 }
-.brand strong{display:block}
-.version{font-size:11px;color:var(--soft)}
+
+.brand strong{
+  display:block;
+  font-size:15px;
+}
+
+.version{
+  margin-top:2px;
+  color:var(--soft);
+  font-size:11px;
+}
+
 .badge{
-  border:1px solid var(--border);border-radius:999px;
-  padding:8px 11px;color:var(--muted);font-size:11px
+  padding:8px 12px;
+
+  color:var(--muted);
+
+  border:1px solid var(--border);
+  border-radius:999px;
+
+  background:rgba(255,255,255,.015);
+
+  font-size:11px;
 }
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero{
-  border:1px solid var(--border);border-radius:22px;
-  padding:30px;margin-bottom:20px;
-  background:linear-gradient(135deg,rgba(255,100,151,.10),transparent 55%),var(--panel)
+  margin-bottom:20px;
+  padding:30px;
+
+  border:1px solid var(--border);
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255,100,151,.10),
+      transparent 55%
+    ),
+    rgba(21,21,28,.96);
+
+  box-shadow:var(--shadow);
 }
+
 .kicker{
-  text-transform:uppercase;font-size:10px;font-weight:900;
-  color:var(--pink2);letter-spacing:.11em
+  margin-bottom:9px;
+
+  color:var(--pink2);
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.11em;
+  text-transform:uppercase;
 }
+
 .hero h1{
-  max-width:900px;margin:8px 0 10px;
-  font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.045em
+  max-width:900px;
+  margin:0;
+
+  font-size:clamp(34px,5vw,58px);
+  line-height:1.02;
+
+  letter-spacing:-.045em;
 }
-.hero h1 span{color:var(--pink2)}
-.hero p{color:var(--muted);max-width:950px;font-size:14px}
-.flow{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+
+.hero h1 span{
+  color:var(--pink2);
+}
+
+.hero p{
+  max-width:940px;
+  margin:13px 0 0;
+
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+.flow{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+
+  margin-top:19px;
+}
+
 .flow span{
-  font-size:10px;border:1px solid var(--border);
-  border-radius:999px;padding:6px 9px;color:#ddd9e1
+  padding:6px 9px;
+
+  color:#ddd9e1;
+
+  border:1px solid var(--border);
+  border-radius:999px;
+
+  font-size:10px;
 }
+
+.flow .arrow{
+  color:var(--soft);
+  border:none;
+  padding:0 1px;
+}
+
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
 .workspace{
-  display:grid;grid-template-columns:minmax(0,1fr) 530px;
-  gap:19px;align-items:start
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 535px;
+  gap:20px;
+
+  align-items:start;
 }
-.library,.detail{
-  background:rgba(21,21,28,.96);border:1px solid var(--border);
-  border-radius:18px
-}
-.library{padding:19px}
+
+.library,
 .detail{
-  padding:20px;position:sticky;top:18px;
-  max-height:calc(100vh - 36px);overflow:auto
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+
+  background:rgba(21,21,28,.96);
+
+  box-shadow:var(--shadow);
 }
+
+.library{
+  padding:20px;
+}
+
+.detail{
+  position:sticky;
+  top:18px;
+
+  max-height:calc(100vh - 36px);
+  overflow-y:auto;
+
+  padding:21px;
+}
+
+
+/* =========================================================
+   LIBRARY
+========================================================= */
+
 .head{
-  display:flex;justify-content:space-between;align-items:end;
-  gap:10px;margin-bottom:13px
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+
+  margin-bottom:13px;
 }
-.head h2{margin:0;font-size:19px}
-.head p{margin:3px 0 0;color:var(--muted);font-size:11px}
-.count{font-size:10px;color:var(--soft)}
-.searchbox{position:relative;margin-bottom:12px}
+
+.head h2{
+  margin:0;
+  font-size:19px;
+}
+
+.head p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.count{
+  color:var(--soft);
+  font-size:10px;
+}
+
+.searchbox{
+  margin-bottom:13px;
+}
+
 .search{
-  width:100%;height:45px;border-radius:12px;
-  border:1px solid var(--border);background:#0f0f14;color:white;
-  padding:0 13px;outline:none
+  width:100%;
+  height:47px;
+
+  padding:0 14px;
+
+  color:white;
+  background:#0f0f14;
+
+  border:1px solid var(--border);
+  border-radius:13px;
+
+  outline:none;
 }
-.search:focus{border-color:var(--pinkborder)}
-.categories{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:15px}
-.cat,.tone,.level{
-  cursor:pointer;border:1px solid var(--border);
-  background:rgba(255,255,255,.015)
+
+.search:focus{
+  border-color:var(--pinkborder);
+  box-shadow:0 0 0 4px rgba(255,100,151,.04);
 }
+
+.search::placeholder{
+  color:#6d6974;
+}
+
+
+/* =========================================================
+   CATEGORY NAVIGATION
+========================================================= */
+
+.category-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+
+  margin-bottom:9px;
+}
+
 .cat{
-  border-radius:999px;padding:7px 10px;
-  font-size:10px;color:var(--muted);font-weight:700
+  position:relative;
+
+  padding:8px 11px;
+
+  border:1px solid var(--border);
+  border-radius:11px;
+
+  color:#bbb7c2;
+  background:rgba(255,255,255,.012);
+
+  cursor:pointer;
+
+  font-size:10px;
+  font-weight:800;
+
+  transition:.15s ease;
 }
-.cat.active,.tone.active,.level.active{
-  border-color:var(--pinkborder);background:var(--pinkbg);color:white
+
+.cat:hover{
+  border-color:#494754;
+  background:rgba(255,255,255,.028);
 }
+
+.cat.active{
+  color:white;
+  border-color:var(--pinkborder);
+  background:var(--pinkbg);
+
+  box-shadow:
+    inset 0 -2px 0 rgba(255,100,151,.55);
+}
+
+.category-status{
+  margin-bottom:15px;
+
+  color:var(--soft);
+  font-size:9.5px;
+}
+
+.category-status strong{
+  color:var(--pink2);
+}
+
+
+/* =========================================================
+   EMOTION CARDS
+========================================================= */
+
 .grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
 }
+
 .card{
-  cursor:pointer;text-align:left;border:1px solid #292933;
-  border-radius:13px;background:rgba(255,255,255,.015);
-  min-height:108px;padding:13px;transition:.15s
+  min-height:110px;
+  padding:14px;
+
+  text-align:left;
+
+  border:1px solid var(--softborder);
+  border-radius:14px;
+
+  background:rgba(255,255,255,.014);
+
+  cursor:pointer;
+
+  transition:.15s ease;
 }
-.card:hover{border-color:#464552;transform:translateY(-1px)}
-.card.active{border-color:var(--pinkborder);background:var(--pinkbg)}
+
+.card:hover{
+  transform:translateY(-1px);
+
+  border-color:#454450;
+  background:rgba(255,255,255,.028);
+}
+
+.card.active{
+  border-color:var(--pinkborder);
+
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255,100,151,.10),
+      transparent 75%
+    ),
+    rgba(255,255,255,.015);
+}
+
 .ccat{
-  font-size:8.5px;color:var(--pink2);
-  text-transform:uppercase;letter-spacing:.08em;font-weight:900
+  margin-bottom:5px;
+
+  color:var(--pink2);
+
+  font-size:8.5px;
+  font-weight:900;
+
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
-.cname{font-weight:850;font-size:14px;margin:5px 0}
-.cdesc{font-size:10.5px;color:var(--muted);line-height:1.4}
-.detail-cat{
-  color:var(--pink2);font-size:9px;font-weight:900;
-  text-transform:uppercase;letter-spacing:.1em
+
+.cname{
+  margin-bottom:5px;
+
+  font-size:14px;
+  font-weight:850;
 }
-.detail h2{margin:5px 0;font-size:28px;letter-spacing:-.03em}
-.subtitle{color:var(--muted);font-size:12px;margin:0}
-.box{
-  padding:12px;border:1px solid #292933;border-radius:12px;
-  margin-top:11px;background:rgba(255,255,255,.012)
+
+.cdesc{
+  color:var(--muted);
+
+  font-size:10.5px;
+  line-height:1.42;
 }
-.label{
-  font-size:8.5px;font-weight:900;text-transform:uppercase;
-  color:var(--soft);letter-spacing:.09em;margin-bottom:5px
-}
-.text{font-size:11px;color:#dedbe2;line-height:1.55}
-.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-.tag{
-  border:1px solid var(--border);border-radius:999px;
-  padding:4px 7px;color:var(--muted);font-size:9px
-}
-.divider{height:1px;background:#282832;margin:16px 0}
-.stitle{font-size:12px;font-weight:850;margin-bottom:7px}
-.tones{display:flex;flex-wrap:wrap;gap:6px}
-.tone{border-radius:9px;padding:7px 9px;font-size:9.5px;color:var(--muted)}
-.note{font-size:9px;color:var(--soft);line-height:1.45;margin-top:7px}
-.levels{display:grid;gap:5px}
-.level{
-  width:100%;display:grid;grid-template-columns:28px 86px 1fr;
-  align-items:center;gap:7px;padding:8px;border-radius:10px;text-align:left
-}
-.num{
-  width:26px;height:26px;border:1px solid var(--border);
-  border-radius:7px;display:grid;place-items:center;
-  font-size:10px;font-weight:900;background:#0f0f14
-}
-.lname{font-size:10px;font-weight:800}
-.ldesc{font-size:9.5px;color:var(--muted)}
-.intent{
-  padding:12px;border:1px solid var(--pinkborder);
-  border-radius:12px;background:rgba(255,100,151,.05);
-  margin-top:11px
-}
-.intent strong{font-size:10px}
-.intent div{font-size:11px;margin-top:4px;color:#e6e2e8}
-.map{display:grid;gap:5px;margin-top:8px}
-.row{
-  display:grid;grid-template-columns:142px 1fr;gap:8px;
-  border:1px solid #282832;border-radius:9px;padding:8px 9px
-}
-.key{font-size:9.5px;font-weight:800;color:var(--pink2)}
-.value{font-size:10px;line-height:1.42;color:#d9d6dd}
-.prompt{
-  margin-top:12px;border:1px solid var(--pinkborder);
-  border-radius:12px;overflow:hidden;background:rgba(255,100,151,.045)
-}
-.ph{
-  padding:9px 11px;border-bottom:1px solid rgba(255,100,151,.17);
-  display:flex;justify-content:space-between;gap:10px;align-items:center
-}
-.ph span{
-  font-size:9px;font-weight:900;color:var(--pink2);
-  text-transform:uppercase;letter-spacing:.07em
-}
-.copy{
-  cursor:pointer;border:1px solid var(--pinkborder);
-  border-radius:7px;background:var(--pinkbg);
-  color:#ffe6ee;padding:5px 8px;font-size:9px;font-weight:800
-}
-.prompttext{padding:12px;font-size:10.5px;line-height:1.6}
+
 .empty{
-  grid-column:1/-1;padding:30px;border:1px dashed var(--border);
-  border-radius:12px;text-align:center;color:var(--muted)
+  grid-column:1/-1;
+
+  padding:32px 15px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  border:1px dashed var(--border);
+  border-radius:13px;
 }
-.footer{text-align:center;color:var(--soft);font-size:9px;margin:20px 0}
+
+
+/* =========================================================
+   DETAIL
+========================================================= */
+
+.detail-cat{
+  color:var(--pink2);
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.detail h2{
+  margin:5px 0 4px;
+
+  font-size:29px;
+  line-height:1.08;
+
+  letter-spacing:-.035em;
+}
+
+.subtitle{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.box{
+  margin-top:12px;
+  padding:12px;
+
+  border:1px solid var(--softborder);
+  border-radius:12px;
+
+  background:rgba(255,255,255,.012);
+}
+
+.label{
+  margin-bottom:5px;
+
+  color:var(--soft);
+
+  font-size:8.5px;
+  font-weight:900;
+
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.text{
+  color:#dedbe2;
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.divider{
+  height:1px;
+
+  margin:17px 0;
+
+  background:#282832;
+}
+
+.stitle{
+  margin-bottom:7px;
+
+  font-size:12px;
+  font-weight:850;
+}
+
+.note{
+  margin-top:7px;
+
+  color:var(--soft);
+
+  font-size:9.3px;
+  line-height:1.48;
+}
+
+
+/* =========================================================
+   CONTEXT / STYLE
+========================================================= */
+
+.option-wrap{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.option-btn{
+  padding:8px 10px;
+
+  color:var(--muted);
+  background:rgba(255,255,255,.012);
+
+  border:1px solid var(--border);
+  border-radius:9px;
+
+  cursor:pointer;
+
+  font-size:9.5px;
+  font-weight:750;
+}
+
+.option-btn:hover{
+  border-color:#464552;
+}
+
+.option-btn.active{
+  color:white;
+
+  border-color:var(--pinkborder);
+  background:var(--pinkbg);
+}
+
+
+/* =========================================================
+   STYLE EXPLANATION
+========================================================= */
+
+.style-guide{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+
+  margin-top:10px;
+}
+
+.style-card{
+  padding:9px;
+
+  border:1px solid var(--softborder);
+  border-radius:10px;
+
+  background:rgba(255,255,255,.01);
+}
+
+.style-card strong{
+  display:block;
+
+  margin-bottom:3px;
+
+  color:#e9e6ec;
+
+  font-size:9.5px;
+}
+
+.style-card span{
+  color:var(--soft);
+
+  font-size:8.7px;
+  line-height:1.4;
+}
+
+
+/* =========================================================
+   INTENSITY
+========================================================= */
+
+.levels{
+  display:grid;
+  gap:5px;
+}
+
+.level{
+  display:grid;
+  grid-template-columns:28px 87px 1fr;
+  align-items:center;
+  gap:8px;
+
+  width:100%;
+  padding:8px;
+
+  text-align:left;
+
+  border:1px solid var(--softborder);
+  border-radius:10px;
+
+  background:rgba(255,255,255,.012);
+
+  cursor:pointer;
+}
+
+.level.active{
+  border-color:var(--pinkborder);
+  background:var(--pinkbg);
+}
+
+.num{
+  width:26px;
+  height:26px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--border);
+  border-radius:7px;
+
+  background:#0f0f14;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.lname{
+  font-size:10px;
+  font-weight:800;
+}
+
+.ldesc{
+  color:var(--muted);
+
+  font-size:9.5px;
+  line-height:1.38;
+}
+
+
+/* =========================================================
+   CONTROL
+========================================================= */
+
+.control-box{
+  margin-top:10px;
+  padding:11px;
+
+  border:1px solid var(--softborder);
+  border-radius:11px;
+
+  background:rgba(255,255,255,.012);
+}
+
+.control-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+
+  margin-bottom:7px;
+}
+
+.control-head strong{
+  font-size:9.5px;
+}
+
+.control-head span{
+  color:var(--pink2);
+
+  font-size:9px;
+  font-weight:800;
+}
+
+.control-track{
+  height:6px;
+
+  overflow:hidden;
+
+  border:1px solid var(--border);
+  border-radius:999px;
+
+  background:#0d0d12;
+}
+
+.control-fill{
+  height:100%;
+
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    var(--red),
+    var(--yellow),
+    var(--green)
+  );
+}
+
+.control-note{
+  margin-top:6px;
+
+  color:var(--soft);
+
+  font-size:8.8px;
+  line-height:1.45;
+}
+
+
+/* =========================================================
+   INTENTION
+========================================================= */
+
+.intent{
+  margin-top:11px;
+  padding:12px;
+
+  border:1px solid var(--pinkborder);
+  border-radius:12px;
+
+  background:rgba(255,100,151,.05);
+}
+
+.intent strong{
+  font-size:9.5px;
+}
+
+.intent div{
+  margin-top:4px;
+
+  color:#e8e4ea;
+
+  font-size:11px;
+}
+
+
+/* =========================================================
+   PERFORMANCE MAP
+========================================================= */
+
+.map{
+  display:grid;
+  gap:5px;
+
+  margin-top:8px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:145px 1fr;
+  gap:8px;
+
+  padding:8px 9px;
+
+  border:1px solid var(--softborder);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.01);
+}
+
+.key{
+  color:var(--pink2);
+
+  font-size:9.5px;
+  font-weight:800;
+}
+
+.value{
+  color:#d9d6dd;
+
+  font-size:10px;
+  line-height:1.44;
+}
+
+
+/* =========================================================
+   PROMPT
+========================================================= */
+
+.prompt{
+  margin-top:12px;
+
+  overflow:hidden;
+
+  border:1px solid var(--pinkborder);
+  border-radius:12px;
+
+  background:rgba(255,100,151,.045);
+}
+
+.ph{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+
+  padding:9px 11px;
+
+  border-bottom:1px solid rgba(255,100,151,.17);
+}
+
+.ph span{
+  color:var(--pink2);
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+.copy{
+  padding:5px 8px;
+
+  color:#ffe6ee;
+  background:var(--pinkbg);
+
+  border:1px solid var(--pinkborder);
+  border-radius:7px;
+
+  cursor:pointer;
+
+  font-size:9px;
+  font-weight:800;
+}
+
+.prompttext{
+  padding:12px;
+
+  font-size:10.5px;
+  line-height:1.62;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+.footer{
+  margin:20px 0 4px;
+
+  text-align:center;
+
+  color:var(--soft);
+  font-size:9px;
+}
+
 @media(max-width:1100px){
-  .workspace{grid-template-columns:1fr}
-  .detail{position:static;max-height:none}
+
+  .workspace{
+    grid-template-columns:1fr;
+  }
+
+  .detail{
+    position:static;
+    max-height:none;
+  }
+
 }
+
 @media(max-width:650px){
-  .app{padding:12px}.hero{padding:22px 17px}.hero h1{font-size:35px}
-  .grid{grid-template-columns:1fr}.library,.detail{padding:14px}
-  .badge{display:none}.row{grid-template-columns:112px 1fr}
+
+  .app{
+    padding:12px;
+  }
+
+  .hero{
+    padding:22px 17px;
+  }
+
+  .hero h1{
+    font-size:35px;
+  }
+
+  .badge{
+    display:none;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .library,
+  .detail{
+    padding:14px;
+  }
+
+  .row{
+    grid-template-columns:114px 1fr;
+  }
+
+  .style-guide{
+    grid-template-columns:1fr;
+  }
+
+  .level{
+    grid-template-columns:27px 80px 1fr;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
+
 <main class="app">
 
 <header class="top">
+
   <div class="brand">
-    <div class="logo">🎭</div>
-    <div>
-      <strong>Emotion Performance Guide</strong>
-      <div class="version">V9.3 · Full Emotion Taxonomy</div>
+
+    <div class="logo">
+      🎭
     </div>
+
+    <div>
+
+      <strong>
+        Emotion Performance Guide
+      </strong>
+
+      <div class="version">
+        V9.3.1 · Context + Performance Style
+      </div>
+
+    </div>
+
   </div>
-  <div class="badge">Human acting reference · No scene builder</div>
+
+  <div class="badge">
+    Human acting reference · No scene builder
+  </div>
+
 </header>
 
+
 <section class="hero">
-  <div class="kicker">Facial & Emotional Performance Language</div>
-  <h1>Find the feeling. <span>Read how it moves.</span></h1>
-  <p>
-    Browse emotion families, compare dramatic tone and intensity,
-    then study eye language, eyelids, mouth opening, teeth visibility,
-    lips, mouth corners, breath and body behaviour.
-  </p>
-  <div class="flow">
-    <span>Choose Emotion</span>
-    <span>→</span>
-    <span>Choose Scene Tone</span>
-    <span>→</span>
-    <span>Compare Intensity</span>
-    <span>→</span>
-    <span>Study Facial Language</span>
-    <span>→</span>
-    <span>Copy Prompt</span>
+
+  <div class="kicker">
+    Facial & Emotional Performance Language
   </div>
+
+  <h1>
+    Find the feeling.
+    <span>Choose how it lives.</span>
+  </h1>
+
+  <p>
+    Browse emotion families, choose the emotional context,
+    then decide whether the performance is socially restrained
+    or more freely expressive. Compare intensity and study
+    eye language, eyelids, mouth opening, teeth, lips,
+    mouth corners, breath and body behaviour.
+  </p>
+
+  <div class="flow">
+
+    <span>Choose Emotion</span>
+    <span class="arrow">→</span>
+
+    <span>Choose Context</span>
+    <span class="arrow">→</span>
+
+    <span>Natural / Expressive</span>
+    <span class="arrow">→</span>
+
+    <span>Compare Intensity</span>
+    <span class="arrow">→</span>
+
+    <span>Study Performance</span>
+    <span class="arrow">→</span>
+
+    <span>Copy Prompt</span>
+
+  </div>
+
 </section>
+
 
 <section class="workspace">
 
 <section class="library">
+
   <div class="head">
+
     <div>
-      <h2>Emotion Library</h2>
-      <p>Emotion first. Performance language second.</p>
+
+      <h2>
+        Emotion Library
+      </h2>
+
+      <p>
+        Emotion first. Performance language second.
+      </p>
+
     </div>
-    <div class="count" id="count"></div>
+
+    <div
+      id="count"
+      class="count">
+    </div>
+
   </div>
 
+
   <div class="searchbox">
+
     <input
       id="search"
       class="search"
       placeholder="Search: merajuk, shock, jealousy, grief, half-lidded..."
     >
+
   </div>
 
-  <div id="categories" class="categories"></div>
-  <div id="grid" class="grid"></div>
+
+  <nav
+    id="categories"
+    class="category-nav"
+    aria-label="Emotion categories">
+  </nav>
+
+
+  <div
+    id="categoryStatus"
+    class="category-status">
+  </div>
+
+
+  <div
+    id="grid"
+    class="grid">
+  </div>
+
 </section>
 
-<aside class="detail" id="detail"></aside>
+
+<aside
+  class="detail"
+  id="detail">
+</aside>
 
 </section>
+
 
 <div class="footer">
-Intensity determines strength · Dramatic context determines expression grammar
+  Emotion determines the feeling · Context changes its meaning · Style determines how openly it is expressed
 </div>
 
 </main>
 
+
 <script>
 
 /* =========================================================
-   MASTER TAXONOMY
+   MASTER EMOTION TAXONOMY
 ========================================================= */
 
 const GROUPS = {
 
 "Comedy / Social":[
+
  ["amusement","Amusement","Pleasure trying not to become laughter"],
+
  ["comic-shock","Comic Shock","Surprise structured for reaction and payoff"],
+
  ["disbelief","Disbelief","The mind rejects what it has just received"],
+
  ["awkwardness","Awkwardness","Social rhythm becomes uncomfortable"],
+
  ["embarrassment","Embarrassment","Feeling suddenly exposed or self-conscious"],
+
  ["annoyance","Annoyance","Patience is thinning"],
+
  ["sulking","Sulking / Merajuk","Indirect displeasure through withdrawal or pout"],
+
  ["playful-teasing","Playful Teasing","Provocation delivered for fun"],
+
  ["smugness","Smugness","Quiet satisfaction with one's advantage"],
+
  ["sarcasm","Sarcasm","Meaning intentionally contradicts surface politeness"]
+
 ],
+
 
 "Romance / Attraction":[
+
  ["flustered-attraction","Flustered Attraction","Attraction disrupts normal composure"],
+
  ["hidden-attraction","Hidden Attraction","Attraction deliberately kept private"],
+
  ["tenderness","Tenderness","Warm, careful emotional attention"],
+
  ["restrained-affection","Restrained Affection","Affection visible only through small leaks"],
+
  ["longing","Longing","Desire for closeness that cannot yet be fulfilled"],
+
  ["romantic-confusion","Romantic Confusion","Attraction conflicts with expectation or identity"],
+
  ["romantic-jealousy","Romantic Jealousy","Attention repeatedly checks a perceived rival"],
+
  ["desire","Desire","Strong pull toward intimacy or closeness"],
+
  ["shy-pleasure","Shy Pleasure","Enjoyment mixed with self-consciousness"],
+
  ["love","Love","Deep attachment expressed through care and emotional investment"]
+
 ],
+
 
 "Joy / Positive":[
+
  ["joy","Joy","Open positive emotional release"],
+
  ["excitement","Excitement","Positive anticipation increases energy"],
+
  ["relief","Relief","Tension leaves after danger or uncertainty passes"],
+
  ["satisfaction","Satisfaction","A desired result quietly lands"],
+
  ["pride","Pride","Positive self-worth becomes physically visible"],
+
  ["hope","Hope","Attention turns toward a possible positive future"],
+
  ["gratitude","Gratitude","Warm appreciation toward another person"],
+
  ["delight","Delight","A pleasurable surprise creates spontaneous brightness"]
+
 ],
+
 
 "Concern / Anxiety":[
+
  ["mild-concern","Mild Concern","Attention increases without becoming fear"],
+
  ["worry","Worry","Attention repeatedly returns to what may go wrong"],
+
  ["unease","Unease","Something feels wrong but the threat is unclear"],
+
  ["anxiety","Anxiety","Future uncertainty begins affecting regulation"],
+
  ["nervousness","Nervousness","Self-regulation is disrupted by anticipation"],
+
  ["dread","Dread","The person expects something bad is approaching"],
+
  ["protective-concern","Protective Concern","Concern organizes attention around another person's safety"]
+
 ],
+
 
 "Sadness / Vulnerability":[
+
  ["hurt","Emotional Hurt","A personally meaningful wound lands"],
+
  ["sadness","Sadness","Emotional energy lowers after loss or disappointment"],
+
  ["disappointment","Disappointment","Expectation collapses"],
+
  ["loneliness","Loneliness","A felt absence of emotional connection"],
+
  ["heartbreak","Heartbreak","Attachment is damaged or lost"],
+
  ["grief","Grief","The mind and body respond to significant loss"],
+
  ["despair","Despair","Hope becomes difficult to access"],
+
  ["guilt","Guilt","The person believes they have caused or allowed harm"],
+
  ["shame","Shame","The person feels personally exposed or diminished"]
+
 ],
+
 
 "Conflict / Anger":[
+
  ["irritation","Irritation","Small repeated friction begins to register"],
+
  ["frustration","Frustration","A blocked objective creates pressure"],
+
  ["quiet-anger","Quiet Anger","Strong anger held under deliberate control"],
+
  ["rage","Rage","Anger overwhelms ordinary restraint"],
+
  ["resentment","Resentment","Old hurt remains active beneath current behaviour"],
+
  ["defiance","Defiance","The person refuses another's control"],
+
  ["revenge","Revenge","Anger is organized toward retaliation"],
+
  ["defensiveness","Defensiveness","The person protects self-image or position"],
+
  ["betrayal-anger","Betrayal Anger","Trust violation turns hurt into confrontation"]
+
 ],
+
 
 "Suspense / Threat":[
+
  ["alertness","Alertness","Attention sharpens toward possible danger"],
+
  ["suspicion","Suspicion","The person tests whether something is false or hidden"],
+
  ["controlled-fear","Controlled Fear","Threat is real but regulation remains functional"],
+
  ["fear","Fear","Danger strongly affects attention and body"],
+
  ["panic","Panic","Fear begins overwhelming organized control"],
+
  ["shock","Shock / Surprise","Sudden information interrupts processing"],
+
  ["threat-assessment","Threat Assessment","The person studies danger before deciding how to act"],
+
  ["startle","Startle","A fast involuntary response to sudden stimulus"]
+
 ],
+
 
 "Cognitive / Discovery":[
+
  ["curiosity","Curiosity","Attention is pulled toward something unknown"],
+
  ["confusion","Confusion","Available information does not yet form a coherent meaning"],
+
  ["realization","Realization","Meaning suddenly becomes clear"],
+
  ["recognition","Recognition","The person identifies someone, something or a pattern"],
+
  ["identity-confusion","Identity Confusion","Sense of self conflicts with current reality"],
+
  ["processing","Processing","The mind needs time before emotional response forms"],
+
  ["skepticism","Skepticism","Information is considered but not yet believed"]
+
 ],
+
 
 "Power / Determination":[
+
  ["confidence","Confidence","The person trusts their own ability or position"],
+
  ["resolve","Resolve","A decision becomes internally settled"],
+
  ["determination","Determination","Emotion organizes toward a goal"],
+
  ["protective-resolve","Protective Resolve","Care becomes purposeful action"],
+
  ["courage","Courage","Fear exists but does not control the decision"],
+
  ["dominance","Dominance","The person claims interpersonal or spatial power"],
+
  ["commitment","Commitment","A chosen course becomes difficult to reverse"],
+
  ["triumph","Triumph","Success produces controlled or open power"]
+
 ],
+
 
 "Dysregulation / Extreme":[
+
  ["emotional-overload","Emotional Overload","Too many emotional signals compete for regulation"],
+
  ["mental-breakdown","Mental Breakdown","Emotional regulation progressively fails"],
+
  ["grief-collapse","Grief Collapse","Loss overwhelms physical and vocal control"],
+
  ["desperation","Desperation","The need for an outcome overrides normal restraint"],
+
  ["panic-collapse","Panic Collapse","Fear regulation is no longer functional"],
+
  ["crying-breakdown","Crying Breakdown","Breath, throat and speech destabilize through crying"],
+
  ["shutdown","Emotional Shutdown","The system protects itself by reducing response"]
-]
 
-};
-
-
-/* =========================================================
-   EMOTION PROFILES
-   These tell the engine which facial grammar dominates.
-========================================================= */
-
-const PROFILES = {
-
-"Comedy / Social":{
- eye:"social",
- lid:"attitude",
- mouth:"expressive",
- body:"responsive",
- defaultTones:["Natural Comedy","Heightened Rom-Com"]
-},
-
-"Romance / Attraction":{
- eye:"connection",
- lid:"soft",
- mouth:"suppressed",
- body:"hesitant",
- defaultTones:["Natural Romance","Rom-Com"]
-},
-
-"Joy / Positive":{
- eye:"bright",
- lid:"soft-open",
- mouth:"positive",
- body:"open",
- defaultTones:["Natural","Expressive"]
-},
-
-"Concern / Anxiety":{
- eye:"checking",
- lid:"focused",
- mouth:"restrained",
- body:"regulated",
- defaultTones:["Natural Drama","Suspense"]
-},
-
-"Sadness / Vulnerability":{
- eye:"withdrawn",
- lid:"heavy",
- mouth:"loss",
- body:"closing",
- defaultTones:["Serious Drama","Restrained"]
-},
-
-"Conflict / Anger":{
- eye:"direct",
- lid:"narrow",
- mouth:"compressed",
- body:"still",
- defaultTones:["Serious Conflict","Comedy Conflict"]
-},
-
-"Suspense / Threat":{
- eye:"tracking",
- lid:"alert",
- mouth:"breath",
- body:"defensive",
- defaultTones:["Thriller","Natural Drama"]
-},
-
-"Cognitive / Discovery":{
- eye:"processing",
- lid:"pause",
- mouth:"processing",
- body:"pause",
- defaultTones:["Natural","Comedy"]
-},
-
-"Power / Determination":{
- eye:"settled",
- lid:"focused",
- mouth:"firm",
- body:"purposeful",
- defaultTones:["Serious Drama","Heroic"]
-},
-
-"Dysregulation / Extreme":{
- eye:"unstable",
- lid:"unstable",
- mouth:"unstable",
- body:"failing",
- defaultTones:["Serious Drama","Extreme"]
-}
-
-};
-
-
-const SPECIAL_TONES = {
-
-"shock":[
- "Comedy",
- "Sad / Painful",
- "Fear / Threat",
- "Romantic",
- "Anger / Betrayal"
-],
-
-"comic-shock":[
- "Comedy",
- "Heightened Comedy"
-],
-
-"suspicion":[
- "Comedy",
- "Serious / Thriller"
-],
-
-"embarrassment":[
- "Comedy",
- "Serious / Shame",
- "Romantic"
-],
-
-"romantic-jealousy":[
- "Rom-Com",
- "Serious Drama"
-],
-
-"annoyance":[
- "Comedy",
- "Serious"
-],
-
-"quiet-anger":[
- "Serious",
- "Betrayal",
- "Power Conflict"
-],
-
-"fear":[
- "Thriller",
- "Sad / Vulnerable",
- "Comedy Fear"
-],
-
-"panic":[
- "Thriller",
- "Comedy Panic",
- "Emotional Crisis"
-],
-
-"disbelief":[
- "Comedy",
- "Painful",
- "Angry",
- "Romantic"
-],
-
-"realization":[
- "Comedy",
- "Painful",
- "Romantic",
- "Threat"
-],
-
-"grief":[
- "Restrained Drama",
- "Open Grief"
-],
-
-"mental-breakdown":[
- "Serious Drama"
 ]
 
 };
@@ -576,679 +1331,2194 @@ const SPECIAL_TONES = {
 ========================================================= */
 
 const ALIASES = {
+
  "mild-concern":"risau sedikit concern care",
+
  "worry":"risau bimbang",
+
+ "unease":"tak sedap hati rasa tidak kena",
+
+ "anxiety":"cemas risau anxiety",
+
+ "nervousness":"gugup nervous",
+
  "fear":"takut",
- "panic":"cemas panic",
- "suspicion":"curiga suspicious side eye",
+
+ "controlled-fear":"takut terkawal",
+
+ "panic":"panik takut",
+
+ "suspicion":"curiga suspicious side eye half lidded",
+
  "embarrassment":"malu segan",
+
+ "shame":"malu shame",
+
  "sulking":"merajuk muncung pout",
- "annoyance":"geram menyampah",
+
+ "annoyance":"geram menyampah annoyed",
+
+ "irritation":"jengkel irritated",
+
+ "frustration":"frust geram",
+
  "quiet-anger":"marah diam controlled anger",
- "rage":"marah sangat",
+
+ "rage":"marah sangat rage",
+
  "hurt":"terluka hati",
+
  "sadness":"sedih",
+
  "grief":"dukacita kehilangan",
+
+ "heartbreak":"patah hati",
+
  "despair":"putus asa",
+
  "flustered-attraction":"tertarik malu crush",
+
  "romantic-jealousy":"cemburu",
+
  "playful-teasing":"mengusik teasing",
+
  "disbelief":"tak percaya",
- "shock":"terkejut",
+
+ "shock":"terkejut surprise",
+
  "comic-shock":"terkejut comedy",
+
  "relief":"lega",
+
  "joy":"gembira",
+
+ "delight":"seronok delight",
+
  "confusion":"keliru",
+
  "realization":"tersedar realization",
+
  "determination":"tekad determined",
- "mental-breakdown":"breakdown collapse menangis"
+
+ "mental-breakdown":"breakdown collapse menangis",
+
+ "sarcasm":"sindir sarcastic",
+
+ "smugness":"smug puas diri",
+
+ "longing":"rindu longing",
+
+ "tenderness":"lembut kasih tenderness"
+
 };
 
 
 /* =========================================================
-   FLATTEN DATABASE
+   CONTEXTS
+========================================================= */
+
+const CONTEXTS = {
+
+ "shock":[
+   "Neutral / Unexpected",
+   "Comedy",
+   "Sad / Painful",
+   "Fear / Threat",
+   "Romantic",
+   "Anger / Betrayal"
+ ],
+
+ "comic-shock":[
+   "Comedy"
+ ],
+
+ "disbelief":[
+   "Neutral",
+   "Comedy",
+   "Painful",
+   "Angry",
+   "Romantic"
+ ],
+
+ "suspicion":[
+   "Neutral",
+   "Comedy",
+   "Serious / Thriller"
+ ],
+
+ "embarrassment":[
+   "Social",
+   "Comedy",
+   "Romantic",
+   "Serious / Shame"
+ ],
+
+ "romantic-jealousy":[
+   "Rom-Com",
+   "Serious Drama"
+ ],
+
+ "annoyance":[
+   "Neutral",
+   "Comedy",
+   "Serious"
+ ],
+
+ "quiet-anger":[
+   "Serious Conflict",
+   "Formal / Power Setting",
+   "Betrayal"
+ ],
+
+ "fear":[
+   "Threat / Thriller",
+   "Vulnerable / Emotional",
+   "Comedy"
+ ],
+
+ "panic":[
+   "Threat / Thriller",
+   "Emotional Crisis",
+   "Comedy"
+ ],
+
+ "realization":[
+   "Neutral",
+   "Comedy",
+   "Painful",
+   "Romantic",
+   "Threat"
+ ],
+
+ "grief":[
+   "Loss",
+   "Private Grief",
+   "Public / Restrained Grief"
+ ],
+
+ "mental-breakdown":[
+   "Emotional Collapse"
+ ],
+
+ "sulking":[
+   "Rom-Com",
+   "Playful Relationship",
+   "Genuine Disappointment"
+ ],
+
+ "playful-teasing":[
+   "Rom-Com",
+   "Friends / Familiar",
+   "Social Banter"
+ ],
+
+ "flustered-attraction":[
+   "Romantic",
+   "Rom-Com",
+   "Formal / Public"
+ ],
+
+ "hurt":[
+   "Private",
+   "Public / Restrained",
+   "Betrayal"
+ ],
+
+ "joy":[
+   "Private",
+   "Public / Formal",
+   "Comedy"
+ ],
+
+ "relief":[
+   "Private",
+   "Public / Restrained",
+   "After Threat"
+ ],
+
+ "determination":[
+   "Personal Resolve",
+   "Conflict",
+   "Protective"
+ ]
+
+};
+
+
+/* =========================================================
+   CATEGORY DEFAULT CONTEXTS
+========================================================= */
+
+const DEFAULT_CONTEXT = {
+
+ "Comedy / Social":[
+   "Social / Everyday",
+   "Comedy"
+ ],
+
+ "Romance / Attraction":[
+   "Romantic",
+   "Rom-Com",
+   "Public / Restrained"
+ ],
+
+ "Joy / Positive":[
+   "Everyday",
+   "Private",
+   "Public / Formal"
+ ],
+
+ "Concern / Anxiety":[
+   "Everyday",
+   "Personal",
+   "Threat / Suspense"
+ ],
+
+ "Sadness / Vulnerability":[
+   "Private",
+   "Public / Restrained"
+ ],
+
+ "Conflict / Anger":[
+   "Everyday Conflict",
+   "Formal / Power Setting",
+   "Private Conflict"
+ ],
+
+ "Suspense / Threat":[
+   "Threat / Thriller",
+   "Everyday Alertness"
+ ],
+
+ "Cognitive / Discovery":[
+   "Neutral",
+   "Comedy",
+   "Serious"
+ ],
+
+ "Power / Determination":[
+   "Personal",
+   "Conflict",
+   "Formal / Public"
+ ],
+
+ "Dysregulation / Extreme":[
+   "Private Crisis",
+   "Public Crisis"
+ ]
+
+};
+
+
+/* =========================================================
+   FLATTEN EMOTION DATA
 ========================================================= */
 
 const emotions=[];
 
 Object.entries(GROUPS).forEach(([category,items])=>{
- items.forEach(([id,name,desc])=>{
-   emotions.push({
-     id,name,desc,category,
-     tones:SPECIAL_TONES[id] || PROFILES[category].defaultTones
-   });
- });
+
+  items.forEach(([id,name,desc])=>{
+
+    emotions.push({
+      id,
+      name,
+      desc,
+      category,
+      contexts:CONTEXTS[id] || DEFAULT_CONTEXT[category]
+    });
+
+  });
+
 });
 
 
 const levelNames=[
- "Barely There",
- "Restrained",
- "Readable",
- "Strong",
- "Heightened"
+  "Barely There",
+  "Restrained",
+  "Readable",
+  "Strong",
+  "Heightened"
+];
+
+
+const styles=[
+  "Natural / Controlled",
+  "Expressive / Controlled"
 ];
 
 
 /* =========================================================
-   FACIAL LANGUAGE ENGINE
+   BASIC HELPERS
 ========================================================= */
 
-function intensityWord(level){
- return [
-  "barely noticeable",
-  "restrained",
-  "clearly readable",
-  "strong",
-  "heightened"
- ][level-1];
+function isComedyContext(context){
+
+  const c=context.toLowerCase();
+
+  return (
+    c.includes("comedy") ||
+    c.includes("rom-com") ||
+    c.includes("banter")
+  );
+
 }
 
 
-function eyeLanguage(emotion,tone,l){
+function isFormalContext(context){
 
- const n=emotion.name;
+  const c=context.toLowerCase();
 
- const custom={
+  return (
+    c.includes("formal") ||
+    c.includes("public") ||
+    c.includes("power setting")
+  );
 
-  "Mild Concern":[
-   "Did something change?",
-   "Are you okay?",
-   "I should keep watching this.",
-   "This may actually be serious.",
-   "I need to act."
-  ],
-
-  "Suspicion":[
-   "Hmm?",
-   "Do you really expect me to believe that?",
-   "I am testing your story.",
-   "I think you are hiding something.",
-   "I know something is wrong."
-  ],
-
-  "Flustered Attraction":[
-   "I noticed you differently.",
-   "I am attracted, but I do not want you to notice.",
-   "I keep becoming aware of you.",
-   "You are disrupting my composure.",
-   "I cannot hide this anymore."
-  ],
-
-  "Quiet Anger":[
-   "I did not like that.",
-   "Do not push me.",
-   "I am angry and choosing restraint.",
-   "You are close to breaking my restraint.",
-   "My restraint is breaking."
-  ],
-
-  "Grief":[
-   "Something is missing.",
-   "I know the loss is real.",
-   "I cannot make this absence disappear.",
-   "I am struggling to contain the loss.",
-   "The loss overwhelms everything."
-  ],
-
-  "Mental Breakdown":[
-   "I am struggling to stay present.",
-   "I am trying to hold myself together.",
-   "My regulation is failing.",
-   "I cannot keep the emotional structure together.",
-   "I cannot organize myself anymore."
-  ],
-
-  "Shock / Surprise":[
-   "Something interrupted me.",
-   "Wait... what?",
-   "I need to understand what just happened.",
-   "This changes everything.",
-   "My normal processing has completely broken."
-  ]
-
- };
-
- if(custom[n]) return custom[n][l-1];
-
- if(emotion.category==="Romance / Attraction")
-   return [
-    "I noticed something.",
-    "This person is affecting me.",
-    "I am trying not to reveal what I feel.",
-    "Maintaining composure is becoming difficult.",
-    "The feeling is impossible to hide."
-   ][l-1];
-
- if(emotion.category==="Conflict / Anger")
-   return [
-    "I did not like that.",
-    "Do not continue.",
-    "You are crossing a line.",
-    "I am close to acting on this.",
-    "Control is breaking."
-   ][l-1];
-
- if(emotion.category==="Suspense / Threat")
-   return [
-    "Something changed.",
-    "I should watch this carefully.",
-    "This may be dangerous.",
-    "I need to prepare.",
-    "Survive."
-   ][l-1];
-
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "That affected me.",
-    "I am trying not to show the pain.",
-    "The emotion is becoming difficult to hide.",
-    "I am struggling to stay composed.",
-    "I cannot contain this anymore."
-   ][l-1];
-
- if(emotion.category==="Comedy / Social")
-   return [
-    "I noticed that.",
-    "I have a reaction, but I am holding it.",
-    "You can clearly read what I think.",
-    "I am openly reacting now.",
-    "The reaction becomes a deliberate comic event."
-   ][l-1];
-
- return [
-  "Something registers.",
-  "The feeling is present but controlled.",
-  "The emotion becomes readable.",
-  "The emotion strongly affects behaviour.",
-  "The emotion dominates the performance."
- ][l-1];
 }
 
 
-function eyeMovement(emotion,tone,l){
+function isPainfulContext(context){
 
- const cat=emotion.category;
- const comedy=tone.toLowerCase().includes("comedy") ||
-              tone.toLowerCase().includes("rom-com");
+  const c=context.toLowerCase();
 
- if(emotion.id==="suspicion"){
-   return comedy
-   ? [
-      "A tiny second look.",
-      "Brief side-eye followed by one deliberate second look.",
-      "Side-eye holds longer before returning.",
-      "Extended side-eye and deliberate double-check.",
-      "Heightened side-eye, double-take and held stare."
-     ][l-1]
-   : [
+  return (
+    c.includes("painful") ||
+    c.includes("loss") ||
+    c.includes("betrayal") ||
+    c.includes("grief") ||
+    c.includes("vulnerable")
+  );
+
+}
+
+
+function isThreatContext(context){
+
+  const c=context.toLowerCase();
+
+  return (
+    c.includes("threat") ||
+    c.includes("thriller") ||
+    c.includes("suspense")
+  );
+
+}
+
+
+function isRomanticContext(context){
+
+  const c=context.toLowerCase();
+
+  return (
+    c.includes("romantic") ||
+    c.includes("rom-com")
+  );
+
+}
+
+
+function isNaturalStyle(style){
+
+  return style==="Natural / Controlled";
+
+}
+
+
+/* =========================================================
+   EYE LANGUAGE
+========================================================= */
+
+function eyeLanguage(emotion,context,style,l){
+
+  const n=emotion.name;
+
+
+  const custom={
+
+    "Mild Concern":[
+
+      "Did something change?",
+
+      "Are you okay?",
+
+      "I should keep watching this.",
+
+      "This may actually be serious.",
+
+      "I need to act."
+
+    ],
+
+
+    "Suspicion":[
+
+      "Hmm?",
+
+      "Do you really expect me to believe that?",
+
+      "I am testing your story.",
+
+      "I think you are hiding something.",
+
+      "I know something is wrong."
+
+    ],
+
+
+    "Flustered Attraction":[
+
+      "I noticed you differently.",
+
+      "I am attracted, but I do not want you to notice.",
+
+      "I keep becoming aware of you.",
+
+      "You are disrupting my composure.",
+
+      "I cannot hide this anymore."
+
+    ],
+
+
+    "Quiet Anger":[
+
+      "I did not like that.",
+
+      "Do not push me.",
+
+      "I am angry and choosing restraint.",
+
+      "You are close to breaking my restraint.",
+
+      "My restraint is breaking."
+
+    ],
+
+
+    "Grief":[
+
+      "Something is missing.",
+
+      "I know the loss is real.",
+
+      "I cannot make this absence disappear.",
+
+      "I am struggling to contain the loss.",
+
+      "The loss overwhelms everything."
+
+    ],
+
+
+    "Mental Breakdown":[
+
+      "I am struggling to stay present.",
+
+      "I am trying to hold myself together.",
+
+      "My regulation is failing.",
+
+      "I cannot keep the emotional structure together.",
+
+      "I cannot organize myself anymore."
+
+    ],
+
+
+    "Shock / Surprise":[
+
+      "Something interrupted me.",
+
+      "Wait... what?",
+
+      "I need to understand what just happened.",
+
+      "This changes everything.",
+
+      "My normal processing has completely broken."
+
+    ]
+
+  };
+
+
+  if(custom[n]){
+    return custom[n][l-1];
+  }
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "I noticed something.",
+
+      "This person is affecting me.",
+
+      "I am trying not to reveal what I feel.",
+
+      "Maintaining composure is becoming difficult.",
+
+      "The feeling is impossible to hide."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "I did not like that.",
+
+      "Do not continue.",
+
+      "You are crossing a line.",
+
+      "I am close to acting on this.",
+
+      "Control is breaking."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Suspense / Threat"){
+
+    return [
+
+      "Something changed.",
+
+      "I should watch this carefully.",
+
+      "This may be dangerous.",
+
+      "I need to prepare.",
+
+      "Survive."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "That affected me.",
+
+      "I am trying not to show the pain.",
+
+      "The emotion is becoming difficult to hide.",
+
+      "I am struggling to stay composed.",
+
+      "I cannot contain this anymore."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Comedy / Social"){
+
+    return [
+
+      "I noticed that.",
+
+      "I have a reaction, but I am holding it.",
+
+      "You can clearly read what I think.",
+
+      "I am openly reacting now.",
+
+      "The reaction becomes a deliberate event."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Something registers.",
+
+    "The feeling is present but controlled.",
+
+    "The emotion becomes readable.",
+
+    "The emotion strongly affects behaviour.",
+
+    "The emotion dominates the performance."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   EYE MOVEMENT
+========================================================= */
+
+function eyeMovement(emotion,context,style,l){
+
+  const expressive=!isNaturalStyle(style);
+  const comedy=isComedyContext(context);
+
+
+  if(emotion.id==="suspicion"){
+
+    if(comedy){
+
+      const natural=[
+
+        "A tiny second look.",
+
+        "Brief side-eye followed by one controlled second look.",
+
+        "Side-eye holds slightly longer before returning.",
+
+        "One clear judging look with a deliberate return.",
+
+        "Strong side-eye remains contained rather than becoming a broad double-take."
+
+      ];
+
+
+      const expressiveSet=[
+
+        "A tiny second look.",
+
+        "Brief side-eye followed by one deliberate second look.",
+
+        "Side-eye holds longer before returning.",
+
+        "Extended side-eye and deliberate double-check.",
+
+        "Heightened side-eye, double-take and held judging stare."
+
+      ];
+
+
+      return (expressive ? expressiveSet : natural)[l-1];
+
+    }
+
+
+    return [
+
       "Brief reassessment.",
+
       "One deliberate second check.",
+
       "Sustained investigative attention.",
+
       "Continuous monitoring of the suspicious source.",
-      "Direct accusatory focus."
-     ][l-1];
- }
 
- if(emotion.id==="shock" || emotion.id==="comic-shock"){
-   return [
-    "Gaze pauses for a fraction.",
-    "Gaze freezes briefly.",
-    "Freeze followed by a deliberate second look.",
-    "Clear double-take or prolonged stare.",
-    "Large but controlled gaze interruption and secondary reaction."
-   ][l-1];
- }
+      "Direct accusatory or threat-assessing focus."
 
- if(cat==="Romance / Attraction"){
-   return [
-    "Tiny attention interruption.",
-    "Brief delayed glance or slightly prolonged eye contact.",
-    "Gaze returns more often than intended.",
-    "Eye contact repeatedly breaks and returns.",
-    "Strong avoidance, return or prolonged romantic lock."
-   ][l-1];
- }
+    ][l-1];
 
- if(cat==="Suspense / Threat"){
-   return [
-    "Tiny focus shift.",
-    "One careful threat check.",
-    "Sustained monitoring or scanning.",
-    "Rapid threat-to-exit checking.",
-    "Attention repeatedly jumps between threat and survival options."
-   ][l-1];
- }
+  }
 
- if(cat==="Sadness / Vulnerability"){
-   return [
-    "A brief loss of visual warmth.",
-    "Eye contact becomes slightly harder.",
-    "Gaze lowers or retreats.",
-    "Eye contact repeatedly breaks.",
-    "Focus may drop away completely."
-   ][l-1];
- }
 
- return [
-  "Tiny gaze adjustment.",
-  "One deliberate re-check.",
-  "Clear gaze change.",
-  "Repeated or sustained gaze behaviour.",
-  "Strong gaze pattern becomes a major part of the reaction."
- ][l-1];
+  if(emotion.id==="shock" || emotion.id==="comic-shock"){
+
+    if(isPainfulContext(context)){
+
+      return [
+
+        "Gaze pauses for a fraction.",
+
+        "Gaze freezes briefly and loses some warmth.",
+
+        "Gaze stays fixed before slowly retreating.",
+
+        "Eye contact becomes difficult after the information lands.",
+
+        "Focus may break away completely as the emotional consequence takes over."
+
+      ][l-1];
+
+    }
+
+
+    if(isThreatContext(context)){
+
+      return [
+
+        "Gaze snaps toward the stimulus.",
+
+        "Attention locks onto the possible threat.",
+
+        "Eyes check the threat and one possible escape point.",
+
+        "Threat tracking becomes repeated and defensive.",
+
+        "Attention jumps rapidly between danger and survival options."
+
+      ][l-1];
+
+    }
+
+
+    if(isRomanticContext(context)){
+
+      return [
+
+        "Tiny pause on the other person.",
+
+        "Eye contact holds a fraction too long before breaking.",
+
+        "Gaze returns after the first surprised look.",
+
+        "Repeated gaze breaks reveal self-consciousness.",
+
+        "Strong avoidance and return pattern becomes openly flustered."
+
+      ][l-1];
+
+    }
+
+
+    if(comedy && expressive){
+
+      return [
+
+        "Gaze pauses for a fraction.",
+
+        "Gaze freezes briefly.",
+
+        "Freeze followed by one deliberate second look.",
+
+        "Clear double-take or prolonged stare.",
+
+        "Large but controlled gaze interruption followed by a secondary reaction."
+
+      ][l-1];
+
+    }
+
+
+    return [
+
+      "Gaze pauses for a fraction.",
+
+      "Brief gaze freeze.",
+
+      "One controlled second look.",
+
+      "Longer stare without a large double-take.",
+
+      "Strong visual interruption while maintaining social control."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "Tiny attention interruption.",
+
+      "Brief delayed glance or slightly prolonged eye contact.",
+
+      "Gaze returns more often than intended.",
+
+      expressive
+        ? "Eye contact repeatedly breaks and returns."
+        : "Eye contact becomes harder to maintain but the person controls the breaks.",
+
+      expressive
+        ? "Strong avoidance, return or prolonged romantic lock."
+        : "The gaze reveals strong attraction while remaining socially contained."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Suspense / Threat"){
+
+    return [
+
+      "Tiny focus shift.",
+
+      "One careful threat check.",
+
+      "Sustained monitoring or scanning.",
+
+      "Rapid threat-to-exit checking.",
+
+      "Attention repeatedly jumps between threat and survival options."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "A brief loss of visual warmth.",
+
+      "Eye contact becomes slightly harder.",
+
+      "Gaze lowers or retreats.",
+
+      "Eye contact repeatedly breaks.",
+
+      "Focus may drop away completely."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "A tiny hardening of focus.",
+
+      "Gaze becomes firmer.",
+
+      "Eye contact becomes more deliberate.",
+
+      "Sustained direct focus carries the anger.",
+
+      expressive
+        ? "The stare may finally break into a larger confrontational reaction."
+        : "The gaze becomes extremely direct while the rest of the body stays controlled."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Tiny gaze adjustment.",
+
+    "One deliberate re-check.",
+
+    "Clear gaze change.",
+
+    "Repeated or sustained gaze behaviour.",
+
+    expressive
+      ? "Strong gaze pattern becomes a major visible part of the reaction."
+      : "Strong emotion remains visible mainly through controlled gaze behaviour."
+
+  ][l-1];
+
 }
 
 
-function eyelids(emotion,tone,l){
+/* =========================================================
+   EYELID LANGUAGE
+========================================================= */
 
- const comedy=tone.toLowerCase().includes("comedy") ||
-              tone.toLowerCase().includes("rom-com");
+function eyelids(emotion,context,style,l){
 
- if(emotion.id==="suspicion" && comedy)
-   return [
-    "Almost normal.",
-    "Slightly half-lidded.",
-    "Clearly half-lidded judging stare.",
-    "Pronounced half-lidded or narrowed comic judgment.",
-    "Highly expressive half-lidded stare with deliberate blink timing."
-   ][l-1];
-
- if(emotion.id==="shock" || emotion.id==="comic-shock")
-   return [
-    "Tiny upper-lid lift.",
-    "Small upper-lid lift with delayed blink.",
-    "Readable upper-lid lift.",
-    "Strong lid opening followed by reaction blink.",
-    "Heightened lid response with controlled recovery."
-   ][l-1];
-
- if(emotion.category==="Romance / Attraction")
-   return [
-    "Mostly natural.",
-    "Slight softening or delayed blink.",
-    "Softer eyelids around eye contact.",
-    "Noticeable lid change and self-conscious blink.",
-    "Expressive lift, softening or rapid recovery blink."
-   ][l-1];
-
- if(emotion.category==="Conflict / Anger")
-   return [
-    "Tiny lower-lid tension.",
-    "Subtle narrowing.",
-    "Reduced relaxed blinking.",
-    "Strong lower-lid tension.",
-    "Intense focused lid tension."
-   ][l-1];
-
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Small stillness.",
-    "One slower blink.",
-    "Lower lids begin to carry emotional tension.",
-    "Repeated controlled blinking.",
-    "Blink control becomes unstable."
-   ][l-1];
-
- return [
-  "Mostly normal.",
-  "Small change in blink or lid tension.",
-  "Clearly readable lid behaviour.",
-  "Strong lid tension or opening.",
-  "Highly expressive or unstable eyelid behaviour."
- ][l-1];
-}
+  const comedy=isComedyContext(context);
+  const expressive=!isNaturalStyle(style);
 
 
-function mouthOpening(emotion,tone,l){
+  if(emotion.id==="suspicion" && comedy){
 
- if(emotion.id==="shock" || emotion.id==="comic-shock")
-   return [
-    "Closed.",
-    "Lips part slightly after the eyes register.",
-    "Small-to-medium opening.",
-    "Clear open-mouth reaction.",
-    "Large open-mouth reaction may be used when dramatically appropriate."
-   ][l-1];
+    return expressive
+      ? [
 
- if(emotion.category==="Conflict / Anger")
-   return [
-    "Closed.",
-    "Mostly closed.",
-    "Opens primarily for deliberate speech.",
-    "Speech opening becomes firmer and more forceful.",
-    "May open strongly only when restraint breaks."
-   ][l-1];
+          "Almost normal.",
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Closed.",
-    "Closed or fractionally parted.",
-    "Small opening before difficult speech.",
-    "Unstable opening as speech or breath becomes difficult.",
-    "Mouth may open during crying or loss of vocal control."
-   ][l-1];
+          "Slightly half-lidded.",
 
- if(emotion.category==="Romance / Attraction")
-   return [
-    "Closed.",
-    "Lips may part a fraction.",
-    "Small parting during fluster or suppressed smile.",
-    "Clear but controlled mouth reaction.",
-    "Open reaction may appear in heightened rom-com performance."
-   ][l-1];
+          "Clearly half-lidded judging stare.",
 
- return [
-  "Mostly closed.",
-  "Tiny change in opening.",
-  "Small readable opening.",
-  "Clear mouth opening.",
-  "Large opening only when motivated by the emotion."
- ][l-1];
-}
+          "Pronounced half-lidded or narrowed comic judgment.",
+
+          "Highly expressive half-lidded stare with deliberate blink timing."
+
+        ][l-1]
+
+      : [
+
+          "Almost normal.",
+
+          "Tiny lower-lid engagement with a slightly lowered upper lid.",
+
+          "Restrained half-lidded judgment.",
+
+          "More focused half-lidded stare without broad comic exaggeration.",
+
+          "Strong judging eyelid attitude kept socially controlled."
+
+        ][l-1];
+
+  }
 
 
-function teethLanguage(emotion,tone,l){
+  if(emotion.id==="shock" || emotion.id==="comic-shock"){
 
- if(emotion.category==="Joy / Positive")
-   return [
-    "Usually hidden.",
-    "A slight upper-teeth glimpse may appear.",
-    "Upper teeth appear naturally as the smile opens.",
-    "Clear smile-teeth visibility.",
-    "Broad teeth visibility through open joy or laughter."
-   ][l-1];
+    if(isPainfulContext(context)){
 
- if(emotion.id==="playful-teasing" ||
-    emotion.id==="smugness")
-   return [
-    "Hidden.",
-    "Usually hidden or a tiny glimpse.",
-    "Upper teeth may show in a mischievous grin.",
-    "Teeth become clearly visible through the grin.",
-    "Broad grin visibility in heightened comedy."
-   ][l-1];
+      return [
 
- if(emotion.category==="Conflict / Anger")
-   return [
-    "Hidden.",
-    "Hidden.",
-    "Usually hidden; tension is carried by the jaw.",
-    "May briefly show through clenched or tense speech.",
-    "Can become visible when anger breaks into forceful speech."
-   ][l-1];
+        "Tiny stillness.",
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Hidden.",
-    "Hidden.",
-    "Hidden.",
-    "Usually hidden; any visibility is incidental.",
-    "Teeth visibility is incidental to crying, never smile-like."
-   ][l-1];
+        "Blink is slightly delayed.",
 
- return [
-  "Hidden.",
-  "Usually hidden.",
-  "May appear briefly if the mouth shape naturally exposes them.",
-  "Visibility depends on the motivated mouth action.",
-  "May become clearly visible only when supported by the emotion."
- ][l-1];
-}
+        "Slow blink follows the first shock.",
+
+        "Repeated controlled blink as emotional pain arrives.",
+
+        "Blink control may become unstable if grief or distress takes over."
+
+      ][l-1];
+
+    }
 
 
-function lipShape(emotion,tone,l){
+    return [
 
- if(emotion.id==="sulking")
-   return [
-    "Almost neutral with tiny forward projection.",
-    "Soft rounded pout / small muncung.",
-    "Clear forward pout.",
-    "Pronounced projected lips.",
-    "Large but controlled comic pout."
-   ][l-1];
+      "Tiny upper-lid lift.",
 
- if(emotion.id==="suspicion" &&
-    (tone.includes("Comedy")))
-   return [
-    "Neutral.",
-    "Tiny asymmetric purse.",
-    "Asymmetric purse or small forward projection.",
-    "Pronounced judging purse.",
-    "Strong comic purse or mouth distortion."
-   ][l-1];
+      "Small upper-lid lift with delayed blink.",
 
- if(emotion.category==="Romance / Attraction")
-   return [
-    "Neutral.",
-    "Almost-smile or small lip reset.",
-    "Suppressed smile.",
-    "Smile becomes harder to contain.",
-    "Open embarrassed, affectionate or desirous mouth response."
-   ][l-1];
+      "Readable upper-lid lift.",
 
- if(emotion.category==="Conflict / Anger")
-   return [
-    "Slight loss of softness.",
-    "Light lip press.",
-    "Firm compressed lips.",
-    "Strong compression or tense speech shape.",
-    "Tension becomes unstable as control breaks."
-   ][l-1];
+      expressive
+        ? "Strong lid opening followed by a reaction blink."
+        : "Clear upper-lid response that remains controlled.",
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Neutral but lower energy.",
-    "Light press.",
-    "Tension or beginning tremor.",
-    "Visible tremor or unstable press.",
-    "Loss of fine mouth control."
-   ][l-1];
+      expressive
+        ? "Heightened lid response with controlled recovery."
+        : "Strong shock remains visible without sustained wide-eyed staring."
 
- return [
-  "Mostly neutral.",
-  "Small motivated mouth change.",
-  "Readable lip shape.",
-  "Strong lip behaviour.",
-  "Heightened but emotionally motivated mouth shape."
- ][l-1];
-}
+    ][l-1];
+
+  }
 
 
-function mouthCorners(emotion,tone,l){
+  if(emotion.category==="Romance / Attraction"){
 
- if(emotion.category==="Romance / Attraction")
-   return [
-    "Almost neutral.",
-    "One or both corners begin to rise then are suppressed.",
-    "Corners visibly fight a smile.",
-    "Upward movement becomes difficult to hide.",
-    "Strong upward activation or unstable embarrassed smile."
-   ][l-1];
+    return [
 
- if(emotion.category==="Joy / Positive")
-   return [
-    "Tiny upward warmth.",
-    "Small upward movement.",
-    "Clearly lifted.",
-    "Strong upward pull.",
-    "Broad upward activation."
-   ][l-1];
+      "Mostly natural.",
 
- if(emotion.id==="sulking")
-   return [
-    "Tiny downward tension.",
-    "Both corners slightly down.",
-    "Readable downward pull.",
-    "Strong downward sulking shape.",
-    "Heightened downward pout."
-   ][l-1];
+      "Slight softening or delayed blink.",
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Lose a little support.",
-    "Slight downward tension.",
-    "Readable loss of support.",
-    "Downward pull or instability.",
-    "Strong unstable downward movement."
-   ][l-1];
+      "Softer eyelids around eye contact.",
 
- if(emotion.category==="Comedy / Social")
-   return [
-    "Tiny asymmetric change.",
-    "One corner may rise or tighten.",
-    "Asymmetry becomes readable.",
-    "Strong one-sided reaction.",
-    "Large but controlled comic corner movement."
-   ][l-1];
+      expressive
+        ? "Noticeable lid change and self-conscious blink."
+        : "Softer lids reveal intimacy while control remains high.",
 
- return [
-  "Mostly neutral.",
-  "Small tension.",
-  "Readable change.",
-  "Strong corner tension.",
-  "Large or unstable movement if motivated."
- ][l-1];
-}
+      expressive
+        ? "Expressive lift, softening or rapid recovery blink."
+        : "Strong attraction is held through soft but controlled eyelid behaviour."
+
+    ][l-1];
+
+  }
 
 
-function breathLanguage(emotion,l){
+  if(emotion.category==="Conflict / Anger"){
 
- if(emotion.category==="Dysregulation / Extreme")
-   return [
-    "Mostly organized.",
-    "Incomplete inhale or controlled exhale.",
-    "Breathing becomes inconsistent.",
-    "Broken breathing rhythm.",
-    "Breathing becomes difficult to organize."
-   ][l-1];
+    return [
 
- if(emotion.category==="Suspense / Threat")
-   return [
-    "Tiny breath pause.",
-    "Quiet controlled inhale.",
-    "Shallow but organized breathing.",
-    "Breathing becomes harder to regulate.",
-    "Strong fear-driven breathing or gasping."
-   ][l-1];
+      "Tiny lower-lid tension.",
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
+      "Subtle narrowing.",
+
+      "Reduced relaxed blinking.",
+
+      "Strong lower-lid tension.",
+
+      "Intense focused lid tension; avoid generic wide-eyed anger."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Small stillness.",
+
+      "One slower blink.",
+
+      "Lower lids begin to carry emotional tension.",
+
+      "Repeated controlled blinking.",
+
+      "Blink control becomes unstable when regulation fails."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
     "Mostly normal.",
-    "Quiet restrained exhale.",
-    "Incomplete inhale or broken exhale.",
-    "Uneven breathing.",
-    "Broken crying breath."
-   ][l-1];
 
- return [
-  "Normal.",
-  "One small breath change.",
-  "Breathing becomes part of the readable performance.",
-  "Clear regulation effort.",
-  "Breath strongly reflects the emotion."
- ][l-1];
+    "Small change in blink or lid tension.",
+
+    "Clearly readable lid behaviour.",
+
+    expressive
+      ? "Strong eyelid change becomes visible."
+      : "Strong eyelid tension remains controlled.",
+
+    expressive
+      ? "Highly expressive or unstable eyelid behaviour where appropriate."
+      : "High-intensity emotion remains contained through precise eyelid behaviour."
+
+  ][l-1];
+
 }
 
 
-function bodyLanguage(emotion,l){
+/* =========================================================
+   MOUTH OPENING LANGUAGE
+========================================================= */
 
- const cat=emotion.category;
+function mouthOpening(emotion,context,style,l){
 
- if(cat==="Conflict / Anger")
+  const expressive=!isNaturalStyle(style);
+
+
+  if(emotion.id==="shock" || emotion.id==="comic-shock"){
+
+    if(isPainfulContext(context)){
+
+      return [
+
+        "Closed.",
+
+        "Lips part only a fraction.",
+
+        "Small opening without a dramatic jaw drop.",
+
+        "Mouth may open slightly during failed speech or incomplete breath.",
+
+        "Opening increases only if crying or emotional regulation breaks."
+
+      ][l-1];
+
+    }
+
+
+    if(isThreatContext(context)){
+
+      return [
+
+        "Closed.",
+
+        "Lips part slightly after the threat registers.",
+
+        "Small opening supports controlled breathing.",
+
+        "Opening becomes clearer as breathing becomes harder.",
+
+        "Mouth may stay open for survival breathing or gasping."
+
+      ][l-1];
+
+    }
+
+
+    return expressive
+      ? [
+
+          "Closed.",
+
+          "Lips part slightly after the eyes register.",
+
+          "Small-to-medium opening.",
+
+          "Clear open-mouth reaction.",
+
+          "Large open-mouth reaction may be used when dramatically appropriate."
+
+        ][l-1]
+
+      : [
+
+          "Closed.",
+
+          "Lips part only slightly.",
+
+          "Small restrained opening.",
+
+          "A clear but controlled mouth opening.",
+
+          "Strong surprise remains contained; avoid a large sustained jaw-drop unless context demands it."
+
+        ][l-1];
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "Closed.",
+
+      "Mostly closed.",
+
+      "Opens mainly for deliberate speech.",
+
+      "Speech opening becomes firmer and more forceful.",
+
+      expressive
+        ? "May open strongly when restraint finally breaks."
+        : "Remains relatively compressed even at high intensity unless the character speaks."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Closed.",
+
+      "Closed or fractionally parted.",
+
+      "Small opening before difficult speech.",
+
+      "Unstable opening as speech or breath becomes difficult.",
+
+      "Mouth may open during crying or loss of vocal control."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "Closed.",
+
+      "Lips may part a fraction.",
+
+      "Small parting during fluster or suppressed smile.",
+
+      expressive
+        ? "Clear but controlled mouth reaction."
+        : "Small controlled opening; social restraint remains visible.",
+
+      expressive
+        ? "Open reaction may appear in heightened rom-com performance."
+        : "Strong attraction still avoids a broad unmotivated mouth reaction."
+
+    ][l-1];
+
+  }
+
+
   return [
-   "Normal posture.",
-   "Movement reduces slightly.",
-   "Posture firms.",
-   "Stillness or confrontational orientation becomes strong.",
-   "Contained stillness may finally break into action."
+
+    "Mostly closed.",
+
+    "Tiny change in opening.",
+
+    "Small readable opening.",
+
+    expressive
+      ? "Clear mouth opening where motivated."
+      : "Clear but socially controlled mouth response.",
+
+    expressive
+      ? "Large opening only when motivated by the emotion."
+      : "High intensity does not automatically require a large mouth opening."
+
   ][l-1];
 
- if(cat==="Sadness / Vulnerability")
-  return [
-   "Tiny energy loss.",
-   "Slight withdrawal.",
-   "Posture begins to close.",
-   "Shoulders or torso lose support.",
-   "Body may collapse inward or seek support."
-  ][l-1];
-
- if(cat==="Suspense / Threat")
-  return [
-   "Brief pause.",
-   "Movement reduces.",
-   "Guarded posture.",
-   "Braced defensive posture.",
-   "Freeze, flee or protective action may dominate."
-  ][l-1];
-
- if(cat==="Romance / Attraction")
-  return [
-   "Almost normal.",
-   "Small hesitation.",
-   "Subtle orientation toward or away from the person.",
-   "Visible proximity or avoidance tension.",
-   "Heightened freeze, retreat or approach may appear."
-  ][l-1];
-
- if(cat==="Dysregulation / Extreme")
-  return [
-   "Small loss of normal rhythm.",
-   "Posture subtly closes.",
-   "Shoulders begin losing support.",
-   "Body seeks support or regulation.",
-   "Whole-body organization may fail."
-  ][l-1];
-
- return [
-  "Mostly normal.",
-  "Small posture adjustment.",
-  "Readable body response.",
-  "Strong posture or movement change.",
-  "Heightened whole-body response when dramatically justified."
- ][l-1];
 }
 
 
-function timingLanguage(emotion,tone,l){
+/* =========================================================
+   TEETH LANGUAGE
+========================================================= */
 
- const comedy=tone.toLowerCase().includes("comedy") ||
-              tone.toLowerCase().includes("rom-com");
+function teethLanguage(emotion,context,style,l){
 
- if(comedy)
-   return [
-    "Stimulus → tiny register → continue.",
-    "Setup → small reaction → brief hold → recovery.",
-    "Setup → reaction → hold → second look or secondary payoff.",
-    "Clear anticipation → reaction → hold → secondary reaction.",
-    "Strong setup → freeze/recoil → reaction hold → second payoff → recovery."
-   ][l-1];
+  const expressive=!isNaturalStyle(style);
 
- if(emotion.category==="Sadness / Vulnerability")
-   return [
-    "Emotional information lands → slight stillness.",
-    "Hit → pause → slow processing → small withdrawal.",
-    "Information lands → breath changes → pain becomes readable.",
-    "Pain builds → speech or eye control weakens.",
-    "Restraint fails → breath, face and posture lose regulation."
-   ][l-1];
 
- if(emotion.category==="Suspense / Threat")
-   return [
-    "Threat registers → attention changes.",
-    "Threat → eyes check → movement reduces.",
-    "Threat → track → listen → brace.",
-    "Escalation → breath changes → defensive preparation.",
-    "Threat overwhelms regulation → survival response."
-   ][l-1];
+  if(emotion.category==="Joy / Positive"){
 
- return [
-  "Emotion registers → tiny behavioural leak.",
-  "Emotion lands → small pause → controlled response.",
-  "Emotion becomes readable → deliberate response.",
-  "Strong emotion → regulation effort → visible consequence.",
-  "Peak emotion → strong response → aftermath or recovery."
- ][l-1];
+    return [
+
+      "Usually hidden.",
+
+      "A slight upper-teeth glimpse may appear.",
+
+      "Upper teeth appear naturally as the smile opens.",
+
+      expressive
+        ? "Clear smile-teeth visibility."
+        : "Teeth may show briefly while the smile remains socially contained.",
+
+      expressive
+        ? "Broad teeth visibility through open joy or laughter."
+        : "High joy may show teeth, but the smile remains controlled for the setting."
+
+    ][l-1];
+
+  }
+
+
+  if(
+    emotion.id==="playful-teasing" ||
+    emotion.id==="smugness"
+  ){
+
+    return [
+
+      "Hidden.",
+
+      "Usually hidden or a tiny glimpse.",
+
+      "Upper teeth may show in a mischievous grin.",
+
+      expressive
+        ? "Teeth become clearly visible through the grin."
+        : "A brief teeth glimpse can escape before composure returns.",
+
+      expressive
+        ? "Broad grin visibility in heightened comedy."
+        : "Even strong teasing keeps teeth visibility selective."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "Hidden.",
+
+      "Hidden.",
+
+      "Usually hidden; tension is carried by the jaw.",
+
+      "May briefly show through clenched or tense speech.",
+
+      expressive
+        ? "Can become visible when anger breaks into forceful speech."
+        : "Avoid showing teeth as a generic anger signal; jaw tension carries more of the emotion."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Hidden.",
+
+      "Hidden.",
+
+      "Hidden.",
+
+      "Usually hidden; any visibility is incidental.",
+
+      "Teeth visibility is incidental to crying, never smile-like."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Hidden.",
+
+    "Usually hidden.",
+
+    "May appear briefly if the mouth shape naturally exposes them.",
+
+    "Visibility depends on the motivated mouth action.",
+
+    "May become clearly visible only when supported by the emotion."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   LIP / MOUTH SHAPE
+========================================================= */
+
+function lipShape(emotion,context,style,l){
+
+  const expressive=!isNaturalStyle(style);
+
+
+  if(emotion.id==="sulking"){
+
+    return [
+
+      "Almost neutral with tiny forward projection.",
+
+      "Soft rounded pout / small muncung.",
+
+      "Clear forward pout.",
+
+      expressive
+        ? "Pronounced projected lips."
+        : "More visible pout while still socially controlled.",
+
+      expressive
+        ? "Large but controlled comic pout."
+        : "Strong sulking is clear without turning into an exaggerated cute gesture."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.id==="suspicion" && isComedyContext(context)){
+
+    return [
+
+      "Neutral.",
+
+      "Tiny asymmetric purse.",
+
+      "Asymmetric purse or small forward projection.",
+
+      expressive
+        ? "Pronounced judging purse."
+        : "Firm but restrained asymmetric purse.",
+
+      expressive
+        ? "Strong comic purse or mouth distortion."
+        : "Strong suspicion stays controlled; avoid cartoon-like mouth distortion."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "Neutral.",
+
+      "Almost-smile or small lip reset.",
+
+      "Suppressed smile.",
+
+      expressive
+        ? "Smile becomes harder to contain."
+        : "The smile almost escapes, then is deliberately controlled.",
+
+      expressive
+        ? "Open embarrassed, affectionate or desirous mouth response."
+        : "Strong attraction remains visible through suppression rather than a broad smile."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "Slight loss of softness.",
+
+      "Light lip press.",
+
+      "Firm compressed lips.",
+
+      "Strong compression or tense speech shape.",
+
+      expressive
+        ? "Tension becomes unstable as control breaks."
+        : "Compression remains the dominant mouth language even at high intensity."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Neutral but lower energy.",
+
+      "Light press.",
+
+      "Tension or beginning tremor.",
+
+      "Visible tremor or unstable press.",
+
+      "Loss of fine mouth control."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Mostly neutral.",
+
+    "Small motivated mouth change.",
+
+    "Readable lip shape.",
+
+    expressive
+      ? "Strong lip behaviour."
+      : "Strong emotion is held through controlled lip behaviour.",
+
+    expressive
+      ? "Heightened but emotionally motivated mouth shape."
+      : "High intensity remains selective rather than visually busy."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   MOUTH CORNERS
+========================================================= */
+
+function mouthCorners(emotion,context,style,l){
+
+  const expressive=!isNaturalStyle(style);
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "Almost neutral.",
+
+      "One or both corners begin to rise then are suppressed.",
+
+      "Corners visibly fight a smile.",
+
+      expressive
+        ? "Upward movement becomes difficult to hide."
+        : "A stronger almost-smile appears, then is brought back under control.",
+
+      expressive
+        ? "Strong upward activation or unstable embarrassed smile."
+        : "The corners repeatedly threaten to lift, but the character maintains social control."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Joy / Positive"){
+
+    return [
+
+      "Tiny upward warmth.",
+
+      "Small upward movement.",
+
+      "Clearly lifted.",
+
+      expressive
+        ? "Strong upward pull."
+        : "Strong smile is present but moderated by the setting.",
+
+      expressive
+        ? "Broad upward activation."
+        : "High joy remains controlled enough for a formal or socially aware setting."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.id==="sulking"){
+
+    return [
+
+      "Tiny downward tension.",
+
+      "Both corners slightly down.",
+
+      "Readable downward pull.",
+
+      expressive
+        ? "Strong downward sulking shape."
+        : "Clear downward tension without oversized pout.",
+
+      expressive
+        ? "Heightened downward pout."
+        : "Strong sulking remains legible but contained."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Lose a little support.",
+
+      "Slight downward tension.",
+
+      "Readable loss of support.",
+
+      "Downward pull or instability.",
+
+      "Strong unstable downward movement."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Comedy / Social"){
+
+    return [
+
+      "Tiny asymmetric change.",
+
+      "One corner may rise or tighten.",
+
+      "Asymmetry becomes readable.",
+
+      expressive
+        ? "Strong one-sided reaction."
+        : "One-sided reaction becomes clear but remains controlled.",
+
+      expressive
+        ? "Large but controlled comic corner movement."
+        : "Strong asymmetry is held rather than exaggerated."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Mostly neutral.",
+
+    "Small tension.",
+
+    "Readable change.",
+
+    "Strong corner tension.",
+
+    expressive
+      ? "Large or unstable movement if motivated."
+      : "High-intensity mouth-corner behaviour remains selective."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   BREATH
+========================================================= */
+
+function breathLanguage(emotion,context,style,l){
+
+  const natural=isNaturalStyle(style);
+
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    return [
+
+      "Mostly organized.",
+
+      "Incomplete inhale or controlled exhale.",
+
+      "Breathing becomes inconsistent.",
+
+      "Broken breathing rhythm.",
+
+      "Breathing becomes difficult to organize."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Suspense / Threat"){
+
+    return [
+
+      "Tiny breath pause.",
+
+      "Quiet controlled inhale.",
+
+      "Shallow but organized breathing.",
+
+      "Breathing becomes harder to regulate.",
+
+      "Strong fear-driven breathing or gasping."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Mostly normal.",
+
+      "Quiet restrained exhale.",
+
+      "Incomplete inhale or broken exhale.",
+
+      "Uneven breathing.",
+
+      "Broken crying breath."
+
+    ][l-1];
+
+  }
+
+
+  if(
+    emotion.category==="Conflict / Anger" &&
+    natural
+  ){
+
+    return [
+
+      "Normal.",
+
+      "One controlled nasal exhale.",
+
+      "Slow deliberate breath regulation.",
+
+      "Breathing becomes visibly controlled to prevent escalation.",
+
+      "Forceful emotion is contained through deliberate breath rather than panting."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Normal.",
+
+    "One small breath change.",
+
+    "Breathing becomes part of the readable performance.",
+
+    "Clear regulation effort.",
+
+    "Breath strongly reflects the emotion."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+function bodyLanguage(emotion,context,style,l){
+
+  const expressive=!isNaturalStyle(style);
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    return [
+
+      "Normal posture.",
+
+      "Movement reduces slightly.",
+
+      "Posture firms.",
+
+      expressive
+        ? "Stillness or confrontational orientation becomes strong."
+        : "Stillness becomes the main physical sign of control.",
+
+      expressive
+        ? "Contained stillness may finally break into action."
+        : "The body stays highly controlled even as internal anger peaks."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Tiny energy loss.",
+
+      "Slight withdrawal.",
+
+      "Posture begins to close.",
+
+      "Shoulders or torso lose support.",
+
+      "Body may collapse inward or seek support."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Suspense / Threat"){
+
+    return [
+
+      "Brief pause.",
+
+      "Movement reduces.",
+
+      "Guarded posture.",
+
+      "Braced defensive posture.",
+
+      "Freeze, flee or protective action may dominate."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Romance / Attraction"){
+
+    return [
+
+      "Almost normal.",
+
+      "Small hesitation.",
+
+      "Subtle orientation toward or away from the person.",
+
+      expressive
+        ? "Visible proximity or avoidance tension."
+        : "The body stays socially appropriate while orientation subtly reveals attraction.",
+
+      expressive
+        ? "Heightened freeze, retreat or approach may appear."
+        : "Strong attraction remains physically contained despite obvious internal tension."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    return [
+
+      "Small loss of normal rhythm.",
+
+      "Posture subtly closes.",
+
+      "Shoulders begin losing support.",
+
+      "Body seeks support or regulation.",
+
+      "Whole-body organization may fail."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Mostly normal.",
+
+    "Small posture adjustment.",
+
+    "Readable body response.",
+
+    expressive
+      ? "Strong posture or movement change."
+      : "Strong emotion remains visible through selective posture changes.",
+
+    expressive
+      ? "Heightened whole-body response when dramatically justified."
+      : "High intensity remains physically organized and socially controlled."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   TIMING
+========================================================= */
+
+function timingLanguage(emotion,context,style,l){
+
+  const comedy=isComedyContext(context);
+  const expressive=!isNaturalStyle(style);
+
+
+  if(comedy){
+
+    if(expressive){
+
+      return [
+
+        "Stimulus → tiny register → continue.",
+
+        "Setup → small reaction → brief hold → recovery.",
+
+        "Setup → reaction → hold → second look or secondary payoff.",
+
+        "Clear anticipation → reaction → hold → secondary reaction.",
+
+        "Strong setup → freeze or recoil → reaction hold → second payoff → recovery."
+
+      ][l-1];
+
+    }
+
+
+    return [
+
+      "Stimulus → tiny register → continue.",
+
+      "Setup → micro reaction → controlled pause → continue.",
+
+      "Reaction becomes readable but remains socially contained.",
+
+      "A stronger hold appears without a broad physical payoff.",
+
+      "The comic thought is clear, but the body preserves formal or social control."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Emotional information lands → slight stillness.",
+
+      "Hit → pause → slow processing → small withdrawal.",
+
+      "Information lands → breath changes → pain becomes readable.",
+
+      "Pain builds → speech or eye control weakens.",
+
+      "Restraint fails → breath, face and posture lose regulation."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Suspense / Threat"){
+
+    return [
+
+      "Threat registers → attention changes.",
+
+      "Threat → eyes check → movement reduces.",
+
+      "Threat → track → listen → brace.",
+
+      "Escalation → breath changes → defensive preparation.",
+
+      "Threat overwhelms regulation → survival response."
+
+    ][l-1];
+
+  }
+
+
+  if(
+    isFormalContext(context) ||
+    isNaturalStyle(style)
+  ){
+
+    return [
+
+      "Emotion registers → almost no immediate outward reaction.",
+
+      "Emotion lands → tiny pause → controlled facial leak.",
+
+      "Emotion becomes readable through a small sequence rather than a large reaction.",
+
+      "Strong feeling → deliberate hold → controlled response.",
+
+      "Peak emotion remains contained until a specific feature or breath briefly leaks it."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Emotion registers → tiny behavioural leak.",
+
+    "Emotion lands → small pause → controlled response.",
+
+    "Emotion becomes readable → deliberate response.",
+
+    "Strong emotion → regulation effort → visible consequence.",
+
+    "Peak emotion → strong response → aftermath or recovery."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   EYE MOISTURE
+========================================================= */
+
+function eyeMoisture(emotion,context,l){
+
+  if(emotion.category==="Sadness / Vulnerability"){
+
+    return [
+
+      "Normal.",
+
+      "Usually normal.",
+
+      "Slight glassiness may appear where appropriate.",
+
+      "Tear film or tears collecting may appear.",
+
+      "Tears may fall if the emotional progression genuinely supports them."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    return [
+
+      "Normal.",
+
+      "Faint glassiness possible.",
+
+      "Eyes may become glassy.",
+
+      "Tears may collect or fall.",
+
+      "Active tears may accompany loss of regulation."
+
+    ][l-1];
+
+  }
+
+
+  if(
+    emotion.id==="shock" &&
+    isPainfulContext(context)
+  ){
+
+    return [
+
+      "Normal.",
+
+      "Normal.",
+
+      "Faint glassiness may appear after realization.",
+
+      "Tear film may develop if the shock becomes emotionally painful.",
+
+      "Tears may appear only if the shock progresses into grief or breakdown."
+
+    ][l-1];
+
+  }
+
+
+  return "Normal unless another emotion introduces tears.";
+
+}
+
+
+/* =========================================================
+   NONVERBAL
+========================================================= */
+
+function nonverbalLanguage(emotion,context,style,l){
+
+  const expressive=!isNaturalStyle(style);
+
+
+  if(
+    emotion.id==="annoyance" ||
+    emotion.id==="irritation" ||
+    emotion.id==="sulking"
+  ){
+
+    return [
+
+      "None.",
+
+      "Small nasal exhale or tiny tongue click.",
+
+      "Tongue click, hum or restrained scoff.",
+
+      expressive
+        ? "Clear scoff, tongue click or exhale."
+        : "One controlled scoff, tongue click or exhale at most.",
+
+      expressive
+        ? "Heightened vocal complaint only when the scene supports it."
+        : "Even at high intensity, vocal reaction stays selective."
+
+    ][l-1];
+
+  }
+
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    return [
+
+      "Usually none.",
+
+      "Quiet incomplete sigh or breath.",
+
+      "Broken exhale or fragmented vocal start.",
+
+      "Crying, gasping or broken speech may emerge.",
+
+      "Vocal control may fail."
+
+    ][l-1];
+
+  }
+
+
+  return [
+
+    "Usually none.",
+
+    "A small exhale, hum or tiny reaction sound only if motivated.",
+
+    "A restrained sigh, chuckle, scoff or breath sound may appear.",
+
+    expressive
+      ? "Non-verbal reaction becomes clearer."
+      : "Non-verbal reaction remains selective and socially controlled.",
+
+    expressive
+      ? "Stronger vocal reaction may appear if supported by the emotion."
+      : "Strong emotion does not automatically require a loud vocal reaction."
+
+  ][l-1];
+
+}
+
+
+/* =========================================================
+   PERFORMANCE CONTROL
+========================================================= */
+
+function performanceControl(emotion,style,l){
+
+  let base;
+
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    base=[88,72,54,34,15][l-1];
+
+  }
+
+  else if(
+    emotion.id==="panic" ||
+    emotion.id==="rage"
+  ){
+
+    base=[96,88,73,55,35][l-1];
+
+  }
+
+  else{
+
+    base=[99,96,91,83,72][l-1];
+
+  }
+
+
+  if(style==="Natural / Controlled"){
+
+    base=Math.min(100,base+5);
+
+  }
+
+  else{
+
+    base=Math.max(10,base-5);
+
+  }
+
+
+  return base;
+
+}
+
+
+function controlLabel(value){
+
+  if(value>=96) return "Very High Control";
+
+  if(value>=86) return "High Control";
+
+  if(value>=70) return "Moderate Control";
+
+  if(value>=50) return "Control Weakening";
+
+  return "Low / Failing Control";
+
 }
 
 
@@ -1256,138 +3526,474 @@ function timingLanguage(emotion,tone,l){
    PERFORMANCE MAP
 ========================================================= */
 
-function buildMap(emotion,tone,l){
+function buildMap(emotion,context,style,l){
 
- const eye=eyeLanguage(emotion,tone,l);
- const movement=eyeMovement(emotion,tone,l);
- const lids=eyelids(emotion,tone,l);
- const mouth=mouthOpening(emotion,tone,l);
- const teeth=teethLanguage(emotion,tone,l);
- const lips=lipShape(emotion,tone,l);
- const corners=mouthCorners(emotion,tone,l);
- const breath=breathLanguage(emotion,l);
- const body=bodyLanguage(emotion,l);
- const timing=timingLanguage(emotion,tone,l);
+  return {
 
- let moisture="Normal.";
+    "Eye Language":
+      eyeLanguage(
+        emotion,
+        context,
+        style,
+        l
+      ),
 
- if(emotion.category==="Sadness / Vulnerability"){
-   moisture=[
-    "Normal.",
-    "Usually normal.",
-    "Slight glassiness may appear where appropriate.",
-    "Tear film or tears collecting may appear.",
-    "Tears may fall if the emotion has genuinely reached this point."
-   ][l-1];
- }
 
- if(emotion.category==="Dysregulation / Extreme"){
-   moisture=[
-    "Normal.",
-    "Faint glassiness possible.",
-    "Eyes may become glassy.",
-    "Tears may collect or fall.",
-    "Active tears may accompany loss of regulation."
-   ][l-1];
- }
+    "Eye Movement Language":
+      eyeMovement(
+        emotion,
+        context,
+        style,
+        l
+      ),
 
- let nonverbal=[
-  "Usually none.",
-  "A small exhale, hum or tiny reaction sound only if motivated.",
-  "A restrained sigh, chuckle, scoff or breath sound may appear.",
-  "Non-verbal reaction becomes clearer.",
-  "Stronger vocal reaction may appear if supported by the emotion."
- ][l-1];
 
- if(emotion.id==="annoyance" ||
-    emotion.id==="irritation" ||
-    emotion.id==="sulking"){
-   nonverbal=[
-    "None.",
-    "Small nasal exhale or tiny tongue click.",
-    "Tongue click, hum or restrained scoff.",
-    "Clear scoff, tongue click or exhale.",
-    "Heightened vocal complaint only when the scene supports it."
-   ][l-1];
- }
+    "Eyelid Language":
+      eyelids(
+        emotion,
+        context,
+        style,
+        l
+      ),
 
- return {
-   "Eye Language":eye,
-   "Eye Movement Language":movement,
-   "Eyelid Language":lids,
-   "Brows":[
-     "Minimal change.",
-     "Small motivated tension or lift.",
-     "Readable brow behaviour.",
-     "Strong but specific brow response.",
-     "Heightened brow behaviour only if it belongs to the emotion."
-   ][l-1],
-   "Eye Moisture":moisture,
-   "Mouth Opening Language":mouth,
-   "Showing Teeth Language":teeth,
-   "Lip / Mouth Language":lips,
-   "Corner of the Mouth":corners,
-   "Cheeks":[
-     "Mostly relaxed.",
-     "Tiny softening, lift or compression.",
-     "Readable cheek tension or activation.",
-     "Strong cheek involvement.",
-     "Heightened cheek activation where appropriate."
-   ][l-1],
-   "Jaw / Neck / Throat":[
-     "Mostly relaxed.",
-     "Small swallow, jaw reset or throat change if motivated.",
-     "Readable jaw or throat behaviour.",
-     "Strong jaw, throat or neck engagement.",
-     "Clear strain or loss of control if emotionally justified."
-   ][l-1],
-   "Breathing":breath,
-   "Hands / Fingers":[
-     "Normal.",
-     "Small reduction in relaxation.",
-     "One motivated grip, fidget or stillness.",
-     "Clear self-regulation, defensive or expressive hand behaviour.",
-     "Strong gesture or support-seeking only when justified."
-   ][l-1],
-   "Body / Posture":body,
-   "Non-Verbal Reaction":nonverbal,
-   "Reaction Timing":timing
- };
+
+    "Brows":
+
+      [
+
+        "Minimal change.",
+
+        "Small motivated tension or lift.",
+
+        "Readable brow behaviour.",
+
+        isNaturalStyle(style)
+          ? "Strong emotion is visible without overusing the brows."
+          : "Strong but specific brow response.",
+
+        isNaturalStyle(style)
+          ? "High-intensity brow behaviour remains selective."
+          : "Heightened brow behaviour only if it belongs to the emotion."
+
+      ][l-1],
+
+
+    "Eye Moisture":
+      eyeMoisture(
+        emotion,
+        context,
+        l
+      ),
+
+
+    "Mouth Opening Language":
+      mouthOpening(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Showing Teeth Language":
+      teethLanguage(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Lip / Mouth Language":
+      lipShape(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Corner of the Mouth":
+      mouthCorners(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Cheeks":
+
+      [
+
+        "Mostly relaxed.",
+
+        "Tiny softening, lift or compression.",
+
+        "Readable cheek tension or activation.",
+
+        isNaturalStyle(style)
+          ? "Clear cheek involvement without exaggeration."
+          : "Strong cheek involvement.",
+
+        isNaturalStyle(style)
+          ? "High-intensity cheek behaviour stays integrated with the rest of the face."
+          : "Heightened cheek activation where appropriate."
+
+      ][l-1],
+
+
+    "Jaw / Neck / Throat":
+
+      [
+
+        "Mostly relaxed.",
+
+        "Small swallow, jaw reset or throat change if motivated.",
+
+        "Readable jaw or throat behaviour.",
+
+        "Strong jaw, throat or neck engagement.",
+
+        emotion.category==="Dysregulation / Extreme"
+          ? "Clear strain or loss of control."
+          : isNaturalStyle(style)
+          ? "Strong internal pressure remains visible through jaw, throat or neck restraint."
+          : "Clear engagement or strain if emotionally justified."
+
+      ][l-1],
+
+
+    "Breathing":
+      breathLanguage(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Hands / Fingers":
+
+      [
+
+        "Normal.",
+
+        "Small reduction in relaxation.",
+
+        "One motivated grip, fidget or stillness.",
+
+        isNaturalStyle(style)
+          ? "Hands stay economical; one controlled regulation behaviour is enough."
+          : "Clear self-regulation, defensive or expressive hand behaviour.",
+
+        isNaturalStyle(style)
+          ? "Even at high intensity, avoid stacking multiple hand gestures."
+          : "Strong gesture or support-seeking only when justified."
+
+      ][l-1],
+
+
+    "Body / Posture":
+      bodyLanguage(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Non-Verbal Reaction":
+      nonverbalLanguage(
+        emotion,
+        context,
+        style,
+        l
+      ),
+
+
+    "Reaction Timing":
+      timingLanguage(
+        emotion,
+        context,
+        style,
+        l
+      )
+
+  };
+
 }
 
 
 /* =========================================================
-   PROMPT
+   PERFORMANCE PRINCIPLE
 ========================================================= */
 
-function makePrompt(emotion,tone,l,map){
+function performancePrinciple(emotion){
 
- let chosen=[
-   map["Eye Movement Language"],
-   map["Eyelid Language"],
-   map["Lip / Mouth Language"]
- ];
+  const map={
 
- if(l>=3) chosen.push(map["Body / Posture"]);
- if(l>=4) chosen.push(map["Breathing"]);
+    "Comedy / Social":
+      "Let the audience read the thought before the body completes the reaction. Comedy benefits from anticipation, reaction hold and recovery, but formal or natural performance may keep those beats very small.",
 
- let avoid=
- "Keep the facial response motivated and sequential rather than activating every feature at once.";
 
- if(l<=2)
-   avoid+=" Keep the performance restrained. Avoid unnecessarily wide eyes, large gestures, shaking or panic-like breathing.";
+    "Romance / Attraction":
+      "Attraction is strongest when it leaks through gaze timing, eyelid softness, mouth corners, hesitation and imperfect recovery rather than random nervous movement.",
 
- if(emotion.id==="mild-concern")
-   avoid+=" Do not make mild concern look like anxiety or fear.";
 
- if(emotion.id==="suspicion" &&
-    tone.toLowerCase().includes("comedy"))
-   avoid+=" Keep the suspicion playful or judging rather than threatening.";
+    "Joy / Positive":
+      "Positive emotion should change facial openness, cheek activation, mouth corners, breath and body energy in a coordinated way. Social setting determines how openly that joy is released.",
 
- if(emotion.category==="Sadness / Vulnerability" && l<4)
-   avoid+=" Do not force tears before the emotional progression supports them.";
 
- return `${emotion.name}. ${tone} tone. ${levelNames[l-1]} intensity. ${chosen.join(" ")} ${avoid}`;
+    "Concern / Anxiety":
+      "At lower intensity, let attention change before the body changes. Mild concern should remain composed and should not automatically become fear or panic.",
+
+
+    "Sadness / Vulnerability":
+      "Pain often begins as stillness, loss of facial warmth and breath change before tears or large body collapse appear.",
+
+
+    "Conflict / Anger":
+      "Anger does not always grow larger. High-control anger may become stiller, with stronger eye, lower-lid, jaw and mouth compression.",
+
+
+    "Suspense / Threat":
+      "Threat first changes attention and listening. Breath, protective posture and movement should escalate only as danger becomes more real.",
+
+
+    "Cognitive / Discovery":
+      "Allow information to land before the emotion forms. Eye freeze, second look, blink timing and mouth opening can show the processing itself.",
+
+
+    "Power / Determination":
+      "Determination organizes the body. Gaze settles, unnecessary movement reduces and posture becomes more purposeful.",
+
+
+    "Dysregulation / Extreme":
+      "Loss of regulation should progress biomechanically: attention destabilizes, breath changes, throat and speech fail, posture loses support, then the whole body may follow."
+
+  };
+
+
+  return map[emotion.category];
+
+}
+
+
+/* =========================================================
+   INTENSITY SUMMARY
+========================================================= */
+
+function levelSummary(emotion,index){
+
+  if(emotion.category==="Dysregulation / Extreme"){
+
+    return [
+
+      "Small cracks appear.",
+
+      "Regulation becomes visibly effortful.",
+
+      "Regulation begins failing.",
+
+      "Loss of control is active.",
+
+      "Whole-body regulation may fail."
+
+    ][index];
+
+  }
+
+
+  return [
+
+    "Almost hidden.",
+
+    "Small controlled leak.",
+
+    "Clearly readable.",
+
+    "Strong emotional effect.",
+
+    "Peak or heightened form."
+
+  ][index];
+
+}
+
+
+/* =========================================================
+   STYLE DESCRIPTION
+========================================================= */
+
+function styleDescription(style){
+
+  if(style==="Natural / Controlled"){
+
+    return "Best for formal situations, public settings, power imbalance, ceremonial spaces, or moments where the character deliberately hides emotion. Strong emotion may remain physically small.";
+
+  }
+
+
+  return "Best for private or familiar situations, rom-com, bedroom/private-space reactions, playful arguments, or scenes where the character has more freedom to show the feeling. Expressive does not mean uncontrolled.";
+
+}
+
+
+/* =========================================================
+   PROMPT ENGINE
+========================================================= */
+
+function makePrompt(
+  emotion,
+  context,
+  style,
+  l,
+  map
+){
+
+  const chosen=[];
+
+
+  chosen.push(
+    map["Eye Movement Language"]
+  );
+
+
+  chosen.push(
+    map["Eyelid Language"]
+  );
+
+
+  if(
+    emotion.id==="shock" ||
+    emotion.id==="comic-shock" ||
+    emotion.id==="sulking" ||
+    emotion.category==="Romance / Attraction" ||
+    emotion.category==="Conflict / Anger"
+  ){
+
+    chosen.push(
+      map["Lip / Mouth Language"]
+    );
+
+  }
+
+  else{
+
+    chosen.push(
+      map["Mouth Opening Language"]
+    );
+
+  }
+
+
+  if(l>=3){
+
+    chosen.push(
+      map["Body / Posture"]
+    );
+
+  }
+
+
+  if(
+    l>=4 &&
+    (
+      emotion.category==="Sadness / Vulnerability" ||
+      emotion.category==="Suspense / Threat" ||
+      emotion.category==="Dysregulation / Extreme"
+    )
+  ){
+
+    chosen.push(
+      map["Breathing"]
+    );
+
+  }
+
+
+  let styleInstruction;
+
+
+  if(style==="Natural / Controlled"){
+
+    styleInstruction=
+      "Keep the performance socially controlled and selective. Let the emotion leak through only a few precise facial and body changes.";
+
+  }
+
+  else{
+
+    styleInstruction=
+      "Use expressive but controlled performance. Allow a clearer reaction sequence, hold and recovery, but do not make every facial feature move at once.";
+
+  }
+
+
+  let avoid=
+    "Keep all behaviour motivated and sequential.";
+
+
+  if(l<=2){
+
+    avoid+=
+      " Avoid unnecessarily wide eyes, large gestures, shaking or panic-like breathing.";
+
+  }
+
+
+  if(emotion.id==="mild-concern"){
+
+    avoid+=
+      " Do not make mild concern look like anxiety, fear or urgency.";
+
+  }
+
+
+  if(
+    emotion.id==="suspicion" &&
+    isComedyContext(context)
+  ){
+
+    avoid+=
+      " Keep the suspicion judging or playful rather than threatening.";
+
+  }
+
+
+  if(
+    emotion.category==="Sadness / Vulnerability" &&
+    l<4
+  ){
+
+    avoid+=
+      " Do not force tears before the emotional progression supports them.";
+
+  }
+
+
+  if(emotion.category==="Conflict / Anger"){
+
+    avoid+=
+      " Do not use wide-eyed anger as the default; let jaw, lower eyelids, mouth compression and stillness carry the pressure.";
+
+  }
+
+
+  if(
+    style==="Natural / Controlled" &&
+    isFormalContext(context)
+  ){
+
+    avoid+=
+      " Preserve formal social behaviour: emotion may be intense internally while outward movement stays minimal.";
+
+  }
+
+
+  return `${emotion.name}. Emotional context: ${context}. Performance style: ${style}. Intensity: ${levelNames[l-1]}. ${styleInstruction} ${chosen.join(" ")} ${avoid}`;
+
 }
 
 
@@ -1395,319 +4001,929 @@ function makePrompt(emotion,tone,l,map){
    STATE
 ========================================================= */
 
-let category="All";
-let selected=emotions[0].id;
-let tone=null;
-let level=2;
+let selectedCategory="All";
+
+let selectedEmotionId="shock";
+
+let selectedContext=null;
+
+let selectedStyle="Natural / Controlled";
+
+let selectedLevel=2;
+
 let query="";
 
 
 /* =========================================================
-   UI
+   CURRENT EMOTION
 ========================================================= */
 
-const categories=["All",...Object.keys(GROUPS)];
-
-
 function currentEmotion(){
- return emotions.find(e=>e.id===selected);
+
+  return emotions.find(
+    emotion =>
+      emotion.id===selectedEmotionId
+  );
+
 }
 
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filteredEmotions(){
+
+  return emotions.filter(emotion=>{
+
+    const categoryMatch=
+      selectedCategory==="All" ||
+      emotion.category===selectedCategory;
+
+
+    const searchable=[
+
+      emotion.name,
+
+      emotion.desc,
+
+      emotion.category,
+
+      ALIASES[emotion.id] || "",
+
+      ...emotion.contexts
+
+    ]
+    .join(" ")
+    .toLowerCase();
+
+
+    const queryMatch=
+      !query ||
+      searchable.includes(
+        query.toLowerCase()
+      );
+
+
+    return categoryMatch && queryMatch;
+
+  });
+
+}
+
+
+/* =========================================================
+   CATEGORY RENDER
+========================================================= */
 
 function renderCategories(){
 
- document.getElementById("categories").innerHTML=
- categories.map(c=>`
- <button class="cat ${category===c?"active":""}"
- onclick="chooseCategory(${JSON.stringify(c)})">
- ${c}
- </button>
- `).join("");
+  const categories=[
+    "All",
+    ...Object.keys(GROUPS)
+  ];
+
+
+  const nav=
+    document.getElementById("categories");
+
+
+  nav.innerHTML="";
+
+
+  categories.forEach(category=>{
+
+    const btn=
+      document.createElement("button");
+
+
+    btn.type="button";
+
+
+    btn.className=
+      "cat" +
+      (
+        selectedCategory===category
+        ? " active"
+        : ""
+      );
+
+
+    btn.textContent=
+      category;
+
+
+    btn.addEventListener(
+      "click",
+      ()=>{
+        chooseCategory(category);
+      }
+    );
+
+
+    nav.appendChild(btn);
+
+  });
 
 }
 
 
-function filtered(){
-
- return emotions.filter(e=>{
-
-   const categoryOK=
-     category==="All" || e.category===category;
-
-   const text=[
-     e.name,
-     e.desc,
-     e.category,
-     ALIASES[e.id]||"",
-     ...e.tones
-   ].join(" ").toLowerCase();
-
-   return categoryOK &&
-     (!query || text.includes(query.toLowerCase()));
-
- });
-
-}
-
+/* =========================================================
+   GRID RENDER
+========================================================= */
 
 function renderGrid(){
 
- const list=filtered();
+  const list=
+    filteredEmotions();
 
- document.getElementById("count").textContent=
-   `${list.length} emotions`;
 
- document.getElementById("grid").innerHTML=
-   list.length
-   ? list.map(e=>`
-      <button
-       class="card ${selected===e.id?"active":""}"
-       onclick="chooseEmotion('${e.id}')">
+  document
+    .getElementById("count")
+    .textContent=
+      `${list.length} emotions`;
 
-       <div class="ccat">${e.category}</div>
-       <div class="cname">${e.name}</div>
-       <div class="cdesc">${e.desc}</div>
 
-      </button>
-     `).join("")
-   : `<div class="empty">No matching emotion.</div>`;
+  document
+    .getElementById("categoryStatus")
+    .innerHTML=
+      selectedCategory==="All"
+
+      ? `Showing <strong>All Emotion Families</strong>`
+
+      : `Showing <strong>${selectedCategory}</strong> only`;
+
+
+  const grid=
+    document.getElementById("grid");
+
+
+  grid.innerHTML="";
+
+
+  if(!list.length){
+
+    grid.innerHTML=`
+
+      <div class="empty">
+
+        No matching emotion.<br><br>
+
+        Try:
+        <strong>merajuk</strong>,
+        <strong>shock</strong>,
+        <strong>curiga</strong>,
+        <strong>cemburu</strong>,
+        <strong>sedih</strong>
+        or
+        <strong>breakdown</strong>.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  list.forEach(emotion=>{
+
+    const btn=
+      document.createElement("button");
+
+
+    btn.type="button";
+
+
+    btn.className=
+      "card" +
+      (
+        emotion.id===selectedEmotionId
+        ? " active"
+        : ""
+      );
+
+
+    btn.innerHTML=`
+
+      <div class="ccat">
+        ${emotion.category}
+      </div>
+
+      <div class="cname">
+        ${emotion.name}
+      </div>
+
+      <div class="cdesc">
+        ${emotion.desc}
+      </div>
+
+    `;
+
+
+    btn.addEventListener(
+      "click",
+      ()=>{
+        chooseEmotion(emotion.id);
+      }
+    );
+
+
+    grid.appendChild(btn);
+
+  });
 
 }
 
 
-function levelSummary(emotion,i){
-
- const low=[
-   "Almost hidden.",
-   "Small controlled leak.",
-   "Clearly readable.",
-   "Strong emotional effect.",
-   "Peak or heightened form."
- ];
-
- if(emotion.category==="Dysregulation / Extreme"){
-   return [
-    "Small cracks appear.",
-    "Regulation becomes visibly effortful.",
-    "Regulation begins failing.",
-    "Loss of control is active.",
-    "Whole-body regulation may fail."
-   ][i];
- }
-
- return low[i];
-}
-
+/* =========================================================
+   DETAIL RENDER
+========================================================= */
 
 function renderDetail(){
 
- const e=currentEmotion();
+  const emotion=
+    currentEmotion();
 
- if(!tone || !e.tones.includes(tone))
-   tone=e.tones[0];
 
- const map=buildMap(e,tone,level);
+  if(!emotion){
+    return;
+  }
 
- document.getElementById("detail").innerHTML=`
 
- <div class="detail-cat">${e.category}</div>
- <h2>${e.name}</h2>
- <p class="subtitle">${e.desc}</p>
+  if(
+    !selectedContext ||
+    !emotion.contexts.includes(
+      selectedContext
+    )
+  ){
 
- <div class="box">
-   <div class="label">Performance principle</div>
-   <div class="text">
-   ${performancePrinciple(e)}
-   </div>
- </div>
+    selectedContext=
+      emotion.contexts[0];
 
- <div class="divider"></div>
+  }
 
- <div class="stitle">Scene Tone</div>
 
- <div class="tones">
- ${e.tones.map(t=>`
-   <button
-    class="tone ${tone===t?"active":""}"
-    onclick="setTone(${JSON.stringify(t)})">
-    ${t}
-   </button>
- `).join("")}
- </div>
+  const map=
+    buildMap(
+      emotion,
+      selectedContext,
+      selectedStyle,
+      selectedLevel
+    );
 
- <div class="note">
- Scene tone is not cosmetic. It changes eye behaviour,
- eyelid attitude, mouth timing, body control and reaction rhythm.
- </div>
 
- <div class="divider"></div>
+  const control=
+    performanceControl(
+      emotion,
+      selectedStyle,
+      selectedLevel
+    );
 
- <div class="stitle">Intensity</div>
 
- <div class="levels">
- ${levelNames.map((n,i)=>`
-   <button
-    class="level ${level===i+1?"active":""}"
-    onclick="setLevel(${i+1})">
+  const detail=
+    document.getElementById("detail");
 
-     <span class="num">${i+1}</span>
-     <span class="lname">${n}</span>
-     <span class="ldesc">${levelSummary(e,i)}</span>
 
-   </button>
- `).join("")}
- </div>
+  detail.innerHTML=`
 
- <div class="intent">
-   <strong>Silent emotional intention</strong>
-   <div>“${map["Eye Language"]}”</div>
- </div>
+    <div class="detail-cat">
+      ${emotion.category}
+    </div>
 
- <div class="divider"></div>
 
- <div class="stitle">Facial & Body Language Map</div>
+    <h2>
+      ${emotion.name}
+    </h2>
 
- <div class="note">
- Full acting reference. The video prompt below deliberately
- uses only a few hero behaviours.
- </div>
 
- <div class="map">
- ${Object.entries(map).map(([k,v])=>`
-   <div class="row">
-     <div class="key">${k}</div>
-     <div class="value">${v}</div>
-   </div>
- `).join("")}
- </div>
+    <p class="subtitle">
+      ${emotion.desc}
+    </p>
 
- <div class="prompt">
-   <div class="ph">
-     <span>Ready-to-use selective prompt</span>
-     <button class="copy" id="copy" onclick="copyPrompt()">Copy</button>
-   </div>
 
-   <div class="prompttext" id="promptText">
-    ${makePrompt(e,tone,level,map)}
-   </div>
- </div>
+    <div class="box">
 
- `;
+      <div class="label">
+        Performance Principle
+      </div>
+
+      <div class="text">
+        ${performancePrinciple(emotion)}
+      </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stitle">
+      Emotional Context
+    </div>
+
+
+    <div
+      id="contextOptions"
+      class="option-wrap">
+    </div>
+
+
+    <div class="note">
+
+      Context changes what the emotion means.
+      For example, shock caused by comedy is not performed
+      the same way as shock caused by grief, threat or attraction.
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stitle">
+      Performance Style
+    </div>
+
+
+    <div
+      id="styleOptions"
+      class="option-wrap">
+    </div>
+
+
+    <div class="style-guide">
+
+      <div class="style-card">
+
+        <strong>
+          Natural / Controlled
+        </strong>
+
+        <span>
+          Formal majlis, public setting, di hadapan Raja,
+          hierarchy, suppressed emotion, social restraint.
+        </span>
+
+      </div>
+
+
+      <div class="style-card">
+
+        <strong>
+          Expressive / Controlled
+        </strong>
+
+        <span>
+          Private room, familiar relationship, rom-com,
+          playful argument or moments where reaction can show more freely.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="note">
+
+      ${styleDescription(selectedStyle)}
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stitle">
+      Intensity
+    </div>
+
+
+    <div
+      id="levelOptions"
+      class="levels">
+    </div>
+
+
+    <div class="control-box">
+
+      <div class="control-head">
+
+        <strong>
+          Performance Control
+        </strong>
+
+        <span>
+          ${controlLabel(control)}
+        </span>
+
+      </div>
+
+
+      <div class="control-track">
+
+        <div
+          class="control-fill"
+          style="width:${control}%">
+        </div>
+
+      </div>
+
+
+      <div class="control-note">
+
+        This meter shows retained physical control,
+        not emotional strength. High intensity can still
+        have very high control.
+
+      </div>
+
+    </div>
+
+
+    <div class="intent">
+
+      <strong>
+        Silent Emotional Intention
+      </strong>
+
+      <div>
+        “${map["Eye Language"]}”
+      </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stitle">
+      Facial & Body Language Map
+    </div>
+
+
+    <div class="note">
+
+      This is the full acting reference.
+      Not every channel should move at once.
+      The prompt below deliberately selects only a few hero behaviours.
+
+    </div>
+
+
+    <div class="map">
+
+      ${Object.entries(map)
+        .map(([key,value])=>`
+
+          <div class="row">
+
+            <div class="key">
+              ${key}
+            </div>
+
+            <div class="value">
+              ${value}
+            </div>
+
+          </div>
+
+        `)
+        .join("")}
+
+    </div>
+
+
+    <div class="prompt">
+
+      <div class="ph">
+
+        <span>
+          Ready-to-use selective prompt
+        </span>
+
+        <button
+          id="copyButton"
+          type="button"
+          class="copy">
+
+          Copy Prompt
+
+        </button>
+
+      </div>
+
+
+      <div
+        id="promptText"
+        class="prompttext">
+
+        ${makePrompt(
+          emotion,
+          selectedContext,
+          selectedStyle,
+          selectedLevel,
+          map
+        )}
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  renderContextButtons(
+    emotion
+  );
+
+
+  renderStyleButtons();
+
+
+  renderLevelButtons(
+    emotion
+  );
+
+
+  document
+    .getElementById("copyButton")
+    .addEventListener(
+      "click",
+      copyPrompt
+    );
 
 }
 
 
-function performancePrinciple(e){
+/* =========================================================
+   CONTEXT BUTTONS
+========================================================= */
 
- const map={
+function renderContextButtons(emotion){
 
- "Comedy / Social":
- "Let the audience read the thought before the body completes the reaction. Comedy benefits from setup, anticipation, reaction hold and recovery.",
+  const wrap=
+    document.getElementById(
+      "contextOptions"
+    );
 
- "Romance / Attraction":
- "Attraction is strongest when it leaks through gaze timing, eyelid softness, mouth corners, hesitation and imperfect recovery rather than random nervous movement.",
 
- "Joy / Positive":
- "Positive emotion should change facial openness, cheek activation, mouth corners, breath and body energy in a coordinated way.",
+  wrap.innerHTML="";
 
- "Concern / Anxiety":
- "At lower intensity, let attention change before the body changes. Mild concern should remain composed and should not automatically become fear.",
 
- "Sadness / Vulnerability":
- "Pain often begins as stillness, loss of facial warmth and breath change before tears or large body collapse appear.",
+  emotion.contexts.forEach(context=>{
 
- "Conflict / Anger":
- "Anger does not always grow larger. High-control anger may become stiller, with stronger eye, lower-lid, jaw and mouth compression.",
+    const btn=
+      document.createElement("button");
 
- "Suspense / Threat":
- "Threat first changes attention and listening. Breath, protective posture and movement should escalate only as danger becomes more real.",
 
- "Cognitive / Discovery":
- "Allow information to land before the emotion forms. Eye freeze, second look, blink timing and mouth opening can show the processing itself.",
+    btn.type="button";
 
- "Power / Determination":
- "Determination organizes the body. Gaze settles, unnecessary movement reduces and posture becomes more purposeful.",
 
- "Dysregulation / Extreme":
- "Loss of regulation should progress biomechanically: attention destabilizes, breath changes, throat and speech fail, posture loses support, then the whole body may follow."
+    btn.className=
+      "option-btn" +
+      (
+        selectedContext===context
+        ? " active"
+        : ""
+      );
 
- };
 
- return map[e.category];
+    btn.textContent=
+      context;
+
+
+    btn.addEventListener(
+      "click",
+      ()=>{
+
+        selectedContext=
+          context;
+
+        selectedLevel=
+          2;
+
+        renderDetail();
+
+      }
+    );
+
+
+    wrap.appendChild(btn);
+
+  });
 
 }
 
 
-function chooseCategory(c){
- category=c;
- renderCategories();
- renderGrid();
+/* =========================================================
+   STYLE BUTTONS
+========================================================= */
+
+function renderStyleButtons(){
+
+  const wrap=
+    document.getElementById(
+      "styleOptions"
+    );
+
+
+  wrap.innerHTML="";
+
+
+  styles.forEach(style=>{
+
+    const btn=
+      document.createElement("button");
+
+
+    btn.type="button";
+
+
+    btn.className=
+      "option-btn" +
+      (
+        selectedStyle===style
+        ? " active"
+        : ""
+      );
+
+
+    btn.textContent=
+      style;
+
+
+    btn.addEventListener(
+      "click",
+      ()=>{
+
+        selectedStyle=
+          style;
+
+        renderDetail();
+
+      }
+    );
+
+
+    wrap.appendChild(btn);
+
+  });
+
+}
+
+
+/* =========================================================
+   LEVEL BUTTONS
+========================================================= */
+
+function renderLevelButtons(emotion){
+
+  const wrap=
+    document.getElementById(
+      "levelOptions"
+    );
+
+
+  wrap.innerHTML="";
+
+
+  levelNames.forEach(
+    (name,index)=>{
+
+      const level=
+        index+1;
+
+
+      const btn=
+        document.createElement("button");
+
+
+      btn.type="button";
+
+
+      btn.className=
+        "level" +
+        (
+          selectedLevel===level
+          ? " active"
+          : ""
+        );
+
+
+      btn.innerHTML=`
+
+        <span class="num">
+          ${level}
+        </span>
+
+        <span class="lname">
+          ${name}
+        </span>
+
+        <span class="ldesc">
+          ${levelSummary(
+            emotion,
+            index
+          )}
+        </span>
+
+      `;
+
+
+      btn.addEventListener(
+        "click",
+        ()=>{
+
+          selectedLevel=
+            level;
+
+          renderDetail();
+
+        }
+      );
+
+
+      wrap.appendChild(btn);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+function chooseCategory(category){
+
+  selectedCategory=
+    category;
+
+
+  renderCategories();
+
+  renderGrid();
+
 }
 
 
 function chooseEmotion(id){
- selected=id;
- level=2;
- tone=null;
- renderGrid();
- renderDetail();
 
- if(innerWidth<1100)
-   document.getElementById("detail")
-   .scrollIntoView({behavior:"smooth"});
+  const emotion=
+    emotions.find(
+      item => item.id===id
+    );
+
+
+  if(!emotion){
+    return;
+  }
+
+
+  selectedEmotionId=
+    id;
+
+
+  selectedContext=
+    emotion.contexts[0];
+
+
+  selectedLevel=
+    2;
+
+
+  renderGrid();
+
+  renderDetail();
+
+
+  if(window.innerWidth<1100){
+
+    document
+      .getElementById("detail")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+  }
+
 }
 
 
-function setTone(t){
- tone=t;
- level=2;
- renderDetail();
-}
-
-
-function setLevel(l){
- level=l;
- renderDetail();
-}
-
+/* =========================================================
+   COPY
+========================================================= */
 
 async function copyPrompt(){
 
- const text=document.getElementById("promptText").innerText.trim();
+  const promptElement=
+    document.getElementById(
+      "promptText"
+    );
 
- try{
-   await navigator.clipboard.writeText(text);
- }catch{
-   const a=document.createElement("textarea");
-   a.value=text;
-   document.body.appendChild(a);
-   a.select();
-   document.execCommand("copy");
-   a.remove();
- }
 
- const b=document.getElementById("copy");
- b.textContent="Copied ✓";
+  const button=
+    document.getElementById(
+      "copyButton"
+    );
 
- setTimeout(()=>{
-   if(document.body.contains(b))
-     b.textContent="Copy";
- },1000);
+
+  const text=
+    promptElement.innerText.trim();
+
+
+  try{
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+  }
+
+  catch(error){
+
+    const area=
+      document.createElement(
+        "textarea"
+      );
+
+
+    area.value=
+      text;
+
+
+    document.body.appendChild(
+      area
+    );
+
+
+    area.select();
+
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    area.remove();
+
+  }
+
+
+  button.textContent=
+    "Copied ✓";
+
+
+  setTimeout(()=>{
+
+    if(
+      document.body.contains(button)
+    ){
+
+      button.textContent=
+        "Copy Prompt";
+
+    }
+
+  },1000);
 
 }
 
 
-document.getElementById("search")
-.addEventListener("input",e=>{
- query=e.target.value.trim();
- renderGrid();
-});
+/* =========================================================
+   SEARCH
+========================================================= */
 
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    event=>{
+
+      query=
+        event.target.value.trim();
+
+      renderGrid();
+
+    }
+  );
+
+
+/* =========================================================
+   START
+========================================================= */
 
 renderCategories();
+
 renderGrid();
+
 renderDetail();
 
 </script>
+
 </body>
 </html>
