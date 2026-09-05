@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K-Drama Performance Director V8.1</title>
+
+<title>K-Drama Performance Director V8.2</title>
 
 <style>
+
 :root{
   --bg:#0d0f14;
   --panel:#141821;
@@ -30,7 +32,14 @@ body{
   background:
     radial-gradient(circle at 12% 0%,rgba(223,125,134,.09),transparent 28%),
     var(--bg);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 button,
@@ -47,7 +56,10 @@ button{
 .app{
   min-height:100vh;
   display:grid;
-  grid-template-columns:235px minmax(500px,1fr) 430px;
+  grid-template-columns:
+    235px
+    minmax(500px,1fr)
+    430px;
 }
 
 /* =========================================================
@@ -112,6 +124,27 @@ button{
 .nav-item.active{
   background:var(--accentSoft);
   color:#ffdce0;
+}
+
+.mode-row{
+  display:flex;
+  gap:7px;
+}
+
+.mode-btn{
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:#9098a6;
+  background:#151922;
+  font-size:11px;
+  font-weight:700;
+}
+
+.mode-btn.active{
+  border-color:#6c454b;
+  background:#2b1d22;
+  color:#ffe3e6;
 }
 
 .version{
@@ -183,6 +216,12 @@ button{
   gap:11px;
 }
 
+.grid3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:11px;
+}
+
 .grid4{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -229,31 +268,6 @@ button{
 .field select:focus,
 .field textarea:focus{
   border-color:#75525a;
-}
-
-/* =========================================================
-   MODE
-========================================================= */
-
-.mode-row{
-  display:flex;
-  gap:7px;
-}
-
-.mode-btn{
-  padding:8px 12px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:#9098a6;
-  background:#151922;
-  font-size:11px;
-  font-weight:700;
-}
-
-.mode-btn.active{
-  border-color:#6c454b;
-  background:#2b1d22;
-  color:#ffe3e6;
 }
 
 /* =========================================================
@@ -312,7 +326,7 @@ button{
 }
 
 /* =========================================================
-   BEAT TIMELINE
+   BEATS
 ========================================================= */
 
 .beat-list{
@@ -338,11 +352,6 @@ button{
   background:
     linear-gradient(180deg,#171b24,#12161d);
   overflow:hidden;
-}
-
-.beat-card.active{
-  border-color:#83555d;
-  box-shadow:0 0 0 1px rgba(223,125,134,.13);
 }
 
 .beat-summary{
@@ -429,6 +438,27 @@ button{
   line-height:1.45;
 }
 
+.dialogue-preview{
+  margin-top:8px;
+  padding:8px 10px;
+  border-left:2px solid #7c5760;
+  border-radius:0 7px 7px 0;
+  background:#171319;
+  color:#d8c8cc;
+  font-size:10.5px;
+  line-height:1.45;
+}
+
+.dialogue-meta{
+  display:block;
+  margin-bottom:3px;
+  color:#9d727a;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
 .card-controls{
   display:flex;
   gap:6px;
@@ -492,6 +522,28 @@ button{
   font-weight:800;
   text-transform:uppercase;
   letter-spacing:.09em;
+}
+
+.dialogue-section{
+  margin-top:14px;
+  padding:12px;
+  border:1px solid #3b3035;
+  border-radius:9px;
+  background:#151116;
+}
+
+.dialogue-section-title{
+  margin-bottom:10px;
+  color:#bc858f;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.optional{
+  color:#606977;
+  font-weight:500;
 }
 
 .add-row{
@@ -671,6 +723,7 @@ button{
   }
 
   .grid2,
+  .grid3,
   .grid4{
     grid-template-columns:1fr;
   }
@@ -684,6 +737,7 @@ button{
   }
 
 }
+
 </style>
 </head>
 
@@ -691,9 +745,9 @@ button{
 
 <div class="app">
 
-<!-- =======================================================
+<!-- =====================================================
      SIDEBAR
-======================================================= -->
+===================================================== -->
 
 <aside class="sidebar">
 
@@ -708,12 +762,11 @@ button{
     </h1>
 
     <p>
-      Simple outside, intelligent inside.
-      Build emotional performance without managing every technical acting parameter.
+      Build emotionally continuous performance from scene,
+      subtext, dialogue and reaction.
     </p>
 
   </div>
-
 
   <div class="nav-label">
     Composer
@@ -730,7 +783,6 @@ button{
   <button class="nav-item">
     Presets
   </button>
-
 
   <div class="nav-label">
     Mode
@@ -754,18 +806,17 @@ button{
 
   </div>
 
-
   <div class="version">
-    V8.1 · Smart Performance Composer<br>
-    Scene → Emotional Arc → Beats → Direction
+    V8.2 · Dialogue-Aware Performance<br>
+    Scene → Dialogue → Perception → Reaction
   </div>
 
 </aside>
 
 
-<!-- =======================================================
+<!-- =====================================================
      MAIN
-======================================================= -->
+===================================================== -->
 
 <main class="main">
 
@@ -776,17 +827,15 @@ button{
     </h2>
 
     <p>
-      Describe the scene, define what the character wants,
-      then shape the emotional beats.
-      Advanced acting logic stays available only when you need it.
+      Build emotional beats and optional dialogue.
+      The engine treats speaking, listening, perception and reaction
+      as part of one continuous performance.
     </p>
 
   </div>
 
 
-  <!-- =====================================================
-       SCENE SETUP
-  ====================================================== -->
+  <!-- SCENE SETUP -->
 
   <section class="section">
 
@@ -801,7 +850,6 @@ button{
       </span>
 
     </div>
-
 
     <div class="panel">
 
@@ -819,7 +867,6 @@ button{
           >
 
         </div>
-
 
         <div class="field">
 
@@ -871,17 +918,15 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
           Scene / Action
         </label>
 
-        <textarea id="scene">Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam initially remains focused on the phone, then gradually becomes aware that Amir is standing unusually close to her.</textarea>
+        <textarea id="scene">Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam gradually becomes aware that he is standing unusually close. Amir then notices her silence and asks why she has gone quiet.</textarea>
 
       </div>
-
 
       <div class="field">
 
@@ -901,9 +946,7 @@ button{
   </section>
 
 
-  <!-- =====================================================
-       CAMERA
-  ====================================================== -->
+  <!-- CAMERA -->
 
   <section class="section">
 
@@ -919,11 +962,9 @@ button{
 
     </div>
 
-
     <div class="panel">
 
       <div class="grid4">
-
 
         <div class="field">
 
@@ -961,7 +1002,6 @@ button{
 
         </div>
 
-
         <div class="field">
 
           <label>
@@ -989,7 +1029,6 @@ button{
           </select>
 
         </div>
-
 
         <div class="field">
 
@@ -1022,7 +1061,6 @@ button{
           </select>
 
         </div>
-
 
         <div class="field">
 
@@ -1073,7 +1111,6 @@ button{
           <button
             class="level-btn"
             data-style="Micro"
-            title="Very subtle performance with minimal visible leakage"
           >
             Micro
           </button>
@@ -1081,7 +1118,6 @@ button{
           <button
             class="level-btn active"
             data-style="Restrained"
-            title="Subtle K-drama performance with readable micro-reactions"
           >
             Restrained
           </button>
@@ -1089,7 +1125,6 @@ button{
           <button
             class="level-btn"
             data-style="Readable"
-            title="Natural but clearly readable emotional acting"
           >
             Readable
           </button>
@@ -1097,7 +1132,6 @@ button{
           <button
             class="level-btn"
             data-style="Heightened"
-            title="Stronger rom-com or dramatic performance"
           >
             Heightened
           </button>
@@ -1105,7 +1139,6 @@ button{
           <button
             class="level-btn"
             data-style="Expressive"
-            title="Broad stylized or comedic performance"
           >
             Expressive
           </button>
@@ -1119,9 +1152,7 @@ button{
   </section>
 
 
-  <!-- =====================================================
-       PERFORMANCE BEATS
-  ====================================================== -->
+  <!-- PERFORMANCE BEATS -->
 
   <section class="section">
 
@@ -1137,18 +1168,15 @@ button{
 
     </div>
 
-
     <div
       class="arc-summary"
       id="arcSummary"
     ></div>
 
-
     <div
       id="beatList"
       class="beat-list"
     ></div>
-
 
     <div class="add-row">
 
@@ -1156,7 +1184,7 @@ button{
         class="primary-btn"
         onclick="autoBuildDemo()"
       >
-        ✦ Auto Build Beats
+        ✦ Auto Build Demo
       </button>
 
       <button
@@ -1173,9 +1201,9 @@ button{
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      OUTPUT
-======================================================= -->
+===================================================== -->
 
 <aside class="output">
 
@@ -1184,11 +1212,9 @@ button{
   </h2>
 
   <p class="output-sub">
-    Simple output for video generation,
-    detailed acting review,
-    or technical inspection.
+    Dialogue-aware performance direction for video,
+    acting review or technical inspection.
   </p>
-
 
   <div class="output-tabs">
 
@@ -1215,7 +1241,6 @@ button{
 
   </div>
 
-
   <div
     class="output-label"
     id="outputLabel"
@@ -1223,12 +1248,10 @@ button{
     VIDEO PROMPT
   </div>
 
-
   <div
     id="promptOutput"
     class="prompt-box"
   ></div>
-
 
   <div class="output-footer">
 
@@ -1251,7 +1274,6 @@ button{
 </aside>
 
 </div>
-
 
 <div
   id="toast"
@@ -1302,10 +1324,59 @@ const roleOptions = [
   "Trigger",
   "Reaction",
   "Emotional Shift",
+  "Dialogue",
   "Recovery",
   "Escalation",
   "Decision",
   "Payoff"
+
+];
+
+
+const speakerOptions = [
+
+  "None",
+  "Main Character",
+  "Other Character",
+  "Off-screen"
+
+];
+
+
+const lineFunctionOptions = [
+
+  "Neutral",
+  "Inform",
+  "Ask",
+  "Tease",
+  "Challenge",
+  "Confess",
+  "Deflect",
+  "Comfort",
+  "Provoke",
+  "Reveal",
+  "Interrupt",
+  "Reassure",
+  "Dismiss",
+  "Hide Emotion"
+
+];
+
+
+const voiceOptions = [
+
+  "Auto",
+  "Natural",
+  "Soft",
+  "Controlled",
+  "Breathier",
+  "Hesitant",
+  "Playful",
+  "Dry",
+  "Firm",
+  "Quiet",
+  "Tense",
+  "Warm"
 
 ];
 
@@ -1328,7 +1399,8 @@ const responseOptions = [
   "Breath First",
   "Face First",
   "Freeze First",
-  "Body First"
+  "Body First",
+  "Voice First"
 
 ];
 
@@ -1410,6 +1482,7 @@ const recoveryOptions = [
 let outputMode =
   "video";
 
+
 let globalPerformanceStyle =
   "Restrained";
 
@@ -1427,6 +1500,11 @@ let beats = [
 
     subtext:
     "She feels comfortable. Nothing unusual has happened yet.",
+
+    speaker:"None",
+    dialogue:"",
+    lineFunction:"Neutral",
+    voice:"Auto",
 
     timing:"Immediate",
     response:"Auto",
@@ -1450,6 +1528,11 @@ let beats = [
     subtext:
     "Maryam notices that the distance has changed, but has not yet interpreted why it affects her.",
 
+    speaker:"None",
+    dialogue:"",
+    lineFunction:"Neutral",
+    voice:"Auto",
+
     timing:"Micro Delay",
     response:"Eyes First",
     gaze:"Auto",
@@ -1467,10 +1550,15 @@ let beats = [
     intensity:2,
 
     happens:
-    "Maryam realizes Amir is standing unusually close.",
+    "Maryam becomes consciously aware that Amir is standing unusually close.",
 
     subtext:
     "She is affected by the proximity but does not want Amir to notice.",
+
+    speaker:"None",
+    dialogue:"",
+    lineFunction:"Neutral",
+    voice:"Auto",
 
     timing:"Short Processing Delay",
     response:"Breath First",
@@ -1494,6 +1582,11 @@ let beats = [
     subtext:
     "Act normal. Don't let him notice.",
 
+    speaker:"None",
+    dialogue:"",
+    lineFunction:"Neutral",
+    voice:"Auto",
+
     timing:"Micro Delay",
     response:"Face First",
     gaze:"Character → Object",
@@ -1511,10 +1604,15 @@ let beats = [
     intensity:2,
 
     happens:
-    "Amir turns from the phone and looks directly at Maryam.",
+    "Amir stops looking at the phone and turns his attention directly toward Maryam.",
 
     subtext:
-    "She thought she had recovered, but his eye contact exposes the unresolved tension.",
+    "Maryam thought she had recovered, but his direct attention exposes the unresolved tension.",
+
+    speaker:"Other Character",
+    dialogue:"Kenapa diam?",
+    lineFunction:"Ask",
+    voice:"Natural",
 
     timing:"Micro Delay",
     response:"Eyes First",
@@ -1533,14 +1631,19 @@ let beats = [
     intensity:2,
 
     happens:
-    "They hold eye contact for a brief moment before Maryam looks away.",
+    "Maryam answers while trying to make the moment seem completely ordinary.",
 
     subtext:
-    "For a brief moment she allows the attraction to exist before self-consciousness returns.",
+    "She wants to deny that anything affected her, even though some attraction remains visible underneath.",
+
+    speaker:"Main Character",
+    dialogue:"Tak ada apa-apa.",
+    lineFunction:"Deflect",
+    voice:"Controlled",
 
     timing:"Micro Delay",
-    response:"Eyes First",
-    gaze:"Held Eye Contact",
+    response:"Voice First",
+    gaze:"Look Away Then Return",
     breath:"Controlled Exhale",
     movement:"Maintain Position",
     proximity:"Very Close",
@@ -1607,8 +1710,32 @@ function intensityDots(index,intensity){
 }
 
 
+function lowerFirst(text){
+
+  if(!text){
+    return "";
+  }
+
+  return (
+    text.charAt(0).toLowerCase()
+    +
+    text.slice(1)
+  );
+
+}
+
+
+function cleanDialogue(text){
+
+  return text
+    .replace(/^["“”]+|["“”]+$/g,"")
+    .trim();
+
+}
+
+
 /* =========================================================
-   EMOTIONAL ARC
+   ARC
 ========================================================= */
 
 function renderArcSummary(){
@@ -1619,7 +1746,6 @@ function renderArcSummary(){
   if(!container){
     return;
   }
-
 
   container.innerHTML =
     beats
@@ -1655,7 +1781,6 @@ function renderBeats(){
   const list =
     document.getElementById("beatList");
 
-
   list.innerHTML = "";
 
 
@@ -1666,6 +1791,24 @@ function renderBeats(){
 
     wrap.className =
       "beat-wrap";
+
+
+    const dialoguePreview =
+      beat.dialogue.trim()
+      ? `
+
+        <div class="dialogue-preview">
+
+          <span class="dialogue-meta">
+            ${beat.speaker} · ${beat.lineFunction}
+          </span>
+
+          “${beat.dialogue}”
+
+        </div>
+
+      `
+      : "";
 
 
     wrap.innerHTML = `
@@ -1742,6 +1885,9 @@ function renderBeats(){
           </div>
 
 
+          ${dialoguePreview}
+
+
           <div class="card-controls">
 
             <button
@@ -1763,6 +1909,8 @@ function renderBeats(){
 
         </div>
 
+
+        <!-- EDIT PANEL -->
 
         <div
           id="edit-${index}"
@@ -1829,40 +1977,72 @@ function renderBeats(){
           </div>
 
 
-          <div class="field">
+          <!-- DIALOGUE -->
 
-            <label>
-              Performance Style
-            </label>
+          <div class="dialogue-section">
 
-            <select>
+            <div class="dialogue-section-title">
+              Dialogue
+              <span class="optional">
+                · optional
+              </span>
+            </div>
 
-              <option ${globalPerformanceStyle==="Micro" ? "selected" : ""}>
-                Micro
-              </option>
 
-              <option ${globalPerformanceStyle==="Restrained" ? "selected" : ""}>
-                Restrained
-              </option>
+            <div class="grid2">
 
-              <option ${globalPerformanceStyle==="Readable" ? "selected" : ""}>
-                Readable
-              </option>
+              <div class="field">
 
-              <option ${globalPerformanceStyle==="Heightened" ? "selected" : ""}>
-                Heightened
-              </option>
+                <label>
+                  Speaker
+                </label>
 
-              <option ${globalPerformanceStyle==="Expressive" ? "selected" : ""}>
-                Expressive
-              </option>
+                <select
+                  onchange="updateBeat(${index},'speaker',this.value,true)"
+                >
+                  ${optionList(speakerOptions,beat.speaker)}
+                </select>
 
-            </select>
+              </div>
+
+
+              <div class="field">
+
+                <label>
+                  Line Function
+                </label>
+
+                <select
+                  onchange="updateBeat(${index},'lineFunction',this.value,true)"
+                >
+                  ${optionList(lineFunctionOptions,beat.lineFunction)}
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Dialogue / Line
+              </label>
+
+              <input
+                value="${escapeAttribute(beat.dialogue)}"
+                placeholder="Example: Kenapa diam?"
+                oninput="updateBeat(${index},'dialogue',this.value,false)"
+              >
+
+            </div>
 
           </div>
 
         </div>
 
+
+        <!-- ADVANCED -->
 
         <div
           id="advanced-${index}"
@@ -1981,6 +2161,21 @@ function renderBeats(){
 
             </div>
 
+
+            <div class="field">
+
+              <label>
+                Voice Quality
+              </label>
+
+              <select
+                onchange="updateBeat(${index},'voice',this.value,false)"
+              >
+                ${optionList(voiceOptions,beat.voice)}
+              </select>
+
+            </div>
+
           </div>
 
         </div>
@@ -2011,6 +2206,21 @@ function renderBeats(){
   renderArcSummary();
 
   updateOutput();
+
+}
+
+
+/* =========================================================
+   SAFE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
 
 }
 
@@ -2138,6 +2348,14 @@ function addBeat(){
     subtext:
     "Describe what the character is thinking, hiding or trying to achieve.",
 
+    speaker:"None",
+
+    dialogue:"",
+
+    lineFunction:"Neutral",
+
+    voice:"Auto",
+
     timing:"Auto",
 
     response:"Auto",
@@ -2197,7 +2415,7 @@ document
 
 
 /* =========================================================
-   STYLE ENGINE
+   PERFORMANCE STYLE ENGINE
 ========================================================= */
 
 function performanceStyleInstruction(){
@@ -2229,6 +2447,10 @@ function performanceStyleInstruction(){
 }
 
 
+/* =========================================================
+   RELATIONSHIP
+========================================================= */
+
 function relationshipInstruction(){
 
   const relationship =
@@ -2252,7 +2474,7 @@ function relationshipInstruction(){
     "Physical familiarity may feel normal, so romantic tension should emerge through subtle deviations from established comfort.",
 
     "Romantic Tension":
-    "Let attraction appear through increased awareness of gaze, proximity, breath and hesitation rather than obvious romantic posing.",
+    "Let attraction appear through increased awareness of gaze, proximity, breath, hesitation and suppression rather than obvious romantic posing.",
 
     Couple:
     "Allow greater physical familiarity and intimacy. Emotional tension should come from context rather than proximity alone.",
@@ -2277,7 +2499,266 @@ function relationshipInstruction(){
 
 
 /* =========================================================
-   ADVANCED DIRECTION ENGINE
+   DIALOGUE ENGINE
+========================================================= */
+
+function dialogueDirection(beat,character){
+
+  const line =
+    cleanDialogue(beat.dialogue);
+
+
+  if(!line){
+    return "";
+  }
+
+
+  const lineFunction =
+    lineFunctionInstruction(
+      beat.lineFunction
+    );
+
+
+  const voice =
+    voiceInstruction(
+      beat.voice
+    );
+
+
+  if(
+    beat.speaker === "Other Character"
+  ){
+
+    return `The other character says, “${line}” ${lineFunction} ${otherSpeakerReactionRule(beat)} ${voice}`.trim();
+
+  }
+
+
+  if(
+    beat.speaker === "Off-screen"
+  ){
+
+    return `An off-screen voice says, “${line}” ${lineFunction} ${offscreenReactionRule(beat)} ${voice}`.trim();
+
+  }
+
+
+  if(
+    beat.speaker === "Main Character"
+  ){
+
+    return `${character} says, “${line}” ${lineFunction} ${mainCharacterDeliveryRule(beat)} ${voice}`.trim();
+
+  }
+
+
+  return `Dialogue: “${line}” ${lineFunction}`.trim();
+
+}
+
+
+function otherSpeakerReactionRule(beat){
+
+  if(
+    beat.timing === "Immediate"
+  ){
+
+    return "Let the main character listen to the line and react only as its meaning becomes clear; do not anticipate the dialogue.";
+
+  }
+
+
+  if(
+    beat.timing === "Delayed Reaction"
+  ){
+
+    return "Let the main character hear the line fully, hold the previous state, then allow the response to appear after a noticeable internal processing beat.";
+
+  }
+
+
+  if(
+    beat.timing === "Short Processing Delay"
+  ){
+
+    return "Let the line finish or emotionally land first, then allow a brief processing beat before the visible response.";
+
+  }
+
+
+  return "Let the line land before the visible emotional response. Preserve a tiny listening-to-recognition transition rather than reacting before the dialogue is understood.";
+
+}
+
+
+function offscreenReactionRule(beat){
+
+  return "The character should first orient attention toward the sound or register the voice, then process its meaning before the emotional reaction becomes visible.";
+
+}
+
+
+function mainCharacterDeliveryRule(beat){
+
+  const functionName =
+    beat.lineFunction;
+
+
+  if(
+    functionName === "Deflect" ||
+    functionName === "Hide Emotion"
+  ){
+
+    return "The spoken words should attempt to conceal the internal emotion, so allow a slight mismatch between the controlled delivery and small involuntary leakage through gaze, breathing, lips or posture.";
+
+  }
+
+
+  if(
+    functionName === "Tease"
+  ){
+
+    return "Let the line carry playful intention through timing, gaze and a restrained hint of amusement rather than forcing a broad smile.";
+
+  }
+
+
+  if(
+    functionName === "Confess"
+  ){
+
+    return "Allow emotional preparation before the line, with hesitation or breath change carrying part of the meaning before the words are released.";
+
+  }
+
+
+  if(
+    functionName === "Challenge"
+  ){
+
+    return "Keep the delivery deliberate and grounded, using eye contact, chin position and controlled vocal firmness rather than unnecessary volume.";
+
+  }
+
+
+  if(
+    functionName === "Comfort"
+  ){
+
+    return "Soften the delivery and allow genuine concern to appear through gaze, vocal warmth and restrained proximity behaviour.";
+
+  }
+
+
+  return "Make the vocal delivery emerge from the existing emotional state rather than treating speech as separate from the physical performance.";
+
+}
+
+
+function lineFunctionInstruction(value){
+
+  const map = {
+
+    Neutral:
+    "with a natural conversational intention.",
+
+    Inform:
+    "to communicate information rather than provoke a reaction.",
+
+    Ask:
+    "as a genuine question that directs attention toward the listener.",
+
+    Tease:
+    "with playful teasing underneath the literal words.",
+
+    Challenge:
+    "as a controlled challenge.",
+
+    Confess:
+    "as an emotionally exposed admission.",
+
+    Deflect:
+    "to redirect attention away from the speaker's true emotional state.",
+
+    Comfort:
+    "with the intention of calming or reassuring the listener.",
+
+    Provoke:
+    "to deliberately create an emotional response.",
+
+    Reveal:
+    "as information that changes the emotional meaning of the scene.",
+
+    Interrupt:
+    "to break the existing rhythm or stop the other character's action.",
+
+    Reassure:
+    "to make the other person feel safe or certain.",
+
+    Dismiss:
+    "to minimize the importance of the subject.",
+
+    "Hide Emotion":
+    "while deliberately concealing what the speaker actually feels."
+
+  };
+
+
+  return map[value] || "";
+
+}
+
+
+function voiceInstruction(value){
+
+  const map = {
+
+    Auto:
+    "",
+
+    Natural:
+    "Keep the voice conversational and unforced.",
+
+    Soft:
+    "Use a softer vocal placement without turning it into a whisper.",
+
+    Controlled:
+    "Keep the voice carefully controlled, as if preventing the underlying emotion from affecting the words.",
+
+    Breathier:
+    "Allow slightly more breath in the voice while keeping the delivery natural.",
+
+    Hesitant:
+    "Use a small hesitation or delayed start before the words come out.",
+
+    Playful:
+    "Use lighter timing and restrained amusement in the delivery.",
+
+    Dry:
+    "Keep the vocal tone deliberately flat or dry, letting timing carry the humour or sarcasm.",
+
+    Firm:
+    "Use grounded vocal firmness without unnecessary shouting.",
+
+    Quiet:
+    "Lower the vocal energy and volume while preserving clarity.",
+
+    Tense:
+    "Allow controlled tension to subtly tighten the delivery.",
+
+    Warm:
+    "Let warmth soften the vocal tone and pacing."
+
+  };
+
+
+  return map[value] || "";
+
+}
+
+
+/* =========================================================
+   ADVANCED ENGINE
 ========================================================= */
 
 function advancedBeatDirection(beat){
@@ -2352,7 +2833,8 @@ function advancedBeatDirection(beat){
 
 
   if(
-    beat.recovery !== "Auto"
+    beat.recovery !== "Auto" &&
+    beat.recovery !== "None"
   ){
 
     parts.push(
@@ -2372,7 +2854,7 @@ function timingInstruction(value){
   const map = {
 
     Immediate:
-    "The reaction follows recognition almost immediately without anticipation.",
+    "The response follows recognition almost immediately, but never before the stimulus is perceived.",
 
     "Micro Delay":
     "Insert a tiny perceptual delay before the visible response.",
@@ -2408,7 +2890,10 @@ function responseInstruction(value){
     "Interrupt movement first, then allow the emotional response to develop.",
 
     "Body First":
-    "Let posture or body orientation react before the facial response becomes clear."
+    "Let posture or body orientation react before the facial response becomes clear.",
+
+    "Voice First":
+    "Let the first deliberate response arrive through the spoken line, while smaller involuntary physical signs remain restrained."
 
   };
 
@@ -2554,9 +3039,6 @@ function recoveryInstruction(value){
 
   const map = {
 
-    None:
-    "",
-
     "Return To Task":
     "Recover by deliberately returning attention to the original task.",
 
@@ -2584,7 +3066,7 @@ function recoveryInstruction(value){
 
 
 /* =========================================================
-   VIDEO OUTPUT
+   VIDEO PROMPT
 ========================================================= */
 
 function buildVideoPrompt(){
@@ -2594,7 +3076,7 @@ function buildVideoPrompt(){
     .getElementById("character")
     .value
     .trim()
-    || "The character";
+    || "The main character";
 
 
   const scene =
@@ -2646,32 +3128,44 @@ function buildVideoPrompt(){
 
   beats.forEach((beat,index) => {
 
-    let line =
+    let paragraph =
       beat.happens.trim();
 
 
-    if(beat.subtext){
+    if(
+      beat.dialogue.trim()
+    ){
 
-      line +=
+      paragraph +=
+        ` ${dialogueDirection(beat,character)}`;
+
+    }
+
+
+    if(
+      beat.subtext
+    ){
+
+      paragraph +=
         ` The underlying intention is that ${lowerFirst(beat.subtext)}`;
 
     }
 
 
-    const adv =
+    const advanced =
       advancedBeatDirection(beat);
 
 
-    if(adv){
+    if(advanced){
 
-      line +=
-        ` ${adv}`;
+      paragraph +=
+        ` ${advanced}`;
 
     }
 
 
     performanceFlow +=
-      line;
+      paragraph;
 
 
     if(
@@ -2688,54 +3182,60 @@ function buildVideoPrompt(){
 
   return `Cinematic K-drama performance.
 
-Camera:
+CAMERA:
 ${shot}, ${angle}, ${cameraMovement}.
 
-Scene:
+SCENE:
 ${scene}
 
-Main character:
+MAIN CHARACTER:
 ${character}
 
-Relationship:
+RELATIONSHIP:
 ${relationship}
 
-Character activity:
+CHARACTER ACTIVITY:
 ${activity}
 
-Dramatic objective:
+DRAMATIC OBJECTIVE:
 ${objective}
 
-Performance style:
+PERFORMANCE STYLE:
 ${globalPerformanceStyle}
 
 ${performanceStyleInstruction()}
 
 ${relationshipInstruction()}
 
-PERFORMANCE:
+PERFORMANCE FLOW:
 
 ${performanceFlow}
 
-Let the performance evolve as one continuous emotional chain rather than a sequence of disconnected facial poses.
+Treat dialogue, listening and physical reaction as one continuous behavioural chain.
 
-Each reaction should follow cause and perception. The character notices what happens first, processes it, then allows the response to appear through gaze, breathing, facial tension, posture and movement.
+When another character speaks, do not make ${character}'s emotional response appear before the relevant words or meaning have registered. Preserve the sequence:
 
-Do not make the trigger and the full emotional reaction happen in the exact same instant unless an immediate response is intentionally selected.
+speaker acts or speaks → ${character} hears or notices → meaning lands → internal processing → first involuntary response → fuller reaction or deliberate reply.
+
+When ${character} speaks, let the dialogue emerge from the existing emotional state. Vocal delivery, breathing, gaze and body behaviour should support the subtext rather than operate independently.
+
+Do not treat spoken dialogue as a pause in the acting. Listening is active behaviour. During another character's line, allow attention, gaze focus, breathing rhythm, anticipation and small facial changes to evolve naturally.
+
+Let the full scene behave as one continuous emotional chain rather than disconnected facial poses.
 
 Maintain continuity of body position, interpersonal distance, gaze direction, breathing rhythm and unresolved emotional residue between beats.
 
-If the character tries to appear normal, do not erase the previous emotion completely. Allow a trace of it to remain in the eyes, breath, lips, jaw, shoulders or posture.
+If ${character} tries to appear normal, do not erase the previous emotion completely. Allow a trace of it to remain in the eyes, breath, lips, jaw, shoulders, vocal delivery or posture.
 
-Keep low-intensity reactions restrained. Avoid exaggerated eye widening, dramatic gasping, sudden full-body movement, random gestures, obvious romantic posing or unnecessary repeated proximity changes.
+For low-intensity emotion, avoid exaggerated eye widening, dramatic gasping, sudden full-body movement, random gestures or obvious romantic posing.
 
-For romantic tension, let attraction emerge through awareness, hesitation, gaze timing, breath changes, stillness and suppression rather than overtly romantic expression.`;
+For romantic tension, let attraction emerge through awareness, hesitation, gaze timing, breath changes, restrained stillness, vocal control and suppression rather than overt romantic expression.`;
 
 }
 
 
 /* =========================================================
-   ACTING OUTPUT
+   ACTING DIRECTION
 ========================================================= */
 
 function buildActingDirection(){
@@ -2768,6 +3268,25 @@ The performance should evolve continuously through the following beats.
 
   beats.forEach((beat,index) => {
 
+    const dialogue =
+      beat.dialogue.trim()
+      ? `
+
+Dialogue:
+${beat.speaker}: “${cleanDialogue(beat.dialogue)}”
+
+Line function:
+${beat.lineFunction}
+
+Voice:
+${beat.voice}
+
+Dialogue direction:
+${dialogueDirection(beat,character)}
+`
+      : "";
+
+
     text +=
 
 `BEAT ${index+1} — ${beat.role.toUpperCase()}
@@ -2783,9 +3302,10 @@ ${beat.happens}
 
 Subtext:
 ${beat.subtext}
+${dialogue}
 
-Acting direction:
-Do not jump directly to the final expression. Let the character first perceive the event, process it internally, then allow the response to leak into observable behaviour.
+Performance direction:
+Do not jump directly to the final expression. Let perception and thought happen before visible reaction.
 
 ${advancedBeatDirection(beat)}
 
@@ -2800,13 +3320,17 @@ ${advancedBeatDirection(beat)}
 
 Never treat the beats as disconnected poses.
 
-Carry forward the previous gaze direction, breathing rhythm, posture, body position, proximity awareness and unresolved emotion.
+Carry forward gaze direction, breathing rhythm, posture, body position, interpersonal distance and unresolved emotion.
+
+Dialogue does not interrupt performance. Listening, deciding whether to answer, preparing breath and choosing whether to make eye contact are all part of the acting.
+
+If another character speaks, listen before reacting.
+
+If the main character speaks while hiding emotion, the line may sound controlled while involuntary behaviour tells a slightly different story.
 
 A recovery beat should conceal the previous emotion rather than delete it.
 
-When the visible behaviour is composed but the internal feeling remains active, allow a small mismatch: slightly controlled breathing, gaze avoidance, restrained lip tension, unusually careful posture, hand stillness or delayed eye contact.
-
-For restrained K-drama performance, transitions matter more than large final expressions.`;
+For restrained K-drama performance, the transition into and out of a line is often as important as the dialogue itself.`;
 
   return text;
 
@@ -2814,14 +3338,14 @@ For restrained K-drama performance, transitions matter more than large final exp
 
 
 /* =========================================================
-   TECHNICAL OUTPUT
+   TECHNICAL
 ========================================================= */
 
 function buildTechnical(){
 
   let text =
 
-`V8.1 PERFORMANCE STATE SUMMARY
+`V8.2 DIALOGUE-AWARE PERFORMANCE STATE
 
 Relationship:
 ${document.getElementById("relationship").value}
@@ -2855,10 +3379,28 @@ ${beat.emotion}
 Intensity:
 ${beat.intensity}/5
 
-Timing:
+Action:
+${beat.happens}
+
+Subtext:
+${beat.subtext}
+
+Speaker:
+${beat.speaker}
+
+Dialogue:
+${beat.dialogue || "None"}
+
+Line Function:
+${beat.lineFunction}
+
+Voice Quality:
+${beat.voice}
+
+Reaction Timing:
 ${beat.timing}
 
-Response priority:
+First Response:
 ${beat.response}
 
 Gaze:
@@ -2876,12 +3418,6 @@ ${beat.proximity}
 Recovery:
 ${beat.recovery}
 
-Action:
-${beat.happens}
-
-Subtext:
-${beat.subtext}
-
 `;
 
   });
@@ -2889,30 +3425,49 @@ ${beat.subtext}
 
   text +=
 
-`ENGINE RULES:
+`DIALOGUE ENGINE:
 
-Trigger
-→ perception
-→ internal recognition
-→ reaction delay
+Other Character Dialogue
+→ speech begins
+→ main character listens
+→ relevant words land
+→ meaning is recognized
+→ reaction timing
 → first response channel
-→ secondary response
-→ body adjustment
-→ recovery
-→ emotional residue
-→ next beat.
+→ secondary emotional response
+→ optional reply.
 
-Do not reset body position or interpersonal distance unless a later beat explicitly changes it.
+Main Character Dialogue
+→ internal intention
+→ breath preparation
+→ gaze decision
+→ line delivery
+→ involuntary emotional leakage
+→ post-line reaction / recovery.
 
-Do not interpret recovery as emotional deletion.
+Off-screen Dialogue
+→ sound recognition
+→ orientation or listening behaviour
+→ meaning recognition
+→ emotional response.
 
-Response priority should influence sequencing:
+IMPORTANT:
+
+Do not allow the main character to react emotionally to dialogue before hearing or understanding the relevant cue.
+
+Do not automatically make every spoken line produce eye contact.
+
+Do not reset proximity when dialogue begins.
+
+Do not reset emotion after a reply.
+
+RESPONSE PRIORITY:
 
 Eyes First
-= gaze before larger face or body response.
+= gaze registers before larger reaction.
 
 Breath First
-= breathing changes before visible movement.
+= breathing changes before face or body.
 
 Face First
 = facial change before body adjustment.
@@ -2921,9 +3476,12 @@ Freeze First
 = movement interruption before secondary reaction.
 
 Body First
-= posture or orientation responds before facial expression becomes clear.
+= posture or orientation reacts first.
 
-Intensity scale:
+Voice First
+= the deliberate spoken response leads while involuntary physical leakage remains restrained.
+
+INTENSITY:
 
 1 = Micro
 2 = Restrained
@@ -2931,23 +3489,26 @@ Intensity scale:
 4 = Heightened
 5 = Expressive
 
-Continuity priorities:
+CONTINUITY PRIORITY:
 
-1. Gaze continuity
-2. Breath continuity
-3. Body-state continuity
-4. Spatial continuity
-5. Emotional residue
+1. Trigger and dialogue causality
+2. Gaze continuity
+3. Breath continuity
+4. Body-state continuity
+5. Spatial continuity
+6. Emotional residue
+7. Vocal continuity
 
-Avoid:
+AVOID:
 
-premature emotional expression,
-simultaneous full-body reactions,
-unmotivated proximity changes,
+premature reactions,
+reacting before a line lands,
 large gestures at low intensity,
 dramatic gasping,
-sustained wide eyes,
+constant eye contact,
+repeated unnecessary proximity changes,
 random fidgeting,
+emotionally neutral dialogue delivery when subtext is active,
 or complete emotional reset between beats.`;
 
   return text;
@@ -2956,26 +3517,7 @@ or complete emotional reset between beats.`;
 
 
 /* =========================================================
-   TEXT HELPER
-========================================================= */
-
-function lowerFirst(text){
-
-  if(!text){
-    return "";
-  }
-
-
-  return
-    text.charAt(0).toLowerCase()
-    +
-    text.slice(1);
-
-}
-
-
-/* =========================================================
-   OUTPUT UPDATE
+   OUTPUT
 ========================================================= */
 
 function updateOutput(){
@@ -3020,10 +3562,6 @@ function updateOutput(){
 
 }
 
-
-/* =========================================================
-   OUTPUT TABS
-========================================================= */
 
 function switchOutput(mode,button){
 
@@ -3086,7 +3624,7 @@ function switchOutput(mode,button){
 
 
 /* =========================================================
-   DEMO AUTO BUILD
+   DEMO
 ========================================================= */
 
 function autoBuildDemo(){
@@ -3096,9 +3634,7 @@ function autoBuildDemo(){
     {
 
       role:"Setup",
-
       emotion:"Neutral Observation",
-
       intensity:1,
 
       happens:
@@ -3107,18 +3643,17 @@ function autoBuildDemo(){
       subtext:
       "She feels comfortable. Nothing unusual has happened yet.",
 
+      speaker:"None",
+      dialogue:"",
+      lineFunction:"Neutral",
+      voice:"Auto",
+
       timing:"Immediate",
-
       response:"Auto",
-
       gaze:"Character → Object",
-
       breath:"Natural Breathing",
-
       movement:"Maintain Position",
-
       proximity:"Conversational",
-
       recovery:"None"
 
     },
@@ -3126,9 +3661,7 @@ function autoBuildDemo(){
     {
 
       role:"Trigger",
-
       emotion:"Attention Captured",
-
       intensity:2,
 
       happens:
@@ -3137,18 +3670,17 @@ function autoBuildDemo(){
       subtext:
       "Maryam notices that the distance has changed but has not yet interpreted the feeling.",
 
+      speaker:"None",
+      dialogue:"",
+      lineFunction:"Neutral",
+      voice:"Auto",
+
       timing:"Micro Delay",
-
       response:"Eyes First",
-
       gaze:"Auto",
-
       breath:"Natural Breathing",
-
       movement:"Maintain Position",
-
       proximity:"Close",
-
       recovery:"None"
 
     },
@@ -3156,9 +3688,7 @@ function autoBuildDemo(){
     {
 
       role:"Reaction",
-
       emotion:"Flustered Attraction",
-
       intensity:2,
 
       happens:
@@ -3167,18 +3697,17 @@ function autoBuildDemo(){
       subtext:
       "She is affected by the proximity but does not want him to notice.",
 
+      speaker:"None",
+      dialogue:"",
+      lineFunction:"Neutral",
+      voice:"Auto",
+
       timing:"Short Processing Delay",
-
       response:"Breath First",
-
       gaze:"Object → Character",
-
       breath:"Breath Catch",
-
       movement:"Micro Stillness",
-
       proximity:"Very Close",
-
       recovery:"None"
 
     },
@@ -3186,9 +3715,7 @@ function autoBuildDemo(){
     {
 
       role:"Recovery",
-
       emotion:"Fake Normal",
-
       intensity:2,
 
       happens:
@@ -3197,18 +3724,17 @@ function autoBuildDemo(){
       subtext:
       "Act normal. Don't let him notice.",
 
+      speaker:"None",
+      dialogue:"",
+      lineFunction:"Neutral",
+      voice:"Auto",
+
       timing:"Micro Delay",
-
       response:"Face First",
-
       gaze:"Character → Object",
-
       breath:"Controlled Exhale",
-
       movement:"Recompose Posture",
-
       proximity:"Very Close",
-
       recovery:"Return To Task"
 
     },
@@ -3216,29 +3742,26 @@ function autoBuildDemo(){
     {
 
       role:"Trigger",
-
       emotion:"Micro Surprise",
-
       intensity:2,
 
       happens:
-      "Amir stops explaining and looks directly at Maryam.",
+      "Amir stops looking at the phone and turns his attention toward Maryam.",
 
       subtext:
-      "She thought she had recovered, but his gaze exposes the unresolved attraction.",
+      "She thought she had recovered, but his direct attention exposes the unresolved tension.",
+
+      speaker:"Other Character",
+      dialogue:"Kenapa diam?",
+      lineFunction:"Ask",
+      voice:"Natural",
 
       timing:"Micro Delay",
-
       response:"Eyes First",
-
       gaze:"Object → Character",
-
       breath:"Breath Pause",
-
       movement:"Micro Stillness",
-
       proximity:"Very Close",
-
       recovery:"None"
 
     },
@@ -3246,29 +3769,26 @@ function autoBuildDemo(){
     {
 
       role:"Payoff",
-
       emotion:"Restrained Affection",
-
       intensity:2,
 
       happens:
-      "Their eye contact lingers briefly before Maryam looks away.",
+      "Maryam answers while trying to make the moment seem completely ordinary.",
 
       subtext:
-      "For a brief moment she allows the attraction to exist before self-consciousness returns.",
+      "She wants to deny that anything affected her, even though some attraction remains visible underneath.",
+
+      speaker:"Main Character",
+      dialogue:"Tak ada apa-apa.",
+      lineFunction:"Deflect",
+      voice:"Controlled",
 
       timing:"Micro Delay",
-
-      response:"Eyes First",
-
-      gaze:"Held Eye Contact",
-
+      response:"Voice First",
+      gaze:"Look Away Then Return",
       breath:"Controlled Exhale",
-
       movement:"Maintain Position",
-
       proximity:"Very Close",
-
       recovery:"Suppress Smile"
 
     }
@@ -3279,7 +3799,7 @@ function autoBuildDemo(){
   renderBeats();
 
   showToast(
-    "Demo beats rebuilt"
+    "Dialogue demo rebuilt"
   );
 
 }
@@ -3306,7 +3826,7 @@ function resetDemo(){
   document
   .getElementById("scene")
   .value =
-    "Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam initially remains focused on the phone, then gradually becomes aware that Amir is standing unusually close to her.";
+    "Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam gradually becomes aware that he is standing unusually close. Amir then notices her silence and asks why she has gone quiet.";
 
 
   document
@@ -3419,7 +3939,7 @@ document
 
 
 /* =========================================================
-   LIVE INPUT EVENTS
+   LIVE INPUTS
 ========================================================= */
 
 [
