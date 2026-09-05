@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>K-Drama Performance Director V8.3.1</title>
+<title>K-Drama Performance Director V8.3.2</title>
 
 <style>
 :root{
@@ -16,13 +16,12 @@
   --muted:#929aa8;
   --accent:#df7d86;
   --accent-soft:#2d2025;
-  --blue:#8fb4e8;
   --green:#8ccdb0;
   --yellow:#e4bd72;
   --danger:#d56d76;
 }
 
-*{box-sizing:border-box;}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -40,8 +39,8 @@ body{
     sans-serif;
 }
 
-button,input,select,textarea{font:inherit;}
-button{cursor:pointer;}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
 .app{
   min-height:100vh;
@@ -49,9 +48,7 @@ button{cursor:pointer;}
   grid-template-columns:235px minmax(520px,1fr) 440px;
 }
 
-/* =========================================================
-   SIDEBAR
-========================================================= */
+/* SIDEBAR */
 
 .sidebar{
   position:sticky;
@@ -103,11 +100,6 @@ button{cursor:pointer;}
   text-align:left;
 }
 
-.nav-item:hover{
-  background:var(--panel);
-  color:white;
-}
-
 .nav-item.active{
   background:var(--accent-soft);
   color:#ffdce0;
@@ -144,9 +136,7 @@ button{cursor:pointer;}
   line-height:1.55;
 }
 
-/* =========================================================
-   MAIN
-========================================================= */
+/* MAIN */
 
 .main{
   min-width:0;
@@ -166,7 +156,7 @@ button{cursor:pointer;}
   line-height:1.55;
 }
 
-.section{margin-bottom:28px;}
+.section{margin-bottom:28px}
 
 .section-head{
   display:flex;
@@ -213,8 +203,8 @@ button{cursor:pointer;}
   gap:9px;
 }
 
-.field{margin-bottom:12px;}
-.field:last-child{margin-bottom:0;}
+.field{margin-bottom:12px}
+.field:last-child{margin-bottom:0}
 
 .field label{
   display:block;
@@ -250,9 +240,7 @@ button{cursor:pointer;}
   border-color:#75525a;
 }
 
-/* =========================================================
-   PERFORMANCE STYLE
-========================================================= */
+/* PERFORMANCE LEVEL */
 
 .performance-level{
   display:flex;
@@ -275,17 +263,67 @@ button{cursor:pointer;}
   background:#2a1d21;
 }
 
-/* =========================================================
-   BUDGET ENGINE UI
-========================================================= */
+/* NATURALIZER */
+
+.simplifier-panel{
+  margin-bottom:14px;
+  padding:14px;
+  border:1px solid #3a3338;
+  border-radius:12px;
+  background:
+    linear-gradient(180deg,#171519,#11141a);
+}
+
+.simplifier-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.simplifier-title{
+  color:#d7c2c7;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+.simplifier-copy{
+  margin-top:5px;
+  color:#858d99;
+  font-size:10px;
+  line-height:1.45;
+}
+
+.natural-score{
+  padding:6px 9px;
+  border-radius:999px;
+  color:#ccebdc;
+  background:#16231d;
+  font-size:10px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.natural-score.warn{
+  color:#efd39c;
+  background:#261f14;
+}
+
+.natural-score.danger{
+  color:#efb4b9;
+  background:#29171a;
+}
+
+/* BUDGET */
 
 .budget-panel{
   margin-bottom:14px;
   padding:14px;
   border:1px solid #353d49;
   border-radius:12px;
-  background:
-    linear-gradient(180deg,#151922,#10141a);
+  background:linear-gradient(180deg,#151922,#10141a);
 }
 
 .budget-head{
@@ -344,13 +382,8 @@ button{cursor:pointer;}
   transition:.2s;
 }
 
-.budget-fill.tight{
-  background:var(--yellow);
-}
-
-.budget-fill.over{
-  background:var(--danger);
-}
+.budget-fill.tight{background:var(--yellow)}
+.budget-fill.over{background:var(--danger)}
 
 .budget-meta{
   display:flex;
@@ -361,13 +394,11 @@ button{cursor:pointer;}
   font-size:10px;
 }
 
-.budget-status.ok{color:var(--green);}
-.budget-status.tight{color:var(--yellow);}
-.budget-status.over{color:var(--danger);}
+.budget-status.ok{color:var(--green)}
+.budget-status.tight{color:var(--yellow)}
+.budget-status.over{color:var(--danger)}
 
-/* =========================================================
-   TIMELINE
-========================================================= */
+/* TIMELINE */
 
 .timeline-summary{
   display:flex;
@@ -424,9 +455,7 @@ button{cursor:pointer;}
   font-size:11px;
 }
 
-/* =========================================================
-   BEATS
-========================================================= */
+/* BEATS */
 
 .beat-list{
   display:flex;
@@ -434,7 +463,7 @@ button{cursor:pointer;}
   gap:0;
 }
 
-.beat-wrap{position:relative;}
+.beat-wrap{position:relative}
 
 .connector{
   width:1px;
@@ -450,7 +479,7 @@ button{cursor:pointer;}
   background:linear-gradient(180deg,#171b24,#12161d);
 }
 
-.beat-summary{padding:13px 14px;}
+.beat-summary{padding:13px 14px}
 
 .beat-top{
   display:flex;
@@ -484,7 +513,6 @@ button{cursor:pointer;}
   background:#0f1319;
   font-size:9px;
   font-weight:800;
-  letter-spacing:.04em;
 }
 
 .beat-title{
@@ -565,8 +593,6 @@ button{cursor:pointer;}
   text-transform:uppercase;
 }
 
-.dialogue-time{color:#7c8795;}
-
 .card-controls{
   display:flex;
   gap:6px;
@@ -596,7 +622,7 @@ button{cursor:pointer;}
   background:#11151c;
 }
 
-.edit-panel.open{display:block;}
+.edit-panel.open{display:block}
 
 .advanced-panel{
   display:none;
@@ -607,7 +633,7 @@ button{cursor:pointer;}
   background:#0e1218;
 }
 
-.advanced-panel.open{display:block;}
+.advanced-panel.open{display:block}
 
 .advanced-title{
   margin-bottom:10px;
@@ -666,9 +692,7 @@ button{cursor:pointer;}
   background:var(--panel);
 }
 
-/* =========================================================
-   OUTPUT
-========================================================= */
+/* OUTPUT */
 
 .output{
   position:sticky;
@@ -793,7 +817,7 @@ button{cursor:pointer;}
 }
 
 @media(max-width:1280px){
-  .app{grid-template-columns:220px 1fr;}
+  .app{grid-template-columns:220px 1fr}
   .output{
     position:relative;
     grid-column:1/-1;
@@ -804,13 +828,16 @@ button{cursor:pointer;}
 }
 
 @media(max-width:820px){
-  .app{display:block;}
-  .sidebar{position:relative;height:auto;}
-  .main{padding:22px;}
-  .grid2,.grid3,.grid4{grid-template-columns:1fr;}
-  .performance-level{flex-wrap:wrap;}
-  .level-btn{min-width:90px;}
-  .budget-head{align-items:flex-start;flex-direction:column;}
+  .app{display:block}
+  .sidebar{position:relative;height:auto}
+  .main{padding:22px}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .performance-level{flex-wrap:wrap}
+  .level-btn{min-width:90px}
+  .budget-head,.simplifier-top{
+    align-items:flex-start;
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -825,8 +852,8 @@ button{cursor:pointer;}
     <div class="brand-badge">Performance Lab</div>
     <h1>K-Drama Performance Director</h1>
     <p>
-      Build performance through scene, dialogue, timing,
-      perception, reaction and emotional continuity.
+      Build natural short-form performance from dramatic action,
+      dialogue, subtext and a small number of visible changes.
     </p>
   </div>
 
@@ -844,8 +871,8 @@ button{cursor:pointer;}
   </div>
 
   <div class="version">
-    V8.3.1 · 15-Second Performance Budget Engine<br>
-    Scene → Dialogue → Perception → Reaction → Payoff → Recovery
+    V8.3.2 · Natural Performance Simplifier<br>
+    Situation → Interaction → Payoff
   </div>
 
 </aside>
@@ -853,12 +880,14 @@ button{cursor:pointer;}
 <main class="main">
 
   <div class="page-title">
-    <h2>15-Second Performance Composer</h2>
+    <h2>Natural Performance Composer</h2>
     <p>
-      Build emotionally continuous K-drama performance while the engine
-      protects dialogue, reaction causality and payoff inside a fixed video-generation budget.
+      Keep the acting intelligence underneath, but give the video model
+      fewer, broader and more human performance events.
     </p>
   </div>
+
+  <!-- SCENE -->
 
   <section class="section">
 
@@ -895,20 +924,22 @@ button{cursor:pointer;}
 
       <div class="field">
         <label>Scene / Action</label>
-        <textarea id="scene">Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam has repeatedly avoided looking at him. He casually teases her about it. Maryam tries to hide that his teasing affects her.</textarea>
+        <textarea id="scene">Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam keeps avoiding his gaze. He casually teases her about it. Maryam tries to act unaffected.</textarea>
       </div>
 
       <div class="field">
         <label>Character Objective</label>
         <input
           id="objective"
-          value="Hide that Amir's teasing is affecting her while maintaining casual confidence."
+          value="Hide that Amir's teasing affects her while maintaining casual confidence."
         >
       </div>
 
     </div>
 
   </section>
+
+  <!-- CAMERA -->
 
   <section class="section">
 
@@ -970,38 +1001,77 @@ button{cursor:pointer;}
       <div class="field">
         <label>Performance Style</label>
 
-        <div class="performance-level" id="performanceLevel">
+        <div class="performance-level">
 
-          <button class="level-btn" data-style="Micro">Micro</button>
+          <button class="level-btn" data-style="Micro">
+            Micro
+          </button>
 
           <button class="level-btn active" data-style="Restrained">
             Restrained
           </button>
 
-          <button class="level-btn" data-style="Readable">Readable</button>
-          <button class="level-btn" data-style="Heightened">Heightened</button>
-          <button class="level-btn" data-style="Expressive">Expressive</button>
+          <button class="level-btn" data-style="Readable">
+            Readable
+          </button>
+
+          <button class="level-btn" data-style="Heightened">
+            Heightened
+          </button>
+
+          <button class="level-btn" data-style="Expressive">
+            Expressive
+          </button>
 
         </div>
+
       </div>
 
     </div>
 
   </section>
 
+  <!-- PERFORMANCE -->
+
   <section class="section">
 
     <div class="section-head">
       <h3>Performance Beats</h3>
-      <span id="beatCount">7 beats</span>
+      <span id="beatCount">3 beats</span>
+    </div>
+
+    <div class="simplifier-panel">
+
+      <div class="simplifier-top">
+
+        <div>
+          <div class="simplifier-title">
+            Natural Performance Simplifier
+          </div>
+
+          <div class="simplifier-copy">
+            Fewer visible changes usually produce more natural short-form acting.
+            Internal emotion can remain complex without becoming a separate animation.
+          </div>
+        </div>
+
+        <div
+          class="natural-score"
+          id="naturalScore"
+        >
+          Natural · 3 beats
+        </div>
+
+      </div>
+
     </div>
 
     <div class="budget-panel">
 
       <div class="budget-head">
 
-        <div>
-          <div class="budget-title">Performance Budget</div>
+        <div class="budget-title">
+          Performance Budget
         </div>
 
         <div class="budget-controls">
@@ -1045,7 +1115,7 @@ button{cursor:pointer;}
       </div>
 
       <div class="timeline-help">
-        Dialogue and reaction windows are calculated automatically.
+        Broad events, not micro-expression checkpoints.
       </div>
 
     </div>
@@ -1056,8 +1126,8 @@ button{cursor:pointer;}
 
     <div class="add-row">
 
-      <button class="primary-btn" onclick="autoBuildDemo()">
-        ✦ Load 15s Dialogue Demo
+      <button class="primary-btn" onclick="loadNaturalDemo()">
+        ✦ Load Natural 3-Beat Demo
       </button>
 
       <button class="secondary-btn" onclick="addBeat()">
@@ -1070,32 +1140,44 @@ button{cursor:pointer;}
 
 </main>
 
+<!-- OUTPUT -->
+
 <aside class="output">
 
   <h2>Generated Direction</h2>
 
   <p class="output-sub">
-    Budget-aware cinematic output, acting direction and technical state.
+    Video output is simplified for natural generation.
+    Acting and Technical retain deeper performance logic.
   </p>
 
   <div class="output-tabs">
 
-    <button class="output-tab active" onclick="switchOutput('video',this)">
+    <button
+      class="output-tab active"
+      onclick="switchOutput('video',this)"
+    >
       🎬 Video Prompt
     </button>
 
-    <button class="output-tab" onclick="switchOutput('acting',this)">
+    <button
+      class="output-tab"
+      onclick="switchOutput('acting',this)"
+    >
       🎭 Acting
     </button>
 
-    <button class="output-tab" onclick="switchOutput('technical',this)">
+    <button
+      class="output-tab"
+      onclick="switchOutput('technical',this)"
+    >
       ⚙ Technical
     </button>
 
   </div>
 
   <div class="output-label" id="outputLabel">
-    VIDEO PROMPT
+    NATURAL GENERATION PROMPT
   </div>
 
   <div id="promptOutput" class="prompt-box"></div>
@@ -1132,42 +1214,26 @@ button{cursor:pointer;}
    OPTIONS
 ========================================================= */
 
-const emotionOptions = [
-  "Neutral Observation",
-  "Attention Captured",
-  "Restrained Awe",
-  "Growing Amazement",
-  "Micro Surprise",
-  "Deadpan Disbelief",
-  "Comedic Double-Take",
-  "Annoyed Side-Eye",
-  "Suppressed Frustration",
-  "Dry Sarcasm",
-  "Playful Provocation",
-  "Flustered Attraction",
-  "Restrained Affection",
-  "Hidden Jealousy",
-  "Playful Sulking",
-  "Awkward Freeze",
-  "Fake Normal",
-  "Quiet Unease",
-  "Controlled Fear",
-  "Hiding Hurt",
-  "Subtle Relief",
-  "Decision Made",
-  "Quiet Authority"
-];
-
 const roleOptions = [
   "Setup",
-  "Trigger",
-  "Perception",
+  "Interaction",
   "Reaction",
-  "Dialogue",
-  "Recovery",
-  "Escalation",
-  "Decision",
   "Payoff"
+];
+
+const emotionOptions = [
+  "Neutral Observation",
+  "Fake Normal",
+  "Attention Captured",
+  "Flustered Attraction",
+  "Restrained Affection",
+  "Micro Surprise",
+  "Dry Sarcasm",
+  "Playful Provocation",
+  "Hidden Jealousy",
+  "Awkwardness",
+  "Quiet Unease",
+  "Subtle Relief"
 ];
 
 const speakerOptions = [
@@ -1179,17 +1245,13 @@ const speakerOptions = [
 
 const lineFunctionOptions = [
   "Neutral",
-  "Inform",
   "Ask",
   "Tease",
+  "Deflect",
   "Challenge",
   "Confess",
-  "Deflect",
-  "Comfort",
-  "Provoke",
   "Reveal",
-  "Interrupt",
-  "Reassure",
+  "Comfort",
   "Dismiss",
   "Hide Emotion"
 ];
@@ -1199,129 +1261,58 @@ const voiceOptions = [
   "Natural",
   "Soft",
   "Controlled",
-  "Breathier",
-  "Hesitant",
   "Playful",
   "Dry",
   "Firm",
   "Quiet",
-  "Tense",
   "Warm"
-];
-
-const reactionTimingOptions = [
-  "Auto",
-  "Immediate",
-  "Micro Delay",
-  "Short Processing Delay",
-  "Delayed Reaction"
-];
-
-const responseOptions = [
-  "Auto",
-  "Eyes First",
-  "Breath First",
-  "Face First",
-  "Freeze First",
-  "Body First",
-  "Voice First"
 ];
 
 const gazeOptions = [
   "Auto",
-  "Screen Focus",
-  "Peripheral Awareness",
-  "Object → Character",
-  "Character → Object",
-  "Direct Eye Contact",
-  "Held Eye Contact",
+  "Forward / Object Focus",
   "Avoided Eye Contact",
   "Brief Glance",
-  "Look Away Then Return",
-  "Gaze Down"
+  "Direct Eye Contact",
+  "Held Eye Contact",
+  "Look Away"
 ];
 
 const breathOptions = [
   "Auto",
-  "Natural Breathing",
-  "Tiny Inhale",
-  "Soft Inhale",
-  "Breath Pause",
-  "Breath Catch",
-  "Controlled Exhale",
-  "Recovery Breath"
+  "Natural",
+  "Tiny Change",
+  "Controlled Exhale"
 ];
 
 const movementOptions = [
   "Auto",
-  "No Change",
   "Maintain Position",
-  "Micro Stillness",
-  "Weight Shift",
-  "Lean In",
-  "Lean Back",
+  "Small Weight Shift",
+  "Subtle Recompose",
   "Step Forward",
-  "Step Back",
-  "Recompose Posture"
-];
-
-const proximityOptions = [
-  "Auto",
-  "Conversational",
-  "Close",
-  "Very Close",
-  "Intimate"
+  "Step Back"
 ];
 
 const recoveryOptions = [
   "Auto",
   "None",
   "Return To Task",
-  "Look Away",
   "Fake Normal",
   "Suppress Smile",
-  "Recompose Posture",
-  "Create Distance"
+  "Look Away"
 ];
 
-const beatDurationOptions = [
+const durationOptions = [
   "Auto",
-  "1",
-  "1.5",
   "2",
   "2.5",
   "3",
+  "3.5",
   "4",
+  "4.5",
   "5",
   "6"
-];
-
-const dialogueTimingOptions = [
-  "Auto",
-  "Start",
-  "Middle",
-  "End"
-];
-
-const dialogueDurationOptions = [
-  "Auto",
-  "0.5",
-  "0.7",
-  "1",
-  "1.5",
-  "2",
-  "2.5",
-  "3",
-  "4",
-  "5"
-];
-
-const holdOptions = [
-  "Auto",
-  "None",
-  "Short",
-  "Medium",
-  "Long"
 ];
 
 
@@ -1332,16 +1323,16 @@ const holdOptions = [
 let outputMode = "video";
 let globalPerformanceStyle = "Restrained";
 let targetDuration = 15;
-let budgetMode = false;
+let fitted = false;
 
-let beats = createDemoBeats();
+let beats = createNaturalDemo();
 
 
 /* =========================================================
-   DEMO DATA
+   NATURAL 3-BEAT DEMO
 ========================================================= */
 
-function createDemoBeats(){
+function createNaturalDemo(){
 
   return [
 
@@ -1351,153 +1342,50 @@ function createDemoBeats(){
       intensity:1,
 
       happens:
-      "Maryam waits beside Amir with her attention on the elevator doors.",
+      "Maryam waits beside Amir, facing the elevator doors while trying to appear completely casual.",
 
       subtext:
-      "She is already slightly aware of Amir but does not want that awareness to become visible.",
+      "She is aware of Amir beside her, but her objective is simply to look normal.",
 
-      speaker:"None",
-      dialogue:"",
-      lineFunction:"Neutral",
-      voice:"Auto",
-
-      beatDuration:"Auto",
+      duration:"2.5",
       fittedDuration:null,
-      dialogueTiming:"Auto",
-      dialogueDuration:"Auto",
-      postLineHold:"Auto",
-
-      timing:"Immediate",
-      response:"Auto",
-      gaze:"Avoided Eye Contact",
-      breath:"Natural Breathing",
-      movement:"Maintain Position",
-      proximity:"Close",
-      recovery:"None"
-    },
-
-    {
-      role:"Trigger",
-      emotion:"Attention Captured",
-      intensity:2,
-
-      happens:
-      "Amir notices Maryam avoiding his gaze and casually calls it out.",
-
-      subtext:
-      "Maryam is caught because Amir has noticed exactly what she was trying to hide.",
 
       speaker:"Other Character",
       dialogue:"Awak ni dari tadi elak tengok saya.",
       lineFunction:"Tease",
       voice:"Playful",
 
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Middle",
-      dialogueDuration:"2.6",
-      postLineHold:"Short",
-
-      timing:"Micro Delay",
-      response:"Eyes First",
-      gaze:"Peripheral Awareness",
-      breath:"Natural Breathing",
+      gaze:"Forward / Object Focus",
+      breath:"Natural",
       movement:"Maintain Position",
-      proximity:"Close",
       recovery:"None"
     },
 
     {
-      role:"Reaction",
-      emotion:"Flustered Attraction",
-      intensity:2,
-
-      happens:
-      "The meaning of Amir's teasing fully registers with Maryam.",
-
-      subtext:
-      "Do not let him see that he is right.",
-
-      speaker:"None",
-      dialogue:"",
-      lineFunction:"Neutral",
-      voice:"Auto",
-
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Auto",
-      dialogueDuration:"Auto",
-      postLineHold:"Auto",
-
-      timing:"Short Processing Delay",
-      response:"Breath First",
-      gaze:"Brief Glance",
-      breath:"Breath Catch",
-      movement:"Micro Stillness",
-      proximity:"Close",
-      recovery:"None"
-    },
-
-    {
-      role:"Dialogue",
+      role:"Interaction",
       emotion:"Fake Normal",
       intensity:2,
 
       happens:
-      "Maryam answers as if Amir's observation is ridiculous.",
+      "After Amir's comment lands, Maryam briefly looks at him, answers dryly, then returns her attention forward. Amir responds with another teasing line while she keeps facing the elevator.",
 
       subtext:
-      "She wants the reply to sound dismissive, but it is partly self-protection.",
+      "She has been caught. Instead of showing embarrassment, she protects herself by acting dismissive.",
+
+      duration:"7",
+      fittedDuration:null,
 
       speaker:"Main Character",
       dialogue:"Perasan.",
+      secondarySpeaker:"Other Character",
+      secondaryDialogue:"Oh, jadi awak memang sedar.",
       lineFunction:"Deflect",
       voice:"Dry",
 
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Middle",
-      dialogueDuration:"0.7",
-      postLineHold:"Short",
-
-      timing:"Micro Delay",
-      response:"Voice First",
-      gaze:"Avoided Eye Contact",
-      breath:"Controlled Exhale",
-      movement:"Recompose Posture",
-      proximity:"Close",
+      gaze:"Brief Glance",
+      breath:"Auto",
+      movement:"Maintain Position",
       recovery:"Fake Normal"
-    },
-
-    {
-      role:"Trigger",
-      emotion:"Micro Surprise",
-      intensity:2,
-
-      happens:
-      "Amir catches the defensive tone and pushes the teasing one step further.",
-
-      subtext:
-      "His reply turns Maryam's own denial against her.",
-
-      speaker:"Other Character",
-      dialogue:"Oh, jadi awak memang sedar.",
-      lineFunction:"Tease",
-      voice:"Playful",
-
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Middle",
-      dialogueDuration:"2.2",
-      postLineHold:"Short",
-
-      timing:"Micro Delay",
-      response:"Eyes First",
-      gaze:"Object → Character",
-      breath:"Breath Pause",
-      movement:"Micro Stillness",
-      proximity:"Close",
-      recovery:"None"
     },
 
     {
@@ -1506,59 +1394,22 @@ function createDemoBeats(){
       intensity:2,
 
       happens:
-      "Maryam finally looks at Amir and their eye contact lasts slightly longer than normal.",
+      "Only after Amir's second tease does Maryam finally look at him. Their eye contact lasts slightly longer than ordinary conversation. A small smile nearly appears; she catches it and looks back toward the elevator.",
 
       subtext:
-      "For a moment she stops fighting the attraction.",
+      "She almost lets him see that he is affecting her, then quietly restores control.",
+
+      duration:"4",
+      fittedDuration:null,
 
       speaker:"None",
       dialogue:"",
       lineFunction:"Neutral",
       voice:"Auto",
 
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Auto",
-      dialogueDuration:"Auto",
-      postLineHold:"Auto",
-
-      timing:"Short Processing Delay",
-      response:"Eyes First",
       gaze:"Held Eye Contact",
-      breath:"Soft Inhale",
+      breath:"Natural",
       movement:"Maintain Position",
-      proximity:"Close",
-      recovery:"None"
-    },
-
-    {
-      role:"Recovery",
-      emotion:"Fake Normal",
-      intensity:2,
-
-      happens:
-      "The corner of Maryam's lips almost lifts. She suppresses the smile and returns her attention to the elevator doors.",
-
-      subtext:
-      "She retreats from the intimacy before Amir can fully read her, but the attraction has not disappeared.",
-
-      speaker:"None",
-      dialogue:"",
-      lineFunction:"Neutral",
-      voice:"Auto",
-
-      beatDuration:"Auto",
-      fittedDuration:null,
-      dialogueTiming:"Auto",
-      dialogueDuration:"Auto",
-      postLineHold:"Auto",
-
-      timing:"Micro Delay",
-      response:"Face First",
-      gaze:"Character → Object",
-      breath:"Controlled Exhale",
-      movement:"Maintain Position",
-      proximity:"Close",
       recovery:"Suppress Smile"
     }
 
@@ -1568,7 +1419,7 @@ function createDemoBeats(){
 
 
 /* =========================================================
-   UTILITIES
+   HELPERS
 ========================================================= */
 
 function escapeHtml(value){
@@ -1586,17 +1437,9 @@ function escapeAttribute(value){
   return escapeHtml(value);
 }
 
-function cleanDialogue(text){
+function optionList(items,current){
 
-  return String(text || "")
-    .replace(/^["“”]+|["“”]+$/g,"")
-    .trim();
-
-}
-
-function optionList(array,current){
-
-  return array.map(item => `
+  return items.map(item => `
     <option
       value="${escapeAttribute(item)}"
       ${String(item) === String(current) ? "selected" : ""}
@@ -1611,406 +1454,169 @@ function clamp(value,min,max){
   return Math.max(min,Math.min(max,value));
 }
 
-function roundTime(value){
+function round1(value){
   return Math.round(value * 10) / 10;
 }
 
 function formatTime(seconds){
 
-  const safe = Math.max(0,Number(seconds) || 0);
+  const value =
+    Math.max(0,Number(seconds) || 0);
 
-  const min = Math.floor(safe / 60);
-  const sec = safe - (min * 60);
+  const min =
+    Math.floor(value / 60);
 
-  const secText =
+  const sec =
+    value - min * 60;
+
+  const text =
     sec % 1 === 0
       ? String(sec).padStart(2,"0")
       : sec.toFixed(1).padStart(4,"0");
 
-  return `${String(min).padStart(2,"0")}:${secText}`;
+  return `${String(min).padStart(2,"0")}:${text}`;
 
-}
-
-function hasDialogue(beat){
-  return Boolean(beat.dialogue && beat.dialogue.trim());
 }
 
 
 /* =========================================================
-   DIALOGUE DURATION
+   DURATION ENGINE
 ========================================================= */
 
-function estimateDialogueDuration(text,voice="Auto",lineFunction="Neutral"){
+function estimateDialogueDuration(text){
 
   const words =
-    cleanDialogue(text)
+    String(text || "")
+    .trim()
     .split(/\s+/)
     .filter(Boolean)
     .length;
 
-  if(words === 0){
+  if(!words){
     return 0;
-  }
-
-  let wordsPerSecond = 2.7;
-
-  if(
-    voice === "Soft" ||
-    voice === "Quiet" ||
-    voice === "Hesitant"
-  ){
-    wordsPerSecond = 2.35;
-  }
-
-  if(
-    voice === "Dry"
-  ){
-    wordsPerSecond = 3.0;
-  }
-
-  if(
-    lineFunction === "Confess" ||
-    lineFunction === "Reveal"
-  ){
-    wordsPerSecond -= .2;
   }
 
   return clamp(
-    roundTime(words / wordsPerSecond),
+    round1(words / 2.7),
     .6,
-    6
+    5
   );
 
 }
 
-function getDialogueDuration(beat){
+function naturalMinimumDuration(beat){
 
-  if(!hasDialogue(beat)){
-    return 0;
-  }
-
-  if(
-    beat.dialogueDuration &&
-    beat.dialogueDuration !== "Auto"
-  ){
-    return Number(beat.dialogueDuration);
-  }
-
-  return estimateDialogueDuration(
-    beat.dialogue,
-    beat.voice,
-    beat.lineFunction
-  );
-
-}
-
-
-/* =========================================================
-   HOLD ENGINE
-========================================================= */
-
-function getAutoHold(beat){
-
-  let value = .35;
-
-  if(
-    beat.lineFunction === "Tease"
-  ){
-    value = .35;
-  }
-
-  if(
-    beat.lineFunction === "Deflect" ||
-    beat.lineFunction === "Dismiss"
-  ){
-    value = .25;
-  }
-
-  if(
-    beat.lineFunction === "Confess"
-  ){
-    value = .8;
-  }
-
-  if(
-    beat.lineFunction === "Reveal"
-  ){
-    value = .65;
-  }
-
-  if(
-    globalPerformanceStyle === "Restrained" &&
-    document.getElementById("relationship").value === "Romantic Tension"
-  ){
-    value += .1;
-  }
-
-  return roundTime(value);
-
-}
-
-function holdDuration(beat){
-
-  const value = beat.postLineHold;
-
-  if(value === "Auto"){
-    return getAutoHold(beat);
-  }
-
-  const map = {
-    None:0,
-    Short:.35,
-    Medium:.7,
-    Long:1.1
+  const roleBase = {
+    Setup:2,
+    Interaction:3,
+    Reaction:2,
+    Payoff:2.5
   };
 
-  return map[value] ?? .35;
+  let minimum =
+    roleBase[beat.role] || 2;
 
-}
+  if(beat.dialogue){
+    minimum =
+      Math.max(
+        minimum,
+        estimateDialogueDuration(beat.dialogue) + 1
+      );
+  }
 
-
-/* =========================================================
-   PERFORMANCE-AWARE DURATION ENGINE
-========================================================= */
-
-function roleMinimumDuration(beat){
-
-  const base = {
-    Setup:1.3,
-    Trigger:1.4,
-    Perception:1.0,
-    Reaction:1.0,
-    Dialogue:1.1,
-    Recovery:1.0,
-    Escalation:1.5,
-    Decision:1.1,
-    Payoff:1.5
-  };
-
-  let minimum = base[beat.role] ?? 1;
+  if(beat.secondaryDialogue){
+    minimum +=
+      estimateDialogueDuration(
+        beat.secondaryDialogue
+      ) + .8;
+  }
 
   if(
     beat.role === "Payoff" &&
     beat.gaze === "Held Eye Contact"
   ){
-    minimum = Math.max(minimum,1.8);
+    minimum =
+      Math.max(minimum,2.5);
   }
 
-  if(
-    globalPerformanceStyle === "Restrained"
-  ){
-    if(
-      beat.role === "Reaction" ||
-      beat.role === "Payoff"
-    ){
-      minimum += .15;
-    }
-  }
-
-  return roundTime(minimum);
+  return round1(minimum);
 
 }
 
-function reactionSpace(beat){
+function getBeatDuration(beat){
 
   if(
-    beat.role === "Trigger" ||
-    beat.role === "Perception"
-  ){
-    return .15;
-  }
-
-  if(
-    beat.timing === "Short Processing Delay"
-  ){
-    return .45;
-  }
-
-  if(
-    beat.timing === "Delayed Reaction"
-  ){
-    return .7;
-  }
-
-  if(
-    beat.timing === "Micro Delay"
-  ){
-    return .18;
-  }
-
-  return .15;
-
-}
-
-function preLineSpace(beat){
-
-  if(!hasDialogue(beat)){
-    return 0;
-  }
-
-  if(
-    beat.speaker === "Other Character"
-  ){
-    return .15;
-  }
-
-  if(
-    beat.speaker === "Main Character"
-  ){
-    return .2;
-  }
-
-  return .1;
-
-}
-
-function protectedMinimumDuration(beat){
-
-  const roleMinimum =
-    roleMinimumDuration(beat);
-
-  if(!hasDialogue(beat)){
-    return roleMinimum;
-  }
-
-  const dialogue =
-    getDialogueDuration(beat);
-
-  const hold =
-    holdDuration(beat);
-
-  const minimum =
-    preLineSpace(beat) +
-    dialogue +
-    hold +
-    reactionSpace(beat);
-
-  return roundTime(
-    Math.max(roleMinimum,minimum)
-  );
-
-}
-
-function autoDuration(beat){
-
-  let duration =
-    protectedMinimumDuration(beat);
-
-  if(
-    beat.role === "Setup"
-  ){
-    duration += .2;
-  }
-
-  if(
-    beat.role === "Payoff"
-  ){
-    duration += .35;
-  }
-
-  if(
-    beat.role === "Recovery"
-  ){
-    duration += .15;
-  }
-
-  if(
-    beat.gaze === "Held Eye Contact"
-  ){
-    duration += .25;
-  }
-
-  return clamp(
-    roundTime(duration),
-    .8,
-    8
-  );
-
-}
-
-function estimateBeatDuration(beat){
-
-  if(
-    budgetMode &&
+    fitted &&
     beat.fittedDuration != null
   ){
-    return Number(beat.fittedDuration);
+    return Number(
+      beat.fittedDuration
+    );
   }
 
   if(
-    beat.beatDuration &&
-    beat.beatDuration !== "Auto"
+    beat.duration !== "Auto"
   ){
-    return Number(beat.beatDuration);
+    return Number(
+      beat.duration
+    );
   }
 
-  return autoDuration(beat);
+  return naturalMinimumDuration(beat);
+
+}
+
+function calculateTimeline(){
+
+  let cursor = 0;
+
+  return beats.map((beat,index) => {
+
+    const duration =
+      getBeatDuration(beat);
+
+    const start =
+      round1(cursor);
+
+    const end =
+      round1(start + duration);
+
+    cursor = end;
+
+    return {
+      index,
+      start,
+      end,
+      duration
+    };
+
+  });
 
 }
 
 
 /* =========================================================
-   BUDGET PRIORITY
+   FIT TO BUDGET
 ========================================================= */
-
-function compressionPriority(beat){
-
-  const map = {
-    Setup:1,
-    Trigger:2,
-    Perception:2,
-    Recovery:3,
-    Dialogue:5,
-    Reaction:6,
-    Escalation:5,
-    Decision:5,
-    Payoff:7
-  };
-
-  return map[beat.role] ?? 3;
-
-}
-
-function compressibility(beat){
-
-  const current =
-    estimateBeatDurationIgnoringFit(beat);
-
-  const minimum =
-    protectedMinimumDuration(beat);
-
-  return Math.max(
-    0,
-    roundTime(current - minimum)
-  );
-
-}
-
-function estimateBeatDurationIgnoringFit(beat){
-
-  if(
-    beat.beatDuration &&
-    beat.beatDuration !== "Auto"
-  ){
-    return Number(beat.beatDuration);
-  }
-
-  return autoDuration(beat);
-
-}
 
 function fitToBudget(){
 
   targetDuration =
     Number(
-      document.getElementById("targetDuration").value
+      document
+      .getElementById("targetDuration")
+      .value
     ) || 15;
 
-  budgetMode = true;
+  fitted = true;
 
   beats.forEach(beat => {
+
     beat.fittedDuration =
-      estimateBeatDurationIgnoringFit(beat);
+      beat.duration === "Auto"
+        ? naturalMinimumDuration(beat)
+        : Number(beat.duration);
+
   });
 
   let total =
@@ -2026,21 +1632,26 @@ function fitToBudget(){
       `Already within ${targetDuration}s budget`
     );
 
-    renderBeats();
+    renderAll();
     return;
   }
 
   let excess =
-    roundTime(total - targetDuration);
+    round1(total-targetDuration);
 
-  const indexes =
+  const compressionOrder =
     beats
     .map((beat,index) => ({
       index,
-      priority:compressionPriority(beat)
+      priority:
+        beat.role === "Setup" ? 1 :
+        beat.role === "Reaction" ? 2 :
+        beat.role === "Interaction" ? 3 :
+        4
     }))
-    .sort((a,b) =>
-      a.priority - b.priority
+    .sort(
+      (a,b) =>
+        a.priority-b.priority
     );
 
   let safety = 0;
@@ -2052,7 +1663,7 @@ function fitToBudget(){
 
     let changed = false;
 
-    for(const item of indexes){
+    for(const item of compressionOrder){
 
       const beat =
         beats[item.index];
@@ -2061,27 +1672,24 @@ function fitToBudget(){
         Number(beat.fittedDuration);
 
       const minimum =
-        protectedMinimumDuration(beat);
+        naturalMinimumDuration(beat);
 
-      const available =
-        current - minimum;
-
-      if(available <= .01){
+      if(current <= minimum){
         continue;
       }
 
       const cut =
         Math.min(
           .1,
-          available,
+          current-minimum,
           excess
         );
 
       beat.fittedDuration =
-        roundTime(current - cut);
+        round1(current-cut);
 
       excess =
-        roundTime(excess - cut);
+        round1(excess-cut);
 
       changed = true;
 
@@ -2096,284 +1704,64 @@ function fitToBudget(){
     }
 
     safety++;
+
   }
 
-  total =
-    beats.reduce(
-      (sum,beat) =>
-        sum + Number(beat.fittedDuration),
-      0
-    );
+  renderAll();
 
-  if(total > targetDuration + .05){
+  if(excess > .01){
 
     showToast(
-      "Protected dialogue prevents full compression"
+      "Dialogue needs more than the target budget"
     );
 
   }else{
 
     showToast(
-      `Fitted to ${targetDuration}s budget`
+      `Fitted within ${targetDuration}s`
     );
 
   }
-
-  renderBeats();
 
 }
 
 
 /* =========================================================
-   BEAT SEGMENT ENGINE
+   NATURALNESS ENGINE
 ========================================================= */
 
-function calculateBeatSegments(
-  beat,
-  beatStart,
-  beatEnd
-){
+function naturalnessState(){
 
-  if(!hasDialogue(beat)){
-    return null;
+  const count =
+    beats.length;
+
+  if(count <= 3){
+    return {
+      label:`Natural · ${count} beats`,
+      className:""
+    };
   }
 
-  const beatLength =
-    beatEnd - beatStart;
-
-  const dialogueLength =
-    Math.min(
-      getDialogueDuration(beat),
-      beatLength
-    );
-
-  const requestedHold =
-    holdDuration(beat);
-
-  const reservedHold =
-    Math.min(
-      requestedHold,
-      Math.max(0,beatLength-dialogueLength)
-    );
-
-  const usableEnd =
-    beatEnd - reservedHold;
-
-  let start;
-
-  const timing =
-    beat.dialogueTiming || "Auto";
-
-  if(timing === "Start"){
-
-    start =
-      beatStart +
-      Math.min(.15,Math.max(0,usableEnd-beatStart-dialogueLength));
-
-  }else if(timing === "End"){
-
-    start =
-      usableEnd - dialogueLength;
-
-  }else{
-
-    start =
-      beatStart +
-      Math.max(
-        .1,
-        (
-          usableEnd -
-          beatStart -
-          dialogueLength
-        ) / 2
-      );
-
+  if(count === 4){
+    return {
+      label:"Moderate · 4 beats",
+      className:"warn"
+    };
   }
-
-  start =
-    clamp(
-      start,
-      beatStart,
-      Math.max(
-        beatStart,
-        usableEnd - dialogueLength
-      )
-    );
-
-  const dialogueEnd =
-    Math.min(
-      usableEnd,
-      start + dialogueLength
-    );
-
-  const holdStart =
-    dialogueEnd;
-
-  const holdEnd =
-    Math.min(
-      beatEnd,
-      holdStart + reservedHold
-    );
 
   return {
-    pre:{
-      start:roundTime(beatStart),
-      end:roundTime(start)
-    },
-    dialogue:{
-      start:roundTime(start),
-      end:roundTime(dialogueEnd)
-    },
-    hold:{
-      start:roundTime(holdStart),
-      end:roundTime(holdEnd),
-      duration:roundTime(holdEnd-holdStart)
-    },
-    remaining:{
-      start:roundTime(holdEnd),
-      end:roundTime(beatEnd)
-    }
+    label:`Mechanical risk · ${count} beats`,
+    className:"danger"
   };
 
 }
 
-function calculateTimeline(){
-
-  let cursor = 0;
-
-  return beats.map((beat,index) => {
-
-    const duration =
-      estimateBeatDuration(beat);
-
-    const start =
-      roundTime(cursor);
-
-    const end =
-      roundTime(start + duration);
-
-    const segments =
-      calculateBeatSegments(
-        beat,
-        start,
-        end
-      );
-
-    cursor = end;
-
-    return {
-      index,
-      start,
-      end,
-      duration,
-      dialogue:
-        segments
-          ? segments.dialogue
-          : null,
-      hold:
-        segments
-          ? segments.hold
-          : null,
-      segments
-    };
-
-  });
-
-}
-
 
 /* =========================================================
-   TRIGGER GUARD
+   RENDER
 ========================================================= */
 
-function nextBeatIsReaction(index){
-
-  const next =
-    beats[index+1];
-
-  if(!next){
-    return false;
-  }
-
-  return (
-    next.role === "Reaction" ||
-    next.role === "Payoff" ||
-    next.role === "Recovery"
-  );
-
-}
-
-function triggerGuardActive(index){
-
-  const beat =
-    beats[index];
-
-  return (
-    (
-      beat.role === "Trigger" ||
-      beat.role === "Perception"
-    ) &&
-    nextBeatIsReaction(index)
-  );
-
-}
-
-function effectiveGazeForVideo(
-  beat,
-  index
-){
-
-  if(!triggerGuardActive(index)){
-    return beat.gaze;
-  }
-
-  if(
-    beat.gaze === "Object → Character" ||
-    beat.gaze === "Direct Eye Contact" ||
-    beat.gaze === "Held Eye Contact" ||
-    beat.gaze === "Brief Glance"
-  ){
-    return "Peripheral Awareness";
-  }
-
-  return beat.gaze;
-
-}
-
-function effectiveBreathForVideo(
-  beat,
-  index
-){
-
-  if(!triggerGuardActive(index)){
-    return beat.breath;
-  }
-
-  if(
-    beat.breath === "Breath Catch" ||
-    beat.breath === "Soft Inhale"
-  ){
-    return "Breath Pause";
-  }
-
-  return beat.breath;
-
-}
-
-
-/* =========================================================
-   INTENSITY
-========================================================= */
-
-function intensityDots(index,intensity){
-
-  const labels = [
-    "Micro",
-    "Restrained",
-    "Readable",
-    "Heightened",
-    "Expressive"
-  ];
+function intensityDots(index,value){
 
   let html = "";
 
@@ -2381,9 +1769,9 @@ function intensityDots(index,intensity){
 
     html += `
       <span
-        class="dot ${i <= intensity ? "on" : ""}"
+        class="dot ${i<=value ? "on" : ""}"
         onclick="setIntensity(${index},${i})"
-        title="${i}/5 · ${labels[i-1]}"
+        title="${i}/5"
       ></span>
     `;
 
@@ -2393,54 +1781,33 @@ function intensityDots(index,intensity){
 
 }
 
-
-/* =========================================================
-   ARC
-========================================================= */
-
-function renderArcSummary(){
-
-  const container =
-    document.getElementById("arcSummary");
+function renderArc(){
 
   const timeline =
     calculateTimeline();
 
-  container.innerHTML =
-    beats.map((beat,index) => {
-
-      const time =
-        timeline[index];
-
-      return `
-        <span class="arc-chip">
-          ${escapeHtml(beat.emotion)}
-          <span class="arc-time">
-            ${formatTime(time.start)}–${formatTime(time.end)}
-          </span>
+  document
+  .getElementById("arcSummary")
+  .innerHTML =
+    beats.map((beat,index) => `
+      <span class="arc-chip">
+        ${escapeHtml(beat.role)}
+        <span class="arc-time">
+          ${formatTime(timeline[index].start)}
+          –
+          ${formatTime(timeline[index].end)}
         </span>
-        ${
-          index < beats.length-1
-            ? `<span class="arc-arrow">→</span>`
-            : ""
-        }
-      `;
-
-    }).join("");
+      </span>
+      ${
+        index < beats.length-1
+          ? `<span class="arc-arrow">→</span>`
+          : ""
+      }
+    `).join("");
 
 }
 
-
-/* =========================================================
-   BUDGET UI
-========================================================= */
-
 function renderBudget(){
-
-  targetDuration =
-    Number(
-      document.getElementById("targetDuration").value
-    ) || 15;
 
   const timeline =
     calculateTimeline();
@@ -2451,82 +1818,74 @@ function renderBudget(){
       : 0;
 
   const ratio =
-    targetDuration
-      ? total / targetDuration
-      : 0;
-
-  const percent =
-    clamp(ratio * 100,0,100);
+    total / targetDuration;
 
   const fill =
     document.getElementById("budgetFill");
 
   fill.style.width =
-    `${percent}%`;
+    `${clamp(ratio*100,0,100)}%`;
 
-  fill.classList.remove(
-    "tight",
-    "over"
-  );
+  fill.className =
+    "budget-fill";
 
-  let status =
-    "Within Budget";
-
-  let statusClass =
-    "ok";
+  const status =
+    document.getElementById("budgetStatus");
 
   if(total > targetDuration){
 
-    status =
-      `Over by ${roundTime(total-targetDuration)}s`;
-
-    statusClass =
-      "over";
-
     fill.classList.add("over");
 
+    status.className =
+      "budget-status over";
+
+    status.textContent =
+      `Over by ${round1(total-targetDuration)}s`;
+
   }else if(
-    total >= targetDuration - 1
+    total > targetDuration-1
   ){
-
-    status =
-      "Tight";
-
-    statusClass =
-      "tight";
 
     fill.classList.add("tight");
 
+    status.className =
+      "budget-status tight";
+
+    status.textContent =
+      "Tight";
+
   }else{
 
-    const buffer =
-      roundTime(targetDuration-total);
+    status.className =
+      "budget-status ok";
 
-    status =
-      `${buffer}s buffer`;
+    status.textContent =
+      `${round1(targetDuration-total)}s buffer`;
 
   }
 
   document
-    .getElementById("budgetUsage")
-    .textContent =
-      `Used ${total.toFixed(1)} / ${targetDuration.toFixed(1)}s`;
-
-  const statusEl =
-    document.getElementById("budgetStatus");
-
-  statusEl.textContent =
-    status;
-
-  statusEl.className =
-    `budget-status ${statusClass}`;
+  .getElementById("budgetUsage")
+  .textContent =
+    `Used ${total.toFixed(1)} / ${targetDuration.toFixed(1)}s`;
 
 }
 
+function renderNaturalScore(){
 
-/* =========================================================
-   RENDER BEATS
-========================================================= */
+  const state =
+    naturalnessState();
+
+  const element =
+    document.getElementById("naturalScore");
+
+  element.textContent =
+    state.label;
+
+  element.className =
+    `natural-score ${state.className}`;
+
+}
 
 function renderBeats(){
 
@@ -2543,35 +1902,28 @@ function renderBeats(){
     const time =
       timeline[index];
 
-    let dialoguePreview = "";
-
-    if(hasDialogue(beat)){
-
-      dialoguePreview = `
-        <div class="dialogue-preview">
-
-          <span class="dialogue-meta">
-
-            ${escapeHtml(beat.speaker)}
-            ·
-            ${escapeHtml(beat.lineFunction)}
+    const dialoguePreview =
+      beat.dialogue
+        ? `
+          <div class="dialogue-preview">
+            <span class="dialogue-meta">
+              ${escapeHtml(beat.speaker)}
+              · ${escapeHtml(beat.lineFunction)}
+            </span>
+            “${escapeHtml(beat.dialogue)}”
 
             ${
-              time.dialogue
-                ? `<span class="dialogue-time">
-                    · ${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)}
-                  </span>`
+              beat.secondaryDialogue
+                ? `<br><br>
+                   <span class="dialogue-meta">
+                     OTHER CHARACTER · FOLLOW-UP
+                   </span>
+                   “${escapeHtml(beat.secondaryDialogue)}”`
                 : ""
             }
-
-          </span>
-
-          “${escapeHtml(beat.dialogue)}”
-
-        </div>
-      `;
-
-    }
+          </div>
+        `
+        : "";
 
     const wrap =
       document.createElement("div");
@@ -2598,7 +1950,9 @@ function renderBeats(){
               </div>
 
               <div class="beat-time">
-                ${formatTime(time.start)}–${formatTime(time.end)}
+                ${formatTime(time.start)}
+                –
+                ${formatTime(time.end)}
               </div>
 
               <div class="beat-title">
@@ -2612,7 +1966,6 @@ function renderBeats(){
               <button
                 class="icon-btn"
                 onclick="moveBeat(${index},-1)"
-                title="Move up"
               >
                 ↑
               </button>
@@ -2620,7 +1973,6 @@ function renderBeats(){
               <button
                 class="icon-btn"
                 onclick="moveBeat(${index},1)"
-                title="Move down"
               >
                 ↓
               </button>
@@ -2628,7 +1980,6 @@ function renderBeats(){
               <button
                 class="icon-btn"
                 onclick="removeBeat(${index})"
-                title="Remove beat"
               >
                 ×
               </button>
@@ -2673,44 +2024,50 @@ function renderBeats(){
         </div>
 
         <div
-          id="edit-${index}"
           class="edit-panel"
+          id="edit-${index}"
         >
 
           <div class="grid3">
 
             <div class="field">
-              <label>Moment</label>
-              <select onchange="updateBeat(${index},'role',this.value,true)">
+              <label>Beat Purpose</label>
+              <select
+                onchange="updateBeat(${index},'role',this.value,true)"
+              >
                 ${optionList(roleOptions,beat.role)}
               </select>
             </div>
 
             <div class="field">
-              <label>Emotion</label>
-              <select onchange="updateBeat(${index},'emotion',this.value,true)">
+              <label>Emotional State</label>
+              <select
+                onchange="updateBeat(${index},'emotion',this.value,true)"
+              >
                 ${optionList(emotionOptions,beat.emotion)}
               </select>
             </div>
 
             <div class="field">
-              <label>Beat Duration</label>
-              <select onchange="updateBeat(${index},'beatDuration',this.value,true)">
-                ${optionList(beatDurationOptions,beat.beatDuration)}
+              <label>Duration</label>
+              <select
+                onchange="updateBeat(${index},'duration',this.value,true)"
+              >
+                ${optionList(durationOptions,beat.duration)}
               </select>
             </div>
 
           </div>
 
           <div class="field">
-            <label>What Happens?</label>
+            <label>Continuous Action</label>
             <textarea
               oninput="updateBeat(${index},'happens',this.value,false)"
             >${escapeHtml(beat.happens)}</textarea>
           </div>
 
           <div class="field">
-            <label>What is the character thinking / hiding?</label>
+            <label>Subtext / Objective</label>
             <textarea
               oninput="updateBeat(${index},'subtext',this.value,false)"
             >${escapeHtml(beat.subtext)}</textarea>
@@ -2720,21 +2077,27 @@ function renderBeats(){
 
             <div class="dialogue-section-title">
               Dialogue
-              <span class="optional">· optional</span>
+              <span class="optional">
+                · keep dialogue inside the broad action
+              </span>
             </div>
 
             <div class="grid2">
 
               <div class="field">
                 <label>Speaker</label>
-                <select onchange="updateBeat(${index},'speaker',this.value,true)">
+                <select
+                  onchange="updateBeat(${index},'speaker',this.value,true)"
+                >
                   ${optionList(speakerOptions,beat.speaker)}
                 </select>
               </div>
 
               <div class="field">
                 <label>Line Function</label>
-                <select onchange="updateBeat(${index},'lineFunction',this.value,true)">
+                <select
+                  onchange="updateBeat(${index},'lineFunction',this.value,true)"
+                >
                   ${optionList(lineFunctionOptions,beat.lineFunction)}
                 </select>
               </div>
@@ -2742,11 +2105,19 @@ function renderBeats(){
             </div>
 
             <div class="field">
-              <label>Dialogue / Line</label>
+              <label>Primary Dialogue</label>
               <input
-                value="${escapeAttribute(beat.dialogue)}"
-                placeholder="Example: Kenapa diam?"
+                value="${escapeAttribute(beat.dialogue || "")}"
                 oninput="updateBeat(${index},'dialogue',this.value,true)"
+              >
+            </div>
+
+            <div class="field">
+              <label>Follow-up Dialogue · Optional</label>
+              <input
+                value="${escapeAttribute(beat.secondaryDialogue || "")}"
+                placeholder="Optional second line inside the same interaction"
+                oninput="updateBeat(${index},'secondaryDialogue',this.value,true)"
               >
             </div>
 
@@ -2755,93 +2126,57 @@ function renderBeats(){
         </div>
 
         <div
-          id="advanced-${index}"
           class="advanced-panel"
+          id="advanced-${index}"
         >
 
           <div class="advanced-title">
-            Timeline & Performance Direction
-          </div>
-
-          <div class="grid3">
-
-            <div class="field">
-              <label>Dialogue Timing</label>
-              <select onchange="updateBeat(${index},'dialogueTiming',this.value,true)">
-                ${optionList(dialogueTimingOptions,beat.dialogueTiming)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Dialogue Duration</label>
-              <select onchange="updateBeat(${index},'dialogueDuration',this.value,true)">
-                ${optionList(dialogueDurationOptions,beat.dialogueDuration)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Post-Line Hold</label>
-              <select onchange="updateBeat(${index},'postLineHold',this.value,true)">
-                ${optionList(holdOptions,beat.postLineHold)}
-              </select>
-            </div>
-
+            Internal Acting Intelligence
           </div>
 
           <div class="grid2">
 
             <div class="field">
-              <label>Reaction Timing</label>
-              <select onchange="updateBeat(${index},'timing',this.value,false)">
-                ${optionList(reactionTimingOptions,beat.timing)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>First Response</label>
-              <select onchange="updateBeat(${index},'response',this.value,false)">
-                ${optionList(responseOptions,beat.response)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Eyes / Gaze</label>
-              <select onchange="updateBeat(${index},'gaze',this.value,false)">
+              <label>Dominant Gaze</label>
+              <select
+                onchange="updateBeat(${index},'gaze',this.value,false)"
+              >
                 ${optionList(gazeOptions,beat.gaze)}
               </select>
             </div>
 
             <div class="field">
               <label>Breath</label>
-              <select onchange="updateBeat(${index},'breath',this.value,false)">
+              <select
+                onchange="updateBeat(${index},'breath',this.value,false)"
+              >
                 ${optionList(breathOptions,beat.breath)}
               </select>
             </div>
 
             <div class="field">
-              <label>Movement</label>
-              <select onchange="updateBeat(${index},'movement',this.value,false)">
+              <label>Body</label>
+              <select
+                onchange="updateBeat(${index},'movement',this.value,false)"
+              >
                 ${optionList(movementOptions,beat.movement)}
               </select>
             </div>
 
             <div class="field">
-              <label>Proximity</label>
-              <select onchange="updateBeat(${index},'proximity',this.value,false)">
-                ${optionList(proximityOptions,beat.proximity)}
-              </select>
-            </div>
-
-            <div class="field">
               <label>Recovery</label>
-              <select onchange="updateBeat(${index},'recovery',this.value,false)">
+              <select
+                onchange="updateBeat(${index},'recovery',this.value,false)"
+              >
                 ${optionList(recoveryOptions,beat.recovery)}
               </select>
             </div>
 
             <div class="field">
-              <label>Voice Quality</label>
-              <select onchange="updateBeat(${index},'voice',this.value,false)">
+              <label>Voice</label>
+              <select
+                onchange="updateBeat(${index},'voice',this.value,false)"
+              >
                 ${optionList(voiceOptions,beat.voice)}
               </select>
             </div>
@@ -2865,9 +2200,9 @@ function renderBeats(){
   });
 
   document
-    .getElementById("beatCount")
-    .textContent =
-      `${beats.length} beats`;
+  .getElementById("beatCount")
+  .textContent =
+    `${beats.length} beats`;
 
   const total =
     timeline.length
@@ -2875,12 +2210,18 @@ function renderBeats(){
       : 0;
 
   document
-    .getElementById("timelineTotal")
-    .textContent =
-      `Estimated duration: ${formatTime(total)}`;
+  .getElementById("timelineTotal")
+  .textContent =
+    `Estimated duration: ${formatTime(total)}`;
 
-  renderArcSummary();
+}
+
+function renderAll(){
+
+  renderBeats();
+  renderArc();
   renderBudget();
+  renderNaturalScore();
   updateOutput();
 
 }
@@ -2890,9 +2231,9 @@ function renderBeats(){
    BEAT ACTIONS
 ========================================================= */
 
-function clearFittedDurations(){
+function clearFit(){
 
-  budgetMode = false;
+  fitted = false;
 
   beats.forEach(beat => {
     beat.fittedDuration = null;
@@ -2911,20 +2252,18 @@ function updateBeat(
     value;
 
   if(
-    key === "beatDuration" ||
-    key === "dialogueDuration" ||
+    key === "duration" ||
     key === "dialogue" ||
-    key === "postLineHold" ||
+    key === "secondaryDialogue" ||
     key === "role"
   ){
-    clearFittedDurations();
+    clearFit();
   }
 
   if(rerender){
-    renderBeats();
+    renderAll();
   }else{
     updateOutput();
-    renderBudget();
   }
 
 }
@@ -2934,25 +2273,25 @@ function setIntensity(index,value){
   beats[index].intensity =
     value;
 
-  renderBeats();
+  renderAll();
 
 }
 
 function toggleEdit(index){
 
   document
-    .getElementById(`edit-${index}`)
-    .classList
-    .toggle("open");
+  .getElementById(`edit-${index}`)
+  .classList
+  .toggle("open");
 
 }
 
 function toggleAdvanced(index){
 
   document
-    .getElementById(`advanced-${index}`)
-    .classList
-    .toggle("open");
+  .getElementById(`advanced-${index}`)
+  .classList
+  .toggle("open");
 
 }
 
@@ -2976,8 +2315,8 @@ function moveBeat(index,direction){
     beats[index]
   ];
 
-  clearFittedDurations();
-  renderBeats();
+  clearFit();
+  renderAll();
 
 }
 
@@ -2994,8 +2333,8 @@ function removeBeat(index){
 
   beats.splice(index,1);
 
-  clearFittedDurations();
-  renderBeats();
+  clearFit();
+  renderAll();
 
 }
 
@@ -3008,688 +2347,177 @@ function addBeat(){
     intensity:2,
 
     happens:
-    "Describe what happens in this moment.",
+    "Describe one continuous piece of behaviour, not several separate emotional poses.",
 
     subtext:
-    "Describe what the character is thinking, hiding or trying to achieve.",
+    "What is the character trying to achieve or conceal during this action?",
+
+    duration:"Auto",
+    fittedDuration:null,
 
     speaker:"None",
     dialogue:"",
+    secondaryDialogue:"",
     lineFunction:"Neutral",
     voice:"Auto",
 
-    beatDuration:"Auto",
-    fittedDuration:null,
-    dialogueTiming:"Auto",
-    dialogueDuration:"Auto",
-    postLineHold:"Auto",
-
-    timing:"Auto",
-    response:"Auto",
     gaze:"Auto",
     breath:"Auto",
-    movement:"Auto",
-    proximity:"Auto",
-    recovery:"Auto"
+    movement:"Maintain Position",
+    recovery:"None"
 
   });
 
-  clearFittedDurations();
-  renderBeats();
+  clearFit();
+  renderAll();
 
 }
 
 
 /* =========================================================
-   STYLE
+   NATURAL VIDEO TRANSLATION
 ========================================================= */
 
-document
-.querySelectorAll(".level-btn")
-.forEach(button => {
+function voicePhrase(value){
 
-  button.addEventListener(
-    "click",
-    () => {
+  const map = {
+    Auto:"",
+    Natural:"naturally",
+    Soft:"softly",
+    Controlled:"with controlled delivery",
+    Playful:"with light playful teasing",
+    Dry:"dryly",
+    Firm:"firmly",
+    Quiet:"quietly",
+    Warm:"warmly"
+  };
 
-      document
-      .querySelectorAll(".level-btn")
-      .forEach(btn => {
+  return map[value] || "";
 
-        btn.classList.remove("active");
+}
 
-      });
+function simpleBehaviour(beat){
 
-      button.classList.add("active");
+  const pieces = [];
 
-      globalPerformanceStyle =
-        button.dataset.style;
+  /*
+    IMPORTANT:
+    Video output intentionally selects only
+    dominant visible behaviour.
+  */
 
-      clearFittedDurations();
-      renderBeats();
+  if(beat.role === "Setup"){
 
+    if(
+      beat.gaze === "Forward / Object Focus"
+    ){
+      pieces.push(
+        "Keep the main character naturally occupied with the existing situation rather than visibly performing an emotion."
+      );
     }
-  );
 
-});
+    if(
+      beat.gaze === "Avoided Eye Contact"
+    ){
+      pieces.push(
+        "Avoid sustained eye contact without making the avoidance conspicuous."
+      );
+    }
 
-
-/* =========================================================
-   VALIDATION
-========================================================= */
-
-function effectiveResponse(beat){
-
-  if(
-    beat.response === "Voice First" &&
-    (
-      beat.speaker !== "Main Character" ||
-      !hasDialogue(beat)
-    )
-  ){
-    return "Eyes First";
   }
 
-  return beat.response;
+  if(beat.role === "Interaction"){
 
-}
+    if(
+      beat.gaze === "Brief Glance"
+    ){
+      pieces.push(
+        "Let one brief look happen only after the preceding comment has registered."
+      );
+    }
 
-function validateBeats(){
+    if(
+      beat.gaze === "Avoided Eye Contact"
+    ){
+      pieces.push(
+        "Keep most of the attention elsewhere, allowing the avoidance itself to carry the subtext."
+      );
+    }
 
-  const warnings = [];
+  }
 
-  const timeline =
-    calculateTimeline();
+  if(beat.role === "Reaction"){
 
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
+    if(
+      beat.gaze === "Brief Glance"
+    ){
+      pieces.push(
+        "Use one delayed glance as the main visible reaction."
+      );
+    }
 
-  if(total > targetDuration){
+    if(
+      beat.gaze === "Direct Eye Contact"
+    ){
+      pieces.push(
+        "Let direct eye contact become the main visible change."
+      );
+    }
 
-    warnings.push(
-      `Timeline exceeds the ${targetDuration}s generation budget by ${roundTime(total-targetDuration)}s.`
+  }
+
+  if(beat.role === "Payoff"){
+
+    if(
+      beat.gaze === "Held Eye Contact"
+    ){
+      pieces.push(
+        "Let the eye contact last slightly longer than ordinary conversation."
+      );
+    }
+
+    if(
+      beat.recovery === "Suppress Smile"
+    ){
+      pieces.push(
+        "A faint smile may almost appear; catch it before it fully forms and return attention naturally."
+      );
+    }
+
+    if(
+      beat.recovery === "Look Away"
+    ){
+      pieces.push(
+        "After the moment lands, look away naturally rather than making a dramatic break."
+      );
+    }
+
+  }
+
+  /*
+    Breath and body are intentionally NOT
+    automatically exported unless they are essential.
+  */
+
+  if(
+    beat.movement === "Step Forward"
+  ){
+    pieces.push(
+      "Take one motivated step forward."
     );
-
-  }
-
-  beats.forEach((beat,index) => {
-
-    if(
-      beat.response === "Voice First" &&
-      (
-        beat.speaker !== "Main Character" ||
-        !hasDialogue(beat)
-      )
-    ){
-
-      warnings.push(
-        `Beat ${index+1}: Voice First falls back to Eyes First because the main character has no spoken line.`
-      );
-
-    }
-
-    if(
-      hasDialogue(beat) &&
-      beat.speaker === "None"
-    ){
-
-      warnings.push(
-        `Beat ${index+1}: dialogue exists but Speaker is set to None.`
-      );
-
-    }
-
-    if(
-      beat.role === "Trigger" &&
-      beat.intensity >= 4
-    ){
-
-      warnings.push(
-        `Beat ${index+1}: Trigger intensity is high; preserve perception before the full reaction.`
-      );
-
-    }
-
-    const actual =
-      timeline[index].duration;
-
-    const protectedMinimum =
-      protectedMinimumDuration(beat);
-
-    if(
-      beat.beatDuration !== "Auto" &&
-      actual < protectedMinimum
-    ){
-
-      warnings.push(
-        `Beat ${index+1}: manual duration is tighter than the protected performance space. Dialogue or reaction may feel compressed.`
-      );
-
-    }
-
-  });
-
-  return warnings;
-
-}
-
-
-/* =========================================================
-   STYLE INSTRUCTIONS
-========================================================= */
-
-function performanceStyleInstruction(){
-
-  const map = {
-
-    Micro:
-    "Keep the performance extremely subtle. Emotion appears mainly through gaze, breath, stillness and tiny facial changes.",
-
-    Restrained:
-    "Use restrained cinematic K-drama acting. Let emotion emerge through gaze timing, breath, hesitation, posture and suppression rather than overt signalling.",
-
-    Readable:
-    "Keep the acting natural but clearly readable through face, gaze, breath and motivated body response.",
-
-    Heightened:
-    "Use clearer reaction timing and stronger physical expression while preserving cause-and-effect.",
-
-    Expressive:
-    "Allow broader stylized or rom-com performance where exaggeration is intentional."
-
-  };
-
-  return map[globalPerformanceStyle];
-
-}
-
-function relationshipInstruction(){
-
-  const relationship =
-    document
-    .getElementById("relationship")
-    .value;
-
-  const map = {
-
-    Strangers:
-    "Unexpected eye contact and proximity should feel socially noticeable.",
-
-    Acquaintances:
-    "Maintain polite awareness; unusual intimacy should register clearly.",
-
-    Friends:
-    "Allow casual familiarity while small deviations in timing carry emotional meaning.",
-
-    "Close Friends":
-    "Physical familiarity may be normal, so attraction should emerge through subtle changes in gaze, breath and timing.",
-
-    "Romantic Tension":
-    "Let attraction emerge through awareness, hesitation, gaze timing, vocal control and suppression rather than obvious romantic posing.",
-
-    Couple:
-    "Allow greater physical familiarity. Emotional tension should come from context rather than proximity alone.",
-
-    Family:
-    "Treat proximity as familiar unless the dramatic situation creates discomfort.",
-
-    Rivals:
-    "Use gaze, distance and body orientation as signs of challenge and resistance.",
-
-    Professional:
-    "Maintain controlled social boundaries unless the scene intentionally disrupts composure."
-
-  };
-
-  return map[relationship] || "";
-
-}
-
-
-/* =========================================================
-   DELTA ENGINE
-========================================================= */
-
-function proximityChanged(index){
-
-  if(index === 0){
-    return true;
-  }
-
-  return (
-    beats[index].proximity !==
-    beats[index-1].proximity
-  );
-
-}
-
-function movementChanged(index){
-
-  if(index === 0){
-    return true;
-  }
-
-  return (
-    beats[index].movement !==
-    beats[index-1].movement
-  );
-
-}
-
-
-/* =========================================================
-   PERFORMANCE LANGUAGE
-========================================================= */
-
-function voiceInstruction(value){
-
-  const map = {
-
-    Auto:"",
-    Natural:"Keep the voice conversational and unforced.",
-    Soft:"Use softer vocal placement without turning it into a whisper.",
-    Controlled:"Keep the voice carefully controlled so the underlying emotion does not fully enter the words.",
-    Breathier:"Allow slightly more breath in the voice while keeping delivery natural.",
-    Hesitant:"Use a small hesitation before the words come out.",
-    Playful:"Use light teasing timing without broad comedy.",
-    Dry:"Keep the delivery dry and compact; let timing carry the dismissal.",
-    Firm:"Use grounded firmness without unnecessary volume.",
-    Quiet:"Lower vocal energy while preserving clarity.",
-    Tense:"Allow controlled tension to tighten the delivery slightly.",
-    Warm:"Let warmth soften tone and pacing."
-
-  };
-
-  return map[value] || "";
-
-}
-
-function lineFunctionInstruction(value){
-
-  const map = {
-
-    Neutral:"with natural conversational intention",
-    Inform:"to communicate information",
-    Ask:"as a genuine question",
-    Tease:"with restrained playful teasing beneath the literal words",
-    Challenge:"as a controlled challenge",
-    Confess:"as an emotionally exposed admission",
-    Deflect:"to redirect attention away from the true emotional state",
-    Comfort:"with the intention of calming the listener",
-    Provoke:"to deliberately create a response",
-    Reveal:"as information that changes the emotional meaning",
-    Interrupt:"to interrupt the existing rhythm",
-    Reassure:"to make the other character feel safe or certain",
-    Dismiss:"to minimize the importance of the subject",
-    "Hide Emotion":"while deliberately concealing what the speaker actually feels"
-
-  };
-
-  return map[value] || "";
-
-}
-
-function gazeBehavior(value){
-
-  const map = {
-
-    Auto:"",
-    "Screen Focus":
-    "Keep attention on the screen.",
-
-    "Peripheral Awareness":
-    "Keep the main gaze elsewhere while peripheral awareness shifts toward the other character.",
-
-    "Object → Character":
-    "Let the gaze move from the object toward the other character.",
-
-    "Character → Object":
-    "Break attention from the character and deliberately return to the object.",
-
-    "Direct Eye Contact":
-    "Use clear direct eye contact without exaggerated staring.",
-
-    "Held Eye Contact":
-    "Hold eye contact slightly longer than ordinary social timing.",
-
-    "Avoided Eye Contact":
-    "Avoid sustained eye contact while remaining aware of the other character.",
-
-    "Brief Glance":
-    "Give one brief involuntary glance.",
-
-    "Look Away Then Return":
-    "Break eye contact, then allow the gaze to return after a small delay.",
-
-    "Gaze Down":
-    "Let the gaze fall downward as restrained concealment or recovery."
-
-  };
-
-  return map[value] || "";
-
-}
-
-function breathBehavior(value){
-
-  const map = {
-
-    Auto:"",
-    "Natural Breathing":
-    "Breathing remains natural and unobtrusive.",
-
-    "Tiny Inhale":
-    "Use a very small inhale as recognition begins.",
-
-    "Soft Inhale":
-    "Let a soft inhale accompany the emotional shift without becoming a gasp.",
-
-    "Breath Pause":
-    "Briefly interrupt the breathing rhythm as attention lands.",
-
-    "Breath Catch":
-    "Let the inhale catch for a fraction of a beat rather than becoming a full gasp.",
-
-    "Controlled Exhale":
-    "Release a quiet controlled exhale during the action or recovery.",
-
-    "Recovery Breath":
-    "Allow one subtle recovery breath after the emotional peak."
-
-  };
-
-  return map[value] || "";
-
-}
-
-function movementBehavior(value){
-
-  const map = {
-
-    Auto:"",
-    "No Change":
-    "Do not add unnecessary body movement.",
-
-    "Maintain Position":
-    "Keep the body position stable with natural micro-adjustments.",
-
-    "Micro Stillness":
-    "Let the body become fractionally more still.",
-
-    "Weight Shift":
-    "Use a small natural weight shift.",
-
-    "Lean In":
-    "Allow a restrained motivated lean inward.",
-
-    "Lean Back":
-    "Use a slight backward lean without a recoil.",
-
-    "Step Forward":
-    "Take one motivated step forward.",
-
-    "Step Back":
-    "Take one restrained step back.",
-
-    "Recompose Posture":
-    "Subtly reorganize posture as controlled recovery."
-
-  };
-
-  return map[value] || "";
-
-}
-
-function recoveryBehavior(value){
-
-  const map = {
-
-    Auto:"",
-    None:"",
-
-    "Return To Task":
-    "Recover by deliberately returning attention to the original task.",
-
-    "Look Away":
-    "Use a small look-away as recovery.",
-
-    "Fake Normal":
-    "Return to outwardly normal behaviour while retaining a trace of the previous emotion.",
-
-    "Suppress Smile":
-    "Allow the beginning of a smile, catch it, then suppress it before it fully forms.",
-
-    "Recompose Posture":
-    "Recover through a subtle posture and breath adjustment.",
-
-    "Create Distance":
-    "Create a small motivated increase in distance."
-
-  };
-
-  return map[value] || "";
-
-}
-
-
-/* =========================================================
-   CINEMATIC BEAT WRITER
-========================================================= */
-
-function buildCinematicBeat(
-  beat,
-  index,
-  time,
-  character
-){
-
-  let lines = [];
-
-  lines.push(
-    `${formatTime(time.start)}–${formatTime(time.end)} — ${beat.happens}`
-  );
-
-  if(
-    hasDialogue(beat) &&
-    time.dialogue
-  ){
-
-    const dialogue =
-      cleanDialogue(beat.dialogue);
-
-    if(
-      beat.speaker === "Other Character"
-    ){
-
-      lines.push(
-        `${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)} — The other character says, “${dialogue}” ${lineFunctionInstruction(beat.lineFunction)}. ${voiceInstruction(beat.voice)}`
-      );
-
-      if(triggerGuardActive(index)){
-
-        lines.push(
-          `${character} listens without immediately giving away the full reaction; only a small shift of attention is allowed before the meaning fully lands.`
-        );
-
-      }else{
-
-        lines.push(
-          `${character} stays actively engaged as the line lands before the fuller reaction begins.`
-        );
-
-      }
-
-    }else if(
-      beat.speaker === "Off-screen"
-    ){
-
-      lines.push(
-        `${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)} — An off-screen voice says, “${dialogue}”. ${character} registers the sound first, then its meaning.`
-      );
-
-    }else if(
-      beat.speaker === "Main Character"
-    ){
-
-      lines.push(
-        `${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)} — ${character} says, “${dialogue}” ${lineFunctionInstruction(beat.lineFunction)}. ${voiceInstruction(beat.voice)}`
-      );
-
-      if(
-        beat.lineFunction === "Deflect" ||
-        beat.lineFunction === "Hide Emotion"
-      ){
-
-        lines.push(
-          `Keep the words controlled while gaze, breath or posture leaks a small contradiction.`
-        );
-
-      }
-
-    }
-
-    if(
-      time.hold &&
-      time.hold.duration > .05
-    ){
-
-      lines.push(
-        `${formatTime(time.hold.start)}–${formatTime(time.hold.end)} — Hold the consequence of the line briefly before the next clear action.`
-      );
-
-    }
-
   }
 
   if(
-    beat.role === "Setup"
+    beat.movement === "Step Back"
   ){
-
-    const gaze =
-      gazeBehavior(beat.gaze);
-
-    const breath =
-      breathBehavior(beat.breath);
-
-    if(gaze){
-      lines.push(gaze);
-    }
-
-    if(breath){
-      lines.push(breath);
-    }
-
-  }else if(
-    beat.role === "Trigger" ||
-    beat.role === "Perception"
-  ){
-
-    const gaze =
-      gazeBehavior(
-        effectiveGazeForVideo(
-          beat,
-          index
-        )
-      );
-
-    const breath =
-      breathBehavior(
-        effectiveBreathForVideo(
-          beat,
-          index
-        )
-      );
-
-    if(gaze){
-      lines.push(gaze);
-    }
-
-    if(breath){
-      lines.push(breath);
-    }
-
-  }else{
-
-    const gaze =
-      gazeBehavior(beat.gaze);
-
-    const breath =
-      breathBehavior(beat.breath);
-
-    if(gaze){
-      lines.push(gaze);
-    }
-
-    if(breath){
-      lines.push(breath);
-    }
-
+    pieces.push(
+      "Take one small motivated step back."
+    );
   }
 
-  if(movementChanged(index)){
-
-    const movement =
-      movementBehavior(beat.movement);
-
-    if(movement){
-      lines.push(movement);
-    }
-
-  }
-
-  if(proximityChanged(index)){
-
-    if(
-      beat.proximity === "Conversational"
-    ){
-      lines.push(
-        "Maintain ordinary conversational distance."
-      );
-    }
-
-    if(
-      beat.proximity === "Close"
-    ){
-      lines.push(
-        "Maintain close conversational distance."
-      );
-    }
-
-    if(
-      beat.proximity === "Very Close"
-    ){
-      lines.push(
-        "Maintain noticeably close personal space."
-      );
-    }
-
-    if(
-      beat.proximity === "Intimate"
-    ){
-      lines.push(
-        "Maintain intimate interpersonal distance, increasing awareness of breath and gaze."
-      );
-    }
-
-  }
-
-  const recovery =
-    recoveryBehavior(beat.recovery);
-
-  if(recovery){
-    lines.push(recovery);
-  }
-
-  return lines.join(" ");
+  return pieces.join(" ");
 
 }
-
-
-/* =========================================================
-   VIDEO PROMPT
-========================================================= */
 
 function buildVideoPrompt(){
 
@@ -3727,14 +2555,14 @@ function buildVideoPrompt(){
     .getElementById("cameraMovement")
     .value;
 
-  const activity =
-    document
-    .getElementById("activity")
-    .value;
-
   const relationship =
     document
     .getElementById("relationship")
+    .value;
+
+  const activity =
+    document
+    .getElementById("activity")
     .value;
 
   const timeline =
@@ -3745,30 +2573,59 @@ function buildVideoPrompt(){
       ? timeline[timeline.length-1].end
       : 0;
 
-  const buffer =
-    roundTime(
-      targetDuration-total
-    );
+  const events =
+    beats.map((beat,index) => {
 
-  const flow =
-    beats.map((beat,index) =>
-      buildCinematicBeat(
-        beat,
-        index,
-        timeline[index],
-        character
-      )
-    ).join("\n\n");
+      const time =
+        timeline[index];
 
-  return `Cinematic K-drama performance.
+      let text =
+`${formatTime(time.start)}–${formatTime(time.end)}
+${beat.happens}`;
+
+      if(beat.dialogue){
+
+        const speakerLabel =
+          beat.speaker === "Main Character"
+            ? character
+            : beat.speaker === "Other Character"
+            ? "The other character"
+            : beat.speaker;
+
+        text +=
+`\n${speakerLabel} says, “${beat.dialogue}” ${voicePhrase(beat.voice)}.`;
+
+      }
+
+      if(beat.secondaryDialogue){
+
+        text +=
+`\nThe other character replies, “${beat.secondaryDialogue}” naturally.`;
+
+      }
+
+      const behaviour =
+        simpleBehaviour(beat);
+
+      if(behaviour){
+        text +=
+`\n${behaviour}`;
+      }
+
+      return text;
+
+    }).join("\n\n");
+
+  return `Cinematic K-drama scene.
 
 CAMERA
 ${shot}, ${angle}, ${cameraMovement}.
 
-VIDEO BUDGET
-Target maximum: ${targetDuration.toFixed(1)} seconds
-Estimated performance: ${total.toFixed(1)} seconds
-${buffer >= 0 ? `Remaining buffer: ${buffer.toFixed(1)} seconds` : `Over budget: ${Math.abs(buffer).toFixed(1)} seconds`}
+MAXIMUM VIDEO DURATION
+${targetDuration} seconds.
+
+ESTIMATED PERFORMANCE
+${total.toFixed(1)} seconds.
 
 SCENE
 ${scene}
@@ -3779,49 +2636,42 @@ ${character}
 RELATIONSHIP
 ${relationship}
 
-CHARACTER ACTIVITY
+ACTIVITY
 ${activity}
 
-DRAMATIC OBJECTIVE
+OBJECTIVE
 ${objective}
 
-PERFORMANCE STYLE
-${globalPerformanceStyle}
+ACTING STYLE
+${globalPerformanceStyle}, natural and continuous.
 
-${performanceStyleInstruction()}
+PERFORMANCE EVENTS
 
-${relationshipInstruction()}
+${events}
 
-TIMELINE PERFORMANCE
+NATURAL PERFORMANCE RULES
 
-${flow}
+Treat each section as one continuous piece of behaviour, not a sequence of separate facial reactions.
 
-CONTINUITY
+Do not animate every internal emotion.
 
-Treat the scene as one continuous behavioural chain.
+Keep most emotional processing internal. Show only the most important behavioural leak.
 
-Dialogue must remain intelligible and natural. Do not speed up speech unnaturally just to fit the duration.
+Do not add repeated eyebrow changes, breath catches, micro-freezes, head movements, posture resets or multiple gaze changes unless the action explicitly requires them.
 
-For spoken triggers:
-speaker acts or speaks → ${character} listens → meaning lands → involuntary response → deliberate reply or recovery.
+For concealed attraction, prefer delayed eye contact and one restrained almost-smile over repeated signs of nervousness.
 
-Trigger beats should protect perception. When the next beat owns the emotional reaction or payoff, do not let eye contact, smile or full body response arrive early.
+Dialogue should feel conversational. The listener may remain visually still while listening instead of reacting continuously.
 
-Let compatible behaviours overlap naturally. A controlled exhale may begin as a short line finishes; posture may settle during the same breath; gaze can remain forward while vocal control carries the defensive intention.
+Avoid exaggerated eye widening, obvious fluster acting, dramatic gasps, sudden recoils or pose-like romantic expressions.
 
-Protect the emotional payoff. Do not sacrifice the held gaze, final realization or restrained almost-smile before compressing redundant setup or empty pauses.
-
-Maintain body position, proximity, gaze history, breathing rhythm and emotional residue across beat boundaries.
-
-For restrained emotion, avoid exaggerated eye widening, dramatic gasps, random gestures, sudden recoils and obvious romantic posing.
-
-Timestamps define dramatic windows, not frame-by-frame micro-expression commands.`;
+Let transitions happen naturally inside the action rather than treating every emotional state as a new performance pose.`;
 
 }
 
 
 /* =========================================================
-   ACTING DIRECTION
+   ACTING OUTPUT
 ========================================================= */
 
 function buildActingDirection(){
@@ -3833,22 +2683,19 @@ function buildActingDirection(){
     .trim()
     || "The character";
 
-  const objective =
-    document
-    .getElementById("objective")
-    .value
-    .trim();
-
   const timeline =
     calculateTimeline();
 
   let output =
-`${character}'s dramatic objective:
+`${character} — ACTING DIRECTION
 
-${objective}
+Objective:
+${document.getElementById("objective").value}
 
-Performance principle:
-The emotion should not arrive as a pose. Each beat develops through perception, thought, involuntary leakage and deliberate recovery.
+Director principle:
+Do less externally than the character feels internally.
+
+The scene should read through intention and small behavioural failures, not through repeated emotion displays.
 
 `;
 
@@ -3857,130 +2704,72 @@ The emotion should not arrive as a pose. Each beat develops through perception, 
     const time =
       timeline[index];
 
-    output += `BEAT ${index+1} · ${formatTime(time.start)}–${formatTime(time.end)}
+    output +=
+`BEAT ${index+1} · ${formatTime(time.start)}–${formatTime(time.end)}
 ${beat.role.toUpperCase()} — ${beat.emotion}
 Intensity: ${beat.intensity}/5
 
 Internal intention:
 ${beat.subtext}
 
-Observable action:
+Continuous action:
 ${beat.happens}
 
 `;
 
-    if(hasDialogue(beat)){
+    if(beat.dialogue){
 
-      output += `Dialogue:
-${beat.speaker}: “${cleanDialogue(beat.dialogue)}”
+      output +=
+`Dialogue:
+${beat.speaker}: “${beat.dialogue}”
 
 Line function:
 ${beat.lineFunction}
 
-Voice quality:
+Voice:
 ${beat.voice}
 
 `;
 
-      if(time.dialogue){
-
-        output += `Dialogue window:
-${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)}
-
-`;
-
-      }
-
-      if(
-        time.hold &&
-        time.hold.duration > .05
-      ){
-
-        output += `Post-line hold:
-${formatTime(time.hold.start)}–${formatTime(time.hold.end)}
-
-`;
-
-      }
-
-      if(
-        beat.speaker === "Other Character"
-      ){
-
-        output += `Listening direction:
-Keep listening active. Do not perform the full response before the important meaning lands.
-
-`;
-
-      }
-
-      if(
-        beat.speaker === "Main Character"
-      ){
-
-        output += `Delivery direction:
-The line must emerge from the existing emotional state. Voice, gaze, breath and posture should carry one shared subtext.
-
-`;
-
-      }
-
     }
 
-    output += `First response:
-${effectiveResponse(beat)}
+    if(beat.secondaryDialogue){
 
-Eyes:
-${beat.gaze}
-
-Breath:
-${beat.breath}
-
-Body:
-${beat.movement}
-
-Proximity:
-${beat.proximity}
-
-Recovery:
-${beat.recovery}
-
-`;
-
-    if(triggerGuardActive(index)){
-
-      output += `Trigger guard:
-Do not spend the next beat's emotional payoff here. Keep this moment at the level of listening, noticing or peripheral awareness.
+      output +=
+`Follow-up dialogue:
+Other Character: “${beat.secondaryDialogue}”
 
 `;
 
     }
 
-    if(
-      beat.recovery !== "None" &&
-      beat.recovery !== "Auto"
-    ){
+    output +=
+`Internal performance options:
+Gaze: ${beat.gaze}
+Breath: ${beat.breath}
+Body: ${beat.movement}
+Recovery: ${beat.recovery}
 
-      output += `Emotional residue:
-Recovery should make the character look controlled, not emotionally empty.
+Director note:
+These are acting resources, not mandatory separate visible actions. Choose the smallest behaviour that communicates the beat.
+
+----------------------------------------
 
 `;
-
-    }
 
   });
 
-  output += `OVERALL PERFORMANCE CONTINUITY
+  output +=
+`OVERALL
 
-Transitions matter more than isolated expressions.
+The character should not visibly change emotion every time the internal state changes.
 
-Carry forward gaze direction, breathing rhythm, body position, interpersonal distance and unresolved feeling.
+Allow listening, thinking and concealment to remain largely invisible.
 
-Within a short video budget, compatible behaviours may overlap naturally instead of occurring one after another.
+When attraction is being hidden, the most effective performance is often:
+normal behaviour → one involuntary leak → recovery.
 
-Protect causality and payoff before protecting empty pauses.
-
-For restrained K-drama acting, use small changes in eyes, lips, jaw, breath and posture before larger gestures.`;
+Transitions should feel continuous and motivated.`;
 
   return output;
 
@@ -4002,7 +2791,7 @@ function buildTechnical(){
       : 0;
 
   let output =
-`V8.3.1 · 15-SECOND PERFORMANCE BUDGET ENGINE
+`V8.3.2 · NATURAL PERFORMANCE SIMPLIFIER
 
 Target duration:
 ${targetDuration}s
@@ -4010,22 +2799,39 @@ ${targetDuration}s
 Calculated duration:
 ${total}s
 
-Budget mode:
-${budgetMode ? "Fitted" : "Natural / Manual"}
+Internal beat count:
+${beats.length}
 
-Global performance style:
-${globalPerformanceStyle}
+Naturalness:
+${naturalnessState().label}
 
-Relationship:
-${document.getElementById("relationship").value}
+CORE RULE
 
-Character activity:
-${document.getElementById("activity").value}
+Internal acting complexity does not equal visible animation complexity.
 
-EMOTIONAL ARC
-${beats.map(beat => beat.emotion).join(" → ")}
+VIDEO TRANSLATION
 
-TIMELINE STATE
+Internal beat:
+Subtext + emotion + gaze + breath + body + recovery
+
+Generation output:
+One broad dramatic action + one dominant visible behaviour.
+
+DEFAULT 15-SECOND GUIDELINE
+
+2 beats:
+Very simple.
+
+3 beats:
+Preferred natural default.
+
+4 beats:
+Usable for more complex interaction.
+
+5+ beats:
+Mechanical-performance risk.
+
+TIMELINE
 
 `;
 
@@ -4034,19 +2840,11 @@ TIMELINE STATE
     const time =
       timeline[index];
 
-    output += `BEAT ${index+1}
+    output +=
+`BEAT ${index+1}
 
 Time:
 ${formatTime(time.start)}–${formatTime(time.end)}
-
-Duration:
-${time.duration}s
-
-Protected Minimum:
-${protectedMinimumDuration(beat)}s
-
-Compression Priority:
-${compressionPriority(beat)}
 
 Role:
 ${beat.role}
@@ -4069,76 +2867,29 @@ ${beat.speaker}
 Dialogue:
 ${beat.dialogue || "None"}
 
+Follow-up Dialogue:
+${beat.secondaryDialogue || "None"}
+
 Line Function:
 ${beat.lineFunction}
 
 Voice:
 ${beat.voice}
 
-Dialogue Timing:
-${beat.dialogueTiming}
-
-Dialogue Duration:
-${getDialogueDuration(beat)}s
-
-Post-Line Hold:
-${holdDuration(beat)}s
-
-`;
-
-    if(time.dialogue){
-
-      output += `Calculated Dialogue Window:
-${formatTime(time.dialogue.start)}–${formatTime(time.dialogue.end)}
-
-`;
-
-    }
-
-    if(
-      time.hold &&
-      time.hold.duration > .05
-    ){
-
-      output += `Allocated Post-Line Hold:
-${formatTime(time.hold.start)}–${formatTime(time.hold.end)}
-
-`;
-
-    }
-
-    output += `Reaction Timing:
-${beat.timing}
-
-Configured First Response:
-${beat.response}
-
-Effective First Response:
-${effectiveResponse(beat)}
-
-Configured Gaze:
+Gaze:
 ${beat.gaze}
 
-Video Gaze:
-${effectiveGazeForVideo(beat,index)}
-
-Configured Breath:
+Breath:
 ${beat.breath}
-
-Video Breath:
-${effectiveBreathForVideo(beat,index)}
-
-Trigger Guard:
-${triggerGuardActive(index) ? "Active" : "Inactive"}
 
 Movement:
 ${beat.movement}
 
-Proximity:
-${beat.proximity}
-
 Recovery:
 ${beat.recovery}
+
+Exported Video Behaviour:
+${simpleBehaviour(beat) || "No extra micro-direction exported."}
 
 ----------------------------------------
 
@@ -4146,57 +2897,109 @@ ${beat.recovery}
 
   });
 
-  output += `ENGINE RULES
+  output +=
+`SIMPLIFIER RULES
 
-15-second budget:
-The target is a maximum, not a requirement to stretch the scene to exactly 15 seconds.
+1. Prefer one continuous behavioural action per beat.
 
-Protected order:
-1. Dialogue intelligibility
-2. Reaction causality
-3. Payoff
-4. Main-character reply
-5. Recovery
-6. Trigger breathing room
-7. Setup / redundant pause
+2. Do not export every acting parameter into the video prompt.
 
-Fit to Budget:
-Compression reduces lower-priority flexible space first.
-Dialogue is not artificially accelerated.
+3. Breath, posture and facial micro-expression remain internal unless dramatically essential.
 
-Post-line hold:
-Hold is actual allocated timeline space, not only prose.
+4. Concealment reduces visible cues.
 
-Trigger Guard:
-When a later Reaction or Payoff beat exists, Trigger / Perception cannot spend the full gaze turn or emotional payoff early.
+5. If multiple internal reactions serve the same dramatic purpose, merge them into one visible action.
 
-Performance overlap:
-Compatible behaviours may occur together to save time naturally.
+6. Dialogue listening does not require continuous facial animation.
 
-Voice First:
-Valid only when the main character actually speaks.
+7. Payoff should be clearer than setup, but still restrained at low intensity.
 
-Spatial continuity:
-Unchanged proximity should not be repeatedly described as a new action.
+8. The 15-second budget is a maximum, not a target that must be filled.
 
-Movement continuity:
-Unchanged movement state should not be repeated unnecessarily.
+9. Adding more than four beats should trigger a naturalness warning.
 
-Emotional residue:
-Recovery conceals feeling rather than deleting it.
-
-Timestamp philosophy:
-Use timestamps for dialogue, hold and major dramatic events, not individual blinks or eyebrow movements.
-
-INTENSITY
-
-1 = Micro
-2 = Restrained
-3 = Readable
-4 = Heightened
-5 = Expressive`;
+10. Video Prompt optimizes generation simplicity. Acting output preserves director-level detail.`;
 
   return output;
+
+}
+
+
+/* =========================================================
+   WARNINGS
+========================================================= */
+
+function validate(){
+
+  const warnings = [];
+
+  const timeline =
+    calculateTimeline();
+
+  const total =
+    timeline.length
+      ? timeline[timeline.length-1].end
+      : 0;
+
+  if(total > targetDuration){
+
+    warnings.push(
+      `Timeline exceeds ${targetDuration}s by ${round1(total-targetDuration)}s.`
+    );
+
+  }
+
+  if(beats.length >= 5){
+
+    warnings.push(
+      `${beats.length} performance beats may create too many visible state changes in a short generated video. Consider merging adjacent beats.`
+    );
+
+  }
+
+  beats.forEach((beat,index) => {
+
+    if(
+      beat.dialogue &&
+      beat.speaker === "None"
+    ){
+
+      warnings.push(
+        `Beat ${index+1}: dialogue exists but speaker is None.`
+      );
+
+    }
+
+  });
+
+  return warnings;
+
+}
+
+function renderWarnings(){
+
+  const warnings =
+    validate();
+
+  const box =
+    document.getElementById("warningBox");
+
+  if(!warnings.length){
+
+    box.style.display =
+      "none";
+
+    box.textContent =
+      "";
+
+    return;
+  }
+
+  box.style.display =
+    "block";
+
+  box.textContent =
+    warnings.join(" ");
 
 }
 
@@ -4222,9 +3025,9 @@ function updateOutput(){
   }
 
   document
-    .getElementById("promptOutput")
-    .textContent =
-      output;
+  .getElementById("promptOutput")
+  .textContent =
+    output;
 
   renderWarnings();
 
@@ -4249,15 +3052,18 @@ function switchOutput(mode,button){
     document.getElementById("outputLabel");
 
   if(mode === "video"){
-    label.textContent = "VIDEO PROMPT";
+    label.textContent =
+      "NATURAL GENERATION PROMPT";
   }
 
   if(mode === "acting"){
-    label.textContent = "ACTING DIRECTION";
+    label.textContent =
+      "ACTING DIRECTION";
   }
 
   if(mode === "technical"){
-    label.textContent = "TECHNICAL STATE";
+    label.textContent =
+      "TECHNICAL STATE";
   }
 
   updateOutput();
@@ -4266,64 +3072,29 @@ function switchOutput(mode,button){
 
 
 /* =========================================================
-   WARNINGS
-========================================================= */
-
-function renderWarnings(){
-
-  const warnings =
-    validateBeats();
-
-  const box =
-    document.getElementById("warningBox");
-
-  if(warnings.length === 0){
-
-    box.style.display =
-      "none";
-
-    box.textContent =
-      "";
-
-    return;
-
-  }
-
-  box.style.display =
-    "block";
-
-  box.textContent =
-    warnings.join(" ");
-
-}
-
-
-/* =========================================================
    DEMO / RESET
 ========================================================= */
 
-function autoBuildDemo(){
+function loadNaturalDemo(){
 
   beats =
-    createDemoBeats();
+    createNaturalDemo();
 
-  budgetMode =
+  fitted =
     false;
+
+  document
+  .getElementById("targetDuration")
+  .value =
+    "15";
 
   targetDuration =
     15;
 
-  document
-    .getElementById("targetDuration")
-    .value =
-      "15";
-
-  renderBeats();
-
-  fitToBudget();
+  renderAll();
 
   showToast(
-    "15s dialogue demo loaded"
+    "Natural 3-beat demo loaded"
   );
 
 }
@@ -4331,49 +3102,49 @@ function autoBuildDemo(){
 function resetDemo(){
 
   document
-    .getElementById("character")
-    .value =
-      "Maryam";
+  .getElementById("character")
+  .value =
+    "Maryam";
 
   document
-    .getElementById("relationship")
-    .value =
-      "Romantic Tension";
+  .getElementById("relationship")
+  .value =
+    "Romantic Tension";
 
   document
-    .getElementById("scene")
-    .value =
-      "Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam has repeatedly avoided looking at him. He casually teases her about it. Maryam tries to hide that his teasing affects her.";
+  .getElementById("scene")
+  .value =
+    "Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam keeps avoiding his gaze. He casually teases her about it. Maryam tries to act unaffected.";
 
   document
-    .getElementById("objective")
-    .value =
-      "Hide that Amir's teasing is affecting her while maintaining casual confidence.";
+  .getElementById("objective")
+  .value =
+    "Hide that Amir's teasing affects her while maintaining casual confidence.";
 
   document
-    .getElementById("shotSize")
-    .value =
-      "Medium Close Up";
+  .getElementById("shotSize")
+  .value =
+    "Medium Close Up";
 
   document
-    .getElementById("cameraAngle")
-    .value =
-      "Eye Level";
+  .getElementById("cameraAngle")
+  .value =
+    "Eye Level";
 
   document
-    .getElementById("cameraMovement")
-    .value =
-      "Static";
+  .getElementById("cameraMovement")
+  .value =
+    "Static";
 
   document
-    .getElementById("activity")
-    .value =
-      "Standing";
+  .getElementById("activity")
+  .value =
+    "Standing";
 
   document
-    .getElementById("targetDuration")
-    .value =
-      "15";
+  .getElementById("targetDuration")
+  .value =
+    "15";
 
   targetDuration =
     15;
@@ -4393,18 +3164,102 @@ function resetDemo(){
   });
 
   beats =
-    createDemoBeats();
+    createNaturalDemo();
 
-  budgetMode =
+  fitted =
     false;
 
-  renderBeats();
+  renderAll();
 
   showToast(
-    "V8.3.1 reset"
+    "V8.3.2 reset"
   );
 
 }
+
+
+/* =========================================================
+   GLOBAL CONTROLS
+========================================================= */
+
+document
+.querySelectorAll(".level-btn")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      document
+      .querySelectorAll(".level-btn")
+      .forEach(btn => {
+
+        btn.classList.remove("active");
+
+      });
+
+      button.classList.add("active");
+
+      globalPerformanceStyle =
+        button.dataset.style;
+
+      updateOutput();
+
+    }
+  );
+
+});
+
+document
+.getElementById("targetDuration")
+.addEventListener(
+  "change",
+  () => {
+
+    targetDuration =
+      Number(
+        document
+        .getElementById("targetDuration")
+        .value
+      ) || 15;
+
+    document
+    .querySelector(".fit-btn")
+    .textContent =
+      `Fit to ${targetDuration}s`;
+
+    clearFit();
+    renderAll();
+
+  }
+);
+
+[
+  "character",
+  "relationship",
+  "scene",
+  "objective",
+  "shotSize",
+  "cameraAngle",
+  "cameraMovement",
+  "activity"
+]
+.forEach(id => {
+
+  const element =
+    document.getElementById(id);
+
+  element.addEventListener(
+    "input",
+    updateOutput
+  );
+
+  element.addEventListener(
+    "change",
+    updateOutput
+  );
+
+});
 
 
 /* =========================================================
@@ -4429,9 +3284,9 @@ document
 
     document
     .querySelectorAll(".advanced-panel")
-    .forEach(el => {
+    .forEach(panel => {
 
-      el.classList.remove("open");
+      panel.classList.remove("open");
 
     });
 
@@ -4456,9 +3311,9 @@ document
 
     document
     .querySelectorAll(".advanced-panel")
-    .forEach(el => {
+    .forEach(panel => {
 
-      el.classList.add("open");
+      panel.classList.add("open");
 
     });
 
@@ -4467,74 +3322,7 @@ document
 
 
 /* =========================================================
-   TARGET DURATION
-========================================================= */
-
-document
-.getElementById("targetDuration")
-.addEventListener(
-  "change",
-  () => {
-
-    targetDuration =
-      Number(
-        document
-        .getElementById("targetDuration")
-        .value
-      ) || 15;
-
-    const fitButton =
-      document.querySelector(".fit-btn");
-
-    fitButton.textContent =
-      `Fit to ${targetDuration}s`;
-
-    clearFittedDurations();
-    renderBeats();
-
-  }
-);
-
-
-/* =========================================================
-   LIVE GLOBAL INPUTS
-========================================================= */
-
-[
-  "character",
-  "relationship",
-  "scene",
-  "objective",
-  "shotSize",
-  "cameraAngle",
-  "cameraMovement",
-  "activity"
-]
-.forEach(id => {
-
-  const element =
-    document.getElementById(id);
-
-  element.addEventListener(
-    "input",
-    updateOutput
-  );
-
-  element.addEventListener(
-    "change",
-    () => {
-
-      clearFittedDurations();
-      renderBeats();
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   COPY
+   COPY / TOAST
 ========================================================= */
 
 async function copyPrompt(){
@@ -4578,11 +3366,6 @@ async function copyPrompt(){
 
 }
 
-
-/* =========================================================
-   TOAST
-========================================================= */
-
 function showToast(message){
 
   const toast =
@@ -4609,7 +3392,7 @@ function showToast(message){
    INIT
 ========================================================= */
 
-renderBeats();
+renderAll();
 
 </script>
 
