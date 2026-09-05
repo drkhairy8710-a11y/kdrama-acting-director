@@ -1,4237 +1,1254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Emotion Performance Guide · V9.2</title>
-
-  <meta
-    name="description"
-    content="A practical acting reference for facial language, body language, emotion intensity and scene tone."
-  />
-
-  <style>
-    :root {
-      --bg: #0b0b0f;
-      --panel: #15151b;
-      --panel2: #1b1b23;
-      --panel3: #20202a;
-      --border: #2c2c36;
-      --soft-border: #24242d;
-
-      --text: #f6f4f7;
-      --muted: #aaa7b3;
-      --soft: #77737f;
-
-      --pink: #ff6094;
-      --pink2: #ff93b5;
-      --pink-bg: rgba(255, 96, 148, .09);
-      --pink-border: rgba(255, 96, 148, .38);
-
-      --green: #78d7ac;
-      --yellow: #efc76c;
-      --red: #ef737c;
-      --blue: #84b9ff;
-
-      --radius: 18px;
-      --shadow: 0 18px 55px rgba(0,0,0,.30);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-
-      background:
-        radial-gradient(circle at 10% -10%, rgba(255,96,148,.10), transparent 28%),
-        radial-gradient(circle at 95% 8%, rgba(110,90,255,.07), transparent 30%),
-        var(--bg);
-
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-      line-height: 1.5;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      color: inherit;
-    }
-
-    .app {
-      width: min(1580px, 100%);
-      margin: 0 auto;
-      padding: 22px;
-    }
-
-    /* HEADER */
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 13px;
-      border: 1px solid var(--pink-border);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,96,148,.24),
-          rgba(255,96,148,.05)
-        );
-
-      font-size: 20px;
-    }
-
-    .brand-name {
-      font-weight: 850;
-      font-size: 15px;
-    }
-
-    .version {
-      margin-top: 2px;
-      color: var(--soft);
-      font-size: 11px;
-    }
-
-    .top-badge {
-      padding: 8px 12px;
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      color: var(--muted);
-      background: rgba(255,255,255,.02);
-
-      font-size: 11px;
-    }
-
-    /* HERO */
-
-    .hero {
-      margin-bottom: 22px;
-      padding: 32px;
-
-      border: 1px solid var(--border);
-      border-radius: 23px;
-
-      background:
-        linear-gradient(
-          140deg,
-          rgba(255,96,148,.10),
-          transparent 52%
-        ),
-        rgba(21,21,27,.95);
-
-      box-shadow: var(--shadow);
-    }
-
-    .hero-kicker {
-      margin-bottom: 10px;
-
-      color: var(--pink2);
-      font-size: 11px;
-      font-weight: 850;
-
-      letter-spacing: .11em;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      max-width: 900px;
-      margin: 0;
-
-      font-size: clamp(32px, 5vw, 57px);
-      line-height: 1.03;
-      letter-spacing: -.045em;
-    }
-
-    .hero h1 span {
-      color: var(--pink2);
-    }
-
-    .hero p {
-      max-width: 860px;
-      margin: 15px 0 0;
-
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .flow {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-
-      margin-top: 22px;
-    }
-
-    .flow-chip {
-      padding: 7px 10px;
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      color: #dad8e0;
-      background: rgba(255,255,255,.02);
-
-      font-size: 11px;
-      font-weight: 750;
-    }
-
-    .arrow {
-      color: var(--soft);
-    }
-
-    /* WORKSPACE */
-
-    .workspace {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 520px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .library,
-    .detail {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-
-      background: rgba(21,21,27,.95);
-      box-shadow: var(--shadow);
-    }
-
-    .library {
-      padding: 20px;
-    }
-
-    .detail {
-      position: sticky;
-      top: 18px;
-
-      max-height: calc(100vh - 36px);
-      overflow-y: auto;
-
-      padding: 21px;
-    }
-
-    /* LIBRARY */
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 14px;
-
-      margin-bottom: 15px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-
-      font-size: 19px;
-      letter-spacing: -.02em;
-    }
-
-    .section-head p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .emotion-count {
-      color: var(--soft);
-      font-size: 11px;
-    }
-
-    .search-wrap {
-      position: relative;
-      margin-bottom: 13px;
-    }
-
-    .search-symbol {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-
-      transform: translateY(-50%);
-      color: var(--soft);
-    }
-
-    .search {
-      width: 100%;
-      height: 47px;
-
-      padding: 0 14px 0 40px;
-
-      color: var(--text);
-      background: #101015;
-
-      border: 1px solid var(--border);
-      border-radius: 13px;
-
-      outline: none;
-    }
-
-    .search:focus {
-      border-color: var(--pink-border);
-      box-shadow: 0 0 0 4px rgba(255,96,148,.05);
-    }
-
-    .search::placeholder {
-      color: #686570;
-    }
-
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-
-      margin-bottom: 17px;
-    }
-
-    .cat {
-      padding: 7px 11px;
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      color: var(--muted);
-      background: transparent;
-
-      cursor: pointer;
-
-      font-size: 11px;
-      font-weight: 750;
-    }
-
-    .cat.active {
-      color: white;
-      border-color: var(--pink-border);
-      background: var(--pink-bg);
-    }
-
-    .emotion-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 9px;
-    }
-
-    .emotion-card {
-      width: 100%;
-      min-height: 115px;
-
-      padding: 15px;
-      text-align: left;
-
-      border: 1px solid var(--soft-border);
-      border-radius: 14px;
-
-      background: rgba(255,255,255,.017);
-
-      cursor: pointer;
-      transition: .16s ease;
-    }
-
-    .emotion-card:hover {
-      transform: translateY(-1px);
-      border-color: #43424d;
-      background: rgba(255,255,255,.03);
-    }
-
-    .emotion-card.active {
-      border-color: var(--pink-border);
-
-      background:
-        linear-gradient(
-          140deg,
-          rgba(255,96,148,.10),
-          transparent 72%
-        ),
-        rgba(255,255,255,.02);
-    }
-
-    .card-cat {
-      margin-bottom: 6px;
-
-      color: var(--pink2);
-
-      font-size: 9px;
-      font-weight: 850;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .card-name {
-      margin-bottom: 5px;
-
-      font-size: 15px;
-      font-weight: 850;
-    }
-
-    .card-desc {
-      color: var(--muted);
-      font-size: 11.5px;
-      line-height: 1.45;
-    }
-
-    /* DETAIL */
-
-    .detail-category {
-      color: var(--pink2);
-
-      font-size: 10px;
-      font-weight: 850;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .detail-title {
-      margin: 5px 0 4px;
-
-      font-size: 28px;
-      line-height: 1.1;
-      letter-spacing: -.035em;
-    }
-
-    .detail-subtitle {
-      margin: 0;
-
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .info-box {
-      margin-top: 14px;
-      padding: 13px;
-
-      border: 1px solid var(--soft-border);
-      border-radius: 13px;
-
-      background: rgba(255,255,255,.017);
-    }
-
-    .small-label {
-      margin-bottom: 5px;
-
-      color: var(--soft);
-
-      font-size: 9px;
-      font-weight: 850;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .info-text {
-      color: #dddbe2;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .good-for {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-
-      margin-top: 9px;
-    }
-
-    .tag {
-      padding: 5px 8px;
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      color: var(--muted);
-      background: rgba(255,255,255,.02);
-
-      font-size: 10px;
-    }
-
-    .divider {
-      height: 1px;
-      margin: 18px 0;
-      background: var(--soft-border);
-    }
-
-    /* TONE */
-
-    .selector-title {
-      margin-bottom: 8px;
-
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    .tone-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .tone-btn {
-      padding: 8px 10px;
-
-      border: 1px solid var(--border);
-      border-radius: 10px;
-
-      color: var(--muted);
-      background: rgba(255,255,255,.015);
-
-      cursor: pointer;
-
-      font-size: 10.5px;
-      font-weight: 750;
-    }
-
-    .tone-btn.active {
-      color: white;
-      border-color: var(--pink-border);
-      background: var(--pink-bg);
-    }
-
-    .selector-note {
-      margin-top: 8px;
-      color: var(--soft);
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    /* INTENSITY */
-
-    .intensity-list {
-      display: grid;
-      gap: 6px;
-    }
-
-    .level-btn {
-      display: grid;
-      grid-template-columns: 28px 88px 1fr;
-      align-items: center;
-      gap: 8px;
-
-      width: 100%;
-
-      padding: 9px;
-
-      text-align: left;
-
-      border: 1px solid var(--soft-border);
-      border-radius: 11px;
-
-      background: rgba(255,255,255,.014);
-
-      cursor: pointer;
-    }
-
-    .level-btn.active {
-      border-color: var(--pink-border);
-      background: var(--pink-bg);
-    }
-
-    .level-num {
-      width: 27px;
-      height: 27px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1px solid var(--border);
-      border-radius: 8px;
-
-      background: #101015;
-
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .level-name {
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .level-short {
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.35;
-    }
-
-    /* CONTROL */
-
-    .control-box {
-      margin-top: 12px;
-      padding: 12px;
-
-      border: 1px solid var(--soft-border);
-      border-radius: 12px;
-
-      background: rgba(255,255,255,.015);
-    }
-
-    .control-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-
-      margin-bottom: 7px;
-    }
-
-    .control-label {
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .control-value {
-      color: var(--pink2);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .control-track {
-      height: 6px;
-
-      overflow: hidden;
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      background: #0d0d12;
-    }
-
-    .control-fill {
-      height: 100%;
-      border-radius: 999px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--green),
-          var(--yellow),
-          var(--red)
-        );
-    }
-
-    .control-caption {
-      margin-top: 7px;
-
-      color: var(--soft);
-      font-size: 9.5px;
-      line-height: 1.45;
-    }
-
-    /* PERFORMANCE MAP */
-
-    .map-title {
-      margin-bottom: 3px;
-
-      font-size: 14px;
-      font-weight: 850;
-    }
-
-    .map-subtitle {
-      margin-bottom: 10px;
-
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .performance-map {
-      display: grid;
-      gap: 6px;
-    }
-
-    .map-row {
-      display: grid;
-      grid-template-columns: 142px 1fr;
-      gap: 9px;
-
-      padding: 9px 10px;
-
-      border: 1px solid var(--soft-border);
-      border-radius: 10px;
-
-      background: rgba(255,255,255,.014);
-    }
-
-    .map-key {
-      color: var(--pink2);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .map-value {
-      color: #d9d7df;
-      font-size: 10.5px;
-      line-height: 1.45;
-    }
-
-    /* EXAMPLE */
-
-    .acting-example {
-      margin-top: 12px;
-      padding: 13px;
-
-      border: 1px solid var(--border);
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          140deg,
-          rgba(255,96,148,.05),
-          transparent 75%
-        ),
-        #111116;
-    }
-
-    .example-title {
-      margin-bottom: 6px;
-
-      font-size: 11px;
-      font-weight: 850;
-    }
-
-    .example-body {
-      color: #dfdde3;
-      font-size: 11.5px;
-      line-height: 1.6;
-    }
-
-    /* PROMPT */
-
-    .prompt-box {
-      margin-top: 12px;
-      overflow: hidden;
-
-      border: 1px solid var(--pink-border);
-      border-radius: 13px;
-
-      background: rgba(255,96,148,.05);
-    }
-
-    .prompt-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-
-      padding: 10px 12px;
-
-      border-bottom: 1px solid rgba(255,96,148,.15);
-    }
-
-    .prompt-label {
-      color: var(--pink2);
-
-      font-size: 9.5px;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .copy-btn {
-      padding: 6px 9px;
-
-      border: 1px solid var(--pink-border);
-      border-radius: 8px;
-
-      color: #ffe4ed;
-      background: rgba(255,96,148,.1);
-
-      cursor: pointer;
-
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .prompt-text {
-      padding: 13px;
-
-      color: #efedf2;
-      font-size: 11.5px;
-      line-height: 1.65;
-
-      white-space: pre-wrap;
-    }
-
-    .footer {
-      margin: 22px auto 7px;
-
-      text-align: center;
-      color: var(--soft);
-      font-size: 10px;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-
-      padding: 34px 15px;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      border: 1px dashed var(--border);
-      border-radius: 13px;
-    }
-
-    @media(max-width:1100px) {
-      .workspace {
-        grid-template-columns: 1fr;
-      }
-
-      .detail {
-        position: static;
-        max-height: none;
-      }
-    }
-
-    @media(max-width:680px) {
-      .app {
-        padding: 13px;
-      }
-
-      .hero {
-        padding: 24px 19px;
-      }
-
-      .hero h1 {
-        font-size: 35px;
-      }
-
-      .top-badge {
-        display: none;
-      }
-
-      .emotion-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .library,
-      .detail {
-        padding: 15px;
-      }
-
-      .map-row {
-        grid-template-columns: 112px 1fr;
-      }
-
-      .level-btn {
-        grid-template-columns: 28px 75px 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Emotion Performance Guide · V9.3</title>
+
+<style>
+:root{
+  --bg:#0a0a0f;
+  --panel:#15151c;
+  --panel2:#1c1c25;
+  --border:#2d2d39;
+  --text:#f5f3f7;
+  --muted:#aaa7b2;
+  --soft:#77737f;
+  --pink:#ff6497;
+  --pink2:#ff9bbb;
+  --pinkbg:rgba(255,100,151,.10);
+  --pinkborder:rgba(255,100,151,.38);
+  --green:#69d49f;
+  --yellow:#e8be62;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 0 0,rgba(255,100,151,.10),transparent 28%),
+  #0a0a0f;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+button,input{font:inherit}
+button{color:inherit}
+.app{max-width:1580px;margin:auto;padding:22px}
+.top{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;margin-bottom:20px
+}
+.brand{display:flex;gap:11px;align-items:center}
+.logo{
+  width:43px;height:43px;border:1px solid var(--pinkborder);
+  background:var(--pinkbg);border-radius:13px;display:grid;place-items:center
+}
+.brand strong{display:block}
+.version{font-size:11px;color:var(--soft)}
+.badge{
+  border:1px solid var(--border);border-radius:999px;
+  padding:8px 11px;color:var(--muted);font-size:11px
+}
+.hero{
+  border:1px solid var(--border);border-radius:22px;
+  padding:30px;margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(255,100,151,.10),transparent 55%),var(--panel)
+}
+.kicker{
+  text-transform:uppercase;font-size:10px;font-weight:900;
+  color:var(--pink2);letter-spacing:.11em
+}
+.hero h1{
+  max-width:900px;margin:8px 0 10px;
+  font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.045em
+}
+.hero h1 span{color:var(--pink2)}
+.hero p{color:var(--muted);max-width:950px;font-size:14px}
+.flow{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.flow span{
+  font-size:10px;border:1px solid var(--border);
+  border-radius:999px;padding:6px 9px;color:#ddd9e1
+}
+.workspace{
+  display:grid;grid-template-columns:minmax(0,1fr) 530px;
+  gap:19px;align-items:start
+}
+.library,.detail{
+  background:rgba(21,21,28,.96);border:1px solid var(--border);
+  border-radius:18px
+}
+.library{padding:19px}
+.detail{
+  padding:20px;position:sticky;top:18px;
+  max-height:calc(100vh - 36px);overflow:auto
+}
+.head{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:10px;margin-bottom:13px
+}
+.head h2{margin:0;font-size:19px}
+.head p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.count{font-size:10px;color:var(--soft)}
+.searchbox{position:relative;margin-bottom:12px}
+.search{
+  width:100%;height:45px;border-radius:12px;
+  border:1px solid var(--border);background:#0f0f14;color:white;
+  padding:0 13px;outline:none
+}
+.search:focus{border-color:var(--pinkborder)}
+.categories{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:15px}
+.cat,.tone,.level{
+  cursor:pointer;border:1px solid var(--border);
+  background:rgba(255,255,255,.015)
+}
+.cat{
+  border-radius:999px;padding:7px 10px;
+  font-size:10px;color:var(--muted);font-weight:700
+}
+.cat.active,.tone.active,.level.active{
+  border-color:var(--pinkborder);background:var(--pinkbg);color:white
+}
+.grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px
+}
+.card{
+  cursor:pointer;text-align:left;border:1px solid #292933;
+  border-radius:13px;background:rgba(255,255,255,.015);
+  min-height:108px;padding:13px;transition:.15s
+}
+.card:hover{border-color:#464552;transform:translateY(-1px)}
+.card.active{border-color:var(--pinkborder);background:var(--pinkbg)}
+.ccat{
+  font-size:8.5px;color:var(--pink2);
+  text-transform:uppercase;letter-spacing:.08em;font-weight:900
+}
+.cname{font-weight:850;font-size:14px;margin:5px 0}
+.cdesc{font-size:10.5px;color:var(--muted);line-height:1.4}
+.detail-cat{
+  color:var(--pink2);font-size:9px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.1em
+}
+.detail h2{margin:5px 0;font-size:28px;letter-spacing:-.03em}
+.subtitle{color:var(--muted);font-size:12px;margin:0}
+.box{
+  padding:12px;border:1px solid #292933;border-radius:12px;
+  margin-top:11px;background:rgba(255,255,255,.012)
+}
+.label{
+  font-size:8.5px;font-weight:900;text-transform:uppercase;
+  color:var(--soft);letter-spacing:.09em;margin-bottom:5px
+}
+.text{font-size:11px;color:#dedbe2;line-height:1.55}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{
+  border:1px solid var(--border);border-radius:999px;
+  padding:4px 7px;color:var(--muted);font-size:9px
+}
+.divider{height:1px;background:#282832;margin:16px 0}
+.stitle{font-size:12px;font-weight:850;margin-bottom:7px}
+.tones{display:flex;flex-wrap:wrap;gap:6px}
+.tone{border-radius:9px;padding:7px 9px;font-size:9.5px;color:var(--muted)}
+.note{font-size:9px;color:var(--soft);line-height:1.45;margin-top:7px}
+.levels{display:grid;gap:5px}
+.level{
+  width:100%;display:grid;grid-template-columns:28px 86px 1fr;
+  align-items:center;gap:7px;padding:8px;border-radius:10px;text-align:left
+}
+.num{
+  width:26px;height:26px;border:1px solid var(--border);
+  border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:900;background:#0f0f14
+}
+.lname{font-size:10px;font-weight:800}
+.ldesc{font-size:9.5px;color:var(--muted)}
+.intent{
+  padding:12px;border:1px solid var(--pinkborder);
+  border-radius:12px;background:rgba(255,100,151,.05);
+  margin-top:11px
+}
+.intent strong{font-size:10px}
+.intent div{font-size:11px;margin-top:4px;color:#e6e2e8}
+.map{display:grid;gap:5px;margin-top:8px}
+.row{
+  display:grid;grid-template-columns:142px 1fr;gap:8px;
+  border:1px solid #282832;border-radius:9px;padding:8px 9px
+}
+.key{font-size:9.5px;font-weight:800;color:var(--pink2)}
+.value{font-size:10px;line-height:1.42;color:#d9d6dd}
+.prompt{
+  margin-top:12px;border:1px solid var(--pinkborder);
+  border-radius:12px;overflow:hidden;background:rgba(255,100,151,.045)
+}
+.ph{
+  padding:9px 11px;border-bottom:1px solid rgba(255,100,151,.17);
+  display:flex;justify-content:space-between;gap:10px;align-items:center
+}
+.ph span{
+  font-size:9px;font-weight:900;color:var(--pink2);
+  text-transform:uppercase;letter-spacing:.07em
+}
+.copy{
+  cursor:pointer;border:1px solid var(--pinkborder);
+  border-radius:7px;background:var(--pinkbg);
+  color:#ffe6ee;padding:5px 8px;font-size:9px;font-weight:800
+}
+.prompttext{padding:12px;font-size:10.5px;line-height:1.6}
+.empty{
+  grid-column:1/-1;padding:30px;border:1px dashed var(--border);
+  border-radius:12px;text-align:center;color:var(--muted)
+}
+.footer{text-align:center;color:var(--soft);font-size:9px;margin:20px 0}
+@media(max-width:1100px){
+  .workspace{grid-template-columns:1fr}
+  .detail{position:static;max-height:none}
+}
+@media(max-width:650px){
+  .app{padding:12px}.hero{padding:22px 17px}.hero h1{font-size:35px}
+  .grid{grid-template-columns:1fr}.library,.detail{padding:14px}
+  .badge{display:none}.row{grid-template-columns:112px 1fr}
+}
+</style>
 </head>
 
 <body>
-
 <main class="app">
 
-  <header class="topbar">
-
-    <div class="brand">
-
-      <div class="brand-icon">
-        🎭
-      </div>
-
-      <div>
-        <div class="brand-name">
-          Emotion Performance Guide
-        </div>
-
-        <div class="version">
-          V9.2 · Facial & Emotion Language
-        </div>
-      </div>
-
+<header class="top">
+  <div class="brand">
+    <div class="logo">🎭</div>
+    <div>
+      <strong>Emotion Performance Guide</strong>
+      <div class="version">V9.3 · Full Emotion Taxonomy</div>
     </div>
+  </div>
+  <div class="badge">Human acting reference · No scene builder</div>
+</header>
 
-    <div class="top-badge">
-      Emotion reference only · No scene builder
+<section class="hero">
+  <div class="kicker">Facial & Emotional Performance Language</div>
+  <h1>Find the feeling. <span>Read how it moves.</span></h1>
+  <p>
+    Browse emotion families, compare dramatic tone and intensity,
+    then study eye language, eyelids, mouth opening, teeth visibility,
+    lips, mouth corners, breath and body behaviour.
+  </p>
+  <div class="flow">
+    <span>Choose Emotion</span>
+    <span>→</span>
+    <span>Choose Scene Tone</span>
+    <span>→</span>
+    <span>Compare Intensity</span>
+    <span>→</span>
+    <span>Study Facial Language</span>
+    <span>→</span>
+    <span>Copy Prompt</span>
+  </div>
+</section>
+
+<section class="workspace">
+
+<section class="library">
+  <div class="head">
+    <div>
+      <h2>Emotion Library</h2>
+      <p>Emotion first. Performance language second.</p>
     </div>
-
-  </header>
-
-
-  <section class="hero">
-
-    <div class="hero-kicker">
-      Human Performance Reference
-    </div>
-
-    <h1>
-      Choose the emotion.
-      <span>Read the face.</span>
-    </h1>
-
-    <p>
-      Compare how the same emotion changes across comedy, romance,
-      drama, conflict and suspense. Study eye language, eyelids,
-      mouth opening, teeth visibility, lip shape, mouth corners,
-      breathing and body control before copying a selective prompt.
-    </p>
-
-    <div class="flow">
-
-      <span class="flow-chip">
-        Choose Emotion
-      </span>
-
-      <span class="arrow">→</span>
-
-      <span class="flow-chip">
-        Choose Scene Tone
-      </span>
-
-      <span class="arrow">→</span>
-
-      <span class="flow-chip">
-        Compare Intensity
-      </span>
-
-      <span class="arrow">→</span>
-
-      <span class="flow-chip">
-        Study Performance
-      </span>
-
-      <span class="arrow">→</span>
-
-      <span class="flow-chip">
-        Copy Prompt
-      </span>
-
-    </div>
-
-  </section>
-
-
-  <section class="workspace">
-
-    <section class="library">
-
-      <div class="section-head">
-
-        <div>
-          <h2>Emotion Library</h2>
-
-          <p>
-            Select the emotional behaviour that fits your existing scene.
-          </p>
-        </div>
-
-        <div
-          id="emotionCount"
-          class="emotion-count">
-        </div>
-
-      </div>
-
-
-      <div class="search-wrap">
-
-        <span class="search-symbol">
-          ⌕
-        </span>
-
-        <input
-          id="searchInput"
-          class="search"
-          type="text"
-          placeholder="Search: shock, malu, suspicious, jealousy, breakdown..."
-        />
-
-      </div>
-
-
-      <div
-        id="categoryButtons"
-        class="categories">
-      </div>
-
-
-      <div
-        id="emotionGrid"
-        class="emotion-grid">
-      </div>
-
-    </section>
-
-
-    <aside
-      id="detailPanel"
-      class="detail">
-    </aside>
-
-  </section>
-
-
-  <div class="footer">
-    Intensity determines strength. Scene tone determines the form of expression.
+    <div class="count" id="count"></div>
   </div>
 
-</main>
+  <div class="searchbox">
+    <input
+      id="search"
+      class="search"
+      placeholder="Search: merajuk, shock, jealousy, grief, half-lidded..."
+    >
+  </div>
 
+  <div id="categories" class="categories"></div>
+  <div id="grid" class="grid"></div>
+</section>
+
+<aside class="detail" id="detail"></aside>
+
+</section>
+
+<div class="footer">
+Intensity determines strength · Dramatic context determines expression grammar
+</div>
+
+</main>
 
 <script>
 
 /* =========================================================
-   CORE SETTINGS
+   MASTER TAXONOMY
 ========================================================= */
 
-const levelNames = [
-  "Barely There",
-  "Restrained",
-  "Readable",
-  "Strong",
-  "Heightened"
-];
+const GROUPS = {
 
+"Comedy / Social":[
+ ["amusement","Amusement","Pleasure trying not to become laughter"],
+ ["comic-shock","Comic Shock","Surprise structured for reaction and payoff"],
+ ["disbelief","Disbelief","The mind rejects what it has just received"],
+ ["awkwardness","Awkwardness","Social rhythm becomes uncomfortable"],
+ ["embarrassment","Embarrassment","Feeling suddenly exposed or self-conscious"],
+ ["annoyance","Annoyance","Patience is thinning"],
+ ["sulking","Sulking / Merajuk","Indirect displeasure through withdrawal or pout"],
+ ["playful-teasing","Playful Teasing","Provocation delivered for fun"],
+ ["smugness","Smugness","Quiet satisfaction with one's advantage"],
+ ["sarcasm","Sarcasm","Meaning intentionally contradicts surface politeness"]
+],
 
-const channelLabels = [
-  ["eyeLanguage", "Eye Language"],
-  ["eyeMovement", "Eye Movement"],
-  ["eyelids", "Eyelid Language"],
-  ["brows", "Brows"],
-  ["moisture", "Eye Moisture"],
-  ["mouthOpening", "Mouth Opening"],
-  ["teeth", "Teeth Language"],
-  ["lipShape", "Lip / Mouth Shape"],
-  ["corners", "Mouth Corners"],
-  ["cheeks", "Cheeks"],
-  ["jawNeck", "Jaw / Neck / Throat"],
-  ["breath", "Breathing"],
-  ["hands", "Hands / Fingers"],
-  ["body", "Body / Posture"],
-  ["wholeBody", "Whole-Body State"],
-  ["nonverbal", "Non-Verbal"],
-  ["timing", "Reaction Timing"]
-];
+"Romance / Attraction":[
+ ["flustered-attraction","Flustered Attraction","Attraction disrupts normal composure"],
+ ["hidden-attraction","Hidden Attraction","Attraction deliberately kept private"],
+ ["tenderness","Tenderness","Warm, careful emotional attention"],
+ ["restrained-affection","Restrained Affection","Affection visible only through small leaks"],
+ ["longing","Longing","Desire for closeness that cannot yet be fulfilled"],
+ ["romantic-confusion","Romantic Confusion","Attraction conflicts with expectation or identity"],
+ ["romantic-jealousy","Romantic Jealousy","Attention repeatedly checks a perceived rival"],
+ ["desire","Desire","Strong pull toward intimacy or closeness"],
+ ["shy-pleasure","Shy Pleasure","Enjoyment mixed with self-consciousness"],
+ ["love","Love","Deep attachment expressed through care and emotional investment"]
+],
 
+"Joy / Positive":[
+ ["joy","Joy","Open positive emotional release"],
+ ["excitement","Excitement","Positive anticipation increases energy"],
+ ["relief","Relief","Tension leaves after danger or uncertainty passes"],
+ ["satisfaction","Satisfaction","A desired result quietly lands"],
+ ["pride","Pride","Positive self-worth becomes physically visible"],
+ ["hope","Hope","Attention turns toward a possible positive future"],
+ ["gratitude","Gratitude","Warm appreciation toward another person"],
+ ["delight","Delight","A pleasurable surprise creates spontaneous brightness"]
+],
 
-const categories = [
-  "All",
-  "Romance",
-  "Comedy / Social",
-  "Concern",
-  "Vulnerability",
-  "Conflict",
-  "Suspense",
-  "Distress"
-];
+"Concern / Anxiety":[
+ ["mild-concern","Mild Concern","Attention increases without becoming fear"],
+ ["worry","Worry","Attention repeatedly returns to what may go wrong"],
+ ["unease","Unease","Something feels wrong but the threat is unclear"],
+ ["anxiety","Anxiety","Future uncertainty begins affecting regulation"],
+ ["nervousness","Nervousness","Self-regulation is disrupted by anticipation"],
+ ["dread","Dread","The person expects something bad is approaching"],
+ ["protective-concern","Protective Concern","Concern organizes attention around another person's safety"]
+],
+
+"Sadness / Vulnerability":[
+ ["hurt","Emotional Hurt","A personally meaningful wound lands"],
+ ["sadness","Sadness","Emotional energy lowers after loss or disappointment"],
+ ["disappointment","Disappointment","Expectation collapses"],
+ ["loneliness","Loneliness","A felt absence of emotional connection"],
+ ["heartbreak","Heartbreak","Attachment is damaged or lost"],
+ ["grief","Grief","The mind and body respond to significant loss"],
+ ["despair","Despair","Hope becomes difficult to access"],
+ ["guilt","Guilt","The person believes they have caused or allowed harm"],
+ ["shame","Shame","The person feels personally exposed or diminished"]
+],
+
+"Conflict / Anger":[
+ ["irritation","Irritation","Small repeated friction begins to register"],
+ ["frustration","Frustration","A blocked objective creates pressure"],
+ ["quiet-anger","Quiet Anger","Strong anger held under deliberate control"],
+ ["rage","Rage","Anger overwhelms ordinary restraint"],
+ ["resentment","Resentment","Old hurt remains active beneath current behaviour"],
+ ["defiance","Defiance","The person refuses another's control"],
+ ["revenge","Revenge","Anger is organized toward retaliation"],
+ ["defensiveness","Defensiveness","The person protects self-image or position"],
+ ["betrayal-anger","Betrayal Anger","Trust violation turns hurt into confrontation"]
+],
+
+"Suspense / Threat":[
+ ["alertness","Alertness","Attention sharpens toward possible danger"],
+ ["suspicion","Suspicion","The person tests whether something is false or hidden"],
+ ["controlled-fear","Controlled Fear","Threat is real but regulation remains functional"],
+ ["fear","Fear","Danger strongly affects attention and body"],
+ ["panic","Panic","Fear begins overwhelming organized control"],
+ ["shock","Shock / Surprise","Sudden information interrupts processing"],
+ ["threat-assessment","Threat Assessment","The person studies danger before deciding how to act"],
+ ["startle","Startle","A fast involuntary response to sudden stimulus"]
+],
+
+"Cognitive / Discovery":[
+ ["curiosity","Curiosity","Attention is pulled toward something unknown"],
+ ["confusion","Confusion","Available information does not yet form a coherent meaning"],
+ ["realization","Realization","Meaning suddenly becomes clear"],
+ ["recognition","Recognition","The person identifies someone, something or a pattern"],
+ ["identity-confusion","Identity Confusion","Sense of self conflicts with current reality"],
+ ["processing","Processing","The mind needs time before emotional response forms"],
+ ["skepticism","Skepticism","Information is considered but not yet believed"]
+],
+
+"Power / Determination":[
+ ["confidence","Confidence","The person trusts their own ability or position"],
+ ["resolve","Resolve","A decision becomes internally settled"],
+ ["determination","Determination","Emotion organizes toward a goal"],
+ ["protective-resolve","Protective Resolve","Care becomes purposeful action"],
+ ["courage","Courage","Fear exists but does not control the decision"],
+ ["dominance","Dominance","The person claims interpersonal or spatial power"],
+ ["commitment","Commitment","A chosen course becomes difficult to reverse"],
+ ["triumph","Triumph","Success produces controlled or open power"]
+],
+
+"Dysregulation / Extreme":[
+ ["emotional-overload","Emotional Overload","Too many emotional signals compete for regulation"],
+ ["mental-breakdown","Mental Breakdown","Emotional regulation progressively fails"],
+ ["grief-collapse","Grief Collapse","Loss overwhelms physical and vocal control"],
+ ["desperation","Desperation","The need for an outcome overrides normal restraint"],
+ ["panic-collapse","Panic Collapse","Fear regulation is no longer functional"],
+ ["crying-breakdown","Crying Breakdown","Breath, throat and speech destabilize through crying"],
+ ["shutdown","Emotional Shutdown","The system protects itself by reducing response"]
+]
+
+};
 
 
 /* =========================================================
-   EMOTION DATABASE
+   EMOTION PROFILES
+   These tell the engine which facial grammar dominates.
 ========================================================= */
 
-const emotions = [
+const PROFILES = {
 
-/* ---------------------------------------------------------
-   SHOCK
---------------------------------------------------------- */
-
-{
-  id: "shock",
-  category: "Suspense",
-  name: "Shock / Surprise",
-
-  subtitle:
-    "A sudden piece of information or event interrupts normal processing.",
-
-  keywords:
-    ["shock","surprise","terkejut","unexpected","realization"],
-
-  meaning:
-    "Shock is the interruption itself. The scene tone determines whether the interruption becomes funny, painful, frightening, romantic or confrontational.",
-
-  principle:
-    "Do not start with a generic shocked face. Let the stimulus register first, then let eyes, eyelids, mouth and body respond in sequence.",
-
-  goodFor:
-    ["Unexpected reveal","Comedy payoff","Bad news","Threat","Romantic surprise"],
-
-  tones: {
-
-    "Comedy": {
-
-      control: [95,90,80,65,50],
-
-      summaries: [
-        "A tiny interruption creates comic anticipation.",
-        "The surprise becomes readable through a small freeze and delayed facial response.",
-        "A clear freeze, second look and mouth reaction create the comedy.",
-        "The reaction becomes broad but remains rhythmically controlled.",
-        "Heightened rom-com surprise uses precise freeze, recoil and secondary payoff."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Did I hear that correctly?",
-          eyeMovement:"Gaze pauses for a fraction, then returns to normal.",
-          eyelids:"Tiny upper-lid lift; blink mostly normal.",
-          brows:"Minimal lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Neutral.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Tiny movement pause.",
-          wholeBody:"Composed.",
-          nonverbal:"Usually none.",
-          timing:"Stimulus → tiny pause → continue."
-        },
-
-        {
-          eyeLanguage:"Wait... what?",
-          eyeMovement:"Gaze freezes briefly, then gives one deliberate second look.",
-          eyelids:"Upper eyelids lift slightly; blink delayed until after the second look.",
-          brows:"Small lift.",
-          moisture:"Normal.",
-          mouthOpening:"Lips part slightly after the eyes register.",
-          teeth:"Usually hidden.",
-          lipShape:"Loose small parting.",
-          corners:"Neutral.",
-          cheeks:"Mostly relaxed.",
-          jawNeck:"Tiny head pull-back possible.",
-          breath:"Small surprised inhale.",
-          hands:"Mostly still.",
-          body:"Small controlled freeze.",
-          wholeBody:"High control.",
-          nonverbal:"Soft 'huh' or breath sound possible.",
-          timing:"Eyes register → hold → lips part → second look → recovery."
-        },
-
-        {
-          eyeLanguage:"You cannot be serious.",
-          eyeMovement:"Clear gaze freeze followed by a deliberate second look.",
-          eyelids:"Readable upper-lid lift; blink held until reaction beat completes.",
-          brows:"Visible lift.",
-          moisture:"Normal.",
-          mouthOpening:"Small-to-medium opening.",
-          teeth:"May be faintly visible because of the opening, not as a smile.",
-          lipShape:"Relaxed open-mouth reaction.",
-          corners:"Remain neutral so the expression stays surprised rather than happy.",
-          cheeks:"Slight tension.",
-          jawNeck:"Small jaw drop and head recoil.",
-          breath:"Short inhale.",
-          hands:"May pause mid-action.",
-          body:"Controlled recoil.",
-          wholeBody:"Readable comic surprise.",
-          nonverbal:"Small gasp or incredulous sound.",
-          timing:"Stimulus → freeze → eyelids → mouth opens → recoil → hold → secondary look."
-        },
-
-        {
-          eyeLanguage:"This is ridiculous.",
-          eyeMovement:"Freeze, double-take, then prolonged stare.",
-          eyelids:"Strong upper-lid lift followed by expressive blink.",
-          brows:"Strong lift.",
-          moisture:"Normal.",
-          mouthOpening:"Clear open-mouth hold.",
-          teeth:"Can become visible depending on jaw opening.",
-          lipShape:"Open, then resets into disbelief.",
-          corners:"May pull asymmetrically during recovery.",
-          cheeks:"More active.",
-          jawNeck:"Readable recoil and jaw reset.",
-          breath:"Audible inhale or exhale.",
-          hands:"Small comic gesture possible.",
-          body:"Visible recoil with controlled recovery.",
-          wholeBody:"Strong but organized.",
-          nonverbal:"Gasp, scoff or incredulous sound.",
-          timing:"Setup → freeze → large reaction → hold → second payoff."
-        },
-
-        {
-          eyeLanguage:"You have completely broken my brain.",
-          eyeMovement:"Large double-take or exaggerated gaze return.",
-          eyelids:"Highly expressive upper-lid lift and blink sequence.",
-          brows:"Broad comic movement.",
-          moisture:"Normal.",
-          mouthOpening:"Large open-mouth reaction can be used.",
-          teeth:"May be visible naturally through the open-mouth expression.",
-          lipShape:"Broad reactive shape.",
-          corners:"Can shift during secondary reaction.",
-          cheeks:"Strong activation.",
-          jawNeck:"Clear jaw drop or head recoil.",
-          breath:"Heightened gasp.",
-          hands:"Larger comic gesture possible.",
-          body:"Freeze, recoil, recovery.",
-          wholeBody:"Heightened physical comedy.",
-          nonverbal:"Gasp, vocal protest or comic sound.",
-          timing:"Stimulus → freeze → large facial response → body recoil → hold → secondary reaction → recovery."
-        }
-
-      ]
-    },
-
-
-    "Sad / Painful": {
-
-      control: [98,94,82,62,40],
-
-      summaries: [
-        "The information interrupts warmth for a fraction.",
-        "Processing slows and the face quietly loses energy.",
-        "Shock becomes painful as the person struggles to understand what was heard.",
-        "The emotional injury becomes difficult to contain.",
-        "Shock progresses into grief or emotional collapse."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Something is wrong.",
-          eyeMovement:"Gaze pauses.",
-          eyelids:"Small stillness; blink slightly delayed.",
-          brows:"Minimal inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral but loses warmth.",
-          corners:"Tiny loss of support.",
-          cheeks:"Softness decreases.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Brief pause.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Information lands → brief stillness."
-        },
-
-        {
-          eyeLanguage:"I heard you, but I do not understand yet.",
-          eyeMovement:"Gaze freezes, then becomes slightly unfocused.",
-          eyelids:"Delayed slow blink.",
-          brows:"Small inner-brow tension.",
-          moisture:"Normal.",
-          mouthOpening:"Lips part only slightly.",
-          teeth:"Hidden.",
-          lipShape:"Soft parting followed by small press.",
-          corners:"Drop very subtly.",
-          cheeks:"Lose warmth.",
-          jawNeck:"Small swallow.",
-          breath:"Breath pause or incomplete inhale.",
-          hands:"Become still.",
-          body:"Movement reduces.",
-          wholeBody:"High emotional control.",
-          nonverbal:"Quiet exhale.",
-          timing:"Information → stillness → slow blink → lips part → swallow."
-        },
-
-        {
-          eyeLanguage:"This cannot be true.",
-          eyeMovement:"Gaze remains fixed, then gradually retreats.",
-          eyelids:"Slow blink; lower-lid tension begins.",
-          brows:"Readable inner tension.",
-          moisture:"Faint glassiness possible after processing.",
-          mouthOpening:"Small opening; no dramatic jaw drop.",
-          teeth:"Hidden.",
-          lipShape:"Lips lose control slightly, then press together.",
-          corners:"Subtle downward loss of support.",
-          cheeks:"Visible emotional heaviness.",
-          jawNeck:"Throat tightens.",
-          breath:"Incomplete inhale followed by restrained exhale.",
-          hands:"Grip or stillness.",
-          body:"Posture begins to close.",
-          wholeBody:"Pain entering the shock.",
-          nonverbal:"Broken exhale possible.",
-          timing:"Information lands → processing delay → breath changes → pain appears."
-        },
-
-        {
-          eyeLanguage:"I understand now, and it hurts.",
-          eyeMovement:"Eye contact becomes difficult.",
-          eyelids:"Repeated controlled blink.",
-          brows:"Strong inner emotional tension.",
-          moisture:"Tear film may develop.",
-          mouthOpening:"Small unstable opening during failed speech.",
-          teeth:"Hidden.",
-          lipShape:"Lip tremor or compression.",
-          corners:"Downward pull becomes readable.",
-          cheeks:"Tension around eyes and mouth.",
-          jawNeck:"Strong throat tension.",
-          breath:"Uneven.",
-          hands:"May brace or seek support.",
-          body:"Shoulders lose some support.",
-          wholeBody:"Control weakening.",
-          nonverbal:"Broken voice or breath.",
-          timing:"Shock → recognition → throat tightens → speech begins to fail."
-        },
-
-        {
-          eyeLanguage:"The reality is overwhelming.",
-          eyeMovement:"Focus breaks or drops away.",
-          eyelids:"Tear-control blinking fails.",
-          brows:"Open emotional pain.",
-          moisture:"Tears may fall.",
-          mouthOpening:"Mouth opens during crying or failed speech.",
-          teeth:"Visibility is incidental, never smile-like.",
-          lipShape:"Tremor and loss of control.",
-          corners:"Downward and unstable.",
-          cheeks:"Strong crying activation.",
-          jawNeck:"Visible strain.",
-          breath:"Broken.",
-          hands:"Support-seeking or face-covering.",
-          body:"Posture can collapse inward.",
-          wholeBody:"Shock transforms into grief.",
-          nonverbal:"Crying or broken vocalization.",
-          timing:"Stillness → realization → regulation fails → grief releases."
-        }
-
-      ]
-    },
-
-
-    "Fear / Threat": {
-
-      control: [97,90,76,55,30],
-
-      summaries: [
-        "The threat registers through a brief interruption.",
-        "Attention locks onto danger while the body remains functional.",
-        "Shock becomes clearly fear-based and defensive.",
-        "Composure becomes difficult to maintain.",
-        "The shock pushes directly toward panic or survival response."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"What was that?",
-          eyeMovement:"Quick focus shift to possible threat.",
-          eyelids:"Tiny upper-lid lift.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Neutral.",
-          cheeks:"Slight tension.",
-          jawNeck:"Small neck orientation.",
-          breath:"Tiny pause.",
-          hands:"Still.",
-          body:"Brief stop.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Sound or threat → focus shift → pause."
-        },
-
-        {
-          eyeLanguage:"That could be dangerous.",
-          eyeMovement:"Gaze locks onto threat and checks surroundings once.",
-          eyelids:"Upper lids lift, then lower lids engage in focused attention.",
-          brows:"Small fear tension.",
-          moisture:"Normal.",
-          mouthOpening:"Lips may part slightly.",
-          teeth:"Hidden.",
-          lipShape:"Small tension.",
-          corners:"Neutral.",
-          cheeks:"Less relaxed.",
-          jawNeck:"Neck muscles engage subtly.",
-          breath:"Quiet controlled inhale.",
-          hands:"Become still or protective.",
-          body:"Movement reduces.",
-          wholeBody:"Functional fear.",
-          nonverbal:"Quiet breath sound.",
-          timing:"Threat registers → eyes lock → breath catches → body stills."
-        },
-
-        {
-          eyeLanguage:"I need to understand where the danger is.",
-          eyeMovement:"Threat tracking and deliberate scanning.",
-          eyelids:"Focused, reduced relaxed blinking.",
-          brows:"Readable fear.",
-          moisture:"Normal or faintly glassy.",
-          mouthOpening:"Slightly parted.",
-          teeth:"Usually hidden.",
-          lipShape:"Tense.",
-          corners:"Neutral or slightly pulled down.",
-          cheeks:"Visible tension.",
-          jawNeck:"Throat and neck engage.",
-          breath:"Shallow but controlled.",
-          hands:"Protective readiness.",
-          body:"Guarded posture.",
-          wholeBody:"Fear visible but regulated.",
-          nonverbal:"Quiet gasp possible.",
-          timing:"Threat → lock → scan → defensive preparation."
-        },
-
-        {
-          eyeLanguage:"I may need to move now.",
-          eyeMovement:"Rapid threat checks.",
-          eyelids:"More open during new threat information, then narrowed focus.",
-          brows:"Strong fear.",
-          moisture:"Possible moisture.",
-          mouthOpening:"More clearly parted.",
-          teeth:"May show because of tension or breathing.",
-          lipShape:"Tense.",
-          corners:"Pulled slightly downward.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible engagement.",
-          breath:"Shallow and increasingly difficult.",
-          hands:"Defensive gesture.",
-          body:"Braced.",
-          wholeBody:"Control weakening.",
-          nonverbal:"Sharp inhale.",
-          timing:"Threat escalates → breath changes → body prepares for action."
-        },
-
-        {
-          eyeLanguage:"Survive.",
-          eyeMovement:"Attention jumps between threat and escape.",
-          eyelids:"Highly reactive.",
-          brows:"Open fear.",
-          moisture:"Watery eyes possible.",
-          mouthOpening:"Open for breathing.",
-          teeth:"May show incidentally through tension.",
-          lipShape:"No longer carefully controlled.",
-          corners:"Fear-driven tension.",
-          cheeks:"Strong strain.",
-          jawNeck:"Visible neck tension.",
-          breath:"Dysregulated.",
-          hands:"Strong protective behaviour.",
-          body:"Freeze, flee or defensive movement.",
-          wholeBody:"Survival response.",
-          nonverbal:"Gasp or cry.",
-          timing:"Shock → fear → regulation fails → survival behaviour."
-        }
-
-      ]
-    },
-
-
-    "Romantic": {
-
-      control: [98,94,84,70,55],
-
-      summaries: [
-        "The romantic meaning barely registers.",
-        "Surprise is mixed with self-conscious attraction.",
-        "The romantic implications become clearly readable.",
-        "The person becomes visibly flustered by the surprise.",
-        "Heightened rom-com surprise uses open expressive recovery."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Did that just mean what I think it meant?",
-          eyeMovement:"Tiny pause on the other person.",
-          eyelids:"Small upper-lid response.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Tiny almost-smile possible.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Tiny pause.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Romantic cue → tiny register → continue."
-        },
-
-        {
-          eyeLanguage:"I did not expect that... and I liked it.",
-          eyeMovement:"Eye contact holds a fraction too long, then breaks.",
-          eyelids:"Small upper-lid lift followed by softened eyelids.",
-          brows:"Tiny lift.",
-          moisture:"Normal.",
-          mouthOpening:"Lips part slightly.",
-          teeth:"Hidden.",
-          lipShape:"Small almost-smile.",
-          corners:"One or both corners begin to lift before being controlled.",
-          cheeks:"Tiny lift.",
-          jawNeck:"Small swallow possible.",
-          breath:"Brief breath pause.",
-          hands:"Mostly normal.",
-          body:"Momentary stillness.",
-          wholeBody:"Controlled fluster.",
-          nonverbal:"Soft exhale.",
-          timing:"Cue → eyes register → lips part → gaze breaks → composure returns."
-        },
-
-        {
-          eyeLanguage:"I am suddenly very aware of you.",
-          eyeMovement:"Gaze returns to the person more than once.",
-          eyelids:"Initial lift, then softer eye expression.",
-          brows:"Readable surprise.",
-          moisture:"Normal.",
-          mouthOpening:"Small opening followed by suppressed smile.",
-          teeth:"Slight upper teeth may appear if smile escapes.",
-          lipShape:"Almost-smile.",
-          corners:"Clearly trying to rise.",
-          cheeks:"Visible warmth.",
-          jawNeck:"Swallow or small throat tension.",
-          breath:"Affected but controlled.",
-          hands:"Slight nervous tension.",
-          body:"Movement hesitates.",
-          wholeBody:"Readable attraction.",
-          nonverbal:"Breathy laugh possible.",
-          timing:"Surprise → attraction registers → self-conscious recovery."
-        },
-
-        {
-          eyeLanguage:"You have completely disrupted my composure.",
-          eyeMovement:"Repeated gaze break and return.",
-          eyelids:"More expressive lift and blink changes.",
-          brows:"Clear response.",
-          moisture:"Normal.",
-          mouthOpening:"Clearly parts during surprise.",
-          teeth:"May show through difficult-to-hide smile.",
-          lipShape:"Smile suppression becomes difficult.",
-          corners:"Rise noticeably.",
-          cheeks:"Strong activation.",
-          jawNeck:"Visible swallow.",
-          breath:"Clearly affected.",
-          hands:"Self-regulation possible.",
-          body:"Small recoil or retreat.",
-          wholeBody:"Strong fluster.",
-          nonverbal:"Nervous laugh.",
-          timing:"Cue → freeze → reaction → gaze avoidance → awkward recovery."
-        },
-
-        {
-          eyeLanguage:"This is overwhelming in the most embarrassing way.",
-          eyeMovement:"Heightened eye contact break, double-look or avoidance.",
-          eyelids:"Expressive lift and rapid recovery blink.",
-          brows:"Heightened.",
-          moisture:"Normal.",
-          mouthOpening:"Open surprised reaction.",
-          teeth:"Smile teeth may appear during recovery.",
-          lipShape:"Open surprise transforms into embarrassed smile.",
-          corners:"Strong upward movement.",
-          cheeks:"Strong bashful activation.",
-          jawNeck:"Visible reaction.",
-          breath:"Heightened.",
-          hands:"Playful self-conscious gesture.",
-          body:"Freeze or recoil.",
-          wholeBody:"Heightened rom-com.",
-          nonverbal:"Breathy laugh or surprised sound.",
-          timing:"Surprise → freeze → open reaction → embarrassment → comic recovery."
-        }
-
-      ]
-    }
-
-  }
+"Comedy / Social":{
+ eye:"social",
+ lid:"attitude",
+ mouth:"expressive",
+ body:"responsive",
+ defaultTones:["Natural Comedy","Heightened Rom-Com"]
 },
 
-
-/* ---------------------------------------------------------
-   SUSPICION
---------------------------------------------------------- */
-
-{
-  id: "suspicion",
-  category: "Suspense",
-  name: "Suspicion",
-
-  subtitle:
-    "Something does not add up, so the person begins testing it.",
-
-  keywords:
-    ["suspicious","curiga","doubt","lie","side eye"],
-
-  meaning:
-    "Suspicion is investigative distrust. The same suspicion can feel comic, serious or threatening depending on scene tone.",
-
-  principle:
-    "The eyes do the thinking. Eyelids and mouth shape supply the attitude.",
-
-  goodFor:
-    ["Possible lie","Comedy side-eye","Hidden motive","Interrogation"],
-
-  tones: {
-
-    "Comedy": {
-
-      control: [99,96,90,80,68],
-
-      summaries: [
-        "A tiny second look suggests doubt.",
-        "Half-lidded eye language and a restrained mouth shape make the doubt comic.",
-        "The judging reaction becomes clearly readable.",
-        "Suspicion becomes openly expressive.",
-        "Heightened comic distrust uses precise side-eye and reaction holds."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Hmm?",
-          eyeMovement:"Tiny second look.",
-          eyelids:"Almost normal.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"One corner may tighten slightly.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Comfortable.",
-          wholeBody:"Highly controlled.",
-          nonverbal:"None.",
-          timing:"Notice inconsistency → tiny check → continue."
-        },
-
-        {
-          eyeLanguage:"You expect me to believe that?",
-          eyeMovement:"Brief side-eye followed by one deliberate second look.",
-          eyelids:"Slightly half-lidded with subtle lower-lid engagement.",
-          brows:"One brow may lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or fractionally parted.",
-          teeth:"Hidden.",
-          lipShape:"Tiny asymmetric purse or forward lip projection.",
-          corners:"One corner may pull slightly upward or sideways.",
-          cheeks:"Mostly relaxed.",
-          jawNeck:"Small head angle.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Relaxed; slight lean back possible.",
-          wholeBody:"Controlled comic judgment.",
-          nonverbal:"Tiny hum, scoff or tongue click if motivated.",
-          timing:"Side-eye → half-lidded hold → tiny mouth reaction → second look."
-        },
-
-        {
-          eyeLanguage:"I am silently judging this story.",
-          eyeMovement:"Side-eye holds longer, then returns deliberately.",
-          eyelids:"Clear half-lidded judging stare.",
-          brows:"Readable asymmetric lift.",
-          moisture:"Normal.",
-          mouthOpening:"Lips part slightly before the second look.",
-          teeth:"Usually hidden.",
-          lipShape:"Asymmetric purse.",
-          corners:"One corner becomes more readable.",
-          cheeks:"Slight tension.",
-          jawNeck:"Head tilts.",
-          breath:"Controlled.",
-          hands:"Minimal.",
-          body:"Comfortable but observant.",
-          wholeBody:"Readable comic suspicion.",
-          nonverbal:"Restrained scoff or hum.",
-          timing:"Claim → side-eye → hold → mouth reacts → second look → pause."
-        },
-
-        {
-          eyeLanguage:"This story is ridiculous.",
-          eyeMovement:"Extended side-eye, double-check, then prolonged stare.",
-          eyelids:"Strong half-lidded or narrowed comic judgment.",
-          brows:"Expressive asymmetry.",
-          moisture:"Normal.",
-          mouthOpening:"Small open-mouth disbelief may appear.",
-          teeth:"Usually hidden unless a grin develops.",
-          lipShape:"Pronounced purse or projected lip.",
-          corners:"One corner can pull sharply.",
-          cheeks:"More active.",
-          jawNeck:"Visible head angle or recoil.",
-          breath:"Small nasal exhale.",
-          hands:"Small dismissive gesture.",
-          body:"Leans back or freezes.",
-          wholeBody:"Strong but controlled.",
-          nonverbal:"Tongue click or scoff.",
-          timing:"Side-eye → reaction hold → head response → secondary look."
-        },
-
-        {
-          eyeLanguage:"I cannot believe you are still trying this.",
-          eyeMovement:"Heightened side-eye and deliberate double-take.",
-          eyelids:"Highly expressive half-lidded judging look.",
-          brows:"Broad asymmetric reaction.",
-          moisture:"Normal.",
-          mouthOpening:"Open disbelief may appear.",
-          teeth:"May show during sarcastic grin.",
-          lipShape:"Strong pout, purse or comic mouth distortion.",
-          corners:"Clearly asymmetrical.",
-          cheeks:"Strong activation.",
-          jawNeck:"Large but controlled head reaction.",
-          breath:"Audible exhale.",
-          hands:"Comic gesture possible.",
-          body:"Heightened recoil or lean.",
-          wholeBody:"Rom-com physical comedy.",
-          nonverbal:"Scoff, tongue click or incredulous sound.",
-          timing:"Claim → freeze → side-eye → exaggerated hold → second reaction → recovery."
-        }
-
-      ]
-    },
-
-
-    "Serious / Thriller": {
-
-      control: [99,97,92,84,72],
-
-      summaries: [
-        "One reassessment suggests uncertainty.",
-        "The person quietly checks the inconsistency again.",
-        "Suspicion becomes clearly investigative.",
-        "The body becomes guarded and distrustful.",
-        "Suspicion turns into open accusation or threat assessment."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Something does not fit.",
-          eyeMovement:"Brief second look.",
-          eyelids:"Tiny narrowing.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Neutral.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Normal.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Notice → reassess → continue."
-        },
-
-        {
-          eyeLanguage:"I am checking whether that was true.",
-          eyeMovement:"Returns to the person or detail once more.",
-          eyelids:"Subtle lower-lid tension and narrowing.",
-          brows:"Small tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Slightly firmer.",
-          corners:"Neutral.",
-          cheeks:"Less relaxed.",
-          jawNeck:"Small head angle.",
-          breath:"Controlled.",
-          hands:"Still.",
-          body:"Casual movement reduces.",
-          wholeBody:"High control.",
-          nonverbal:"None.",
-          timing:"Information → pause → second check."
-        },
-
-        {
-          eyeLanguage:"I do not trust this.",
-          eyeMovement:"Sustained probing attention.",
-          eyelids:"Reduced blink and clearer narrowing.",
-          brows:"Readable suspicion.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Firm.",
-          corners:"Slight compression.",
-          cheeks:"Facial tension.",
-          jawNeck:"Head orientation becomes deliberate.",
-          breath:"Controlled.",
-          hands:"Minimal.",
-          body:"Guarded.",
-          wholeBody:"Investigative distrust.",
-          nonverbal:"Quiet hum possible.",
-          timing:"Observe → test → hold."
-        },
-
-        {
-          eyeLanguage:"I think you are hiding something.",
-          eyeMovement:"Strong monitoring.",
-          eyelids:"Pronounced lower-lid tension.",
-          brows:"Strong distrust.",
-          moisture:"Normal.",
-          mouthOpening:"Mostly closed.",
-          teeth:"Hidden.",
-          lipShape:"Tight.",
-          corners:"Compressed.",
-          cheeks:"Visible tension.",
-          jawNeck:"Neck posture guarded.",
-          breath:"Controlled.",
-          hands:"Defensive readiness.",
-          body:"Clearly guarded.",
-          wholeBody:"Strong suspicion.",
-          nonverbal:"Low scoff possible.",
-          timing:"Monitor → hold → deliberate response."
-        },
-
-        {
-          eyeLanguage:"I know you are lying.",
-          eyeMovement:"Direct accusatory focus.",
-          eyelids:"Strong narrow focus.",
-          brows:"Open distrust.",
-          moisture:"Normal.",
-          mouthOpening:"Opens mainly for confrontation.",
-          teeth:"May become visible only through forceful speech.",
-          lipShape:"Firm.",
-          corners:"Tense.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible engagement.",
-          breath:"Forceful but controlled.",
-          hands:"Direct gesture possible.",
-          body:"Confrontational orientation.",
-          wholeBody:"Open accusation.",
-          nonverbal:"Scoff or sharp exhale.",
-          timing:"Evidence lands → certainty → confrontation."
-        }
-
-      ]
-    }
-
-  }
+"Romance / Attraction":{
+ eye:"connection",
+ lid:"soft",
+ mouth:"suppressed",
+ body:"hesitant",
+ defaultTones:["Natural Romance","Rom-Com"]
 },
 
-
-/* ---------------------------------------------------------
-   MILD CONCERN
---------------------------------------------------------- */
-
-{
-  id: "mild-concern",
-  category: "Concern",
-  name: "Mild Concern",
-
-  subtitle:
-    "Attention increases because something matters, without becoming anxiety.",
-
-  keywords:
-    ["concern","risau sedikit","care","worried"],
-
-  meaning:
-    "The person becomes more attentive to a possible problem while remaining fundamentally calm.",
-
-  principle:
-    "At low intensity, concern should look like attention, not fear.",
-
-  goodFor:
-    ["Checking someone","Minor problem","Early warning","Concern for wellbeing"],
-
-  tones: {
-
-    "Serious / Natural": {
-
-      control: [99,97,92,83,70],
-
-      summaries: [
-        "Attention stays slightly longer.",
-        "A faint facial change makes concern readable.",
-        "Concern becomes clear but remains calm.",
-        "The problem noticeably affects the body.",
-        "Concern approaches urgent worry."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Are you okay?",
-          eyeMovement:"Gaze stays slightly longer.",
-          eyelids:"Natural.",
-          brows:"Tiny inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Neutral.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Notice → hold attention slightly longer."
-        },
-
-        {
-          eyeLanguage:"Something may be wrong.",
-          eyeMovement:"Attention returns once or twice.",
-          eyelids:"Lower lids engage subtly; blink slightly slower while checking.",
-          brows:"Faint inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or very slightly parted before speaking.",
-          teeth:"Hidden.",
-          lipShape:"Small lip press.",
-          corners:"Neutral.",
-          cheeks:"Slight loss of softness.",
-          jawNeck:"Small swallow possible.",
-          breath:"One quiet inhale or controlled exhale.",
-          hands:"Fingers slightly less relaxed.",
-          body:"Torso orients subtly toward concern.",
-          wholeBody:"Very controlled.",
-          nonverbal:"Quiet sigh only if motivated.",
-          timing:"Notice → re-check → small facial leak → respond."
-        },
-
-        {
-          eyeLanguage:"I need to pay attention to this.",
-          eyeMovement:"Sustained attentive checking.",
-          eyelids:"Focused with slower blink.",
-          brows:"Clearly concerned.",
-          moisture:"Normal.",
-          mouthOpening:"Small parting before speech.",
-          teeth:"Hidden.",
-          lipShape:"Light press.",
-          corners:"Slightly lowered neutral set.",
-          cheeks:"Mild tension.",
-          jawNeck:"Small throat tension.",
-          breath:"Noticeably attentive.",
-          hands:"Small grip possible.",
-          body:"More directly oriented.",
-          wholeBody:"Readable concern.",
-          nonverbal:"Soft sigh.",
-          timing:"Problem persists → attention strengthens."
-        },
-
-        {
-          eyeLanguage:"This may actually be serious.",
-          eyeMovement:"Attention locks onto issue.",
-          eyelids:"Reduced casual blinking.",
-          brows:"Strong concern.",
-          moisture:"Possible faint glassiness if personal.",
-          mouthOpening:"Speech preparation becomes more visible.",
-          teeth:"Hidden.",
-          lipShape:"Tighter.",
-          corners:"Downward tension possible.",
-          cheeks:"Visible tension.",
-          jawNeck:"Swallow or jaw tension.",
-          breath:"Repeated controlled breathing.",
-          hands:"Purposeful regulation.",
-          body:"Difficulty remaining casual.",
-          wholeBody:"Strong concern.",
-          nonverbal:"Audible exhale.",
-          timing:"Concern escalates → body begins preparing to act."
-        },
-
-        {
-          eyeLanguage:"I need to do something now.",
-          eyeMovement:"Urgent monitoring.",
-          eyelids:"Strong focused tension.",
-          brows:"Strong emotional concern.",
-          moisture:"Context-dependent.",
-          mouthOpening:"More active for urgent speech.",
-          teeth:"Usually hidden.",
-          lipShape:"Tense.",
-          corners:"Strong concern set.",
-          cheeks:"Tense.",
-          jawNeck:"Visible engagement.",
-          breath:"Clearly affected.",
-          hands:"Urgent purposeful gesture.",
-          body:"Moves toward action.",
-          wholeBody:"Approaching distress.",
-          nonverbal:"Strong sigh or urgent call.",
-          timing:"Concern → urgency → action."
-        }
-
-      ]
-    }
-
-  }
+"Joy / Positive":{
+ eye:"bright",
+ lid:"soft-open",
+ mouth:"positive",
+ body:"open",
+ defaultTones:["Natural","Expressive"]
 },
 
-
-/* ---------------------------------------------------------
-   WORRY
---------------------------------------------------------- */
-
-{
-  id: "worry",
-  category: "Concern",
-  name: "Worry",
-
-  subtitle:
-    "Attention keeps returning to what might go wrong.",
-
-  keywords:
-    ["worry","risau","worried","anxiety"],
-
-  meaning:
-    "Worry persists. The person repeatedly revisits the possible negative outcome instead of simply noticing it once.",
-
-  principle:
-    "Worry accumulates through repeated attention, facial tension and self-regulation.",
-
-  goodFor:
-    ["Waiting for news","Uncertain outcome","Concern for someone","Possible failure"],
-
-  tones: {
-
-    "Serious / Natural": {
-
-      control: [98,92,80,62,42],
-
-      summaries: [
-        "The thought returns briefly.",
-        "Repeated checking and small facial tension reveal worry.",
-        "Worry begins to affect concentration and breathing.",
-        "The person visibly works to stay composed.",
-        "Worry approaches emotional distress."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I hope this is okay.",
-          eyeMovement:"Attention briefly returns to concern.",
-          eyelids:"One slightly slower blink.",
-          brows:"Tiny inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Mostly neutral.",
-          corners:"Neutral.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Thought returns → small check."
-        },
-
-        {
-          eyeLanguage:"I cannot completely stop thinking about this.",
-          eyeMovement:"Checks concern more than once.",
-          eyelids:"Slightly slower blink when worry returns.",
-          brows:"Faint inner tension remains.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or fractionally parted.",
-          teeth:"Hidden.",
-          lipShape:"Small lip press.",
-          corners:"Slightly tense.",
-          cheeks:"Small facial compression.",
-          jawNeck:"Possible swallow.",
-          breath:"One controlled inhale or exhale.",
-          hands:"Fingers become less relaxed.",
-          body:"Less casual.",
-          wholeBody:"Controlled worry.",
-          nonverbal:"Quiet sigh possible.",
-          timing:"Check → attempt normal activity → attention returns."
-        },
-
-        {
-          eyeLanguage:"This is becoming difficult to ignore.",
-          eyeMovement:"Repeated checking.",
-          eyelids:"Focused; blink rhythm less relaxed.",
-          brows:"Clearly worried.",
-          moisture:"Slight glassiness possible.",
-          mouthOpening:"Small parting before speaking.",
-          teeth:"Hidden.",
-          lipShape:"Press or slight tremor.",
-          corners:"Tension visible.",
-          cheeks:"Readable strain.",
-          jawNeck:"Throat tension.",
-          breath:"Less settled.",
-          hands:"Grip or self-regulation.",
-          body:"Activity repeatedly interrupted.",
-          wholeBody:"Readable worry.",
-          nonverbal:"Incomplete sigh.",
-          timing:"Worry interrupts normal rhythm repeatedly."
-        },
-
-        {
-          eyeLanguage:"I am struggling to stay calm.",
-          eyeMovement:"Persistent monitoring.",
-          eyelids:"Reduced relaxed blinking.",
-          brows:"Strong worry tension.",
-          moisture:"Possible glassiness.",
-          mouthOpening:"Speech preparation affected.",
-          teeth:"Hidden.",
-          lipShape:"Tight.",
-          corners:"Downward tension.",
-          cheeks:"Compressed.",
-          jawNeck:"Jaw and throat visibly engaged.",
-          breath:"Repeated controlled or shallow breathing.",
-          hands:"Visible fidget or grip.",
-          body:"Difficulty staying casually occupied.",
-          wholeBody:"Strong emotional strain.",
-          nonverbal:"Audible breath or sigh.",
-          timing:"Concern persists → regulation attempts become visible."
-        },
-
-        {
-          eyeLanguage:"I cannot regulate this anymore.",
-          eyeMovement:"Attention difficult to disengage.",
-          eyelids:"Blinking becomes less stable.",
-          brows:"Strong distress.",
-          moisture:"May become watery.",
-          mouthOpening:"Speech is affected by breathing.",
-          teeth:"May show only through tension.",
-          lipShape:"Unstable.",
-          corners:"Downward or tense.",
-          cheeks:"Strong strain.",
-          jawNeck:"Visible throat tension.",
-          breath:"Disrupted.",
-          hands:"Repeated self-regulation.",
-          body:"Composure visibly weakens.",
-          wholeBody:"Severe worry.",
-          nonverbal:"Broken sigh or vocal strain.",
-          timing:"Worry dominates → regulation begins failing."
-        }
-
-      ]
-    }
-
-  }
+"Concern / Anxiety":{
+ eye:"checking",
+ lid:"focused",
+ mouth:"restrained",
+ body:"regulated",
+ defaultTones:["Natural Drama","Suspense"]
 },
 
-
-/* ---------------------------------------------------------
-   FLUSTERED ATTRACTION
---------------------------------------------------------- */
-
-{
-  id: "flustered-attraction",
-  category: "Romance",
-  name: "Flustered Attraction",
-
-  subtitle:
-    "Attraction becomes consciously noticeable and disrupts composure.",
-
-  keywords:
-    ["flustered","attraction","crush","romance","tertarik"],
-
-  meaning:
-    "The person becomes suddenly aware of romantic attraction and temporarily more self-conscious.",
-
-  principle:
-    "Attraction should leak through eye timing, eyelid softness, mouth corners and imperfect recovery rather than random nervous gestures.",
-
-  goodFor:
-    ["Unexpected eye contact","Sudden proximity","Compliment","Romantic tension"],
-
-  tones: {
-
-    "Natural Romance": {
-
-      control: [98,94,86,72,58],
-
-      summaries: [
-        "Attraction barely interrupts attention.",
-        "A delayed glance and almost-smile reveal the feeling.",
-        "Attraction becomes clearly readable.",
-        "Maintaining normal composure becomes difficult.",
-        "The attraction becomes openly visible."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I noticed you differently for a second.",
-          eyeMovement:"Tiny attention interruption.",
-          eyelids:"Mostly normal.",
-          brows:"Neutral.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Tiny almost-smile possible.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Highly composed.",
-          nonverbal:"None.",
-          timing:"Awareness → tiny pause → continue."
-        },
-
-        {
-          eyeLanguage:"I am attracted, but I do not want you to notice.",
-          eyeMovement:"Delayed glance; eye contact lingers slightly before breaking.",
-          eyelids:"Tiny upper-lid response followed by softer eyelids; delayed blink during gaze break.",
-          brows:"Small lift if surprised.",
-          moisture:"Normal.",
-          mouthOpening:"Lips may part a fraction.",
-          teeth:"Hidden.",
-          lipShape:"Small lip reset or almost-smile.",
-          corners:"One or both corners begin to rise, then are suppressed.",
-          cheeks:"Very slight softening.",
-          jawNeck:"Tiny swallow possible.",
-          breath:"Brief breath pause.",
-          hands:"Mostly normal.",
-          body:"Moment of stillness.",
-          wholeBody:"High control.",
-          nonverbal:"Usually none.",
-          timing:"Awareness → delayed glance → eye contact → gaze break → quick recovery."
-        },
-
-        {
-          eyeLanguage:"I keep becoming aware of you.",
-          eyeMovement:"Gaze returns more often.",
-          eyelids:"Softer eye expression; blink rhythm changes around eye contact.",
-          brows:"Responsive.",
-          moisture:"Normal.",
-          mouthOpening:"Small parting before smile suppression.",
-          teeth:"Tiny upper-teeth visibility possible if smile escapes.",
-          lipShape:"Suppressed smile.",
-          corners:"Clearly try to rise.",
-          cheeks:"Small lift.",
-          jawNeck:"Mild throat tension.",
-          breath:"Controlled interruption.",
-          hands:"Slight tension possible.",
-          body:"Movement hesitates.",
-          wholeBody:"Readable attraction.",
-          nonverbal:"Tiny breathy exhale.",
-          timing:"Gaze returns → warmth leaks → self-correction."
-        },
-
-        {
-          eyeLanguage:"You are making it difficult for me to stay normal.",
-          eyeMovement:"Eye contact repeatedly affected.",
-          eyelids:"Visible lift, then softening and blink changes.",
-          brows:"Readable.",
-          moisture:"Normal.",
-          mouthOpening:"Small open-mouth reaction.",
-          teeth:"Smile teeth may become briefly visible.",
-          lipShape:"Smile difficult to suppress.",
-          corners:"Upward movement clearly visible.",
-          cheeks:"Strong warmth.",
-          jawNeck:"Swallow visible.",
-          breath:"Clearly affected.",
-          hands:"Small nervous regulation.",
-          body:"Visible hesitation.",
-          wholeBody:"Composure challenged.",
-          nonverbal:"Breathy laugh possible.",
-          timing:"Attraction registers → self-consciousness → imperfect recovery."
-        },
-
-        {
-          eyeLanguage:"I cannot hide this anymore.",
-          eyeMovement:"Strong gaze break, repeated checking or avoidance.",
-          eyelids:"Expressive lift and rapid recovery blink.",
-          brows:"Open response.",
-          moisture:"Normal.",
-          mouthOpening:"Open flustered reaction.",
-          teeth:"Smile teeth may appear.",
-          lipShape:"Open smile or embarrassed mouth reaction.",
-          corners:"Strong upward activation.",
-          cheeks:"Strong bashful activation.",
-          jawNeck:"Visible tension.",
-          breath:"Disrupted.",
-          hands:"Self-conscious gesture.",
-          body:"Freeze or recoil.",
-          wholeBody:"Openly flustered.",
-          nonverbal:"Nervous laugh.",
-          timing:"Cue → freeze → gaze break → smile escape → awkward recovery."
-        }
-
-      ]
-    },
-
-
-    "Rom-Com": {
-
-      control: [97,92,82,68,52],
-
-      summaries: [
-        "A tiny comic interruption hints at attraction.",
-        "Reaction timing becomes slightly more expressive.",
-        "A clear freeze, eye response and mouth recovery make the attraction comic.",
-        "The fluster becomes physically obvious but organized.",
-        "Heightened rom-com attraction uses freeze, recoil and awkward recovery."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Oh.",
-          eyeMovement:"Tiny pause and second glance.",
-          eyelids:"Small upper-lid lift.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Tiny lip reset.",
-          corners:"Micro-smile.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Tiny freeze.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Cue → tiny freeze → continue."
-        },
-
-        {
-          eyeLanguage:"Why did that affect me?",
-          eyeMovement:"Eyes stop, then break away.",
-          eyelids:"Upper lids lift slightly, followed by one recovery blink.",
-          brows:"Small lift.",
-          moisture:"Normal.",
-          mouthOpening:"Very slight parting.",
-          teeth:"Hidden.",
-          lipShape:"Small suppressed smile.",
-          corners:"One corner lifts before being controlled.",
-          cheeks:"Light warmth.",
-          jawNeck:"Small head reaction.",
-          breath:"Small breath pause.",
-          hands:"Mostly normal.",
-          body:"Small recoil.",
-          wholeBody:"Expressive but controlled.",
-          nonverbal:"Tiny breathy laugh possible.",
-          timing:"Cue → eyes stop → eyelids react → mouth follows → gaze break."
-        },
-
-        {
-          eyeLanguage:"I am obviously affected and trying to hide it.",
-          eyeMovement:"Freeze, second look, quick gaze avoidance.",
-          eyelids:"Readable lift and blink response.",
-          brows:"Expressive.",
-          moisture:"Normal.",
-          mouthOpening:"Small-to-medium reaction.",
-          teeth:"Upper teeth may appear in suppressed grin.",
-          lipShape:"Awkward smile.",
-          corners:"Upward but asymmetric.",
-          cheeks:"Visible lift.",
-          jawNeck:"Head pulls back slightly.",
-          breath:"Affected.",
-          hands:"Small self-conscious movement.",
-          body:"Controlled recoil.",
-          wholeBody:"Readable rom-com fluster.",
-          nonverbal:"Breathy chuckle.",
-          timing:"Stimulus → freeze → mouth reaction → recoil → awkward reset."
-        },
-
-        {
-          eyeLanguage:"You have completely disrupted me.",
-          eyeMovement:"Repeated gaze break and double-look.",
-          eyelids:"Strong expressive response.",
-          brows:"Clear.",
-          moisture:"Normal.",
-          mouthOpening:"Clear open-mouth reaction.",
-          teeth:"Smile teeth visible during recovery.",
-          lipShape:"Strong embarrassed smile.",
-          corners:"Clearly lifted.",
-          cheeks:"Strong activation.",
-          jawNeck:"Head reaction visible.",
-          breath:"Changed.",
-          hands:"Playful self-regulation.",
-          body:"Visible recoil.",
-          wholeBody:"Strong rom-com performance.",
-          nonverbal:"Nervous laugh.",
-          timing:"Freeze → recoil → hold → secondary reaction → recovery."
-        },
-
-        {
-          eyeLanguage:"My composure is gone.",
-          eyeMovement:"Heightened avoidance, double-take or frozen stare.",
-          eyelids:"Large but controlled lid response.",
-          brows:"Heightened.",
-          moisture:"Normal.",
-          mouthOpening:"Large reaction possible.",
-          teeth:"Teeth may show in embarrassed grin.",
-          lipShape:"Broad comic response.",
-          corners:"Strong expressive movement.",
-          cheeks:"Strong activation.",
-          jawNeck:"Large head reaction.",
-          breath:"Heightened.",
-          hands:"Larger comic gesture.",
-          body:"Freeze, recoil, retreat.",
-          wholeBody:"Heightened physical comedy.",
-          nonverbal:"Laugh or vocal reaction.",
-          timing:"Setup → freeze → big response → hold → secondary payoff → recovery."
-        }
-
-      ]
-    }
-
-  }
+"Sadness / Vulnerability":{
+ eye:"withdrawn",
+ lid:"heavy",
+ mouth:"loss",
+ body:"closing",
+ defaultTones:["Serious Drama","Restrained"]
 },
 
-
-/* ---------------------------------------------------------
-   JEALOUSY
---------------------------------------------------------- */
-
-{
-  id: "jealousy",
-  category: "Romance",
-  name: "Jealousy",
-
-  subtitle:
-    "Attention is pulled toward a perceived romantic or emotional rival.",
-
-  keywords:
-    ["jealous","cemburu","rival","romance"],
-
-  meaning:
-    "Jealousy combines attention, comparison and emotional ownership. Tone determines whether it becomes playful or painful.",
-
-  principle:
-    "Jealousy usually reveals itself through involuntary checking followed by deliberate attempts to appear unaffected.",
-
-  goodFor:
-    ["Rom-com","Love triangle","Hidden feelings","Relationship tension"],
-
-  tones: {
-
-    "Rom-Com": {
-
-      control: [98,94,84,69,54],
-
-      summaries: [
-        "A tiny rival-check appears.",
-        "A side-eye and small mouth change reveal playful jealousy.",
-        "The person visibly checks, judges and pretends not to care.",
-        "Jealousy becomes strongly readable.",
-        "Heightened jealousy uses expressive pout and body attitude."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Who is that?",
-          eyeMovement:"Tiny glance toward rival.",
-          eyelids:"Normal.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Tiny tightening.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Notice rival → tiny check."
-        },
-
-        {
-          eyeLanguage:"Why are you paying attention to them?",
-          eyeMovement:"Brief side-eye toward rival, then deliberate look-away.",
-          eyelids:"Slight half-lidded judging look.",
-          brows:"Small asymmetric lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Tiny forward pout.",
-          corners:"One corner tightens or pulls down.",
-          cheeks:"Mostly relaxed.",
-          jawNeck:"Small head angle.",
-          breath:"Small nasal exhale.",
-          hands:"Mostly normal.",
-          body:"Turns away slightly.",
-          wholeBody:"Controlled playful jealousy.",
-          nonverbal:"Tiny tongue click possible.",
-          timing:"Check rival → mouth reacts → pretend not to care."
-        },
-
-        {
-          eyeLanguage:"I am definitely watching this.",
-          eyeMovement:"Repeated rival-checking.",
-          eyelids:"Clear half-lidded or narrowed judgment.",
-          brows:"Readable asymmetry.",
-          moisture:"Normal.",
-          mouthOpening:"May part briefly in disbelief.",
-          teeth:"Hidden.",
-          lipShape:"More visible pout.",
-          corners:"Downward or asymmetric.",
-          cheeks:"Slight tension.",
-          jawNeck:"Small jaw reset.",
-          breath:"Nasal exhale.",
-          hands:"Small fidget possible.",
-          body:"Posture becomes slightly closed or territorial.",
-          wholeBody:"Readable jealousy.",
-          nonverbal:"Scoff or tongue click.",
-          timing:"Check → react → look away → check again."
-        },
-
-        {
-          eyeLanguage:"I am irritated that I care this much.",
-          eyeMovement:"Strong rival monitoring.",
-          eyelids:"Pronounced judging stare.",
-          brows:"Strong.",
-          moisture:"Normal.",
-          mouthOpening:"Small open protest possible.",
-          teeth:"May show through annoyed grin.",
-          lipShape:"Clear projected pout.",
-          corners:"Strongly asymmetric.",
-          cheeks:"More active.",
-          jawNeck:"Jaw tension.",
-          breath:"Sharper exhale.",
-          hands:"Visible gesture.",
-          body:"Turns away, folds or shifts weight.",
-          wholeBody:"Strong expressive jealousy.",
-          nonverbal:"Tongue click or scoff.",
-          timing:"Jealous cue → side-eye → pout → body attitude → second check."
-        },
-
-        {
-          eyeLanguage:"I am not hiding this at all anymore.",
-          eyeMovement:"Heightened checking and expressive side-eye.",
-          eyelids:"Strong half-lidded comic stare.",
-          brows:"Broad.",
-          moisture:"Normal.",
-          mouthOpening:"Open protest.",
-          teeth:"May show during sarcastic speech or grin.",
-          lipShape:"Strong pout or exaggerated mouth shape.",
-          corners:"Strong movement.",
-          cheeks:"Expressive.",
-          jawNeck:"Visible head reaction.",
-          breath:"Heightened.",
-          hands:"Larger gesture.",
-          body:"Territorial or sulky posture.",
-          wholeBody:"Heightened rom-com jealousy.",
-          nonverbal:"Scoff, tongue click or protest.",
-          timing:"Cue → side-eye → facial hold → gesture → secondary reaction."
-        }
-
-      ]
-    },
-
-
-    "Serious Drama": {
-
-      control: [99,97,92,82,66],
-
-      summaries: [
-        "The rival briefly captures attention.",
-        "A small facial tension reveals jealousy before it is hidden.",
-        "The emotional withdrawal becomes readable.",
-        "Jealousy significantly changes behaviour.",
-        "The feeling approaches confrontation."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I noticed that.",
-          eyeMovement:"Brief glance toward rival.",
-          eyelids:"Normal.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Tiny tightening.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Composed.",
-          nonverbal:"None.",
-          timing:"Notice → suppress."
-        },
-
-        {
-          eyeLanguage:"That bothered me more than I expected.",
-          eyeMovement:"Brief rival-check, then deliberate look-away.",
-          eyelids:"Slight lower-lid tension.",
-          brows:"Tiny inner or asymmetric tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Small press.",
-          corners:"Slight downward tension.",
-          cheeks:"Less relaxed.",
-          jawNeck:"Small jaw reset.",
-          breath:"Controlled exhale.",
-          hands:"Still.",
-          body:"Posture cools slightly.",
-          wholeBody:"High restraint.",
-          nonverbal:"None.",
-          timing:"Check → emotional hit → deliberate withdrawal."
-        },
-
-        {
-          eyeLanguage:"I do not want anyone to know this hurts.",
-          eyeMovement:"Repeated but discreet rival-checking.",
-          eyelids:"Focused, less relaxed blinking.",
-          brows:"Readable tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or small parting before speech.",
-          teeth:"Hidden.",
-          lipShape:"Firm.",
-          corners:"Slight downward pull.",
-          cheeks:"Visible emotional tension.",
-          jawNeck:"Jaw engaged.",
-          breath:"Controlled.",
-          hands:"Minimal.",
-          body:"More emotionally closed.",
-          wholeBody:"Readable jealousy.",
-          nonverbal:"Quiet exhale.",
-          timing:"Observe → suppress → behaviour becomes colder."
-        },
-
-        {
-          eyeLanguage:"I am losing patience with this.",
-          eyeMovement:"Strong monitoring followed by direct withdrawal.",
-          eyelids:"Pronounced focus.",
-          brows:"Strong jealousy.",
-          moisture:"Possible glassiness if mixed with hurt.",
-          mouthOpening:"Speech becomes more direct.",
-          teeth:"Hidden unless forceful speech.",
-          lipShape:"Tight.",
-          corners:"Downward tension.",
-          cheeks:"Tense.",
-          jawNeck:"Jaw and neck engaged.",
-          breath:"Controlled but heavier.",
-          hands:"Grip possible.",
-          body:"Rigid or distant.",
-          wholeBody:"Strong jealousy.",
-          nonverbal:"Sharp exhale.",
-          timing:"Jealousy builds → restraint hardens."
-        },
-
-        {
-          eyeLanguage:"I am ready to confront this.",
-          eyeMovement:"Direct gaze toward rival or partner.",
-          eyelids:"Strong lower-lid tension.",
-          brows:"Open emotion.",
-          moisture:"Context-dependent.",
-          mouthOpening:"Opens for confrontation.",
-          teeth:"Possible through tense speech.",
-          lipShape:"Firm.",
-          corners:"Tense.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible activation.",
-          breath:"Forceful.",
-          hands:"Direct gesture possible.",
-          body:"Confrontational.",
-          wholeBody:"Restraint close to breaking.",
-          nonverbal:"Scoff or sharp breath.",
-          timing:"Suppression → decision → confrontation."
-        }
-
-      ]
-    }
-
-  }
+"Conflict / Anger":{
+ eye:"direct",
+ lid:"narrow",
+ mouth:"compressed",
+ body:"still",
+ defaultTones:["Serious Conflict","Comedy Conflict"]
 },
 
-
-/* ---------------------------------------------------------
-   EMBARRASSMENT
---------------------------------------------------------- */
-
-{
-  id: "embarrassment",
-  category: "Comedy / Social",
-  name: "Embarrassment",
-
-  subtitle:
-    "Social exposure makes the person temporarily self-conscious.",
-
-  keywords:
-    ["embarrassed","malu","awkward","caught"],
-
-  meaning:
-    "The person feels exposed because something personal, awkward or socially risky has been noticed.",
-
-  principle:
-    "Comedy embarrassment searches for recovery. Serious shame often withdraws instead.",
-
-  goodFor:
-    ["Caught","Mistake","Compliment","Public exposure"],
-
-  tones: {
-
-    "Comedy": {
-
-      control: [96,88,74,56,40],
-
-      summaries: [
-        "A tiny gaze break hints at self-consciousness.",
-        "A blink, gaze break and small mouth reaction make the embarrassment readable.",
-        "Awkward recovery becomes clearly visible.",
-        "The person visibly struggles to recover socially.",
-        "Heightened comedy allows freeze, recoil and covering gestures."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Oops.",
-          eyeMovement:"Tiny gaze break.",
-          eyelids:"One small blink.",
-          brows:"Neutral.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Small press.",
-          corners:"Tiny awkward movement.",
-          cheeks:"Minimal.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Mostly composed.",
-          nonverbal:"None.",
-          timing:"Exposure → tiny break → recover."
-        },
-
-        {
-          eyeLanguage:"Please do not look at me too closely.",
-          eyeMovement:"Brief eye-contact avoidance.",
-          eyelids:"Slightly faster blink or delayed blink before looking away.",
-          brows:"Small lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or slightly parted.",
-          teeth:"May briefly show through awkward smile.",
-          lipShape:"Small self-conscious smile or lip press.",
-          corners:"One or both corners lift awkwardly.",
-          cheeks:"Light activation.",
-          jawNeck:"Small chin tuck.",
-          breath:"Short exhale.",
-          hands:"May become occupied.",
-          body:"Small inward shift.",
-          wholeBody:"Controlled embarrassment.",
-          nonverbal:"Tiny breathy laugh.",
-          timing:"Exposure → blink → gaze break → awkward mouth recovery."
-        },
-
-        {
-          eyeLanguage:"I know this is embarrassing.",
-          eyeMovement:"Clear avoidance with hesitant return.",
-          eyelids:"Noticeable blink changes.",
-          brows:"Readable self-consciousness.",
-          moisture:"Normal.",
-          mouthOpening:"Small opening during awkward laugh.",
-          teeth:"Upper teeth may show in embarrassed smile.",
-          lipShape:"Awkward smile.",
-          corners:"Upward but unstable.",
-          cheeks:"Visible activation.",
-          jawNeck:"Head angle changes.",
-          breath:"Affected.",
-          hands:"Small fidget.",
-          body:"Slight withdrawal.",
-          wholeBody:"Readable embarrassment.",
-          nonverbal:"Nervous laugh.",
-          timing:"Avoid → recover → smile leaks → correct."
-        },
-
-        {
-          eyeLanguage:"I want to disappear.",
-          eyeMovement:"Repeated avoidance.",
-          eyelids:"Active blinking.",
-          brows:"Strong self-conscious response.",
-          moisture:"Normal.",
-          mouthOpening:"Opens during laugh or protest.",
-          teeth:"Clearly visible in awkward grin.",
-          lipShape:"Smile difficult to control.",
-          corners:"Strong upward/unstable movement.",
-          cheeks:"Strong activation.",
-          jawNeck:"Visible chin tuck.",
-          breath:"Changed.",
-          hands:"Face-touch or fidget.",
-          body:"Withdrawal.",
-          wholeBody:"Strong embarrassment.",
-          nonverbal:"Nervous laugh.",
-          timing:"Exposure → repeated avoidance → awkward recovery attempts."
-        },
-
-        {
-          eyeLanguage:"This is catastrophically embarrassing.",
-          eyeMovement:"Heightened avoidance or double-take.",
-          eyelids:"Expressive blinking.",
-          brows:"Broad comic reaction.",
-          moisture:"Normal.",
-          mouthOpening:"Large embarrassed reaction.",
-          teeth:"May show openly through laugh.",
-          lipShape:"Broad awkward smile or protest shape.",
-          corners:"Strong movement.",
-          cheeks:"Strong activation.",
-          jawNeck:"Pronounced head reaction.",
-          breath:"Heightened.",
-          hands:"Face covering possible.",
-          body:"Freeze or recoil.",
-          wholeBody:"Heightened physical comedy.",
-          nonverbal:"Laugh, gasp or protest.",
-          timing:"Exposure → freeze → big recovery attempt → secondary embarrassment."
-        }
-
-      ]
-    },
-
-
-    "Serious / Shame": {
-
-      control: [98,94,84,68,48],
-
-      summaries: [
-        "Eye contact becomes slightly harder.",
-        "The person quietly withdraws from attention.",
-        "Shame becomes readable through gaze lowering and reduced expression.",
-        "The body closes significantly.",
-        "The emotion becomes deeply painful."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I would rather not be seen right now.",
-          eyeMovement:"Brief downward look.",
-          eyelids:"Soft lower-energy blink.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Lose slight support.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Small inward shift.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Exposure → small withdrawal."
-        },
-
-        {
-          eyeLanguage:"I feel exposed.",
-          eyeMovement:"Eye contact breaks downward.",
-          eyelids:"Slower blink.",
-          brows:"Small inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Light press.",
-          corners:"Slight downward pull.",
-          cheeks:"Less expressive.",
-          jawNeck:"Chin lowers slightly.",
-          breath:"Quiet exhale.",
-          hands:"Still.",
-          body:"Posture closes.",
-          wholeBody:"High restraint.",
-          nonverbal:"None.",
-          timing:"Exposure → gaze lowers → body closes."
-        },
-
-        {
-          eyeLanguage:"I do not want to face this attention.",
-          eyeMovement:"Sustained lowered gaze.",
-          eyelids:"Lower-energy, slower blinking.",
-          brows:"Readable emotional tension.",
-          moisture:"Possible slight glassiness.",
-          mouthOpening:"Small parting before failed speech.",
-          teeth:"Hidden.",
-          lipShape:"Pressed or unstable.",
-          corners:"Downward.",
-          cheeks:"Emotional heaviness.",
-          jawNeck:"Throat tension.",
-          breath:"Controlled but less settled.",
-          hands:"Self-regulation possible.",
-          body:"Clearly closed.",
-          wholeBody:"Readable shame.",
-          nonverbal:"Soft sigh.",
-          timing:"Attention → withdrawal → reduced response."
-        },
-
-        {
-          eyeLanguage:"This hurts to be seen.",
-          eyeMovement:"Avoids eye contact.",
-          eyelids:"Repeated controlled blink.",
-          brows:"Strong inward tension.",
-          moisture:"Glassiness possible.",
-          mouthOpening:"Speech preparation difficult.",
-          teeth:"Hidden.",
-          lipShape:"Lip tremor or press.",
-          corners:"Downward.",
-          cheeks:"Tension.",
-          jawNeck:"Strong throat tension.",
-          breath:"Uneven.",
-          hands:"Support-seeking gesture.",
-          body:"Collapsed inward.",
-          wholeBody:"Strong shame.",
-          nonverbal:"Broken exhale.",
-          timing:"Exposure → shame deepens → regulation becomes difficult."
-        },
-
-        {
-          eyeLanguage:"I cannot tolerate this exposure.",
-          eyeMovement:"Gaze remains down or retreats completely.",
-          eyelids:"Tear-control blinking possible.",
-          brows:"Open pain.",
-          moisture:"Tears possible.",
-          mouthOpening:"May open through crying or failed speech.",
-          teeth:"Incidental.",
-          lipShape:"Unstable.",
-          corners:"Downward.",
-          cheeks:"Crying tension.",
-          jawNeck:"Strong throat strain.",
-          breath:"Broken.",
-          hands:"Face-covering possible.",
-          body:"Deep inward collapse.",
-          wholeBody:"Loss of regulation.",
-          nonverbal:"Crying or broken speech.",
-          timing:"Shame overwhelms → body withdraws → regulation fails."
-        }
-
-      ]
-    }
-
-  }
+"Suspense / Threat":{
+ eye:"tracking",
+ lid:"alert",
+ mouth:"breath",
+ body:"defensive",
+ defaultTones:["Thriller","Natural Drama"]
 },
 
-
-/* ---------------------------------------------------------
-   PLAYFUL TEASING
---------------------------------------------------------- */
-
-{
-  id: "playful-teasing",
-  category: "Comedy / Social",
-  name: "Playful Teasing",
-
-  subtitle:
-    "A deliberately provocative reaction designed to get a response.",
-
-  keywords:
-    ["teasing","playful","mengusik","banter","flirt"],
-
-  meaning:
-    "The person knowingly pushes another person's buttons for fun, closeness or playful power.",
-
-  principle:
-    "Teasing is confident. Eye language and mouth corners usually reveal that the person knows exactly what they are doing.",
-
-  goodFor:
-    ["Rom-com","Flirting","Banter","Friendly provocation"],
-
-  tones: {
-
-    "Comedy / Rom-Com": {
-
-      control: [99,96,90,82,70],
-
-      summaries: [
-        "A tiny knowing look adds playful intention.",
-        "Side-eye, eyelid attitude and one mouth corner create restrained teasing.",
-        "The person clearly waits for the other person's reaction.",
-        "The teasing becomes openly mischievous.",
-        "Heightened comedy uses strong reaction timing without losing control."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I know what I am doing.",
-          eyeMovement:"Tiny knowing look.",
-          eyelids:"Very slight playful narrowing.",
-          brows:"Tiny asymmetry.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Micro-smirk.",
-          corners:"One corner lifts slightly.",
-          cheeks:"Minimal lift.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Confident.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Look → tiny smirk → continue."
-        },
-
-        {
-          eyeLanguage:"I am waiting to see if you react.",
-          eyeMovement:"Side glance or direct look before tease.",
-          eyelids:"Slight half-lidded or narrowed playful focus.",
-          brows:"One small lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden or tiny upper-teeth glimpse if smile leaks.",
-          lipShape:"Asymmetrical smile.",
-          corners:"One corner rises more than the other.",
-          cheeks:"Light lift.",
-          jawNeck:"Small head angle.",
-          breath:"Relaxed.",
-          hands:"Relaxed.",
-          body:"Comfortable posture.",
-          wholeBody:"Confident control.",
-          nonverbal:"Tiny chuckle possible.",
-          timing:"Look → line/gesture → pause → watch reaction."
-        },
-
-        {
-          eyeLanguage:"Yes, I did that on purpose.",
-          eyeMovement:"Holds attention to observe reaction.",
-          eyelids:"Intentional narrowed playful gaze.",
-          brows:"Readable lift.",
-          moisture:"Normal.",
-          mouthOpening:"Small opening during chuckle.",
-          teeth:"Upper teeth may show in mischievous grin.",
-          lipShape:"Clear teasing smile.",
-          corners:"Asymmetric upward pull.",
-          cheeks:"Moderate lift.",
-          jawNeck:"Deliberate head angle.",
-          breath:"Relaxed.",
-          hands:"Small illustrative gesture.",
-          body:"Leans slightly into interaction.",
-          wholeBody:"Readable playful control.",
-          nonverbal:"Controlled chuckle.",
-          timing:"Setup → tease → pause → reaction monitoring → payoff."
-        },
-
-        {
-          eyeLanguage:"This is fun and I know I am winning.",
-          eyeMovement:"Strong reaction-monitoring.",
-          eyelids:"Expressive half-lidded confidence.",
-          brows:"Clear asymmetry.",
-          moisture:"Normal.",
-          mouthOpening:"Opens during laugh or response.",
-          teeth:"Visible grin.",
-          lipShape:"Mischievous smile.",
-          corners:"Strong upward asymmetry.",
-          cheeks:"Strong lift.",
-          jawNeck:"Visible head response.",
-          breath:"Relaxed.",
-          hands:"Playful gesture.",
-          body:"Confident orientation.",
-          wholeBody:"Strong teasing energy.",
-          nonverbal:"Laugh or scoff.",
-          timing:"Tease → hold → observe → secondary joke."
-        },
-
-        {
-          eyeLanguage:"I am fully enjoying your reaction.",
-          eyeMovement:"Heightened reaction checking.",
-          eyelids:"Broad expressive comic attitude.",
-          brows:"Heightened asymmetry.",
-          moisture:"Normal.",
-          mouthOpening:"Broad laugh or exaggerated response.",
-          teeth:"Clearly visible during grin/laugh.",
-          lipShape:"Large playful mouth shape.",
-          corners:"Strong upward movement.",
-          cheeks:"Strong activation.",
-          jawNeck:"Heightened head movement.",
-          breath:"Laughter.",
-          hands:"Larger comic gesture.",
-          body:"Controlled exaggeration.",
-          wholeBody:"Heightened rom-com.",
-          nonverbal:"Laugh or playful scoff.",
-          timing:"Setup → anticipation → reaction → hold → secondary payoff."
-        }
-
-      ]
-    }
-
-  }
+"Cognitive / Discovery":{
+ eye:"processing",
+ lid:"pause",
+ mouth:"processing",
+ body:"pause",
+ defaultTones:["Natural","Comedy"]
 },
 
-
-/* ---------------------------------------------------------
-   SULKING
---------------------------------------------------------- */
-
-{
-  id: "sulking",
-  category: "Comedy / Social",
-  name: "Sulking / Merajuk",
-
-  subtitle:
-    "Displeasure is expressed indirectly through withdrawal, pout or emotional withholding.",
-
-  keywords:
-    ["sulking","merajuk","pout","muncung","cute annoyance"],
-
-  meaning:
-    "The person wants the other person to notice displeasure without fully confronting them.",
-
-  principle:
-    "Lip projection is important, but its meaning changes according to eyes, eyelids and posture.",
-
-  goodFor:
-    ["Rom-com","Playful conflict","Feeling ignored","Minor disappointment"],
-
-  tones: {
-
-    "Rom-Com": {
-
-      control: [98,94,84,70,54],
-
-      summaries: [
-        "The displeasure is almost hidden.",
-        "A small pout and gaze withdrawal make the sulking readable.",
-        "Merajuk becomes clearly visible.",
-        "The person actively performs displeasure for the other person.",
-        "Heightened rom-com sulking becomes openly expressive."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I noticed that and I did not like it.",
-          eyeMovement:"Brief look-away.",
-          eyelids:"Normal.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Tiny lip projection.",
-          corners:"Slight downward tension.",
-          cheeks:"Relaxed.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Small turn away.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Displeasure → tiny withdrawal."
-        },
-
-        {
-          eyeLanguage:"You should notice that I am annoyed.",
-          eyeMovement:"Looks away, then checks whether the other person noticed.",
-          eyelids:"Slight half-lidded attitude.",
-          brows:"Small tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Soft rounded pout / small muncung.",
-          corners:"Both corners slightly down.",
-          cheeks:"Small tension.",
-          jawNeck:"Chin tucks slightly.",
-          breath:"Small nasal exhale.",
-          hands:"Mostly still.",
-          body:"Turns slightly away.",
-          wholeBody:"Controlled sulking.",
-          nonverbal:"Tiny hum possible.",
-          timing:"Turn away → pout → secretly check response."
-        },
-
-        {
-          eyeLanguage:"I am definitely upset with you.",
-          eyeMovement:"Repeated look-away and checking.",
-          eyelids:"Readable half-lidded displeasure.",
-          brows:"Small inward tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Clear forward pout.",
-          corners:"Downward.",
-          cheeks:"Slight compression.",
-          jawNeck:"Chin tucked.",
-          breath:"Nasal exhale.",
-          hands:"Arms or hands become more closed.",
-          body:"Posture closes.",
-          wholeBody:"Readable merajuk.",
-          nonverbal:"Hum or tongue click possible.",
-          timing:"Displeasure → pout → withdrawal → check whether noticed."
-        },
-
-        {
-          eyeLanguage:"I want you to fix this.",
-          eyeMovement:"Avoids direct look but keeps monitoring.",
-          eyelids:"Strong half-lidded attitude.",
-          brows:"Readable displeasure.",
-          moisture:"Normal.",
-          mouthOpening:"May open briefly to protest.",
-          teeth:"Usually hidden.",
-          lipShape:"Strong pout.",
-          corners:"Clearly down.",
-          cheeks:"More active.",
-          jawNeck:"Head angled away.",
-          breath:"Sharper nasal exhale.",
-          hands:"Folded arms or fidget possible.",
-          body:"Clear withdrawal.",
-          wholeBody:"Strong sulking.",
-          nonverbal:"Tongue click or hum.",
-          timing:"Protest → turn away → pout → wait for response."
-        },
-
-        {
-          eyeLanguage:"I am dramatically refusing to cooperate.",
-          eyeMovement:"Heightened look-away and checking.",
-          eyelids:"Expressive half-lidded displeasure.",
-          brows:"Heightened.",
-          moisture:"Normal.",
-          mouthOpening:"Open protest possible.",
-          teeth:"May show during comic complaint.",
-          lipShape:"Large projected pout.",
-          corners:"Strong downward pull.",
-          cheeks:"Expressive.",
-          jawNeck:"Strong head turn.",
-          breath:"Heightened exhale.",
-          hands:"Large folded-arm or dismissive gesture.",
-          body:"Strong turn-away posture.",
-          wholeBody:"Heightened rom-com sulking.",
-          nonverbal:"Hum, tongue click or complaint.",
-          timing:"Complaint → dramatic turn → pout hold → secret check → secondary reaction."
-        }
-
-      ]
-    }
-
-  }
+"Power / Determination":{
+ eye:"settled",
+ lid:"focused",
+ mouth:"firm",
+ body:"purposeful",
+ defaultTones:["Serious Drama","Heroic"]
 },
 
-
-/* ---------------------------------------------------------
-   ANNOYANCE
---------------------------------------------------------- */
-
-{
-  id: "annoyance",
-  category: "Conflict",
-  name: "Annoyance",
-
-  subtitle:
-    "Patience is thinning, but emotional control remains intact.",
-
-  keywords:
-    ["annoyed","geram","irritated","tongue click"],
-
-  meaning:
-    "Something irritating should stop, but the person is not yet in full anger.",
-
-  principle:
-    "Annoyance often compresses the face: eyelids narrow, lips tighten, one corner changes and breath becomes sharper.",
-
-  goodFor:
-    ["Minor conflict","Repeated interruption","Irritating behaviour","Comedy argument"],
-
-  tones: {
-
-    "Comedy": {
-
-      control: [98,94,86,73,58],
-
-      summaries: [
-        "A tiny facial compression shows irritation.",
-        "Half-lidded annoyance and mouth-corner language make it comic.",
-        "The irritation becomes openly readable.",
-        "Patience is clearly running out.",
-        "Heightened comic annoyance becomes physically expressive."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Really?",
-          eyeMovement:"Brief side glance.",
-          eyelids:"Tiny narrowing.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Small press.",
-          corners:"One corner tightens.",
-          cheeks:"Slight tension.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Normal.",
-          body:"Normal.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Irritation → micro reaction."
-        },
-
-        {
-          eyeLanguage:"You are testing my patience.",
-          eyeMovement:"Side-eye followed by dismissive look-away.",
-          eyelids:"Slightly half-lidded or narrowed.",
-          brows:"Small asymmetric lift.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Small purse or projected lip.",
-          corners:"One corner pulls sideways or down.",
-          cheeks:"Small compression.",
-          jawNeck:"Brief jaw reset.",
-          breath:"Short nasal exhale.",
-          hands:"Mostly still.",
-          body:"Slight lean back.",
-          wholeBody:"Controlled comic irritation.",
-          nonverbal:"Soft tongue click.",
-          timing:"Irritation lands → side-eye → lip response → exhale."
-        },
-
-        {
-          eyeLanguage:"This is getting ridiculous.",
-          eyeMovement:"Firm side glance or direct stare.",
-          eyelids:"Readable narrowing.",
-          brows:"Visible irritation.",
-          moisture:"Normal.",
-          mouthOpening:"Small opening during incredulous response.",
-          teeth:"Usually hidden.",
-          lipShape:"Tighter purse.",
-          corners:"Asymmetric tension.",
-          cheeks:"Tense.",
-          jawNeck:"Jaw resets visibly.",
-          breath:"Sharper exhale.",
-          hands:"Small dismissive gesture.",
-          body:"Posture firms.",
-          wholeBody:"Readable annoyance.",
-          nonverbal:"Tongue click or scoff.",
-          timing:"Look → compress face → exhale → respond."
-        },
-
-        {
-          eyeLanguage:"I am very close to snapping.",
-          eyeMovement:"Strong irritated stare.",
-          eyelids:"Pronounced half-lidded or narrowed look.",
-          brows:"Strong.",
-          moisture:"Normal.",
-          mouthOpening:"May open during protest.",
-          teeth:"Can show briefly through annoyed grin or tense speech.",
-          lipShape:"Strong purse.",
-          corners:"Strong asymmetry.",
-          cheeks:"Compressed.",
-          jawNeck:"Jaw and neck tension.",
-          breath:"Sharp.",
-          hands:"Direct gesture.",
-          body:"Confrontational orientation.",
-          wholeBody:"Strong irritation.",
-          nonverbal:"Audible tongue click or scoff.",
-          timing:"Trigger → held stare → mouth reaction → gesture."
-        },
-
-        {
-          eyeLanguage:"I am done pretending this is fine.",
-          eyeMovement:"Heightened stare or double-take.",
-          eyelids:"Strong expressive irritation.",
-          brows:"Broad.",
-          moisture:"Normal.",
-          mouthOpening:"Open complaint.",
-          teeth:"May show during strong speech.",
-          lipShape:"Large expressive shape.",
-          corners:"Strong movement.",
-          cheeks:"Strong activation.",
-          jawNeck:"Visible tension.",
-          breath:"Forceful.",
-          hands:"Larger gesture.",
-          body:"Open confrontation.",
-          wholeBody:"Heightened comic anger.",
-          nonverbal:"Tongue click, scoff or vocal protest.",
-          timing:"Trigger → hold → large response → recovery."
-        }
-
-      ]
-    },
-
-
-    "Serious": {
-
-      control: [99,97,91,82,68],
-
-      summaries: [
-        "A tiny loss of warmth suggests irritation.",
-        "The jaw and eyelids quietly harden.",
-        "Annoyance becomes clearly visible.",
-        "The person is nearing anger.",
-        "Control begins to break."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I do not like that.",
-          eyeMovement:"Briefly firmer look.",
-          eyelids:"Tiny narrowing.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Small press.",
-          corners:"Neutral.",
-          cheeks:"Slight tension.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Normal.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Irritation → suppress."
-        },
-
-        {
-          eyeLanguage:"Stop.",
-          eyeMovement:"Shorter, firmer attention.",
-          eyelids:"Subtle lower-lid tension.",
-          brows:"Small compression.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Firm press.",
-          corners:"Slight compression.",
-          cheeks:"Tense.",
-          jawNeck:"Jaw resets.",
-          breath:"Controlled nasal exhale.",
-          hands:"Still.",
-          body:"Movement reduces.",
-          wholeBody:"High control.",
-          nonverbal:"Soft tongue click possible.",
-          timing:"Trigger → jaw sets → controlled response."
-        },
-
-        {
-          eyeLanguage:"You are crossing a line.",
-          eyeMovement:"Firm direct look.",
-          eyelids:"Narrowed.",
-          brows:"Readable irritation.",
-          moisture:"Normal.",
-          mouthOpening:"Opens only when speaking.",
-          teeth:"Hidden.",
-          lipShape:"Tight.",
-          corners:"Compressed.",
-          cheeks:"Tense.",
-          jawNeck:"Jaw engaged.",
-          breath:"Sharper controlled exhale.",
-          hands:"Minimal.",
-          body:"Posture firms.",
-          wholeBody:"Readable irritation.",
-          nonverbal:"Low scoff.",
-          timing:"Trigger → stillness → direct response."
-        },
-
-        {
-          eyeLanguage:"Do not push further.",
-          eyeMovement:"Strong sustained stare.",
-          eyelids:"Pronounced tension.",
-          brows:"Strong.",
-          moisture:"Normal.",
-          mouthOpening:"Controlled speech opening.",
-          teeth:"Possible through tense speech.",
-          lipShape:"Firm.",
-          corners:"Tense.",
-          cheeks:"Compressed.",
-          jawNeck:"Neck tension visible.",
-          breath:"Strongly regulated.",
-          hands:"Still or controlled grip.",
-          body:"Rigid.",
-          wholeBody:"Strong restraint.",
-          nonverbal:"Sharp exhale.",
-          timing:"Provocation → hold → controlled warning."
-        },
-
-        {
-          eyeLanguage:"Control is about to break.",
-          eyeMovement:"Direct confrontational focus.",
-          eyelids:"Strong angry focus.",
-          brows:"Open anger.",
-          moisture:"Normal.",
-          mouthOpening:"Opens more forcefully during confrontation.",
-          teeth:"May show through forceful speech.",
-          lipShape:"Tense.",
-          corners:"Compressed.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible strain.",
-          breath:"Forceful.",
-          hands:"Action may begin.",
-          body:"Confrontational.",
-          wholeBody:"Near anger.",
-          nonverbal:"Sharp vocal response.",
-          timing:"Restraint → breaking point."
-        }
-
-      ]
-    }
-
-  }
-},
-
-
-/* ---------------------------------------------------------
-   QUIET ANGER
---------------------------------------------------------- */
-
-{
-  id: "quiet-anger",
-  category: "Conflict",
-  name: "Quiet Anger",
-
-  subtitle:
-    "Strong anger held under deliberate control.",
-
-  keywords:
-    ["quiet anger","marah","controlled anger","rage"],
-
-  meaning:
-    "The anger is genuine, but the person chooses not to release it openly.",
-
-  principle:
-    "Strong quiet anger often becomes physically stiller rather than larger.",
-
-  goodFor:
-    ["Power struggle","Betrayal","Threat","Confrontation"],
-
-  tones: {
-
-    "Serious": {
-
-      control: [99,98,95,90,72],
-
-      summaries: [
-        "The gaze hardens slightly.",
-        "Lower-lid and jaw tension make anger readable.",
-        "Anger becomes clear beneath controlled stillness.",
-        "Strong anger is visibly contained.",
-        "Containment approaches failure."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I did not like that.",
-          eyeMovement:"Gaze hardens slightly.",
-          eyelids:"Tiny lower-lid tension.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral but less soft.",
-          corners:"Neutral.",
-          cheeks:"Slight tension.",
-          jawNeck:"Minimal engagement.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Still.",
-          wholeBody:"Very controlled.",
-          nonverbal:"None.",
-          timing:"Provocation → stillness."
-        },
-
-        {
-          eyeLanguage:"Do not push me.",
-          eyeMovement:"Firmer sustained look.",
-          eyelids:"Lower lids tighten; blink rate reduces.",
-          brows:"Small compression.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Firm.",
-          corners:"Compressed.",
-          cheeks:"Tight.",
-          jawNeck:"Jaw clearly sets.",
-          breath:"Controlled exhale.",
-          hands:"Still.",
-          body:"Movement reduces.",
-          wholeBody:"Extremely controlled.",
-          nonverbal:"Quiet nasal exhale.",
-          timing:"Provocation → gaze hardens → jaw sets → breathe out."
-        },
-
-        {
-          eyeLanguage:"I am angry and choosing restraint.",
-          eyeMovement:"Direct held eye contact.",
-          eyelids:"Focused lower-lid tension.",
-          brows:"Readable anger.",
-          moisture:"Normal.",
-          mouthOpening:"Minimal except speech.",
-          teeth:"Hidden.",
-          lipShape:"Clipped and firm.",
-          corners:"Compressed.",
-          cheeks:"Strong tension.",
-          jawNeck:"Jaw and throat engaged.",
-          breath:"Slow deliberate control.",
-          hands:"Still or controlled grip.",
-          body:"Rigid purposeful stillness.",
-          wholeBody:"High-intensity control.",
-          nonverbal:"Low scoff possible.",
-          timing:"Anger rises → movement reduces → response becomes deliberate."
-        },
-
-        {
-          eyeLanguage:"You are very close to losing my restraint.",
-          eyeMovement:"Intense unbroken attention.",
-          eyelids:"Strong controlled tension.",
-          brows:"Strong anger.",
-          moisture:"Possible only if mixed with hurt.",
-          mouthOpening:"Controlled during speech.",
-          teeth:"May barely show if jaw tension exposes them.",
-          lipShape:"Tight.",
-          corners:"Strong compression.",
-          cheeks:"Compressed.",
-          jawNeck:"Neck muscles visible.",
-          breath:"Strongly regulated.",
-          hands:"Grip then deliberate release.",
-          body:"Minimal movement.",
-          wholeBody:"Strong anger under restraint.",
-          nonverbal:"Sharp controlled exhale.",
-          timing:"Provocation → long hold → precise warning."
-        },
-
-        {
-          eyeLanguage:"The restraint is breaking.",
-          eyeMovement:"Threatening direct focus.",
-          eyelids:"Strong intense tension.",
-          brows:"Open anger.",
-          moisture:"Context-dependent.",
-          mouthOpening:"More forceful as control breaks.",
-          teeth:"May show through clenched or forceful speech.",
-          lipShape:"Tense and unstable.",
-          corners:"Compressed.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible strain.",
-          breath:"Forceful.",
-          hands:"Action may finally occur.",
-          body:"Stillness breaks.",
-          wholeBody:"Containment failure.",
-          nonverbal:"Sharp vocal response.",
-          timing:"Held anger → breaking point → action."
-        }
-
-      ]
-    }
-
-  }
-},
-
-
-/* ---------------------------------------------------------
-   HURT
---------------------------------------------------------- */
-
-{
-  id: "hurt",
-  category: "Vulnerability",
-  name: "Emotional Hurt",
-
-  subtitle:
-    "A personally meaningful emotional wound lands.",
-
-  keywords:
-    ["hurt","terluka","sad","betrayal","pain"],
-
-  meaning:
-    "Something touches trust, rejection, attachment or vulnerability and causes emotional pain.",
-
-  principle:
-    "Hurt often begins with stillness and loss of warmth before tears appear.",
-
-  goodFor:
-    ["Rejection","Cruel remark","Betrayal","Disappointment"],
-
-  tones: {
-
-    "Serious Drama": {
-
-      control: [98,92,78,57,35],
-
-      summaries: [
-        "Warmth disappears for a moment.",
-        "A slower blink and withdrawn gaze reveal restrained hurt.",
-        "Emotional pain becomes clearly readable.",
-        "Tears and throat tension become difficult to control.",
-        "The emotional wound overwhelms regulation."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"That hurt.",
-          eyeMovement:"Warmth drops briefly.",
-          eyelids:"Small stillness.",
-          brows:"Tiny inner change.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Expression settles.",
-          corners:"Lose slight support.",
-          cheeks:"Softness reduces.",
-          jawNeck:"Relaxed.",
-          breath:"Normal.",
-          hands:"Still.",
-          body:"Brief pause.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Words land → stillness."
-        },
-
-        {
-          eyeLanguage:"I am trying not to show how much that affected me.",
-          eyeMovement:"Eye contact becomes briefly difficult.",
-          eyelids:"Slower blink after the emotional hit.",
-          brows:"Small inner tension.",
-          moisture:"Normal.",
-          mouthOpening:"Closed or fractionally parted.",
-          teeth:"Hidden.",
-          lipShape:"Light press.",
-          corners:"Slight downward loss of support.",
-          cheeks:"Reduced warmth.",
-          jawNeck:"Small swallow.",
-          breath:"Quiet restrained exhale.",
-          hands:"Become still.",
-          body:"Slight withdrawal.",
-          wholeBody:"Controlled hurt.",
-          nonverbal:"None.",
-          timing:"Hit → hold → slow blink → small withdrawal."
-        },
-
-        {
-          eyeLanguage:"I cannot completely hide this pain.",
-          eyeMovement:"Gaze lowers or withdraws.",
-          eyelids:"Lower-lid tension.",
-          brows:"Readable pain.",
-          moisture:"Slight glassiness possible.",
-          mouthOpening:"Small opening before speech.",
-          teeth:"Hidden.",
-          lipShape:"Tension or beginning tremor.",
-          corners:"Slight downward pull.",
-          cheeks:"Soft heaviness.",
-          jawNeck:"Throat tightens.",
-          breath:"Incomplete inhale.",
-          hands:"Grip or self-regulation.",
-          body:"Posture closes.",
-          wholeBody:"Readable emotional wound.",
-          nonverbal:"Soft broken exhale.",
-          timing:"Pain registers → breath fails slightly → gaze withdraws."
-        },
-
-        {
-          eyeLanguage:"I am fighting tears.",
-          eyeMovement:"Eye contact difficult to maintain.",
-          eyelids:"Repeated controlled blink.",
-          brows:"Strong hurt.",
-          moisture:"Tear film or tears collecting.",
-          mouthOpening:"Small unstable opening during speech.",
-          teeth:"Hidden.",
-          lipShape:"Visible tremor.",
-          corners:"Downward.",
-          cheeks:"Tension around eyes and mouth.",
-          jawNeck:"Strong throat tension.",
-          breath:"Uneven.",
-          hands:"May brace or cover mouth.",
-          body:"Shoulders lose support.",
-          wholeBody:"Strong pain under restraint.",
-          nonverbal:"Breathy exhale or broken voice.",
-          timing:"Hold → tears build → speech becomes difficult."
-        },
-
-        {
-          eyeLanguage:"I cannot contain this anymore.",
-          eyeMovement:"Eye contact breaks completely.",
-          eyelids:"Tear-control blinking fails.",
-          brows:"Open pain.",
-          moisture:"Tears fall.",
-          mouthOpening:"Mouth opens during crying or failed speech.",
-          teeth:"Incidental only.",
-          lipShape:"Loss of control.",
-          corners:"Downward and unstable.",
-          cheeks:"Strong crying activation.",
-          jawNeck:"Visible throat strain.",
-          breath:"Broken.",
-          hands:"Support-seeking or face-covering.",
-          body:"Posture collapses inward.",
-          wholeBody:"Loss of regulation.",
-          nonverbal:"Crying.",
-          timing:"Restraint fails → tears release → body loses support."
-        }
-
-      ]
-    }
-
-  }
-},
-
-
-/* ---------------------------------------------------------
-   CONTROLLED FEAR
---------------------------------------------------------- */
-
-{
-  id: "controlled-fear",
-  category: "Suspense",
-  name: "Controlled Fear",
-
-  subtitle:
-    "A real threat is present, but the person is still functioning.",
-
-  keywords:
-    ["fear","takut","danger","controlled fear"],
-
-  meaning:
-    "Danger is real enough to change attention and body protection, but regulation has not yet collapsed.",
-
-  principle:
-    "Fear first changes attention, eyelids, breath and defensive readiness. Panic comes later.",
-
-  goodFor:
-    ["Thriller","Hiding","Threat","Protecting someone"],
-
-  tones: {
-
-    "Thriller": {
-
-      control: [98,92,80,62,44],
-
-      summaries: [
-        "The threat registers quietly.",
-        "Movement reduces and breathing becomes controlled.",
-        "Fear becomes clearly visible beneath functional behaviour.",
-        "Maintaining composure becomes difficult.",
-        "Control approaches panic."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"Something may be dangerous.",
-          eyeMovement:"Locks slightly longer on threat.",
-          eyelids:"Small attention lift.",
-          brows:"Minimal.",
-          moisture:"Normal.",
-          mouthOpening:"Closed.",
-          teeth:"Hidden.",
-          lipShape:"Neutral.",
-          corners:"Neutral.",
-          cheeks:"Slight tension.",
-          jawNeck:"Relaxed.",
-          breath:"Tiny pause.",
-          hands:"Normal.",
-          body:"Brief stillness.",
-          wholeBody:"Controlled.",
-          nonverbal:"None.",
-          timing:"Threat registers → pause."
-        },
-
-        {
-          eyeLanguage:"Stay calm and watch.",
-          eyeMovement:"Carefully monitors threat.",
-          eyelids:"Upper lids lift slightly, then lower lids focus.",
-          brows:"Small fear tension.",
-          moisture:"Normal.",
-          mouthOpening:"Lips may part slightly.",
-          teeth:"Hidden.",
-          lipShape:"Small tension.",
-          corners:"Neutral.",
-          cheeks:"Less relaxed.",
-          jawNeck:"Subtle neck engagement.",
-          breath:"Quiet controlled breathing.",
-          hands:"Still or protective.",
-          body:"Movement reduces.",
-          wholeBody:"Functional fear.",
-          nonverbal:"Quiet inhale.",
-          timing:"Threat → eyes lock → breath changes → stillness."
-        },
-
-        {
-          eyeLanguage:"I need to track the danger.",
-          eyeMovement:"Sustained threat tracking.",
-          eyelids:"Focused with reduced relaxed blinking.",
-          brows:"Readable fear.",
-          moisture:"Normal or slight glassiness.",
-          mouthOpening:"Slightly parted.",
-          teeth:"Hidden.",
-          lipShape:"Tense.",
-          corners:"Slight downward tension.",
-          cheeks:"Visible strain.",
-          jawNeck:"Throat and neck engaged.",
-          breath:"Shallow but controlled.",
-          hands:"Protective readiness.",
-          body:"Guarded stance.",
-          wholeBody:"Fear visible but regulated.",
-          nonverbal:"Breath pause.",
-          timing:"Track → listen → brace."
-        },
-
-        {
-          eyeLanguage:"I may need to act immediately.",
-          eyeMovement:"Strong threat fixation and scanning.",
-          eyelids:"More open during new information, then narrowed focus.",
-          brows:"Strong fear.",
-          moisture:"Possible moisture.",
-          mouthOpening:"More clearly parted.",
-          teeth:"May show incidentally through tension.",
-          lipShape:"Tense.",
-          corners:"Downward.",
-          cheeks:"Strong tension.",
-          jawNeck:"Visible muscle activation.",
-          breath:"Shallow and harder to regulate.",
-          hands:"Defensive gesture.",
-          body:"Braced.",
-          wholeBody:"Control weakening.",
-          nonverbal:"Sharp inhale.",
-          timing:"Threat escalates → defensive preparation."
-        },
-
-        {
-          eyeLanguage:"Survive.",
-          eyeMovement:"Attention jumps between threat and escape.",
-          eyelids:"Strong reactive behaviour.",
-          brows:"Open fear.",
-          moisture:"Watery eyes possible.",
-          mouthOpening:"Open for breathing.",
-          teeth:"May show through tension.",
-          lipShape:"No longer controlled.",
-          corners:"Fear tension.",
-          cheeks:"Strong strain.",
-          jawNeck:"Visible neck tension.",
-          breath:"Regulation near failure.",
-          hands:"Strong protective action.",
-          body:"Survival movement begins.",
-          wholeBody:"Approaching panic.",
-          nonverbal:"Gasp or cry.",
-          timing:"Fear → regulation fails → survival response."
-        }
-
-      ]
-    }
-
-  }
-},
-
-
-/* ---------------------------------------------------------
-   MENTAL BREAKDOWN
---------------------------------------------------------- */
-
-{
-  id: "mental-breakdown",
-  category: "Distress",
-  name: "Mental Breakdown",
-
-  subtitle:
-    "Emotional regulation progressively fails under overwhelming pressure.",
-
-  keywords:
-    ["breakdown","mental breakdown","collapse","crying","overwhelmed"],
-
-  meaning:
-    "Accumulated emotional strain exceeds the person's ability to maintain normal regulation.",
-
-  principle:
-    "A convincing breakdown is a progression: focus weakens, breath destabilizes, throat tightens, speech fails, posture loses support.",
-
-  goodFor:
-    ["Overwhelming grief","Accumulated pressure","Traumatic reveal","Emotional collapse"],
-
-  tones: {
-
-    "Serious Drama": {
-
-      control: [86,70,50,30,12],
-
-      summaries: [
-        "Small cracks appear in concentration.",
-        "The person is visibly holding themselves together.",
-        "Regulation begins to fail.",
-        "The breakdown becomes active.",
-        "The person loses most ability to maintain composure."
-      ],
-
-      levels: [
-
-        {
-          eyeLanguage:"I am struggling to stay present.",
-          eyeMovement:"Attention drifts briefly.",
-          eyelids:"Longer blink or blank hold.",
-          brows:"Minimal strain.",
-          moisture:"Normal.",
-          mouthOpening:"Small delayed response.",
-          teeth:"Hidden.",
-          lipShape:"Neutral but low energy.",
-          corners:"Lose support.",
-          cheeks:"Reduced expression.",
-          jawNeck:"Small swallow.",
-          breath:"Mostly normal.",
-          hands:"Become still.",
-          body:"Small energy drop.",
-          wholeBody:"Cracks beginning.",
-          nonverbal:"None.",
-          timing:"Stress → attention slips → recovery."
-        },
-
-        {
-          eyeLanguage:"I am trying very hard to hold this together.",
-          eyeMovement:"Focus becomes harder to maintain.",
-          eyelids:"Slower blink and longer eye holds.",
-          brows:"Small emotional strain.",
-          moisture:"Faint glassiness possible.",
-          mouthOpening:"Difficulty starting speech.",
-          teeth:"Hidden.",
-          lipShape:"Lip press.",
-          corners:"Slight downward tension.",
-          cheeks:"Tension begins.",
-          jawNeck:"Swallow and throat tension.",
-          breath:"Incomplete inhale or controlled exhale.",
-          hands:"Still, grip or small self-regulation.",
-          body:"Posture subtly closes.",
-          wholeBody:"Holding together.",
-          nonverbal:"Quiet broken sigh.",
-          timing:"Focus slips → swallow → incomplete inhale → regain control."
-        },
-
-        {
-          eyeLanguage:"My regulation is starting to fail.",
-          eyeMovement:"Attention drifts or avoids people.",
-          eyelids:"Blink rhythm becomes inconsistent.",
-          brows:"Readable distress.",
-          moisture:"Eyes become glassy.",
-          mouthOpening:"Small unstable opening before speech.",
-          teeth:"Hidden.",
-          lipShape:"Lips may tremble.",
-          corners:"Downward and unstable.",
-          cheeks:"Visible tension.",
-          jawNeck:"Throat tightens.",
-          breath:"Uneven.",
-          hands:"Grip, self-touch or support seeking.",
-          body:"Shoulders begin losing support.",
-          wholeBody:"Regulation failing.",
-          nonverbal:"Broken exhale.",
-          timing:"Breath destabilizes → throat tightens → posture begins to lose support."
-        },
-
-        {
-          eyeLanguage:"I cannot keep the emotional structure together.",
-          eyeMovement:"Difficulty maintaining social focus.",
-          eyelids:"Repeated blink trying to control tears.",
-          brows:"Strong distress.",
-          moisture:"Tears collect or begin to fall.",
-          mouthOpening:"Speech fragments.",
-          teeth:"May appear incidentally during crying.",
-          lipShape:"Trembling or unstable.",
-          corners:"Strong downward instability.",
-          cheeks:"Crying tension.",
-          jawNeck:"Strong throat and neck tension.",
-          breath:"Broken rhythm.",
-          hands:"Cover mouth, face or brace against something.",
-          body:"Shoulders drop; posture collapses inward.",
-          wholeBody:"Breakdown active.",
-          nonverbal:"Crying or fragmented speech.",
-          timing:"Speech fails → tears build → hands seek regulation → body loses support."
-        },
-
-        {
-          eyeLanguage:"I cannot organize myself anymore.",
-          eyeMovement:"Attention severely disrupted.",
-          eyelids:"Tear control fails.",
-          brows:"Open distress.",
-          moisture:"Tears actively fall.",
-          mouthOpening:"Mouth opens through crying or failed breathing.",
-          teeth:"Incidental visibility only.",
-          lipShape:"Full loss of control.",
-          corners:"Downward and unstable.",
-          cheeks:"Strong crying response.",
-          jawNeck:"Visible strain.",
-          breath:"Difficult to organize.",
-          hands:"Strong support-seeking or face-covering.",
-          body:"May collapse, sit, brace or curl inward.",
-          wholeBody:"Severe loss of regulation.",
-          nonverbal:"Crying, gasping or broken vocalization.",
-          timing:"Regulation fails across breath → speech → posture → whole body."
-        }
-
-      ]
-    }
-
-  }
+"Dysregulation / Extreme":{
+ eye:"unstable",
+ lid:"unstable",
+ mouth:"unstable",
+ body:"failing",
+ defaultTones:["Serious Drama","Extreme"]
 }
 
+};
+
+
+const SPECIAL_TONES = {
+
+"shock":[
+ "Comedy",
+ "Sad / Painful",
+ "Fear / Threat",
+ "Romantic",
+ "Anger / Betrayal"
+],
+
+"comic-shock":[
+ "Comedy",
+ "Heightened Comedy"
+],
+
+"suspicion":[
+ "Comedy",
+ "Serious / Thriller"
+],
+
+"embarrassment":[
+ "Comedy",
+ "Serious / Shame",
+ "Romantic"
+],
+
+"romantic-jealousy":[
+ "Rom-Com",
+ "Serious Drama"
+],
+
+"annoyance":[
+ "Comedy",
+ "Serious"
+],
+
+"quiet-anger":[
+ "Serious",
+ "Betrayal",
+ "Power Conflict"
+],
+
+"fear":[
+ "Thriller",
+ "Sad / Vulnerable",
+ "Comedy Fear"
+],
+
+"panic":[
+ "Thriller",
+ "Comedy Panic",
+ "Emotional Crisis"
+],
+
+"disbelief":[
+ "Comedy",
+ "Painful",
+ "Angry",
+ "Romantic"
+],
+
+"realization":[
+ "Comedy",
+ "Painful",
+ "Romantic",
+ "Threat"
+],
+
+"grief":[
+ "Restrained Drama",
+ "Open Grief"
+],
+
+"mental-breakdown":[
+ "Serious Drama"
+]
+
+};
+
+
+/* =========================================================
+   SEARCH ALIASES
+========================================================= */
+
+const ALIASES = {
+ "mild-concern":"risau sedikit concern care",
+ "worry":"risau bimbang",
+ "fear":"takut",
+ "panic":"cemas panic",
+ "suspicion":"curiga suspicious side eye",
+ "embarrassment":"malu segan",
+ "sulking":"merajuk muncung pout",
+ "annoyance":"geram menyampah",
+ "quiet-anger":"marah diam controlled anger",
+ "rage":"marah sangat",
+ "hurt":"terluka hati",
+ "sadness":"sedih",
+ "grief":"dukacita kehilangan",
+ "despair":"putus asa",
+ "flustered-attraction":"tertarik malu crush",
+ "romantic-jealousy":"cemburu",
+ "playful-teasing":"mengusik teasing",
+ "disbelief":"tak percaya",
+ "shock":"terkejut",
+ "comic-shock":"terkejut comedy",
+ "relief":"lega",
+ "joy":"gembira",
+ "confusion":"keliru",
+ "realization":"tersedar realization",
+ "determination":"tekad determined",
+ "mental-breakdown":"breakdown collapse menangis"
+};
+
+
+/* =========================================================
+   FLATTEN DATABASE
+========================================================= */
+
+const emotions=[];
+
+Object.entries(GROUPS).forEach(([category,items])=>{
+ items.forEach(([id,name,desc])=>{
+   emotions.push({
+     id,name,desc,category,
+     tones:SPECIAL_TONES[id] || PROFILES[category].defaultTones
+   });
+ });
+});
+
+
+const levelNames=[
+ "Barely There",
+ "Restrained",
+ "Readable",
+ "Strong",
+ "Heightened"
 ];
 
 
 /* =========================================================
-   STATE
+   FACIAL LANGUAGE ENGINE
 ========================================================= */
 
-let selectedEmotionId = "shock";
-let selectedTone = "Comedy";
-let selectedIntensity = 2;
-
-let selectedCategory = "All";
-let searchQuery = "";
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function getEmotion(id) {
-  return emotions.find(e => e.id === id);
+function intensityWord(level){
+ return [
+  "barely noticeable",
+  "restrained",
+  "clearly readable",
+  "strong",
+  "heightened"
+ ][level-1];
 }
 
 
-function getToneData(emotion) {
-  return emotion.tones[selectedTone];
+function eyeLanguage(emotion,tone,l){
+
+ const n=emotion.name;
+
+ const custom={
+
+  "Mild Concern":[
+   "Did something change?",
+   "Are you okay?",
+   "I should keep watching this.",
+   "This may actually be serious.",
+   "I need to act."
+  ],
+
+  "Suspicion":[
+   "Hmm?",
+   "Do you really expect me to believe that?",
+   "I am testing your story.",
+   "I think you are hiding something.",
+   "I know something is wrong."
+  ],
+
+  "Flustered Attraction":[
+   "I noticed you differently.",
+   "I am attracted, but I do not want you to notice.",
+   "I keep becoming aware of you.",
+   "You are disrupting my composure.",
+   "I cannot hide this anymore."
+  ],
+
+  "Quiet Anger":[
+   "I did not like that.",
+   "Do not push me.",
+   "I am angry and choosing restraint.",
+   "You are close to breaking my restraint.",
+   "My restraint is breaking."
+  ],
+
+  "Grief":[
+   "Something is missing.",
+   "I know the loss is real.",
+   "I cannot make this absence disappear.",
+   "I am struggling to contain the loss.",
+   "The loss overwhelms everything."
+  ],
+
+  "Mental Breakdown":[
+   "I am struggling to stay present.",
+   "I am trying to hold myself together.",
+   "My regulation is failing.",
+   "I cannot keep the emotional structure together.",
+   "I cannot organize myself anymore."
+  ],
+
+  "Shock / Surprise":[
+   "Something interrupted me.",
+   "Wait... what?",
+   "I need to understand what just happened.",
+   "This changes everything.",
+   "My normal processing has completely broken."
+  ]
+
+ };
+
+ if(custom[n]) return custom[n][l-1];
+
+ if(emotion.category==="Romance / Attraction")
+   return [
+    "I noticed something.",
+    "This person is affecting me.",
+    "I am trying not to reveal what I feel.",
+    "Maintaining composure is becoming difficult.",
+    "The feeling is impossible to hide."
+   ][l-1];
+
+ if(emotion.category==="Conflict / Anger")
+   return [
+    "I did not like that.",
+    "Do not continue.",
+    "You are crossing a line.",
+    "I am close to acting on this.",
+    "Control is breaking."
+   ][l-1];
+
+ if(emotion.category==="Suspense / Threat")
+   return [
+    "Something changed.",
+    "I should watch this carefully.",
+    "This may be dangerous.",
+    "I need to prepare.",
+    "Survive."
+   ][l-1];
+
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "That affected me.",
+    "I am trying not to show the pain.",
+    "The emotion is becoming difficult to hide.",
+    "I am struggling to stay composed.",
+    "I cannot contain this anymore."
+   ][l-1];
+
+ if(emotion.category==="Comedy / Social")
+   return [
+    "I noticed that.",
+    "I have a reaction, but I am holding it.",
+    "You can clearly read what I think.",
+    "I am openly reacting now.",
+    "The reaction becomes a deliberate comic event."
+   ][l-1];
+
+ return [
+  "Something registers.",
+  "The feeling is present but controlled.",
+  "The emotion becomes readable.",
+  "The emotion strongly affects behaviour.",
+  "The emotion dominates the performance."
+ ][l-1];
 }
 
 
-function getFilteredEmotions() {
+function eyeMovement(emotion,tone,l){
 
-  return emotions.filter(emotion => {
+ const cat=emotion.category;
+ const comedy=tone.toLowerCase().includes("comedy") ||
+              tone.toLowerCase().includes("rom-com");
 
-    const categoryMatch =
-      selectedCategory === "All" ||
-      emotion.category === selectedCategory;
+ if(emotion.id==="suspicion"){
+   return comedy
+   ? [
+      "A tiny second look.",
+      "Brief side-eye followed by one deliberate second look.",
+      "Side-eye holds longer before returning.",
+      "Extended side-eye and deliberate double-check.",
+      "Heightened side-eye, double-take and held stare."
+     ][l-1]
+   : [
+      "Brief reassessment.",
+      "One deliberate second check.",
+      "Sustained investigative attention.",
+      "Continuous monitoring of the suspicious source.",
+      "Direct accusatory focus."
+     ][l-1];
+ }
 
-    const text = [
-      emotion.name,
-      emotion.subtitle,
-      emotion.meaning,
-      emotion.category,
-      ...(emotion.keywords || []),
-      ...Object.keys(emotion.tones)
-    ]
-    .join(" ")
-    .toLowerCase();
+ if(emotion.id==="shock" || emotion.id==="comic-shock"){
+   return [
+    "Gaze pauses for a fraction.",
+    "Gaze freezes briefly.",
+    "Freeze followed by a deliberate second look.",
+    "Clear double-take or prolonged stare.",
+    "Large but controlled gaze interruption and secondary reaction."
+   ][l-1];
+ }
 
-    const searchMatch =
-      !searchQuery ||
-      text.includes(searchQuery.toLowerCase());
+ if(cat==="Romance / Attraction"){
+   return [
+    "Tiny attention interruption.",
+    "Brief delayed glance or slightly prolonged eye contact.",
+    "Gaze returns more often than intended.",
+    "Eye contact repeatedly breaks and returns.",
+    "Strong avoidance, return or prolonged romantic lock."
+   ][l-1];
+ }
 
-    return categoryMatch && searchMatch;
+ if(cat==="Suspense / Threat"){
+   return [
+    "Tiny focus shift.",
+    "One careful threat check.",
+    "Sustained monitoring or scanning.",
+    "Rapid threat-to-exit checking.",
+    "Attention repeatedly jumps between threat and survival options."
+   ][l-1];
+ }
 
-  });
+ if(cat==="Sadness / Vulnerability"){
+   return [
+    "A brief loss of visual warmth.",
+    "Eye contact becomes slightly harder.",
+    "Gaze lowers or retreats.",
+    "Eye contact repeatedly breaks.",
+    "Focus may drop away completely."
+   ][l-1];
+ }
 
+ return [
+  "Tiny gaze adjustment.",
+  "One deliberate re-check.",
+  "Clear gaze change.",
+  "Repeated or sustained gaze behaviour.",
+  "Strong gaze pattern becomes a major part of the reaction."
+ ][l-1];
 }
 
 
-function controlLabel(value) {
+function eyelids(emotion,tone,l){
 
-  if (value >= 95) return "Very High Control";
-  if (value >= 82) return "High Control";
-  if (value >= 65) return "Moderate Control";
-  if (value >= 45) return "Control Weakening";
-  return "Low / Failing Control";
+ const comedy=tone.toLowerCase().includes("comedy") ||
+              tone.toLowerCase().includes("rom-com");
 
+ if(emotion.id==="suspicion" && comedy)
+   return [
+    "Almost normal.",
+    "Slightly half-lidded.",
+    "Clearly half-lidded judging stare.",
+    "Pronounced half-lidded or narrowed comic judgment.",
+    "Highly expressive half-lidded stare with deliberate blink timing."
+   ][l-1];
+
+ if(emotion.id==="shock" || emotion.id==="comic-shock")
+   return [
+    "Tiny upper-lid lift.",
+    "Small upper-lid lift with delayed blink.",
+    "Readable upper-lid lift.",
+    "Strong lid opening followed by reaction blink.",
+    "Heightened lid response with controlled recovery."
+   ][l-1];
+
+ if(emotion.category==="Romance / Attraction")
+   return [
+    "Mostly natural.",
+    "Slight softening or delayed blink.",
+    "Softer eyelids around eye contact.",
+    "Noticeable lid change and self-conscious blink.",
+    "Expressive lift, softening or rapid recovery blink."
+   ][l-1];
+
+ if(emotion.category==="Conflict / Anger")
+   return [
+    "Tiny lower-lid tension.",
+    "Subtle narrowing.",
+    "Reduced relaxed blinking.",
+    "Strong lower-lid tension.",
+    "Intense focused lid tension."
+   ][l-1];
+
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Small stillness.",
+    "One slower blink.",
+    "Lower lids begin to carry emotional tension.",
+    "Repeated controlled blinking.",
+    "Blink control becomes unstable."
+   ][l-1];
+
+ return [
+  "Mostly normal.",
+  "Small change in blink or lid tension.",
+  "Clearly readable lid behaviour.",
+  "Strong lid tension or opening.",
+  "Highly expressive or unstable eyelid behaviour."
+ ][l-1];
 }
 
 
-function shortSummary(text) {
+function mouthOpening(emotion,tone,l){
 
-  if (text.length <= 88)
-    return text;
+ if(emotion.id==="shock" || emotion.id==="comic-shock")
+   return [
+    "Closed.",
+    "Lips part slightly after the eyes register.",
+    "Small-to-medium opening.",
+    "Clear open-mouth reaction.",
+    "Large open-mouth reaction may be used when dramatically appropriate."
+   ][l-1];
 
-  return text.slice(0,85) + "...";
+ if(emotion.category==="Conflict / Anger")
+   return [
+    "Closed.",
+    "Mostly closed.",
+    "Opens primarily for deliberate speech.",
+    "Speech opening becomes firmer and more forceful.",
+    "May open strongly only when restraint breaks."
+   ][l-1];
 
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Closed.",
+    "Closed or fractionally parted.",
+    "Small opening before difficult speech.",
+    "Unstable opening as speech or breath becomes difficult.",
+    "Mouth may open during crying or loss of vocal control."
+   ][l-1];
+
+ if(emotion.category==="Romance / Attraction")
+   return [
+    "Closed.",
+    "Lips may part a fraction.",
+    "Small parting during fluster or suppressed smile.",
+    "Clear but controlled mouth reaction.",
+    "Open reaction may appear in heightened rom-com performance."
+   ][l-1];
+
+ return [
+  "Mostly closed.",
+  "Tiny change in opening.",
+  "Small readable opening.",
+  "Clear mouth opening.",
+  "Large opening only when motivated by the emotion."
+ ][l-1];
 }
 
 
-/* =========================================================
-   RENDER LIBRARY
-========================================================= */
+function teethLanguage(emotion,tone,l){
 
-function renderCategories() {
+ if(emotion.category==="Joy / Positive")
+   return [
+    "Usually hidden.",
+    "A slight upper-teeth glimpse may appear.",
+    "Upper teeth appear naturally as the smile opens.",
+    "Clear smile-teeth visibility.",
+    "Broad teeth visibility through open joy or laughter."
+   ][l-1];
 
-  const wrap =
-    document.getElementById("categoryButtons");
+ if(emotion.id==="playful-teasing" ||
+    emotion.id==="smugness")
+   return [
+    "Hidden.",
+    "Usually hidden or a tiny glimpse.",
+    "Upper teeth may show in a mischievous grin.",
+    "Teeth become clearly visible through the grin.",
+    "Broad grin visibility in heightened comedy."
+   ][l-1];
 
-  wrap.innerHTML =
-    categories.map(cat => `
+ if(emotion.category==="Conflict / Anger")
+   return [
+    "Hidden.",
+    "Hidden.",
+    "Usually hidden; tension is carried by the jaw.",
+    "May briefly show through clenched or tense speech.",
+    "Can become visible when anger breaks into forceful speech."
+   ][l-1];
 
-      <button
-        class="cat ${selectedCategory === cat ? "active" : ""}"
-        onclick="setCategory('${cat.replace(/'/g,"\\'")}')">
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Hidden.",
+    "Hidden.",
+    "Hidden.",
+    "Usually hidden; any visibility is incidental.",
+    "Teeth visibility is incidental to crying, never smile-like."
+   ][l-1];
 
-        ${cat}
-
-      </button>
-
-    `).join("");
-
+ return [
+  "Hidden.",
+  "Usually hidden.",
+  "May appear briefly if the mouth shape naturally exposes them.",
+  "Visibility depends on the motivated mouth action.",
+  "May become clearly visible only when supported by the emotion."
+ ][l-1];
 }
 
 
-function renderLibrary() {
+function lipShape(emotion,tone,l){
 
-  const list =
-    getFilteredEmotions();
+ if(emotion.id==="sulking")
+   return [
+    "Almost neutral with tiny forward projection.",
+    "Soft rounded pout / small muncung.",
+    "Clear forward pout.",
+    "Pronounced projected lips.",
+    "Large but controlled comic pout."
+   ][l-1];
 
-  document
-    .getElementById("emotionCount")
-    .textContent =
-      `${list.length} emotion${list.length === 1 ? "" : "s"}`;
+ if(emotion.id==="suspicion" &&
+    (tone.includes("Comedy")))
+   return [
+    "Neutral.",
+    "Tiny asymmetric purse.",
+    "Asymmetric purse or small forward projection.",
+    "Pronounced judging purse.",
+    "Strong comic purse or mouth distortion."
+   ][l-1];
+
+ if(emotion.category==="Romance / Attraction")
+   return [
+    "Neutral.",
+    "Almost-smile or small lip reset.",
+    "Suppressed smile.",
+    "Smile becomes harder to contain.",
+    "Open embarrassed, affectionate or desirous mouth response."
+   ][l-1];
+
+ if(emotion.category==="Conflict / Anger")
+   return [
+    "Slight loss of softness.",
+    "Light lip press.",
+    "Firm compressed lips.",
+    "Strong compression or tense speech shape.",
+    "Tension becomes unstable as control breaks."
+   ][l-1];
+
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Neutral but lower energy.",
+    "Light press.",
+    "Tension or beginning tremor.",
+    "Visible tremor or unstable press.",
+    "Loss of fine mouth control."
+   ][l-1];
+
+ return [
+  "Mostly neutral.",
+  "Small motivated mouth change.",
+  "Readable lip shape.",
+  "Strong lip behaviour.",
+  "Heightened but emotionally motivated mouth shape."
+ ][l-1];
+}
 
 
-  const grid =
-    document.getElementById("emotionGrid");
+function mouthCorners(emotion,tone,l){
+
+ if(emotion.category==="Romance / Attraction")
+   return [
+    "Almost neutral.",
+    "One or both corners begin to rise then are suppressed.",
+    "Corners visibly fight a smile.",
+    "Upward movement becomes difficult to hide.",
+    "Strong upward activation or unstable embarrassed smile."
+   ][l-1];
+
+ if(emotion.category==="Joy / Positive")
+   return [
+    "Tiny upward warmth.",
+    "Small upward movement.",
+    "Clearly lifted.",
+    "Strong upward pull.",
+    "Broad upward activation."
+   ][l-1];
+
+ if(emotion.id==="sulking")
+   return [
+    "Tiny downward tension.",
+    "Both corners slightly down.",
+    "Readable downward pull.",
+    "Strong downward sulking shape.",
+    "Heightened downward pout."
+   ][l-1];
+
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Lose a little support.",
+    "Slight downward tension.",
+    "Readable loss of support.",
+    "Downward pull or instability.",
+    "Strong unstable downward movement."
+   ][l-1];
+
+ if(emotion.category==="Comedy / Social")
+   return [
+    "Tiny asymmetric change.",
+    "One corner may rise or tighten.",
+    "Asymmetry becomes readable.",
+    "Strong one-sided reaction.",
+    "Large but controlled comic corner movement."
+   ][l-1];
+
+ return [
+  "Mostly neutral.",
+  "Small tension.",
+  "Readable change.",
+  "Strong corner tension.",
+  "Large or unstable movement if motivated."
+ ][l-1];
+}
 
 
-  if (!list.length) {
+function breathLanguage(emotion,l){
 
-    grid.innerHTML = `
+ if(emotion.category==="Dysregulation / Extreme")
+   return [
+    "Mostly organized.",
+    "Incomplete inhale or controlled exhale.",
+    "Breathing becomes inconsistent.",
+    "Broken breathing rhythm.",
+    "Breathing becomes difficult to organize."
+   ][l-1];
 
-      <div class="empty">
+ if(emotion.category==="Suspense / Threat")
+   return [
+    "Tiny breath pause.",
+    "Quiet controlled inhale.",
+    "Shallow but organized breathing.",
+    "Breathing becomes harder to regulate.",
+    "Strong fear-driven breathing or gasping."
+   ][l-1];
 
-        No matching emotion.<br><br>
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Mostly normal.",
+    "Quiet restrained exhale.",
+    "Incomplete inhale or broken exhale.",
+    "Uneven breathing.",
+    "Broken crying breath."
+   ][l-1];
 
-        Try:
-        <strong>shock</strong>,
-        <strong>muncung</strong>,
-        <strong>suspicious</strong>,
-        <strong>worry</strong>,
-        <strong>jealous</strong>
-        or
-        <strong>breakdown</strong>.
-
-      </div>
-
-    `;
-
-    return;
-  }
+ return [
+  "Normal.",
+  "One small breath change.",
+  "Breathing becomes part of the readable performance.",
+  "Clear regulation effort.",
+  "Breath strongly reflects the emotion."
+ ][l-1];
+}
 
 
-  grid.innerHTML =
-    list.map(emotion => `
+function bodyLanguage(emotion,l){
 
-      <button
-        class="emotion-card ${emotion.id === selectedEmotionId ? "active" : ""}"
-        onclick="selectEmotion('${emotion.id}')">
+ const cat=emotion.category;
 
-        <div class="card-cat">
-          ${emotion.category}
-        </div>
+ if(cat==="Conflict / Anger")
+  return [
+   "Normal posture.",
+   "Movement reduces slightly.",
+   "Posture firms.",
+   "Stillness or confrontational orientation becomes strong.",
+   "Contained stillness may finally break into action."
+  ][l-1];
 
-        <div class="card-name">
-          ${emotion.name}
-        </div>
+ if(cat==="Sadness / Vulnerability")
+  return [
+   "Tiny energy loss.",
+   "Slight withdrawal.",
+   "Posture begins to close.",
+   "Shoulders or torso lose support.",
+   "Body may collapse inward or seek support."
+  ][l-1];
 
-        <div class="card-desc">
-          ${emotion.subtitle}
-        </div>
+ if(cat==="Suspense / Threat")
+  return [
+   "Brief pause.",
+   "Movement reduces.",
+   "Guarded posture.",
+   "Braced defensive posture.",
+   "Freeze, flee or protective action may dominate."
+  ][l-1];
 
-      </button>
+ if(cat==="Romance / Attraction")
+  return [
+   "Almost normal.",
+   "Small hesitation.",
+   "Subtle orientation toward or away from the person.",
+   "Visible proximity or avoidance tension.",
+   "Heightened freeze, retreat or approach may appear."
+  ][l-1];
 
-    `).join("");
+ if(cat==="Dysregulation / Extreme")
+  return [
+   "Small loss of normal rhythm.",
+   "Posture subtly closes.",
+   "Shoulders begin losing support.",
+   "Body seeks support or regulation.",
+   "Whole-body organization may fail."
+  ][l-1];
 
+ return [
+  "Mostly normal.",
+  "Small posture adjustment.",
+  "Readable body response.",
+  "Strong posture or movement change.",
+  "Heightened whole-body response when dramatically justified."
+ ][l-1];
+}
+
+
+function timingLanguage(emotion,tone,l){
+
+ const comedy=tone.toLowerCase().includes("comedy") ||
+              tone.toLowerCase().includes("rom-com");
+
+ if(comedy)
+   return [
+    "Stimulus → tiny register → continue.",
+    "Setup → small reaction → brief hold → recovery.",
+    "Setup → reaction → hold → second look or secondary payoff.",
+    "Clear anticipation → reaction → hold → secondary reaction.",
+    "Strong setup → freeze/recoil → reaction hold → second payoff → recovery."
+   ][l-1];
+
+ if(emotion.category==="Sadness / Vulnerability")
+   return [
+    "Emotional information lands → slight stillness.",
+    "Hit → pause → slow processing → small withdrawal.",
+    "Information lands → breath changes → pain becomes readable.",
+    "Pain builds → speech or eye control weakens.",
+    "Restraint fails → breath, face and posture lose regulation."
+   ][l-1];
+
+ if(emotion.category==="Suspense / Threat")
+   return [
+    "Threat registers → attention changes.",
+    "Threat → eyes check → movement reduces.",
+    "Threat → track → listen → brace.",
+    "Escalation → breath changes → defensive preparation.",
+    "Threat overwhelms regulation → survival response."
+   ][l-1];
+
+ return [
+  "Emotion registers → tiny behavioural leak.",
+  "Emotion lands → small pause → controlled response.",
+  "Emotion becomes readable → deliberate response.",
+  "Strong emotion → regulation effort → visible consequence.",
+  "Peak emotion → strong response → aftermath or recovery."
+ ][l-1];
 }
 
 
@@ -4239,529 +1256,458 @@ function renderLibrary() {
    PERFORMANCE MAP
 ========================================================= */
 
-function renderPerformanceMap(level) {
+function buildMap(emotion,tone,l){
 
-  return channelLabels
-    .map(([key,label]) => `
+ const eye=eyeLanguage(emotion,tone,l);
+ const movement=eyeMovement(emotion,tone,l);
+ const lids=eyelids(emotion,tone,l);
+ const mouth=mouthOpening(emotion,tone,l);
+ const teeth=teethLanguage(emotion,tone,l);
+ const lips=lipShape(emotion,tone,l);
+ const corners=mouthCorners(emotion,tone,l);
+ const breath=breathLanguage(emotion,l);
+ const body=bodyLanguage(emotion,l);
+ const timing=timingLanguage(emotion,tone,l);
 
-      <div class="map-row">
+ let moisture="Normal.";
 
-        <div class="map-key">
-          ${label}
-        </div>
+ if(emotion.category==="Sadness / Vulnerability"){
+   moisture=[
+    "Normal.",
+    "Usually normal.",
+    "Slight glassiness may appear where appropriate.",
+    "Tear film or tears collecting may appear.",
+    "Tears may fall if the emotion has genuinely reached this point."
+   ][l-1];
+ }
 
-        <div class="map-value">
-          ${level[key] || "Not typically relevant at this intensity."}
-        </div>
+ if(emotion.category==="Dysregulation / Extreme"){
+   moisture=[
+    "Normal.",
+    "Faint glassiness possible.",
+    "Eyes may become glassy.",
+    "Tears may collect or fall.",
+    "Active tears may accompany loss of regulation."
+   ][l-1];
+ }
 
-      </div>
+ let nonverbal=[
+  "Usually none.",
+  "A small exhale, hum or tiny reaction sound only if motivated.",
+  "A restrained sigh, chuckle, scoff or breath sound may appear.",
+  "Non-verbal reaction becomes clearer.",
+  "Stronger vocal reaction may appear if supported by the emotion."
+ ][l-1];
 
-    `)
-    .join("");
+ if(emotion.id==="annoyance" ||
+    emotion.id==="irritation" ||
+    emotion.id==="sulking"){
+   nonverbal=[
+    "None.",
+    "Small nasal exhale or tiny tongue click.",
+    "Tongue click, hum or restrained scoff.",
+    "Clear scoff, tongue click or exhale.",
+    "Heightened vocal complaint only when the scene supports it."
+   ][l-1];
+ }
 
+ return {
+   "Eye Language":eye,
+   "Eye Movement Language":movement,
+   "Eyelid Language":lids,
+   "Brows":[
+     "Minimal change.",
+     "Small motivated tension or lift.",
+     "Readable brow behaviour.",
+     "Strong but specific brow response.",
+     "Heightened brow behaviour only if it belongs to the emotion."
+   ][l-1],
+   "Eye Moisture":moisture,
+   "Mouth Opening Language":mouth,
+   "Showing Teeth Language":teeth,
+   "Lip / Mouth Language":lips,
+   "Corner of the Mouth":corners,
+   "Cheeks":[
+     "Mostly relaxed.",
+     "Tiny softening, lift or compression.",
+     "Readable cheek tension or activation.",
+     "Strong cheek involvement.",
+     "Heightened cheek activation where appropriate."
+   ][l-1],
+   "Jaw / Neck / Throat":[
+     "Mostly relaxed.",
+     "Small swallow, jaw reset or throat change if motivated.",
+     "Readable jaw or throat behaviour.",
+     "Strong jaw, throat or neck engagement.",
+     "Clear strain or loss of control if emotionally justified."
+   ][l-1],
+   "Breathing":breath,
+   "Hands / Fingers":[
+     "Normal.",
+     "Small reduction in relaxation.",
+     "One motivated grip, fidget or stillness.",
+     "Clear self-regulation, defensive or expressive hand behaviour.",
+     "Strong gesture or support-seeking only when justified."
+   ][l-1],
+   "Body / Posture":body,
+   "Non-Verbal Reaction":nonverbal,
+   "Reaction Timing":timing
+ };
 }
 
 
 /* =========================================================
-   PROMPT ENGINE
+   PROMPT
 ========================================================= */
 
-function buildPrompt(emotion, toneData, level) {
+function makePrompt(emotion,tone,l,map){
 
-  const intensityLabel =
-    levelNames[selectedIntensity - 1];
+ let chosen=[
+   map["Eye Movement Language"],
+   map["Eyelid Language"],
+   map["Lip / Mouth Language"]
+ ];
 
-  const heroChannels = [];
+ if(l>=3) chosen.push(map["Body / Posture"]);
+ if(l>=4) chosen.push(map["Breathing"]);
 
-  function add(text) {
-    if (text && heroChannels.length < 5)
-      heroChannels.push(text);
-  }
+ let avoid=
+ "Keep the facial response motivated and sequential rather than activating every feature at once.";
 
+ if(l<=2)
+   avoid+=" Keep the performance restrained. Avoid unnecessarily wide eyes, large gestures, shaking or panic-like breathing.";
 
-  /*
-    Selective prompt:
-    priority is eyes + eyelids + mouth + body/breath.
-    We deliberately do NOT dump every channel.
-  */
+ if(emotion.id==="mild-concern")
+   avoid+=" Do not make mild concern look like anxiety or fear.";
 
-  add(level.eyeMovement);
-  add(level.eyelids);
+ if(emotion.id==="suspicion" &&
+    tone.toLowerCase().includes("comedy"))
+   avoid+=" Keep the suspicion playful or judging rather than threatening.";
 
-  if (selectedIntensity >= 2)
-    add(level.lipShape || level.mouthOpening);
+ if(emotion.category==="Sadness / Vulnerability" && l<4)
+   avoid+=" Do not force tears before the emotional progression supports them.";
 
-  if (selectedIntensity >= 3)
-    add(level.body || level.breath);
-
-  if (selectedIntensity >= 4)
-    add(level.jawNeck || level.wholeBody);
-
-
-  const behaviour =
-    heroChannels
-      .filter(Boolean)
-      .join(" ");
-
-
-  let avoid =
-    "Keep the behaviour motivated and sequential rather than moving every facial feature at once.";
-
-
-  if (selectedIntensity <= 2) {
-
-    avoid +=
-      " Avoid exaggerated eye widening, excessive breathing or large gestures unless this specific emotion requires them.";
-
-  }
-
-
-  return `${emotion.name}, ${selectedTone} tone, ${intensityLabel.toLowerCase()} intensity. ${behaviour} ${avoid}`;
-
+ return `${emotion.name}. ${tone} tone. ${levelNames[l-1]} intensity. ${chosen.join(" ")} ${avoid}`;
 }
 
 
 /* =========================================================
-   DETAIL PANEL
+   STATE
 ========================================================= */
 
-function renderDetail() {
-
-  const emotion =
-    getEmotion(selectedEmotionId);
-
-  if (!emotion)
-    return;
-
-
-  const availableTones =
-    Object.keys(emotion.tones);
-
-
-  if (!availableTones.includes(selectedTone))
-    selectedTone =
-      availableTones[0];
-
-
-  const toneData =
-    emotion.tones[selectedTone];
-
-
-  const level =
-    toneData.levels[selectedIntensity - 1];
-
-
-  const control =
-    toneData.control[selectedIntensity - 1];
-
-
-  const detail =
-    document.getElementById("detailPanel");
-
-
-  detail.innerHTML = `
-
-    <div class="detail-category">
-      ${emotion.category}
-    </div>
-
-
-    <h2 class="detail-title">
-      ${emotion.name}
-    </h2>
-
-
-    <p class="detail-subtitle">
-      ${emotion.subtitle}
-    </p>
-
-
-    <div class="info-box">
-
-      <div class="small-label">
-        What it means
-      </div>
-
-      <div class="info-text">
-        ${emotion.meaning}
-      </div>
-
-    </div>
-
-
-    <div class="info-box">
-
-      <div class="small-label">
-        Performance principle
-      </div>
-
-      <div class="info-text">
-        ${emotion.principle}
-      </div>
-
-      <div class="good-for">
-
-        ${emotion.goodFor
-          .map(item => `
-            <span class="tag">
-              ${item}
-            </span>
-          `)
-          .join("")}
-
-      </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <div class="selector-title">
-      Scene Tone
-    </div>
-
-
-    <div class="tone-list">
-
-      ${availableTones
-        .map(tone => `
-
-          <button
-            class="tone-btn ${selectedTone === tone ? "active" : ""}"
-            onclick="setTone('${tone.replace(/'/g,"\\'")}')">
-
-            ${tone}
-
-          </button>
-
-        `)
-        .join("")}
-
-    </div>
-
-
-    <div class="selector-note">
-
-      Scene tone changes the physical grammar of the emotion.
-      Comedy may use reaction holds, half-lidded attitude and
-      secondary payoff. Serious drama usually relies more on
-      restraint, delayed processing, breath and loss of support.
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <div class="selector-title">
-      Intensity
-    </div>
-
-
-    <div class="intensity-list">
-
-      ${toneData.summaries
-        .map((summary,index) => {
-
-          const number =
-            index + 1;
-
-          return `
-
-            <button
-              class="level-btn ${selectedIntensity === number ? "active" : ""}"
-              onclick="setIntensity(${number})">
-
-              <span class="level-num">
-                ${number}
-              </span>
-
-              <span class="level-name">
-                ${levelNames[index]}
-              </span>
-
-              <span class="level-short">
-                ${shortSummary(summary)}
-              </span>
-
-            </button>
-
-          `;
-
-        })
-        .join("")}
-
-    </div>
-
-
-    <div class="control-box">
-
-      <div class="control-row">
-
-        <div class="control-label">
-          Emotional Regulation
-        </div>
-
-        <div class="control-value">
-          ${controlLabel(control)}
-        </div>
-
-      </div>
-
-
-      <div class="control-track">
-
-        <div
-          class="control-fill"
-          style="width:${Math.max(8,100-control+8)}%">
-        </div>
-
-      </div>
-
-
-      <div class="control-caption">
-
-        Strong emotion does not automatically mean big acting.
-        Quiet anger can remain extremely controlled at high intensity,
-        while panic or breakdown progressively lose regulation.
-
-      </div>
-
-    </div>
-
-
-    <div class="acting-example">
-
-      <div class="example-title">
-        Silent emotional intention
-      </div>
-
-      <div class="example-body">
-        “${level.eyeLanguage}”
-      </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <div class="map-title">
-      Facial & Body Language Map
-    </div>
-
-
-    <div class="map-subtitle">
-
-      Study the full map as reference.
-      Not every channel should activate at the same time.
-
-    </div>
-
-
-    <div class="performance-map">
-
-      ${renderPerformanceMap(level)}
-
-    </div>
-
-
-    <div class="prompt-box">
-
-      <div class="prompt-head">
-
-        <div class="prompt-label">
-          Ready-to-use selective prompt
-        </div>
-
-        <button
-          id="copyBtn"
-          class="copy-btn"
-          onclick="copyPrompt()">
-
-          Copy Prompt
-
-        </button>
-
-      </div>
-
-
-      <div
-        id="promptText"
-        class="prompt-text">
-
-        ${buildPrompt(
-          emotion,
-          toneData,
-          level
-        )}
-
-      </div>
-
-    </div>
-
-  `;
-
-}
+let category="All";
+let selected=emotions[0].id;
+let tone=null;
+let level=2;
+let query="";
 
 
 /* =========================================================
-   ACTIONS
+   UI
 ========================================================= */
 
-function setCategory(value) {
+const categories=["All",...Object.keys(GROUPS)];
 
-  selectedCategory =
-    value;
 
-  renderCategories();
-  renderLibrary();
+function currentEmotion(){
+ return emotions.find(e=>e.id===selected);
+}
+
+
+function renderCategories(){
+
+ document.getElementById("categories").innerHTML=
+ categories.map(c=>`
+ <button class="cat ${category===c?"active":""}"
+ onclick="chooseCategory(${JSON.stringify(c)})">
+ ${c}
+ </button>
+ `).join("");
 
 }
 
 
-function selectEmotion(id) {
+function filtered(){
 
-  const emotion =
-    getEmotion(id);
+ return emotions.filter(e=>{
 
-  if (!emotion)
-    return;
+   const categoryOK=
+     category==="All" || e.category===category;
 
+   const text=[
+     e.name,
+     e.desc,
+     e.category,
+     ALIASES[e.id]||"",
+     ...e.tones
+   ].join(" ").toLowerCase();
 
-  selectedEmotionId =
-    id;
+   return categoryOK &&
+     (!query || text.includes(query.toLowerCase()));
 
-  selectedIntensity =
-    2;
-
-  selectedTone =
-    Object.keys(emotion.tones)[0];
-
-
-  renderLibrary();
-  renderDetail();
-
-
-  if (window.innerWidth < 1100) {
-
-    document
-      .getElementById("detailPanel")
-      .scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-  }
+ });
 
 }
 
 
-function setTone(tone) {
+function renderGrid(){
 
-  selectedTone =
-    tone;
+ const list=filtered();
 
-  selectedIntensity =
-    2;
+ document.getElementById("count").textContent=
+   `${list.length} emotions`;
 
-  renderDetail();
+ document.getElementById("grid").innerHTML=
+   list.length
+   ? list.map(e=>`
+      <button
+       class="card ${selected===e.id?"active":""}"
+       onclick="chooseEmotion('${e.id}')">
 
-}
+       <div class="ccat">${e.category}</div>
+       <div class="cname">${e.name}</div>
+       <div class="cdesc">${e.desc}</div>
 
-
-function setIntensity(value) {
-
-  selectedIntensity =
-    value;
-
-  renderDetail();
-
-}
-
-
-/* =========================================================
-   COPY
-========================================================= */
-
-async function copyPrompt() {
-
-  const text =
-    document
-      .getElementById("promptText")
-      .innerText
-      .trim();
-
-
-  const button =
-    document
-      .getElementById("copyBtn");
-
-
-  try {
-
-    await navigator.clipboard.writeText(text);
-
-  } catch {
-
-    const area =
-      document.createElement("textarea");
-
-    area.value =
-      text;
-
-    document.body.appendChild(area);
-
-    area.select();
-
-    document.execCommand("copy");
-
-    area.remove();
-
-  }
-
-
-  button.textContent =
-    "Copied ✓";
-
-
-  setTimeout(() => {
-
-    if (button)
-      button.textContent =
-        "Copy Prompt";
-
-  },1200);
+      </button>
+     `).join("")
+   : `<div class="empty">No matching emotion.</div>`;
 
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+function levelSummary(emotion,i){
 
-document
-  .getElementById("searchInput")
-  .addEventListener("input", event => {
+ const low=[
+   "Almost hidden.",
+   "Small controlled leak.",
+   "Clearly readable.",
+   "Strong emotional effect.",
+   "Peak or heightened form."
+ ];
 
-    searchQuery =
-      event.target.value.trim();
+ if(emotion.category==="Dysregulation / Extreme"){
+   return [
+    "Small cracks appear.",
+    "Regulation becomes visibly effortful.",
+    "Regulation begins failing.",
+    "Loss of control is active.",
+    "Whole-body regulation may fail."
+   ][i];
+ }
 
-    renderLibrary();
+ return low[i];
+}
 
-  });
+
+function renderDetail(){
+
+ const e=currentEmotion();
+
+ if(!tone || !e.tones.includes(tone))
+   tone=e.tones[0];
+
+ const map=buildMap(e,tone,level);
+
+ document.getElementById("detail").innerHTML=`
+
+ <div class="detail-cat">${e.category}</div>
+ <h2>${e.name}</h2>
+ <p class="subtitle">${e.desc}</p>
+
+ <div class="box">
+   <div class="label">Performance principle</div>
+   <div class="text">
+   ${performancePrinciple(e)}
+   </div>
+ </div>
+
+ <div class="divider"></div>
+
+ <div class="stitle">Scene Tone</div>
+
+ <div class="tones">
+ ${e.tones.map(t=>`
+   <button
+    class="tone ${tone===t?"active":""}"
+    onclick="setTone(${JSON.stringify(t)})">
+    ${t}
+   </button>
+ `).join("")}
+ </div>
+
+ <div class="note">
+ Scene tone is not cosmetic. It changes eye behaviour,
+ eyelid attitude, mouth timing, body control and reaction rhythm.
+ </div>
+
+ <div class="divider"></div>
+
+ <div class="stitle">Intensity</div>
+
+ <div class="levels">
+ ${levelNames.map((n,i)=>`
+   <button
+    class="level ${level===i+1?"active":""}"
+    onclick="setLevel(${i+1})">
+
+     <span class="num">${i+1}</span>
+     <span class="lname">${n}</span>
+     <span class="ldesc">${levelSummary(e,i)}</span>
+
+   </button>
+ `).join("")}
+ </div>
+
+ <div class="intent">
+   <strong>Silent emotional intention</strong>
+   <div>“${map["Eye Language"]}”</div>
+ </div>
+
+ <div class="divider"></div>
+
+ <div class="stitle">Facial & Body Language Map</div>
+
+ <div class="note">
+ Full acting reference. The video prompt below deliberately
+ uses only a few hero behaviours.
+ </div>
+
+ <div class="map">
+ ${Object.entries(map).map(([k,v])=>`
+   <div class="row">
+     <div class="key">${k}</div>
+     <div class="value">${v}</div>
+   </div>
+ `).join("")}
+ </div>
+
+ <div class="prompt">
+   <div class="ph">
+     <span>Ready-to-use selective prompt</span>
+     <button class="copy" id="copy" onclick="copyPrompt()">Copy</button>
+   </div>
+
+   <div class="prompttext" id="promptText">
+    ${makePrompt(e,tone,level,map)}
+   </div>
+ </div>
+
+ `;
+
+}
 
 
-/* =========================================================
-   START
-========================================================= */
+function performancePrinciple(e){
+
+ const map={
+
+ "Comedy / Social":
+ "Let the audience read the thought before the body completes the reaction. Comedy benefits from setup, anticipation, reaction hold and recovery.",
+
+ "Romance / Attraction":
+ "Attraction is strongest when it leaks through gaze timing, eyelid softness, mouth corners, hesitation and imperfect recovery rather than random nervous movement.",
+
+ "Joy / Positive":
+ "Positive emotion should change facial openness, cheek activation, mouth corners, breath and body energy in a coordinated way.",
+
+ "Concern / Anxiety":
+ "At lower intensity, let attention change before the body changes. Mild concern should remain composed and should not automatically become fear.",
+
+ "Sadness / Vulnerability":
+ "Pain often begins as stillness, loss of facial warmth and breath change before tears or large body collapse appear.",
+
+ "Conflict / Anger":
+ "Anger does not always grow larger. High-control anger may become stiller, with stronger eye, lower-lid, jaw and mouth compression.",
+
+ "Suspense / Threat":
+ "Threat first changes attention and listening. Breath, protective posture and movement should escalate only as danger becomes more real.",
+
+ "Cognitive / Discovery":
+ "Allow information to land before the emotion forms. Eye freeze, second look, blink timing and mouth opening can show the processing itself.",
+
+ "Power / Determination":
+ "Determination organizes the body. Gaze settles, unnecessary movement reduces and posture becomes more purposeful.",
+
+ "Dysregulation / Extreme":
+ "Loss of regulation should progress biomechanically: attention destabilizes, breath changes, throat and speech fail, posture loses support, then the whole body may follow."
+
+ };
+
+ return map[e.category];
+
+}
+
+
+function chooseCategory(c){
+ category=c;
+ renderCategories();
+ renderGrid();
+}
+
+
+function chooseEmotion(id){
+ selected=id;
+ level=2;
+ tone=null;
+ renderGrid();
+ renderDetail();
+
+ if(innerWidth<1100)
+   document.getElementById("detail")
+   .scrollIntoView({behavior:"smooth"});
+}
+
+
+function setTone(t){
+ tone=t;
+ level=2;
+ renderDetail();
+}
+
+
+function setLevel(l){
+ level=l;
+ renderDetail();
+}
+
+
+async function copyPrompt(){
+
+ const text=document.getElementById("promptText").innerText.trim();
+
+ try{
+   await navigator.clipboard.writeText(text);
+ }catch{
+   const a=document.createElement("textarea");
+   a.value=text;
+   document.body.appendChild(a);
+   a.select();
+   document.execCommand("copy");
+   a.remove();
+ }
+
+ const b=document.getElementById("copy");
+ b.textContent="Copied ✓";
+
+ setTimeout(()=>{
+   if(document.body.contains(b))
+     b.textContent="Copy";
+ },1000);
+
+}
+
+
+document.getElementById("search")
+.addEventListener("input",e=>{
+ query=e.target.value.trim();
+ renderGrid();
+});
+
 
 renderCategories();
-renderLibrary();
+renderGrid();
 renderDetail();
 
 </script>
-
 </body>
 </html>
