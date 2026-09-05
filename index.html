@@ -3,45 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K-Drama Performance Director V7</title>
+<title>K-Drama Performance Director V8</title>
 
 <style>
 :root{
   --bg:#0d0f14;
   --panel:#141821;
+  --panel2:#191e28;
   --line:#2a303c;
   --text:#f3f4f6;
-  --muted:#939baa;
+  --muted:#929aa8;
   --accent:#df7d86;
-  --soft:#2d2025;
+  --accentSoft:#2e2025;
+  --green:#8ccdb0;
+  --blue:#8fb4e8;
   --yellow:#e4bd72;
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
-  background:
-    radial-gradient(circle at 13% 0%,rgba(223,125,134,.08),transparent 28%),
-    var(--bg);
   color:var(--text);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(223,125,134,.09),transparent 28%),
+    var(--bg);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-button,input,select,textarea{font:inherit}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .app{
   min-height:100vh;
   display:grid;
-  grid-template-columns:235px minmax(430px,1fr) 560px;
+  grid-template-columns:235px minmax(500px,1fr) 430px;
 }
 
 /* SIDEBAR */
+
 .sidebar{
   position:sticky;
   top:0;
   height:100vh;
   overflow:auto;
-  padding:23px 18px;
+  padding:24px 18px;
   border-right:1px solid var(--line);
   background:#0f1117;
 }
+
 .brand-badge{
   color:var(--accent);
   font-size:11px;
@@ -49,278 +64,488 @@ button,input,select,textarea{font:inherit}
   letter-spacing:.17em;
   text-transform:uppercase;
 }
-.brand h1{margin:7px 0 8px;font-size:22px;line-height:1.15}
-.brand p{color:var(--muted);font-size:12px;line-height:1.55}
-.nav-label,.section-head{
-  margin:23px 8px 9px;
-  color:#747c8b;
+
+.brand h1{
+  margin:7px 0 8px;
+  font-size:22px;
+  line-height:1.15;
+}
+
+.brand p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+
+.nav-label{
+  margin:24px 8px 8px;
+  color:#707887;
   font-size:10px;
   font-weight:800;
   letter-spacing:.14em;
   text-transform:uppercase;
 }
-.section-head{margin:22px 0 11px;color:var(--accent)}
-.category{
+
+.nav-item{
   width:100%;
-  display:flex;
-  justify-content:space-between;
   padding:10px 11px;
+  margin-bottom:4px;
   border:0;
   border-radius:8px;
+  color:#b9c0ca;
   background:transparent;
-  color:#b8bfca;
-  cursor:pointer;
+  text-align:left;
 }
-.category:hover{background:var(--panel);color:white}
-.category.active{background:var(--soft);color:#ffdadd}
-.count{color:#69717f;font-size:11px}
+
+.nav-item:hover{
+  background:var(--panel);
+  color:white;
+}
+
+.nav-item.active{
+  background:var(--accentSoft);
+  color:#ffdce0;
+}
+
 .version{
   margin-top:24px;
   padding:12px;
   border:1px solid var(--line);
   border-radius:10px;
-  color:#7c8593;
+  color:#7d8592;
   font-size:10px;
   line-height:1.55;
 }
 
-/* LIBRARY */
-.library{min-width:0;padding:28px 28px 70px}
-.topbar h2{margin:0 0 7px;font-size:28px}
-.topbar p{
-  max-width:720px;
-  margin:0 0 20px;
+/* MAIN */
+
+.main{
+  padding:28px 30px 80px;
+  min-width:0;
+}
+
+.page-title h2{
+  margin:0 0 6px;
+  font-size:29px;
+}
+
+.page-title p{
+  margin:0 0 24px;
+  max-width:760px;
   color:var(--muted);
   font-size:13px;
   line-height:1.55;
 }
-.search input{
-  width:100%;
-  margin-bottom:19px;
-  padding:13px 15px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--panel);
-  color:white;
-  outline:none;
+
+.section{
+  margin-bottom:28px;
 }
-.section-label{
+
+.section-head{
   display:flex;
   justify-content:space-between;
-  margin:0 2px 12px;
-  color:#858c99;
-  font-size:12px;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
 }
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
-  gap:13px;
+
+.section-head h3{
+  margin:0;
+  font-size:14px;
 }
-.card{
-  position:relative;
-  min-height:180px;
-  padding:17px;
+
+.section-head span{
+  color:#7d8593;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.panel{
+  padding:16px;
   border:1px solid var(--line);
   border-radius:12px;
-  background:linear-gradient(180deg,var(--panel),#11151c);
-  cursor:pointer;
-  transition:.18s;
+  background:#12161d;
 }
-.card:hover{transform:translateY(-2px);border-color:#4b5360}
-.card.selected{
-  border-color:var(--accent);
-  box-shadow:0 0 0 1px rgba(223,125,134,.2);
-}
-.tag{
-  display:inline-flex;
-  padding:4px 7px;
-  border:1px solid #303643;
-  border-radius:999px;
-  color:#cad0d8;
-  background:#202530;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.card h3{margin:13px 0 7px;font-size:16px}
-.card p{margin:0;color:#929aa8;font-size:12px;line-height:1.5}
-.mini-timing{
-  margin-top:13px;
-  padding-top:10px;
-  border-top:1px solid #252a34;
-  color:#bcc3cd;
-  font-size:11px;
-  line-height:1.45;
-}
-.star{
-  position:absolute;
-  top:13px;
-  right:13px;
-  border:0;
-  background:transparent;
-  color:#56606e;
-  font-size:17px;
-  cursor:pointer;
-}
-.star.active{color:var(--yellow)}
 
-/* COMPOSER */
-.composer{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:auto;
-  padding:23px 20px 45px;
-  border-left:1px solid var(--line);
-  background:#10131a;
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
 }
-.composer h2{margin:0;font-size:20px}
-.composer-sub{margin:6px 0 20px;color:var(--muted);font-size:12px;line-height:1.5}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field{margin-bottom:12px}
+
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.field{
+  margin-bottom:12px;
+}
+
+.field:last-child{
+  margin-bottom:0;
+}
+
 .field label{
   display:block;
   margin-bottom:6px;
-  color:#979fac;
+  color:#8f97a5;
   font-size:10px;
   font-weight:700;
-  letter-spacing:.04em;
+  letter-spacing:.05em;
   text-transform:uppercase;
 }
-.field input,.field select,.field textarea{
+
+.field input,
+.field select,
+.field textarea{
   width:100%;
   padding:10px 11px;
   border:1px solid var(--line);
   border-radius:8px;
+  color:#e9ebef;
   background:var(--panel);
-  color:#e7eaf0;
   outline:none;
 }
-.field textarea{resize:vertical;min-height:74px;line-height:1.45}
 
-/* BEAT */
-.sequence-list{display:flex;flex-direction:column;gap:11px}
-.beat{
-  position:relative;
-  padding:13px;
-  border:1px solid #333a46;
-  border-radius:11px;
+.field textarea{
+  min-height:82px;
+  resize:vertical;
+  line-height:1.5;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:#75525a;
+}
+
+/* MODE */
+
+.mode-row{
+  display:flex;
+  gap:7px;
+}
+
+.mode-btn{
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:#9098a6;
   background:#151922;
+  font-size:11px;
+  font-weight:700;
 }
-.beat::after{
-  content:"";
-  position:absolute;
-  left:19px;
-  bottom:-12px;
+
+.mode-btn.active{
+  border-color:#6c454b;
+  background:#2b1d22;
+  color:#ffe3e6;
+}
+
+/* PERFORMANCE CONTROLS */
+
+.performance-level{
+  display:flex;
+  gap:6px;
+}
+
+.level-btn{
+  flex:1;
+  padding:9px 5px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:#868f9d;
+  background:#151922;
+  font-size:10px;
+}
+
+.level-btn.active{
+  border-color:#724b52;
+  color:#ffe2e5;
+  background:#2a1d21;
+}
+
+/* BEAT TIMELINE */
+
+.beat-list{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+
+.beat-wrap{
+  position:relative;
+}
+
+.connector{
   width:1px;
-  height:12px;
-  background:#424956;
+  height:17px;
+  margin:0 auto;
+  background:#3a424f;
 }
-.beat:last-child::after{display:none}
+
+.beat-card{
+  border:1px solid #303743;
+  border-radius:12px;
+  background:
+    linear-gradient(180deg,#171b24,#12161d);
+  overflow:hidden;
+}
+
+.beat-card.active{
+  border-color:#83555d;
+  box-shadow:0 0 0 1px rgba(223,125,134,.13);
+}
+
+.beat-summary{
+  padding:15px;
+}
+
 .beat-top{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:11px;
+  align-items:flex-start;
+  gap:12px;
 }
-.beat-title{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.beat-controls{display:flex;gap:5px}
-.beat-controls button{
-  width:28px;height:28px;
-  border:1px solid #373e4a;
-  border-radius:6px;
-  background:#11151c;
-  color:#abb2be;
-  cursor:pointer;
-}
-.beat-role{display:grid;grid-template-columns:1fr 1.45fr;gap:8px;margin-bottom:8px}
-.beat-emotion{display:grid;grid-template-columns:.65fr .8fr;gap:8px;margin-bottom:8px}
-.layer-panel{
-  margin:9px 0;
-  padding:10px;
-  border:1px solid #293843;
-  border-radius:8px;
-  background:#121920;
-}
-.layer-title{
-  margin-bottom:8px;
-  color:#93b9d8;
-  font-size:9px;
+
+.beat-number{
+  color:#6d7583;
+  font-size:10px;
   font-weight:800;
   letter-spacing:.08em;
-  text-transform:uppercase;
 }
-.interaction-panel{border-color:#3c3040;background:#19141b}
-.interaction-panel .layer-title{color:#d6a4cd}
-.dependency-panel{border-color:#463a26;background:#1b1812}
-.dependency-panel .layer-title{color:#e1be79}
-.layer-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.layer-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.beat select,.beat input,.beat textarea{
-  width:100%;
-  padding:8px;
-  border:1px solid #303642;
-  border-radius:7px;
-  background:#10141b;
-  color:#e3e6eb;
+
+.beat-role{
+  margin-top:3px;
+  color:var(--accent);
   font-size:10px;
-}
-.beat textarea{min-height:55px;resize:vertical;line-height:1.4}
-.beat-label{
-  margin:8px 0 5px;
-  color:#737c8a;
-  font-size:9px;
   font-weight:800;
-  letter-spacing:.07em;
   text-transform:uppercase;
+  letter-spacing:.09em;
 }
-.add-beat{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border:1px dashed #4b535f;
-  border-radius:8px;
-  background:#12161d;
-  color:#c5cbd4;
+
+.beat-title{
+  margin:5px 0 4px;
+  font-size:16px;
+  font-weight:800;
+}
+
+.beat-actions{
+  display:flex;
+  gap:5px;
+}
+
+.icon-btn{
+  width:29px;
+  height:29px;
+  padding:0;
+  border:1px solid #353d49;
+  border-radius:7px;
+  color:#9ea6b3;
+  background:#11151c;
+}
+
+.intensity-dots{
+  display:flex;
+  gap:5px;
+  margin:10px 0 11px;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  border:1px solid #626b79;
+  background:transparent;
   cursor:pointer;
 }
-.add-beat:hover{color:#ffdadd;border-color:var(--accent)}
 
-/* OUTPUT */
-.divider{height:1px;margin:22px 0;background:var(--line)}
-.output-tabs{display:flex;gap:6px;margin-bottom:9px}
-.tab-btn{
+.dot.on{
+  border-color:var(--accent);
+  background:var(--accent);
+}
+
+.beat-line{
+  margin-bottom:7px;
+  color:#d5d9e1;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.beat-subtext{
+  padding:9px 10px;
+  border-radius:8px;
+  background:#10141b;
+  color:#9ea6b3;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.card-controls{
+  display:flex;
+  gap:7px;
+  margin-top:11px;
+}
+
+.small-btn{
   padding:7px 10px;
-  border:1px solid var(--line);
+  border:1px solid #363d49;
   border-radius:7px;
-  background:#151922;
-  color:#89919e;
+  background:#12161d;
+  color:#aab1bc;
   font-size:10px;
   font-weight:700;
-  cursor:pointer;
 }
-.tab-btn.active{color:#ffe5e7;border-color:#70454c;background:#2b1d22}
+
+.small-btn:hover{
+  color:white;
+  border-color:#59616e;
+}
+
+.edit-panel{
+  display:none;
+  padding:14px 15px 15px;
+  border-top:1px solid #2b323d;
+  background:#11151c;
+}
+
+.edit-panel.open{
+  display:block;
+}
+
+.advanced-panel{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  border:1px solid #303845;
+  border-radius:9px;
+  background:#0e1218;
+}
+
+.advanced-panel.open{
+  display:block;
+}
+
+.advanced-title{
+  margin-bottom:10px;
+  color:#8793a4;
+  font-size:9px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.add-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:14px;
+}
+
+.primary-btn,
+.secondary-btn{
+  padding:11px 14px;
+  border-radius:8px;
+  font-weight:800;
+}
+
+.primary-btn{
+  border:0;
+  color:#1a0c0f;
+  background:var(--accent);
+}
+
+.secondary-btn{
+  border:1px solid var(--line);
+  color:#b8bfca;
+  background:var(--panel);
+}
+
+/* OUTPUT */
+
+.output{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:auto;
+  padding:24px 20px 50px;
+  border-left:1px solid var(--line);
+  background:#10131a;
+}
+
+.output h2{
+  margin:0 0 5px;
+  font-size:19px;
+}
+
+.output-sub{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.output-tabs{
+  display:flex;
+  gap:6px;
+  margin-bottom:10px;
+}
+
+.output-tab{
+  padding:7px 9px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  color:#89919e;
+  background:#151922;
+  font-size:10px;
+  font-weight:700;
+}
+
+.output-tab.active{
+  color:#ffe5e7;
+  border-color:#70454c;
+  background:#2b1d22;
+}
+
 .prompt-box{
-  min-height:300px;
+  min-height:390px;
   padding:15px;
   border:1px solid #313744;
   border-radius:10px;
+  color:#d7dce4;
   background:#0b0e13;
-  color:#d8dce4;
   white-space:pre-wrap;
   font-size:11.5px;
-  line-height:1.63;
+  line-height:1.66;
 }
-.info-box{margin-top:10px;padding:12px;border-radius:9px;font-size:11px;line-height:1.55}
-.director-box{color:#9fc7bb;border:1px solid #29383b;background:#151b20}
-.timing-box{color:#abb3c0;border:1px solid #2d3542;background:#161b24}
-.avoid-box{color:#d8a8ae;border:1px solid #42292d;background:#211719}
-.btnrow{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:14px}
-.primary,.secondary{padding:11px 14px;border-radius:8px;cursor:pointer}
-.primary{border:0;background:var(--accent);color:#1b0d10;font-weight:800}
-.secondary{border:1px solid var(--line);background:var(--panel);color:#b6bdc8}
+
+.output-footer{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  margin-top:12px;
+}
+
+.copy-btn{
+  padding:11px 13px;
+  border:0;
+  border-radius:8px;
+  color:#1a0c0f;
+  background:var(--accent);
+  font-weight:800;
+}
+
+.reset-btn{
+  padding:11px 13px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:#aeb6c2;
+  background:var(--panel);
+}
+
 .toast{
   position:fixed;
   right:22px;
@@ -335,12 +560,20 @@ button,input,select,textarea{font:inherit}
   transition:.2s;
   font-size:12px;
   font-weight:700;
+  z-index:100;
 }
-.toast.show{opacity:1;transform:translateY(0)}
 
-@media(max-width:1360px){
-  .app{grid-template-columns:220px 1fr}
-  .composer{
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media(max-width:1250px){
+  .app{
+    grid-template-columns:220px 1fr;
+  }
+
+  .output{
     position:relative;
     grid-column:1/-1;
     height:auto;
@@ -348,229 +581,298 @@ button,input,select,textarea{font:inherit}
     border-top:1px solid var(--line);
   }
 }
-@media(max-width:760px){
+
+@media(max-width:800px){
   .app{display:block}
   .sidebar{position:relative;height:auto}
-  .library{padding:22px}
-  .grid2,.beat-role,.beat-emotion,.layer-grid2,.layer-grid3{grid-template-columns:1fr}
+  .main{padding:22px}
+  .grid2,.grid4{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
+
   <div class="brand">
     <div class="brand-badge">Performance Lab</div>
     <h1>K-Drama Performance Director</h1>
-    <p>Build cause-and-effect acting where one character's behaviour triggers another character's performance.</p>
+    <p>Simple outside, intelligent inside. Build emotional performance without managing every technical acting parameter.</p>
   </div>
 
-  <div class="nav-label">Emotion Library</div>
-  <div id="categories"></div>
+  <div class="nav-label">Composer</div>
 
-  <div class="nav-label">Quick View</div>
-  <button class="category" onclick="toggleFavoritesOnly()">
-    <span>★ Favourites</span>
-    <span id="favCount" class="count">0</span>
+  <button class="nav-item active">
+    Scene Composer
   </button>
 
-  <div class="version">
-    V7 · Reaction Dependency Layer<br>
-    Other Character Action → Recognition → Reaction → Recovery.
+  <button class="nav-item">
+    Performance Library
+  </button>
+
+  <button class="nav-item">
+    Presets
+  </button>
+
+  <div class="nav-label">Mode</div>
+
+  <div class="mode-row">
+    <button class="mode-btn active" id="simpleMode">
+      Simple
+    </button>
+
+    <button class="mode-btn" id="advancedMode">
+      Advanced
+    </button>
   </div>
+
+  <div class="version">
+    V8 · Smart Performance Composer<br>
+    Scene → Beats → Performance Direction
+  </div>
+
 </aside>
 
 
-<main class="library">
+<!-- MAIN -->
+<main class="main">
 
-  <div class="topbar">
-    <h2>Performance Expressions</h2>
+  <div class="page-title">
+    <h2>Smart Performance Composer</h2>
     <p>
-      V7 connects performance to cause. A character no longer reacts simply
-      because the prompt says so; another action, line, gaze, touch or reveal
-      can explicitly trigger the next behavioural beat.
+      Describe the scene, define what the character wants, then shape the emotional beats.
+      Advanced acting logic remains available only when you need it.
     </p>
   </div>
 
-  <div class="search">
-    <input id="searchInput" placeholder="Search: awe, flustered, jealousy, teasing, fear...">
-  </div>
 
-  <div class="section-label">
-    <span id="resultLabel">All expressions</span>
-    <span id="resultCount"></span>
-  </div>
+  <!-- SCENE SETUP -->
+  <section class="section">
 
-  <section id="cards" class="cards"></section>
+    <div class="section-head">
+      <h3>Scene Setup</h3>
+      <span>Who + Situation + Objective</span>
+    </div>
+
+    <div class="panel">
+
+      <div class="grid2">
+
+        <div class="field">
+          <label>Main Character</label>
+          <input id="character" value="Maryam">
+        </div>
+
+        <div class="field">
+          <label>Relationship</label>
+
+          <select id="relationship">
+            <option>Strangers</option>
+            <option>Acquaintances</option>
+            <option>Friends</option>
+            <option>Close Friends</option>
+            <option selected>Romantic Tension</option>
+            <option>Couple</option>
+            <option>Family</option>
+            <option>Rivals</option>
+            <option>Professional</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="field">
+        <label>Scene / Action</label>
+
+        <textarea id="scene">Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam initially remains focused on the phone, then gradually becomes aware that Amir is standing unusually close to her.</textarea>
+      </div>
+
+      <div class="field">
+        <label>What does the character want?</label>
+
+        <input
+          id="objective"
+          value="Hide her growing attraction toward Amir while maintaining natural composure."
+        >
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CAMERA -->
+  <section class="section">
+
+    <div class="section-head">
+      <h3>Camera & Performance</h3>
+      <span>Simple setup</span>
+    </div>
+
+    <div class="panel">
+
+      <div class="grid4">
+
+        <div class="field">
+          <label>Shot Size</label>
+
+          <select id="shotSize">
+            <option>Close Up</option>
+            <option selected>Medium Close Up</option>
+            <option>Medium Shot</option>
+            <option>Full Shot</option>
+            <option>Wide Shot</option>
+            <option>POV Shot</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Angle</label>
+
+          <select id="cameraAngle">
+            <option selected>Eye Level</option>
+            <option>High Angle</option>
+            <option>Low Angle</option>
+            <option>Over The Shoulder</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Camera Movement</label>
+
+          <select id="cameraMovement">
+            <option selected>Static</option>
+            <option>Slow Push In</option>
+            <option>Slow Pull Back</option>
+            <option>Tracking</option>
+            <option>Subtle Handheld</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Character Activity</label>
+
+          <select id="activity">
+            <option selected>Standing</option>
+            <option>Walking</option>
+            <option>Sitting</option>
+            <option>Moving Through Space</option>
+            <option>Leaning / Resting</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="field">
+        <label>Performance Style</label>
+
+        <div class="performance-level" id="performanceLevel">
+
+          <button class="level-btn" data-style="Micro">
+            Micro
+          </button>
+
+          <button class="level-btn active" data-style="Restrained">
+            Restrained
+          </button>
+
+          <button class="level-btn" data-style="Readable">
+            Readable
+          </button>
+
+          <button class="level-btn" data-style="Heightened">
+            Heightened
+          </button>
+
+          <button class="level-btn" data-style="Expressive">
+            Expressive
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERFORMANCE BEATS -->
+  <section class="section">
+
+    <div class="section-head">
+      <h3>Performance Beats</h3>
+      <span id="beatCount">6 beats</span>
+    </div>
+
+    <div id="beatList" class="beat-list"></div>
+
+    <div class="add-row">
+
+      <button class="primary-btn" onclick="autoBuildDemo()">
+        ✦ Auto Build Beats
+      </button>
+
+      <button class="secondary-btn" onclick="addBeat()">
+        + Add Beat
+      </button>
+
+    </div>
+
+  </section>
+
 </main>
 
 
-<aside class="composer">
+<!-- OUTPUT -->
+<aside class="output">
 
-  <h2>Scene Performance Composer</h2>
+  <h2>Generated Direction</h2>
 
-  <p class="composer-sub">
-    Build reaction chains where external behaviour creates internal recognition
-    before the visible response appears.
+  <p class="output-sub">
+    Simple output for video generation, detailed acting review, or technical inspection.
   </p>
 
-
-  <div class="section-head">Characters</div>
-
-  <div class="grid2">
-
-    <div class="field">
-      <label>Main Character</label>
-      <input id="character" value="Maryam">
-    </div>
-
-    <div class="field">
-      <label>Secondary Character</label>
-      <input id="secondaryCharacter" placeholder="Example: Amir">
-    </div>
-
-  </div>
-
-
-  <div class="section-head">Camera Setup</div>
-
-  <div class="grid2">
-
-    <div class="field">
-      <label>Shot Size</label>
-      <select id="shotSize">
-        <option>Extreme Close Up</option>
-        <option selected>Close Up</option>
-        <option>Medium Close Up</option>
-        <option>Medium Shot</option>
-        <option>Medium Full Shot</option>
-        <option>Full Shot</option>
-        <option>Wide Shot</option>
-        <option>POV Shot</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Camera Angle</label>
-      <select id="cameraAngle">
-        <option>Eye Level</option>
-        <option selected>High Angle</option>
-        <option>Low Angle</option>
-        <option>Overhead</option>
-        <option>Over The Shoulder</option>
-        <option>Dutch Angle</option>
-      </select>
-    </div>
-
-  </div>
-
-  <div class="grid2">
-
-    <div class="field">
-      <label>Camera Movement</label>
-      <select id="cameraMovement">
-        <option selected>Static</option>
-        <option>Slow Push In</option>
-        <option>Slow Pull Back</option>
-        <option>Tracking Forward</option>
-        <option>Tracking Backward</option>
-        <option>Pan</option>
-        <option>Tilt Up</option>
-        <option>Tilt Down</option>
-        <option>Handheld Subtle</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Character Movement</label>
-      <select id="characterMovement">
-        <option selected>Background to Foreground</option>
-        <option>Foreground to Background</option>
-        <option>Enter Frame Left</option>
-        <option>Enter Frame Right</option>
-        <option>Walk Toward Camera</option>
-        <option>Walk Away From Camera</option>
-        <option>Standing Still</option>
-        <option>Seated</option>
-        <option>Turn Toward Subject</option>
-        <option>Approach Another Character</option>
-        <option>No Major Movement</option>
-      </select>
-    </div>
-
-  </div>
-
-
-  <div class="section-head">Scene</div>
-
-  <div class="field">
-    <label>Scene / Action Context</label>
-    <textarea id="context" placeholder="Describe what happens in the scene."></textarea>
-  </div>
-
-  <div class="field">
-    <label>Overall Dramatic Objective</label>
-    <input id="objective" placeholder="Example: hide attraction while maintaining composure">
-  </div>
-
-
-  <div class="section-head">Performance Sequence</div>
-
-  <div class="grid2">
-
-    <div class="field">
-      <label>Transition Style</label>
-      <select id="transitionStyle">
-        <option selected>Gradual</option>
-        <option>Delayed Reaction</option>
-        <option>Sudden Shift</option>
-        <option>Suppressed</option>
-        <option>Escalating</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Acting Style</label>
-      <select id="style">
-        <option selected>Subtle K-Drama</option>
-        <option>Restrained Serious</option>
-        <option>K-Drama Romance</option>
-        <option>K-Rom-Com</option>
-        <option>Heightened Rom-Com</option>
-        <option>Period Drama Composure</option>
-        <option>Thriller / Suspense</option>
-      </select>
-    </div>
-
-  </div>
-
-
-  <div id="sequenceList" class="sequence-list"></div>
-
-  <button class="add-beat" onclick="addBeat()">
-    + Add Acting Beat
-  </button>
-
-
-  <div class="divider"></div>
-
-
   <div class="output-tabs">
-    <button class="tab-btn active" onclick="switchOutput('full',this)">Full Prompt</button>
-    <button class="tab-btn" onclick="switchOutput('acting',this)">Acting Only</button>
-    <button class="tab-btn" onclick="switchOutput('compact',this)">Compact</button>
+
+    <button
+      class="output-tab active"
+      onclick="switchOutput('video',this)"
+    >
+      🎬 Video Prompt
+    </button>
+
+    <button
+      class="output-tab"
+      onclick="switchOutput('acting',this)"
+    >
+      🎭 Acting
+    </button>
+
+    <button
+      class="output-tab"
+      onclick="switchOutput('technical',this)"
+    >
+      ⚙ Technical
+    </button>
+
   </div>
 
   <div id="promptOutput" class="prompt-box"></div>
-  <div id="directorOutput" class="info-box director-box"></div>
-  <div id="timingOutput" class="info-box timing-box"></div>
-  <div id="avoidOutput" class="info-box avoid-box"></div>
 
-  <div class="btnrow">
-    <button class="primary" onclick="copyPrompt()">Copy Prompt</button>
-    <button class="secondary" onclick="resetComposer()">Reset</button>
+  <div class="output-footer">
+
+    <button class="copy-btn" onclick="copyPrompt()">
+      Copy Prompt
+    </button>
+
+    <button class="reset-btn" onclick="resetDemo()">
+      Reset
+    </button>
+
   </div>
 
 </aside>
@@ -583,975 +885,575 @@ button,input,select,textarea{font:inherit}
 <script>
 
 /* =========================================================
-   EMOTION DATABASE
+   DATA
 ========================================================= */
 
-const emotions = [
-
-{
- id:"neutral01",
- category:"Neutral / Observation",
- title:"Neutral Observation",
- intensity:1,
- summary:"Natural baseline attention before an emotional trigger.",
- direction:"The face remains relaxed and observant. Eye movement stays unhurried, breathing even, lips relaxed and posture comfortable.",
- timing:"orient → observe → maintain natural action",
- avoid:"Avoid premature emotional expression or excessive scanning.",
- tags:["neutral","baseline"]
-},
-
-{
- id:"cur01",
- category:"Curiosity",
- title:"Attention Captured",
- intensity:2,
- summary:"A detail interrupts normal behaviour and draws attention.",
- direction:"The eyes shift first toward the source while the previous action continues for a fraction longer. Movement subtly decelerates, brow engagement increases and the head follows the gaze.",
- timing:"normal action → eyes catch detail → slight delay → body slows → focus",
- avoid:"Avoid dramatically widening the eyes or immediately stopping the entire body.",
- tags:["curiosity","attention"]
-},
-
-{
- id:"awe01",
- category:"Awe / Discovery",
- title:"Restrained Awe",
- intensity:2,
- summary:"Quiet wonder leaking through gaze, breath and posture.",
- direction:"The eyes slowly explore what has captured attention. The chin follows with a slight delay, brows lift subtly and lips relax slightly apart. Movement slows and posture opens.",
- timing:"visual discovery → eyes explore → chin follows → inhale → slow → hold",
- avoid:"Avoid exaggerated wide eyes, dramatic gasping or large gestures.",
- tags:["awe","wonder"]
-},
-
-{
- id:"awe02",
- category:"Awe / Discovery",
- title:"Growing Amazement",
- intensity:3,
- summary:"The discovery becomes progressively more impressive.",
- direction:"The initial response remains small, then gradually expands. Eyes brighten and travel across the visual field while head and upper torso follow in stages.",
- timing:"notice → process → discover more → scan → posture opens → hold",
- avoid:"Avoid jumping immediately to maximum surprise.",
- tags:["amazement","discovery"]
-},
-
-{
- id:"smile01",
- category:"Affection / Positive",
- title:"Appreciative Micro-Smile",
- intensity:1,
- summary:"A tiny smile appears after positive emotion settles.",
- direction:"The eyes remain softly engaged. Mouth tension releases before the corners of the lips rise only slightly. The smile stays involuntary and restrained.",
- timing:"emotion settles → mouth softens → micro-smile → hold",
- avoid:"Avoid sudden broad smiling.",
- tags:["micro smile","appreciation"]
-},
-
-{
- id:"sur01",
- category:"Surprise / Disbelief",
- title:"Micro Surprise",
- intensity:1,
- summary:"A tiny involuntary reaction immediately controlled.",
- direction:"Blinking pauses briefly, brows lift only slightly and the eyes lock onto the source before composure returns.",
- timing:"stimulus → micro-freeze → brow lift → breath catch → recovery",
- avoid:"Avoid dramatic recoil or sustained wide eyes.",
- tags:["surprise","micro"]
-},
-
-{
- id:"sur02",
- category:"Surprise / Disbelief",
- title:"Deadpan Disbelief",
- intensity:3,
- summary:"Processing something absurd before reacting.",
- direction:"The body becomes unusually still. After a delayed blink, one eyebrow rises slightly. The head tilts only a few degrees and lips flatten before a deliberate look away.",
- timing:"stimulus → blank processing → blink → realization → side-eye → dismiss",
- avoid:"Avoid immediate exaggerated reaction.",
- tags:["deadpan","disbelief"]
-},
-
-{
- id:"sur03",
- category:"Surprise / Disbelief",
- title:"Comedic Double-Take",
- intensity:4,
- summary:"A delayed second look creates comedy.",
- direction:"The character initially continues normally. Half a beat later realization registers. Eyes return first, the head follows and the torso stops slightly afterward.",
- timing:"see → dismiss → realization → eyes return → head follows → second freeze",
- avoid:"Do not move eyes, head and torso simultaneously.",
- tags:["double take","comedy"]
-},
-
-{
- id:"ann01",
- category:"Annoyance / Anger",
- title:"Annoyed Side-Eye",
- intensity:2,
- summary:"Irritation expressed mainly through gaze.",
- direction:"The head stays mostly forward while the eyes slide sideways. One corner of the mouth compresses and brow tension increases slightly.",
- timing:"irritation → side-eye → hold → exhale → return",
- avoid:"Avoid exaggerated eye rolling.",
- tags:["annoyance","side eye"]
-},
-
-{
- id:"ann02",
- category:"Annoyance / Anger",
- title:"Suppressed Frustration",
- intensity:3,
- summary:"Anger actively held under control.",
- direction:"Jaw firms, lips press together and fingers briefly tense. The body prevents the impulse from becoming a larger reaction.",
- timing:"trigger → tension → inhale → suppress → exhale",
- avoid:"Avoid shaking or immediate shouting.",
- tags:["frustration","anger"]
-},
-
-{
- id:"sar01",
- category:"Sarcasm / Teasing",
- title:"Dry Sarcasm",
- intensity:2,
- summary:"Judgement communicated with minimal effort.",
- direction:"The face remains mostly neutral while one eyebrow rises slightly. One corner of the lips forms a faint asymmetrical smile followed by a deliberate pause.",
- timing:"listen → pause → brow lift → asymmetric smile → glance",
- avoid:"Avoid broad grinning.",
- tags:["sarcasm","smirk"]
-},
-
-{
- id:"tea01",
- category:"Sarcasm / Teasing",
- title:"Playful Provocation",
- intensity:3,
- summary:"Teasing through proximity and restrained confidence.",
- direction:"The gaze settles confidently on the other person. The character leans slightly closer, allows a restrained grin and holds proximity just long enough to provoke a response.",
- timing:"eye contact → lean in → tease → hold proximity → grin → ease back",
- avoid:"Avoid constant smiling or excessive movement.",
- tags:["teasing","playful"]
-},
-
-{
- id:"flu01",
- category:"Romance / Fluster",
- title:"Flustered Attraction",
- intensity:3,
- summary:"Attraction appears before being concealed.",
- direction:"Eye contact lasts slightly too long. The shoulders become subtly still and gaze briefly flickers downward before returning. A light swallow may follow before eye contact breaks.",
- timing:"eye contact → breath catch → stillness → gaze flicker → realization → look away",
- avoid:"Avoid dramatic gasping or excessive fidgeting.",
- tags:["flustered","romance","attraction"]
-},
-
-{
- id:"rom01",
- category:"Romance / Fluster",
- title:"Restrained Affection",
- intensity:2,
- summary:"Warmth leaks through composed behaviour.",
- direction:"The gaze softens and facial tension releases. A tiny involuntary smile appears, then may be suppressed when the other character notices.",
- timing:"observe → soften → micro-smile → linger → suppress",
- avoid:"Avoid obvious staring or broad smiling.",
- tags:["affection","romance"]
-},
-
-{
- id:"rom02",
- category:"Romance / Fluster",
- title:"Sudden Proximity",
- intensity:3,
- summary:"Stillness and breath interruption create romantic tension.",
- direction:"Unexpected closeness interrupts movement. The eyes widen only minimally, shoulders still and eye contact holds. The gaze briefly drops before returning.",
- timing:"proximity → freeze → eye contact → breath pause → gaze drop → return",
- avoid:"Avoid exaggerated recoil unless intentionally comedic.",
- tags:["proximity","romance"]
-},
-
-{
- id:"jea01",
- category:"Jealousy / Sulking",
- title:"Hidden Jealousy",
- intensity:2,
- summary:"Outward composure while tracking reveals emotional investment.",
- direction:"The interaction is watched quietly. Lips flatten slightly and jaw tension increases. The character looks away deliberately, then cannot resist one quick checking glance.",
- timing:"observe → tension → look away → quick check → conceal",
- avoid:"Avoid aggressive staring at low intensity.",
- tags:["jealousy","hidden"]
-},
-
-{
- id:"sul01",
- category:"Jealousy / Sulking",
- title:"Playful Sulking",
- intensity:3,
- summary:"Visual withdrawal while secretly wanting attention.",
- direction:"The lips form a restrained pout and the face turns slightly away. The body angles away while remaining nearby. After a beat the eyes secretly glance back.",
- timing:"pout → turn away → hold → glance back → avoidance",
- avoid:"Avoid cartoonishly large pouting.",
- tags:["sulking","merajuk"]
-},
-
-{
- id:"awk01",
- category:"Comedy / Awkward",
- title:"Awkward Freeze",
- intensity:3,
- summary:"Comedy created by a pause held slightly too long.",
- direction:"The current action stops. The body becomes still while the eyes slowly move toward the other person. The uncomfortable silence holds before a small recovery.",
- timing:"interruption → freeze → eyes move → hold → recovery",
- avoid:"Avoid filling the pause with random gestures.",
- tags:["awkward","freeze"]
-},
-
-{
- id:"awk02",
- category:"Comedy / Awkward",
- title:"Fake Normal",
- intensity:3,
- summary:"Internal panic hidden by overly deliberate normal behaviour.",
- direction:"The smile becomes slightly too polite, posture too straight and movement unusually controlled. A covert eye check reveals concern that someone noticed.",
- timing:"incident → forced composure → overly normal → covert check",
- avoid:"Avoid full panic unless intentionally heightened.",
- tags:["fake normal","awkward"]
-},
-
-{
- id:"sus01",
- category:"Suspense / Fear",
- title:"Quiet Unease",
- intensity:2,
- summary:"Something feels wrong without becoming fear.",
- direction:"Casual movement gradually reduces. Brow tension increases slightly and eyes make selective checks while listening behaviour becomes more active.",
- timing:"normal → cue → slow → listen → selective scan",
- avoid:"Avoid wide frightened eyes, shaking or panting.",
- tags:["unease","suspense"]
-},
-
-{
- id:"fear01",
- category:"Suspense / Fear",
- title:"Controlled Fear",
- intensity:3,
- summary:"Fear is present but deliberate functioning remains intact.",
- direction:"Attention locks toward the possible threat. Eyes become more alert and weight shifts subtly backward while the torso remains oriented toward the source.",
- timing:"threat cue → focus → breath shortens → weight shift → readiness",
- avoid:"Avoid immediate screaming or uncontrolled shaking.",
- tags:["fear","controlled"]
-},
-
-{
- id:"sad01",
- category:"Sadness / Hurt",
- title:"Hiding Hurt",
- intensity:3,
- summary:"Pain briefly appears before being forced under control.",
- direction:"The expression drops briefly, gaze loses focus and shifts away. Lips press, jaw firms and posture straightens after a controlled emotional recovery.",
- timing:"impact → drop → gaze breaks → swallow → contain → straighten",
- avoid:"Avoid instant crying or dramatic trembling.",
- tags:["hurt","sadness"]
-},
-
-{
- id:"rel01",
- category:"Relief",
- title:"Subtle Relief",
- intensity:2,
- summary:"Physical tension releases before the smile.",
- direction:"Tension around the eyes softens. Shoulders release and mouth tension loosens before a small genuine smile develops.",
- timing:"confirmation → exhale → shoulders release → soften → smile",
- avoid:"Avoid instant celebration unless justified.",
- tags:["relief","release"]
-},
-
-{
- id:"det01",
- category:"Power / Determination",
- title:"Decision Made",
- intensity:3,
- summary:"Processing ends and purposeful action begins.",
- direction:"The searching gaze stops. Eyes settle firmly on the objective, chin levels, spine straightens and weight shifts forward before action begins.",
- timing:"process → decision → gaze locks → posture aligns → action",
- avoid:"Avoid unnecessary heroic posing.",
- tags:["determination","decision"]
-},
-
-{
- id:"pow01",
- category:"Power / Determination",
- title:"Quiet Authority",
- intensity:3,
- summary:"Authority through stillness and economical response.",
- direction:"Gaze stays steady, posture balanced and gestures remain minimal. Silence is allowed to hold without unnecessary reaction.",
- timing:"observe → remain still → controlled response → deliberate action",
- avoid:"Avoid constant dominant gestures.",
- tags:["authority","power"]
-}
-
+const emotionOptions = [
+  "Neutral Observation",
+  "Attention Captured",
+  "Restrained Awe",
+  "Growing Amazement",
+  "Micro Surprise",
+  "Deadpan Disbelief",
+  "Comedic Double-Take",
+  "Annoyed Side-Eye",
+  "Suppressed Frustration",
+  "Dry Sarcasm",
+  "Playful Provocation",
+  "Flustered Attraction",
+  "Restrained Affection",
+  "Hidden Jealousy",
+  "Playful Sulking",
+  "Awkward Freeze",
+  "Fake Normal",
+  "Quiet Unease",
+  "Controlled Fear",
+  "Hiding Hurt",
+  "Subtle Relief",
+  "Decision Made",
+  "Quiet Authority"
 ];
 
+const roleOptions = [
+  "Setup",
+  "Trigger",
+  "Reaction",
+  "Emotional Shift",
+  "Recovery",
+  "Escalation",
+  "Decision",
+  "Payoff"
+];
 
-/* =========================================================
-   OPTION SETS
-========================================================= */
+const reactionTimingOptions = [
+  "Auto",
+  "Immediate",
+  "Micro Delay",
+  "Short Processing Delay",
+  "Delayed Reaction"
+];
+
+const responseOptions = [
+  "Auto",
+  "Eyes First",
+  "Breath First",
+  "Face First",
+  "Freeze First",
+  "Body First"
+];
+
+const gazeOptions = [
+  "Auto",
+  "Object → Character",
+  "Character → Object",
+  "Direct Eye Contact",
+  "Held Eye Contact",
+  "Avoided Eye Contact",
+  "Brief Glance",
+  "Look Away Then Return",
+  "Gaze Down"
+];
 
 const breathOptions = [
-"Natural Breathing",
-"Soft Inhale",
-"Tiny Inhale",
-"Breath Pause",
-"Breath Catch",
-"Controlled Exhale",
-"Long Exhale",
-"Nasal Exhale",
-"Shallow Breathing",
-"Deepening Breath",
-"Quiet Listening Breath",
-"Interrupted Breath",
-"Recovery Breath"
+  "Auto",
+  "Natural Breathing",
+  "Tiny Inhale",
+  "Soft Inhale",
+  "Breath Pause",
+  "Breath Catch",
+  "Controlled Exhale",
+  "Recovery Breath"
 ];
 
-const vocalOptions = [
-"None",
-"Soft Sigh",
-"Restrained Scoff",
-"Suppressed Chuckle",
-"Breathy Laugh",
-"Nervous Laugh",
-"Suppressed Laugh",
-"Soft Hum",
-"Tongue Click",
-"Small Gasp",
-"Quiet Swallow",
-"Throat Clear"
-];
-
-const eyeContactOptions = [
-"None",
-"Brief Glance",
-"Quick Check",
-"Avoided Eye Contact",
-"Interrupted Eye Contact",
-"Direct Eye Contact",
-"Held Eye Contact",
-"Prolonged Eye Contact",
-"Side-Eye",
-"Gaze Drop",
-"Look Away Then Return"
+const movementOptions = [
+  "Auto",
+  "No Change",
+  "Maintain Position",
+  "Micro Stillness",
+  "Weight Shift",
+  "Lean In",
+  "Lean Back",
+  "Step Forward",
+  "Step Back",
+  "Recompose Posture"
 ];
 
 const proximityOptions = [
-"Not Applicable",
-"Distant",
-"Social Distance",
-"Conversational Distance",
-"Close",
-"Very Close",
-"Intimate Distance",
-"Closing Distance",
-"Increasing Distance"
+  "Auto",
+  "Conversational",
+  "Close",
+  "Very Close",
+  "Intimate"
 ];
 
-const touchOptions = [
-"None",
-"Almost Touch",
-"Accidental Contact",
-"Brief Touch",
-"Restrained Touch",
-"Hand Contact",
-"Arm Contact",
-"Shoulder Contact",
-"Protective Touch",
-"Pull Away From Touch"
-];
-
-const dependencyOptions = [
-"Independent",
-"React To Other Character",
-"React To Dialogue",
-"React To Eye Contact",
-"React To Proximity",
-"React To Touch",
-"React To Environmental Reveal",
-"React To Sound",
-"React To Previous Beat"
-];
-
-const delayOptions = [
-"Immediate",
-"Micro Delay",
-"Short Processing Delay",
-"Delayed Reaction",
-"Long Processing Beat"
-];
-
-const priorityOptions = [
-"Eyes First",
-"Breath First",
-"Face First",
-"Head First",
-"Body First",
-"Hands First",
-"Freeze First",
-"Movement First"
+const recoveryOptions = [
+  "Auto",
+  "None",
+  "Return To Task",
+  "Look Away",
+  "Fake Normal",
+  "Suppress Smile",
+  "Recompose Posture",
+  "Create Distance"
 ];
 
 
-/* =========================================================
-   STATE
-========================================================= */
-
-let activeCategory = "All";
-let favoritesOnly = false;
-let outputMode = "full";
-let selectedEmotionId = "awe01";
-
-let favorites =
-JSON.parse(localStorage.getItem("kd_v7_favorites") || "[]");
+let outputMode = "video";
+let globalPerformanceStyle = "Restrained";
 
 
-let sequence = [
+let beats = [
 
 {
- role:"Setup",
- emotionId:"neutral01",
- intensity:1,
- hold:"Short",
+  role:"Setup",
+  emotion:"Neutral Observation",
+  intensity:1,
 
- breath:"Natural Breathing",
- vocal:"None",
+  happens:
+  "Maryam casually looks at Amir's phone.",
 
- target:"",
- eyeContact:"None",
- proximity:"Not Applicable",
- touch:"None",
+  subtext:
+  "She feels comfortable. Nothing unusual has happened yet.",
 
- dependency:"Independent",
- otherAction:"No secondary character action.",
- reactionDelay:"Immediate",
- responsePriority:"Movement First",
-
- interactionResponse:
- "No interpersonal interaction; attention remains on the environment.",
-
- action:
- "Walk naturally into the Main Hall from the background toward the foreground.",
-
- trigger:
- "Entering the space.",
-
- purpose:
- "Orient herself to the unfamiliar environment without expecting anything unusual."
+  timing:"Immediate",
+  response:"Auto",
+  gaze:"Character → Object",
+  breath:"Natural Breathing",
+  movement:"Maintain Position",
+  proximity:"Conversational",
+  recovery:"None"
 },
 
 {
- role:"Trigger",
- emotionId:"cur01",
- intensity:2,
- hold:"Short",
+  role:"Trigger",
+  emotion:"Attention Captured",
+  intensity:2,
 
- breath:"Breath Pause",
- vocal:"None",
+  happens:
+  "Amir steps slightly closer while holding the phone between them.",
 
- target:"",
- eyeContact:"None",
- proximity:"Not Applicable",
- touch:"None",
+  subtext:
+  "Maryam notices that the distance has changed, but has not yet interpreted why it affects her.",
 
- dependency:"React To Environmental Reveal",
- otherAction:
- "The scale and vertical structure of the Main Hall becomes visible as she enters.",
-
- reactionDelay:"Micro Delay",
- responsePriority:"Eyes First",
-
- interactionResponse:
- "Her attention shifts from navigation to the architectural feature.",
-
- action:
- "She continues walking for a fraction longer as her eyes catch the structure.",
-
- trigger:
- "The architectural scale enters her visual field.",
-
- purpose:
- "Register what she is seeing before the body fully responds."
+  timing:"Micro Delay",
+  response:"Eyes First",
+  gaze:"Auto",
+  breath:"Natural Breathing",
+  movement:"Maintain Position",
+  proximity:"Close",
+  recovery:"None"
 },
 
 {
- role:"Emotional Shift",
- emotionId:"awe01",
- intensity:2,
- hold:"Normal",
+  role:"Reaction",
+  emotion:"Flustered Attraction",
+  intensity:2,
 
- breath:"Soft Inhale",
- vocal:"None",
+  happens:
+  "Maryam realizes Amir is standing unusually close.",
 
- target:"",
- eyeContact:"None",
- proximity:"Not Applicable",
- touch:"None",
+  subtext:
+  "She is affected by the proximity but does not want Amir to notice.",
 
- dependency:"React To Previous Beat",
- otherAction:
- "Her initial visual registration develops into understanding of the hall's scale and beauty.",
-
- reactionDelay:"Short Processing Delay",
- responsePriority:"Breath First",
-
- interactionResponse:
- "Her attention remains fully absorbed by the environment.",
-
- action:
- "Her walking pace gradually slows while the chin follows the upward gaze.",
-
- trigger:
- "The meaning of the visual impression settles.",
-
- purpose:
- "Take in the space while maintaining natural composure."
+  timing:"Short Processing Delay",
+  response:"Breath First",
+  gaze:"Object → Character",
+  breath:"Breath Catch",
+  movement:"Micro Stillness",
+  proximity:"Very Close",
+  recovery:"None"
 },
 
 {
- role:"Payoff",
- emotionId:"smile01",
- intensity:1,
- hold:"Normal",
+  role:"Recovery",
+  emotion:"Fake Normal",
+  intensity:2,
 
- breath:"Controlled Exhale",
- vocal:"None",
+  happens:
+  "Maryam deliberately redirects her attention back to the phone.",
 
- target:"",
- eyeContact:"None",
- proximity:"Not Applicable",
- touch:"None",
+  subtext:
+  "Act normal. Don't let him notice.",
 
- dependency:"React To Previous Beat",
- otherAction:
- "The restrained awe settles into genuine appreciation.",
+  timing:"Micro Delay",
+  response:"Face First",
+  gaze:"Character → Object",
+  breath:"Controlled Exhale",
+  movement:"Recompose Posture",
+  proximity:"Very Close",
+  recovery:"Return To Task"
+},
 
- reactionDelay:"Short Processing Delay",
- responsePriority:"Face First",
+{
+  role:"Trigger",
+  emotion:"Micro Surprise",
+  intensity:2,
 
- interactionResponse:
- "The emotional response remains private and inward.",
+  happens:
+  "Amir turns from the phone and looks directly at Maryam.",
 
- action:
- "She nearly settles to a stop and holds her gaze on the architecture.",
+  subtext:
+  "She thought she had recovered, but his eye contact exposes the unresolved tension.",
 
- trigger:
- "The experience has fully registered emotionally.",
+  timing:"Micro Delay",
+  response:"Eyes First",
+  gaze:"Object → Character",
+  breath:"Breath Pause",
+  movement:"Micro Stillness",
+  proximity:"Very Close",
+  recovery:"None"
+},
 
- purpose:
- "Allow a faint involuntary smile to leak through."
+{
+  role:"Payoff",
+  emotion:"Restrained Affection",
+  intensity:2,
+
+  happens:
+  "They hold eye contact for a brief moment before Maryam looks away.",
+
+  subtext:
+  "For a brief moment she allows the attraction to exist before self-consciousness returns.",
+
+  timing:"Micro Delay",
+  response:"Eyes First",
+  gaze:"Held Eye Contact",
+  breath:"Controlled Exhale",
+  movement:"Maintain Position",
+  proximity:"Very Close",
+  recovery:"Suppress Smile"
 }
 
 ];
 
 
 /* =========================================================
-   DOM
+   HELPERS
 ========================================================= */
 
-const categoriesEl = document.getElementById("categories");
-const cardsEl = document.getElementById("cards");
-const searchInput = document.getElementById("searchInput");
+function optionList(array,current){
 
-const characterInput = document.getElementById("character");
-const secondaryCharacterInput = document.getElementById("secondaryCharacter");
-
-const shotSizeInput = document.getElementById("shotSize");
-const cameraAngleInput = document.getElementById("cameraAngle");
-const cameraMovementInput = document.getElementById("cameraMovement");
-const characterMovementInput = document.getElementById("characterMovement");
-
-const contextInput = document.getElementById("context");
-const objectiveInput = document.getElementById("objective");
-
-const transitionStyleInput = document.getElementById("transitionStyle");
-const styleInput = document.getElementById("style");
-
-const sequenceListEl = document.getElementById("sequenceList");
-
-
-function getEmotion(id){
-  return emotions.find(e=>e.id===id);
-}
-
-function optionsFromArray(array,current){
   return array.map(item =>
-    `<option ${item===current?"selected":""}>${item}</option>`
+    `<option ${item===current ? "selected" : ""}>${item}</option>`
   ).join("");
-}
-
-function emotionOptions(id){
-  return emotions.map(e =>
-    `<option value="${e.id}" ${e.id===id?"selected":""}>${e.title}</option>`
-  ).join("");
-}
-
-
-/* =========================================================
-   LIBRARY UI
-========================================================= */
-
-function buildCategories(){
-
-  const categories = [
-    "All",
-    ...new Set(emotions.map(e=>e.category))
-  ];
-
-  categoriesEl.innerHTML = "";
-
-  categories.forEach(cat => {
-
-    const btn = document.createElement("button");
-
-    btn.className =
-      "category" +
-      (cat===activeCategory && !favoritesOnly ? " active" : "");
-
-    const count =
-      cat==="All"
-      ? emotions.length
-      : emotions.filter(e=>e.category===cat).length;
-
-    btn.innerHTML =
-      `<span>${cat}</span><span class="count">${count}</span>`;
-
-    btn.onclick = () => {
-      activeCategory = cat;
-      favoritesOnly = false;
-      buildCategories();
-      renderCards();
-    };
-
-    categoriesEl.appendChild(btn);
-
-  });
 
 }
 
 
-function renderCards(){
+function intensityDots(index,intensity){
 
-  const q = searchInput.value.trim().toLowerCase();
+  let html = "";
 
-  const result = emotions.filter(e => {
+  for(let i=1;i<=5;i++){
 
-    const categoryMatch =
-      activeCategory==="All" ||
-      e.category===activeCategory;
-
-    const searchMatch =
-      !q ||
-      e.title.toLowerCase().includes(q) ||
-      e.category.toLowerCase().includes(q) ||
-      e.summary.toLowerCase().includes(q) ||
-      e.tags.join(" ").toLowerCase().includes(q);
-
-    const favMatch =
-      !favoritesOnly ||
-      favorites.includes(e.id);
-
-    return categoryMatch && searchMatch && favMatch;
-
-  });
-
-  document.getElementById("resultLabel").textContent =
-    favoritesOnly
-    ? "Favourite expressions"
-    : activeCategory==="All"
-    ? "All expressions"
-    : activeCategory;
-
-  document.getElementById("resultCount").textContent =
-    `${result.length} cards`;
-
-  cardsEl.innerHTML = "";
-
-  result.forEach(e => {
-
-    const card = document.createElement("article");
-
-    card.className =
-      "card" +
-      (selectedEmotionId===e.id ? " selected" : "");
-
-    card.innerHTML = `
-
-      <button class="star ${favorites.includes(e.id)?"active":""}">
-        ★
-      </button>
-
-      <span class="tag">${e.category}</span>
-
-      <h3>${e.title}</h3>
-
-      <p>${e.summary}</p>
-
-      <div class="mini-timing">
-        ${e.timing}
-      </div>
-
+    html += `
+      <span
+        class="dot ${i<=intensity ? "on" : ""}"
+        onclick="setIntensity(${index},${i})"
+        title="${i}/5"
+      ></span>
     `;
 
-    card.onclick = event => {
+  }
 
-      if(event.target.classList.contains("star")){
-        toggleFavorite(e.id);
-        event.stopPropagation();
-        return;
-      }
+  return html;
 
-      selectedEmotionId = e.id;
-      renderCards();
-
-    };
-
-    cardsEl.appendChild(card);
-
-  });
-
-  document.getElementById("favCount").textContent =
-    favorites.length;
-
-}
-
-
-function toggleFavorite(id){
-
-  favorites =
-    favorites.includes(id)
-    ? favorites.filter(x=>x!==id)
-    : [...favorites,id];
-
-  localStorage.setItem(
-    "kd_v7_favorites",
-    JSON.stringify(favorites)
-  );
-
-  renderCards();
-
-}
-
-
-function toggleFavoritesOnly(){
-  favoritesOnly = !favoritesOnly;
-  buildCategories();
-  renderCards();
 }
 
 
 /* =========================================================
-   BEAT UI
+   RENDER BEATS
 ========================================================= */
 
-function renderSequence(){
+function renderBeats(){
 
-  sequenceListEl.innerHTML = "";
+  const list =
+    document.getElementById("beatList");
 
-  sequence.forEach((beat,index) => {
+  list.innerHTML = "";
 
-    const el = document.createElement("div");
+  beats.forEach((beat,index) => {
 
-    el.className = "beat";
+    const wrap =
+      document.createElement("div");
 
-    el.innerHTML = `
+    wrap.className = "beat-wrap";
 
-      <div class="beat-top">
+    wrap.innerHTML = `
 
-        <div class="beat-title">
-          <span class="dot"></span>
-          Beat ${index+1}
-        </div>
+      <div class="beat-card">
 
-        <div class="beat-controls">
-          <button onclick="moveBeat(${index},-1)">↑</button>
-          <button onclick="moveBeat(${index},1)">↓</button>
-          <button onclick="removeBeat(${index})">×</button>
-        </div>
+        <div class="beat-summary">
 
-      </div>
+          <div class="beat-top">
 
+            <div>
 
-      <div class="beat-role">
+              <div class="beat-number">
+                ${String(index+1).padStart(2,"0")}
+              </div>
 
-        <select onchange="updateBeat(${index},'role',this.value)">
-          ${
-            [
-              "Setup","Trigger","Emotional Shift","Reaction",
-              "Escalation","Decision","Recovery","Payoff"
-            ]
-            .map(role =>
-              `<option ${role===beat.role?"selected":""}>${role}</option>`
-            )
-            .join("")
-          }
-        </select>
+              <div class="beat-role">
+                ${beat.role}
+              </div>
 
-        <select onchange="changeBeatEmotion(${index},this.value)">
-          ${emotionOptions(beat.emotionId)}
-        </select>
+              <div class="beat-title">
+                ${beat.emotion}
+              </div>
 
-      </div>
+            </div>
 
 
-      <div class="beat-emotion">
+            <div class="beat-actions">
 
-        <select onchange="updateBeat(${index},'intensity',Number(this.value))">
-          ${
-            [1,2,3,4,5]
-            .map(n =>
-              `<option value="${n}" ${Number(beat.intensity)===n?"selected":""}>${n}/5</option>`
-            )
-            .join("")
-          }
-        </select>
+              <button
+                class="icon-btn"
+                onclick="moveBeat(${index},-1)"
+                title="Move up"
+              >
+                ↑
+              </button>
 
-        <select onchange="updateBeat(${index},'hold',this.value)">
-          ${
-            ["Brief","Short","Normal","Long"]
-            .map(h =>
-              `<option ${h===beat.hold?"selected":""}>${h}</option>`
-            )
-            .join("")
-          }
-        </select>
+              <button
+                class="icon-btn"
+                onclick="moveBeat(${index},1)"
+                title="Move down"
+              >
+                ↓
+              </button>
 
-      </div>
+              <button
+                class="icon-btn"
+                onclick="removeBeat(${index})"
+                title="Remove"
+              >
+                ×
+              </button>
 
+            </div>
 
-      <div class="layer-panel dependency-panel">
-
-        <div class="layer-title">
-          Reaction Dependency
-        </div>
-
-        <div class="layer-grid3">
-
-          <select onchange="updateBeat(${index},'dependency',this.value)">
-            ${optionsFromArray(dependencyOptions,beat.dependency)}
-          </select>
-
-          <select onchange="updateBeat(${index},'reactionDelay',this.value)">
-            ${optionsFromArray(delayOptions,beat.reactionDelay)}
-          </select>
-
-          <select onchange="updateBeat(${index},'responsePriority',this.value)">
-            ${optionsFromArray(priorityOptions,beat.responsePriority)}
-          </select>
-
-        </div>
-
-        <div class="beat-label">
-          Other Character / External Action
-        </div>
-
-        <textarea
-          placeholder="Example: Amir steps closer and quietly says her name."
-          oninput="updateBeat(${index},'otherAction',this.value)"
-        >${beat.otherAction || ""}</textarea>
-
-      </div>
+          </div>
 
 
-      <div class="layer-panel">
+          <div class="intensity-dots">
+            ${intensityDots(index,beat.intensity)}
+          </div>
 
-        <div class="layer-title">
-          Breath / Vocal Reaction
-        </div>
 
-        <div class="layer-grid2">
+          <div class="beat-line">
+            ${beat.happens}
+          </div>
 
-          <select onchange="updateBeat(${index},'breath',this.value)">
-            ${optionsFromArray(breathOptions,beat.breath)}
-          </select>
 
-          <select onchange="updateBeat(${index},'vocal',this.value)">
-            ${optionsFromArray(vocalOptions,beat.vocal)}
-          </select>
+          <div class="beat-subtext">
+            <strong>Subtext:</strong> ${beat.subtext}
+          </div>
+
+
+          <div class="card-controls">
+
+            <button
+              class="small-btn"
+              onclick="toggleEdit(${index})"
+            >
+              Edit
+            </button>
+
+            <button
+              class="small-btn"
+              onclick="toggleAdvanced(${index})"
+            >
+              Advanced ▾
+            </button>
+
+          </div>
 
         </div>
 
-      </div>
 
-
-      <div class="layer-panel interaction-panel">
-
-        <div class="layer-title">
-          Character Interaction / Proximity
-        </div>
-
-        <div class="beat-label">
-          Target Character
-        </div>
-
-        <input
-          value="${beat.target || ""}"
-          placeholder="Example: Amir"
-          oninput="updateBeat(${index},'target',this.value)"
+        <div
+          id="edit-${index}"
+          class="edit-panel"
         >
 
-        <div class="beat-label">
-          Eye Contact / Proximity / Touch
+          <div class="grid2">
+
+            <div class="field">
+              <label>Moment</label>
+
+              <select
+                onchange="updateBeat(${index},'role',this.value,true)"
+              >
+                ${optionList(roleOptions,beat.role)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Emotion</label>
+
+              <select
+                onchange="updateBeat(${index},'emotion',this.value,true)"
+              >
+                ${optionList(emotionOptions,beat.emotion)}
+              </select>
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>What Happens?</label>
+
+            <textarea
+              oninput="updateBeat(${index},'happens',this.value,false)"
+            >${beat.happens}</textarea>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>What is the character thinking / hiding?</label>
+
+            <textarea
+              oninput="updateBeat(${index},'subtext',this.value,false)"
+            >${beat.subtext}</textarea>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Performance Style</label>
+
+            <select>
+              <option selected>${globalPerformanceStyle}</option>
+              <option>Micro</option>
+              <option>Restrained</option>
+              <option>Readable</option>
+              <option>Heightened</option>
+              <option>Expressive</option>
+            </select>
+
+          </div>
+
         </div>
 
-        <div class="layer-grid3">
 
-          <select onchange="updateBeat(${index},'eyeContact',this.value)">
-            ${optionsFromArray(eyeContactOptions,beat.eyeContact)}
-          </select>
+        <div
+          id="advanced-${index}"
+          class="advanced-panel"
+        >
 
-          <select onchange="updateBeat(${index},'proximity',this.value)">
-            ${optionsFromArray(proximityOptions,beat.proximity)}
-          </select>
+          <div class="advanced-title">
+            Advanced Direction
+          </div>
 
-          <select onchange="updateBeat(${index},'touch',this.value)">
-            ${optionsFromArray(touchOptions,beat.touch)}
-          </select>
+          <div class="grid2">
+
+            <div class="field">
+              <label>Reaction Timing</label>
+
+              <select
+                onchange="updateBeat(${index},'timing',this.value,false)"
+              >
+                ${optionList(reactionTimingOptions,beat.timing)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>First Response</label>
+
+              <select
+                onchange="updateBeat(${index},'response',this.value,false)"
+              >
+                ${optionList(responseOptions,beat.response)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Eyes / Gaze</label>
+
+              <select
+                onchange="updateBeat(${index},'gaze',this.value,false)"
+              >
+                ${optionList(gazeOptions,beat.gaze)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Breath</label>
+
+              <select
+                onchange="updateBeat(${index},'breath',this.value,false)"
+              >
+                ${optionList(breathOptions,beat.breath)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Movement</label>
+
+              <select
+                onchange="updateBeat(${index},'movement',this.value,false)"
+              >
+                ${optionList(movementOptions,beat.movement)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Proximity</label>
+
+              <select
+                onchange="updateBeat(${index},'proximity',this.value,false)"
+              >
+                ${optionList(proximityOptions,beat.proximity)}
+              </select>
+            </div>
+
+
+            <div class="field">
+              <label>Recovery</label>
+
+              <select
+                onchange="updateBeat(${index},'recovery',this.value,false)"
+              >
+                ${optionList(recoveryOptions,beat.recovery)}
+              </select>
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="beat-label">
-          Interaction Response
-        </div>
-
-        <textarea
-          oninput="updateBeat(${index},'interactionResponse',this.value)"
-        >${beat.interactionResponse || ""}</textarea>
-
       </div>
 
-
-      <div class="beat-label">
-        Beat Action — What physically happens
-      </div>
-
-      <textarea oninput="updateBeat(${index},'action',this.value)">${beat.action}</textarea>
-
-
-      <div class="beat-label">
-        Beat Trigger — What the character internally recognizes
-      </div>
-
-      <textarea oninput="updateBeat(${index},'trigger',this.value)">${beat.trigger}</textarea>
-
-
-      <div class="beat-label">
-        Purpose / Subtext
-      </div>
-
-      <textarea oninput="updateBeat(${index},'purpose',this.value)">${beat.purpose}</textarea>
+      ${
+        index < beats.length-1
+        ? `<div class="connector"></div>`
+        : ""
+      }
 
     `;
 
-    sequenceListEl.appendChild(el);
+    list.appendChild(wrap);
 
   });
 
-  updateComposer();
+
+  document
+  .getElementById("beatCount")
+  .textContent =
+  `${beats.length} beats`;
+
+  updateOutput();
 
 }
 
@@ -1560,428 +1462,110 @@ function renderSequence(){
    BEAT ACTIONS
 ========================================================= */
 
-function updateBeat(index,key,value){
-  sequence[index][key] = value;
-  updateComposer();
-}
+function updateBeat(index,key,value,rerender){
 
+  beats[index][key] = value;
 
-function changeBeatEmotion(index,id){
-
-  sequence[index].emotionId = id;
-
-  const emotion = getEmotion(id);
-
-  if(emotion){
-    sequence[index].intensity = emotion.intensity;
+  if(rerender){
+    renderBeats();
+  }else{
+    updateOutput();
   }
 
-  renderSequence();
+}
+
+
+function setIntensity(index,value){
+
+  beats[index].intensity = value;
+
+  renderBeats();
 
 }
 
 
-function addBeat(){
+function toggleEdit(index){
 
-  const emotion =
-    getEmotion(selectedEmotionId) ||
-    getEmotion("neutral01");
-
-  sequence.push({
-
-    role:"Reaction",
-    emotionId:emotion.id,
-    intensity:emotion.intensity,
-    hold:"Normal",
-
-    breath:"Natural Breathing",
-    vocal:"None",
-
-    target:secondaryCharacterInput.value.trim(),
-
-    eyeContact:"Brief Glance",
-    proximity:"Conversational Distance",
-    touch:"None",
-
-    dependency:"React To Other Character",
-    otherAction:"",
-    reactionDelay:"Micro Delay",
-    responsePriority:"Eyes First",
-
-    interactionResponse:"",
-    action:"",
-    trigger:"",
-    purpose:""
-
-  });
-
-  renderSequence();
+  document
+  .getElementById(`edit-${index}`)
+  .classList
+  .toggle("open");
 
 }
 
 
-function removeBeat(index){
+function toggleAdvanced(index){
 
-  if(sequence.length<=1){
-    showToast("At least one beat is required");
-    return;
-  }
-
-  sequence.splice(index,1);
-  renderSequence();
+  document
+  .getElementById(`advanced-${index}`)
+  .classList
+  .toggle("open");
 
 }
 
 
 function moveBeat(index,direction){
 
-  const target = index + direction;
+  const target =
+    index + direction;
 
-  if(target<0 || target>=sequence.length){
+  if(target<0 || target>=beats.length){
     return;
   }
 
   [
-    sequence[index],
-    sequence[target]
+    beats[index],
+    beats[target]
   ] =
   [
-    sequence[target],
-    sequence[index]
+    beats[target],
+    beats[index]
   ];
 
-  renderSequence();
+  renderBeats();
 
 }
 
 
-/* =========================================================
-   DEPENDENCY LOGIC
-========================================================= */
+function removeBeat(index){
 
-function dependencyInstruction(type,otherAction){
+  if(beats.length<=1){
+    showToast("At least one beat is required");
+    return;
+  }
 
-  const action =
-    otherAction ||
-    "the relevant external event";
+  beats.splice(index,1);
 
-  const map = {
-
-    "Independent":
-      "This beat does not depend on another character. Let it arise from the character's own ongoing objective.",
-
-    "React To Other Character":
-      `Do not begin the reaction until the character registers this action: ${action}`,
-
-    "React To Dialogue":
-      `Let the character first hear and process this dialogue-related stimulus before reacting: ${action}`,
-
-    "React To Eye Contact":
-      `The reaction begins only after the character recognizes the other person's gaze or eye contact: ${action}`,
-
-    "React To Proximity":
-      `The emotional response should emerge only after the changing interpersonal distance is physically registered: ${action}`,
-
-    "React To Touch":
-      `Do not perform the emotional response before physical contact occurs or is anticipated: ${action}`,
-
-    "React To Environmental Reveal":
-      `The reaction begins only after the visual environment becomes perceptually clear: ${action}`,
-
-    "React To Sound":
-      `Let listening behaviour precede the visible reaction to this sound: ${action}`,
-
-    "React To Previous Beat":
-      `This beat is emotional fallout from the previous beat. Do not reset first. Carry residual tension or feeling into the new response: ${action}`
-
-  };
-
-  return map[type] || "";
+  renderBeats();
 
 }
 
 
-function delayInstruction(delay){
+function addBeat(){
 
-  const map = {
+  beats.push({
 
-    "Immediate":
-      "Reaction begins almost immediately after recognition, but preserve physical reaction order.",
+    role:"Reaction",
+    emotion:"Attention Captured",
+    intensity:2,
 
-    "Micro Delay":
-      "Insert a tiny recognition delay before the visible response; suitable for subtle naturalistic acting.",
+    happens:
+    "Describe what happens in this moment.",
 
-    "Short Processing Delay":
-      "Hold a short processing beat after recognition before facial or physical response develops.",
+    subtext:
+    "Describe what the character is thinking, hiding or trying to achieve.",
 
-    "Delayed Reaction":
-      "Allow a clearly readable processing pause before the reaction arrives. Useful for disbelief, comedy, hurt or realization.",
+    timing:"Auto",
+    response:"Auto",
+    gaze:"Auto",
+    breath:"Auto",
+    movement:"Auto",
+    proximity:"Auto",
+    recovery:"Auto"
 
-    "Long Processing Beat":
-      "Hold recognition noticeably longer before reacting. Use only when the dramatic situation supports sustained internal processing."
+  });
 
-  };
-
-  return map[delay] || "";
-
-}
-
-
-function priorityInstruction(priority){
-
-  const map = {
-
-    "Eyes First":
-      "The eyes should register the change before the rest of the face or body.",
-
-    "Breath First":
-      "Let the first visible sign be a change in breathing before expression or movement follows.",
-
-    "Face First":
-      "Allow a small facial change to register first before head or body movement.",
-
-    "Head First":
-      "Use head orientation as the first clear response after internal recognition.",
-
-    "Body First":
-      "Let posture or torso response appear first, followed by facial processing.",
-
-    "Hands First":
-      "Let hand or finger behaviour reveal the first involuntary response.",
-
-    "Freeze First":
-      "The first response is sudden stillness. Facial and breath changes follow after the freeze.",
-
-    "Movement First":
-      "Maintain or alter locomotion first, then allow emotional response to become visible."
-
-  };
-
-  return map[priority] || "";
-
-}
-
-
-/* =========================================================
-   BREATH / VOCAL
-========================================================= */
-
-function breathInstruction(type){
-
-  return {
-
-    "Natural Breathing":
-      "Keep breathing natural and unobtrusive.",
-
-    "Soft Inhale":
-      "Use a soft involuntary inhale with minimal chest movement.",
-
-    "Tiny Inhale":
-      "Use a very small intake of breath as a registration cue.",
-
-    "Breath Pause":
-      "Briefly interrupt the breathing rhythm as attention or realization lands.",
-
-    "Breath Catch":
-      "Let the inhale stop for a fraction of a beat rather than becoming a full gasp.",
-
-    "Controlled Exhale":
-      "Release a quiet controlled exhale as tension settles.",
-
-    "Long Exhale":
-      "Use a longer exhale for release, resignation or settling.",
-
-    "Nasal Exhale":
-      "Use a short nasal exhale for restrained irritation or disbelief.",
-
-    "Shallow Breathing":
-      "Make breathing slightly shallower and guarded.",
-
-    "Deepening Breath":
-      "Let breathing deepen gradually as emotional absorption increases.",
-
-    "Quiet Listening Breath":
-      "Reduce breathing volume while active listening increases.",
-
-    "Interrupted Breath":
-      "Allow normal breathing to break briefly due to realization, attraction, pain or surprise.",
-
-    "Recovery Breath":
-      "Use one stabilizing breath to regain composure."
-
-  }[type] || "";
-
-}
-
-
-function vocalInstruction(type){
-
-  return {
-
-    "None":
-      "No vocal reaction is needed.",
-
-    "Soft Sigh":
-      "Prepare with a small inhale, then release a quiet sigh.",
-
-    "Restrained Scoff":
-      "Use a short restrained scoff with slight mouth asymmetry.",
-
-    "Suppressed Chuckle":
-      "Let amusement show first in the face, then allow only a small chuckle.",
-
-    "Breathy Laugh":
-      "Use a light laugh carried mostly by breath.",
-
-    "Nervous Laugh":
-      "Let the laugh emerge from unstable breath and cut it short during recovery.",
-
-    "Suppressed Laugh":
-      "Contain most of the laugh; allow only a tiny involuntary sound if needed.",
-
-    "Soft Hum":
-      "Use a low quiet hum as thinking or acknowledgement.",
-
-    "Tongue Click":
-      "Use one restrained tongue click after a small preparation beat.",
-
-    "Small Gasp":
-      "Use a brief audible inhale only for genuine surprise.",
-
-    "Quiet Swallow":
-      "Use a restrained swallow following tension, attraction or hurt.",
-
-    "Throat Clear":
-      "Use a small throat clear as awkward recovery or composure reset."
-
-  }[type] || "";
-
-}
-
-
-/* =========================================================
-   INTERACTION
-========================================================= */
-
-function eyeContactInstruction(type,target){
-
-  const name = target || "the other character";
-
-  return {
-
-    "None":
-      `No direct eye contact with ${name} is required.`,
-
-    "Brief Glance":
-      `Give ${name} one brief glance before returning attention elsewhere.`,
-
-    "Quick Check":
-      `Make a quick covert check toward ${name}.`,
-
-    "Avoided Eye Contact":
-      `Avoid direct eye contact with ${name}; let avoidance reveal concealment or discomfort.`,
-
-    "Interrupted Eye Contact":
-      `Meet ${name}'s eyes briefly, then break the gaze as emotional pressure rises.`,
-
-    "Direct Eye Contact":
-      `Maintain clear direct eye contact with ${name}.`,
-
-    "Held Eye Contact":
-      `Hold eye contact with ${name} slightly longer than normal.`,
-
-    "Prolonged Eye Contact":
-      `Sustain eye contact with ${name} long enough for tension or intimacy to accumulate.`,
-
-    "Side-Eye":
-      `Keep the head mostly elsewhere while the eyes shift toward ${name}.`,
-
-    "Gaze Drop":
-      `Let the gaze briefly drop away from ${name}.`,
-
-    "Look Away Then Return":
-      `Break eye contact with ${name}, process internally, then return after a short delay.`
-
-  }[type] || "";
-
-}
-
-
-function proximityInstruction(type,target){
-
-  const name = target || "the other character";
-
-  return {
-
-    "Not Applicable":
-      "No interpersonal distance adjustment is required.",
-
-    "Distant":
-      `Maintain clear physical distance from ${name}.`,
-
-    "Social Distance":
-      `Keep polite social distance from ${name}.`,
-
-    "Conversational Distance":
-      `Maintain natural conversational distance from ${name}.`,
-
-    "Close":
-      `Move close enough to ${name} for proximity awareness to influence breath and posture.`,
-
-    "Very Close":
-      `Enter noticeably close personal space with ${name}; allow subtle stillness and breath awareness.`,
-
-    "Intimate Distance":
-      `Enter intimate distance from ${name}; reduce unnecessary movement and let stillness carry tension.`,
-
-    "Closing Distance":
-      `Gradually reduce distance to ${name}; let changing proximity alter the performance.`,
-
-    "Increasing Distance":
-      `Gradually create more space from ${name}; allow withdrawal or emotional protection to become visible.`
-
-  }[type] || "";
-
-}
-
-
-function touchInstruction(type,target){
-
-  const name = target || "the other character";
-
-  return {
-
-    "None":
-      "No physical contact occurs.",
-
-    "Almost Touch":
-      `Move toward contact with ${name} but hesitate just before touching.`,
-
-    "Accidental Contact":
-      `Allow brief accidental contact with ${name}, followed by a small involuntary response.`,
-
-    "Brief Touch":
-      `Use one brief motivated touch with ${name}.`,
-
-    "Restrained Touch":
-      `Touch ${name} gently and economically with visible restraint.`,
-
-    "Hand Contact":
-      `Create hand contact with ${name}; let fingers and release timing reflect emotion.`,
-
-    "Arm Contact":
-      `Use contact at ${name}'s arm with clear motivation.`,
-
-    "Shoulder Contact":
-      `Use shoulder contact with ${name} in a restrained way.`,
-
-    "Protective Touch":
-      `Use contact to protect, steady or reassure ${name}.`,
-
-    "Pull Away From Touch":
-      `Withdraw from contact with ${name} only as much as the emotional intensity requires.`
-
-  }[type] || "";
+  renderBeats();
 
 }
 
@@ -1990,534 +1574,642 @@ function touchInstruction(type,target){
    PERFORMANCE STYLE
 ========================================================= */
 
-function intensityInstruction(level){
+document
+.querySelectorAll(".level-btn")
+.forEach(button => {
 
-  return {
-    1:"Keep this beat at micro intensity. Prioritize gaze, breath and tiny facial changes.",
-    2:"Keep this beat restrained and naturalistic. Avoid large gestures.",
-    3:"Make the beat clearly readable while preserving believable K-drama naturalism.",
-    4:"Use heightened readability with stronger pauses, freezes or secondary reactions where motivated.",
-    5:"Use extreme emotional intensity only when dramatically justified."
-  }[level];
+  button.addEventListener("click",() => {
 
-}
+    document
+    .querySelectorAll(".level-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
 
+    button.classList.add("active");
 
-function holdInstruction(hold){
+    globalPerformanceStyle =
+      button.dataset.style;
 
-  return {
-    Brief:"Let this beat register almost immediately before transitioning.",
-    Short:"Give the beat a short readable pause.",
-    Normal:"Allow the beat to settle naturally before transitioning.",
-    Long:"Hold the emotional state noticeably longer before moving forward."
-  }[hold];
+    updateOutput();
 
-}
+  });
 
-
-function transitionInstruction(){
-
-  return {
-
-    Gradual:
-      "Let each emotional beat grow naturally from the previous one through gaze, breath and pacing.",
-
-    "Delayed Reaction":
-      "Build processing time between recognition and response.",
-
-    "Sudden Shift":
-      "Keep behaviour stable until the trigger lands, then allow a clear motivated shift while preserving reaction order.",
-
-    Suppressed:
-      "Let the emotion begin internally but prevent full expression. Reveal only leakage through eyes, breath, jaw, fingers or posture.",
-
-    Escalating:
-      "Increase pressure progressively through gaze, breathing, posture, distance and movement."
-
-  }[transitionStyleInput.value];
-
-}
-
-
-function styleInstruction(){
-
-  return {
-
-    "Subtle K-Drama":
-      "Use understated cinematic K-drama acting with micro-expression, motivated gaze and restrained breath.",
-
-    "Restrained Serious":
-      "Keep performance psychologically contained and economical.",
-
-    "K-Drama Romance":
-      "Prioritize gaze duration, breath interruption, hesitation, proximity and restrained touch.",
-
-    "K-Rom-Com":
-      "Use setup, processing delay, reaction hold and secondary payoff while keeping behaviour believable.",
-
-    "Heightened Rom-Com":
-      "Allow clearer freeze, recoil, double-take and awkward recovery while preserving cause-and-effect.",
-
-    "Period Drama Composure":
-      "Maintain formal posture while emotion leaks through eyes, breath and small impulses.",
-
-    "Thriller / Suspense":
-      "Prioritize scanning, listening, guarded distance, stillness and controlled breathing."
-
-  }[styleInput.value];
-
-}
+});
 
 
 /* =========================================================
-   CAMERA
+   OUTPUT ENGINE
 ========================================================= */
 
-function framingInstruction(){
+function performanceStyleInstruction(){
 
-  return {
+  const map = {
 
-    "Extreme Close Up":
-      "Prioritize eye focus, blink timing, lips, jaw, breath and tiny recognition changes.",
+    Micro:
+    "Keep emotional expression extremely subtle, living mostly in gaze, breath and tiny facial changes.",
 
-    "Close Up":
-      "Prioritize eyes, brows, lips, jaw, breathing and subtle chin movement.",
+    Restrained:
+    "Use restrained cinematic K-drama acting. Avoid overt signalling; let the audience discover the emotion through small behavioural changes.",
 
-    "Medium Close Up":
-      "Use face, shoulders, breath and upper-body orientation.",
+    Readable:
+    "Keep the acting natural but clearly readable through facial expression, gaze, breath and body response.",
 
-    "Medium Shot":
-      "Balance facial reaction with torso orientation, hands and interpersonal distance.",
+    Heightened:
+    "Use stronger reaction timing and clearer physical expression while preserving emotional cause-and-effect.",
 
-    "Medium Full Shot":
-      "Coordinate expression with stance, hands, walking rhythm, approach and withdrawal.",
+    Expressive:
+    "Allow broader rom-com or stylized performance where dramatic exaggeration is intentional."
 
-    "Full Shot":
-      "Use full-body interaction including steps, balance, distance and touch.",
+  };
 
-    "Wide Shot":
-      "Communicate relationship mainly through blocking, distance, approach and withdrawal.",
-
-    "POV Shot":
-      "Translate emotional recognition into visual attention, camera distance, hesitation, movement rhythm and breathing."
-
-  }[shotSizeInput.value];
+  return map[globalPerformanceStyle];
 
 }
 
 
-function cameraInstruction(){
+function relationshipInstruction(){
 
-  const movement = {
+  const relationship =
+    document.getElementById("relationship").value;
 
-    Static:
-      "The camera remains static, so the reaction chain must emerge entirely from character behaviour.",
+  const map = {
 
-    "Slow Push In":
-      "As the camera approaches, make the performance increasingly internal and detailed.",
+    Strangers:
+    "Treat close proximity and prolonged eye contact as socially noticeable and potentially uncomfortable.",
 
-    "Slow Pull Back":
-      "As facial detail reduces, emphasize posture and spatial relationship.",
+    Acquaintances:
+    "Maintain polite social awareness; unexpected intimacy should feel noticeable.",
 
-    "Tracking Forward":
-      "Coordinate pacing naturally with forward tracking.",
+    Friends:
+    "Allow casual familiarity while preserving emotional changes when behaviour becomes unusually intimate.",
 
-    "Tracking Backward":
-      "Maintain forward character intention while the camera retreats.",
+    "Close Friends":
+    "Physical familiarity may feel normal, so romantic tension should emerge through subtle deviations from established comfort.",
 
-    Pan:
-      "Let gaze or movement motivate the pan.",
+    "Romantic Tension":
+    "Let attraction appear through increased awareness of gaze, proximity, breath and hesitation rather than obvious romantic posing.",
 
-    "Tilt Up":
-      "Let vertical reveal extend visual discovery without competing head motion.",
+    Couple:
+    "Allow greater physical familiarity and intimacy; emotional tension should come from context rather than proximity alone.",
 
-    "Tilt Down":
-      "Let the reveal provide information while performance stays grounded.",
+    Family:
+    "Treat proximity as familiar unless the dramatic situation creates discomfort or conflict.",
 
-    "Handheld Subtle":
-      "Keep acting restrained because the camera already adds instability."
+    Rivals:
+    "Use eye contact, distance and body orientation as signs of challenge, control and emotional resistance.",
 
-  }[cameraMovementInput.value];
+    Professional:
+    "Maintain controlled social boundaries unless the scene intentionally disrupts professional composure."
 
-  const angle = {
+  };
 
-    "Eye Level":
-      "Maintain natural head and eyeline behaviour.",
-
-    "High Angle":
-      "Keep chin and gaze changes subtle so the eyes remain readable from above.",
-
-    "Low Angle":
-      "Avoid unnecessarily lifting the chin.",
-
-    Overhead:
-      "Use body geometry and spatial response clearly.",
-
-    "Over The Shoulder":
-      "Maintain accurate eyeline and conversational distance.",
-
-    "Dutch Angle":
-      "Do not exaggerate acting simply because the frame is tilted."
-
-  }[cameraAngleInput.value];
-
-  return movement + " " + angle;
+  return map[relationship] || "";
 
 }
 
 
-/* =========================================================
-   BEAT PROMPT
-========================================================= */
+function advancedBeatDirection(beat){
 
-function buildBeatPrompt(){
+  let parts = [];
 
-  return sequence.map((beat,index) => {
-
-    const emotion = getEmotion(beat.emotionId);
-
-    const target =
-      beat.target ||
-      secondaryCharacterInput.value.trim();
-
-    return `BEAT ${index+1} — ${beat.role.toUpperCase()}
-Emotion: ${emotion.title}
-Intensity: ${beat.intensity}/5
-Hold: ${beat.hold}
-
-REACTION DEPENDENCY:
-${beat.dependency}
-
-External / other-character action:
-${beat.otherAction || "No external dependency specified."}
-
-${dependencyInstruction(beat.dependency,beat.otherAction)}
-
-Reaction delay:
-${beat.reactionDelay}
-
-${delayInstruction(beat.reactionDelay)}
-
-Response priority:
-${beat.responsePriority}
-
-${priorityInstruction(beat.responsePriority)}
-
-INTERNAL RECOGNITION:
-${beat.trigger || "The character recognizes the dramatic change."}
-
-Purpose / subtext:
-${beat.purpose || "No additional subtext specified."}
-
-PHYSICAL ACTION:
-${beat.action || "Allow recognition to motivate physical behaviour naturally."}
-
-FACIAL / BODY PERFORMANCE:
-${emotion.direction}
-
-BREATH:
-${beat.breath}
-${breathInstruction(beat.breath)}
-
-VOCAL:
-${beat.vocal}
-${vocalInstruction(beat.vocal)}
-
-TARGET:
-${target || "None / Environment"}
-
-EYE CONTACT:
-${beat.eyeContact}
-${eyeContactInstruction(beat.eyeContact,target)}
-
-PROXIMITY:
-${beat.proximity}
-${proximityInstruction(beat.proximity,target)}
-
-TOUCH:
-${beat.touch}
-${touchInstruction(beat.touch,target)}
-
-INTERACTION RESPONSE:
-${beat.interactionResponse || "No additional interpersonal response specified."}
-
-${intensityInstruction(beat.intensity)}
-
-${holdInstruction(beat.hold)}`;
-
-  }).join("\n\n---\n\n");
-
-}
-
-
-/* =========================================================
-   SUMMARIES
-========================================================= */
-
-function timingSummary(){
-
-  return sequence.map((beat,index) => {
-
-    const emotion = getEmotion(beat.emotionId);
-
-    return `${index+1}. ${beat.role} / ${emotion.title}: dependency=${beat.dependency} → delay=${beat.reactionDelay} → priority=${beat.responsePriority} → ${emotion.timing}`;
-
-  }).join("\n");
-
-}
-
-
-function avoidSummary(){
-
-  const emotionAvoid =
-    sequence
-    .map(beat=>getEmotion(beat.emotionId)?.avoid)
-    .filter(Boolean);
-
-  const rules = [
-
-    "Do not begin the reaction before the triggering action is perceived.",
-
-    "Do not make the trigger and full reaction happen in the exact same instant unless Immediate timing is intentionally selected.",
-
-    "Do not let eyes, face, breath, hands and body all react simultaneously.",
-
-    "Do not invent touch or proximity changes unless motivated.",
-
-    "Do not use delayed reaction so long that the causal link becomes unclear.",
-
-    "Low-intensity emotion should usually use micro-delay rather than theatrical pause."
-
-  ];
-
-  return [...new Set([
-    ...emotionAvoid,
-    ...rules
-  ])].join(" ");
-
-}
-
-
-/* =========================================================
-   OUTPUTS
-========================================================= */
-
-function actingPrompt(){
-
-  const character =
-    characterInput.value.trim() ||
-    "The character";
-
-  const secondary =
-    secondaryCharacterInput.value.trim();
-
-  return `${character} performs a continuous cause-and-effect acting sequence${secondary ? ` involving ${secondary}` : ""}.
-
-Overall objective:
-${objectiveInput.value.trim() || "Respond naturally to each dramatic stimulus while preserving behavioural continuity."}
-
-${transitionInstruction()}
-
-${styleInstruction()}
-
-${framingInstruction()}
-
-REACTION DEPENDENCY PRINCIPLE:
-
-Every major reaction must have a cause.
-
-Do not perform the final emotional expression before the character has perceived and internally recognized the triggering action.
-
-Use this basic causal chain when appropriate:
-
-external action → perception → processing delay → first response channel → secondary facial/breath response → body adjustment → interpersonal reaction → recovery or next beat.
-
-PERFORMANCE BEATS:
-
-${buildBeatPrompt()}
-
-Carry emotional residue and relationship tension between beats.`;
-
-}
-
-
-function fullPrompt(){
-
-  const character =
-    characterInput.value.trim() ||
-    "The character";
-
-  const secondary =
-    secondaryCharacterInput.value.trim();
-
-  const context =
-    contextInput.value.trim();
-
-  return `${context ? `Scene context: ${context}\n\n` : ""}Cinematic K-drama performance shot.
-
-Main character: ${character}
-${secondary ? `Secondary character: ${secondary}` : ""}
-Shot size: ${shotSizeInput.value}
-Camera angle: ${cameraAngleInput.value}
-Camera movement: ${cameraMovementInput.value}
-Character movement: ${characterMovementInput.value}
-Transition style: ${transitionStyleInput.value}
-Acting style: ${styleInput.value}
-
-Overall dramatic objective:
-${objectiveInput.value.trim() || "Respond naturally to the unfolding situation."}
-
-CAMERA / FRAMING:
-
-${cameraInstruction()}
-
-${framingInstruction()}
-
-TRANSITION LOGIC:
-
-${transitionInstruction()}
-
-REACTION DEPENDENCY LOGIC:
-
-Treat performance as observable cause-and-effect.
-
-The main character should first perceive what the other character, environment or sound has done. Internal recognition happens next. Only then should the chosen response channel become visible.
-
-Reaction latency matters.
-
-A micro-delay feels intuitive and natural.
-A short processing delay shows active thought.
-A delayed reaction is useful for comedy, disbelief, attraction, emotional hurt or realization.
-A long processing beat should be reserved for dramatically important internal conflict.
-
-Response priority determines where the audience first sees the thought:
-eyes, breath, face, head, body, hands, freeze or movement.
-
-The rest of the performance should follow that first response rather than appearing simultaneously.
-
-PERFORMANCE SEQUENCE:
-
-${buildBeatPrompt()}
-
-CONTINUITY RULE:
-
-Never treat individual beats as disconnected poses.
-
-Preserve:
-previous gaze direction,
-breathing residue,
-posture,
-walking momentum,
-relationship tension,
-interpersonal distance,
-and unfinished physical impulses.
-
-A useful reaction chain is:
-
-external action
-→ character perceives it
-→ internal recognition
-→ reaction delay
-→ first response channel
-→ secondary micro-expression
-→ breath response
-→ head / torso response
-→ proximity or touch response
-→ larger movement if necessary
-→ recovery or transition.
-
-Not every beat requires every stage.
-
-REACTION TIMING:
-
-${timingSummary()}
-
-AVOID:
-
-${avoidSummary()}`;
-
-}
-
-
-function compactPrompt(){
-
-  const character =
-    characterInput.value.trim() ||
-    "The character";
-
-  const secondary =
-    secondaryCharacterInput.value.trim();
-
-  const sequenceText =
-    sequence.map(beat => {
-
-      const emotion =
-        getEmotion(beat.emotionId);
-
-      return `${beat.role}: [${beat.dependency} → ${beat.reactionDelay} → ${beat.responsePriority}] ${emotion.title} ${beat.intensity}/5`;
-
-    }).join(" → ");
-
-  return `${shotSizeInput.value}, ${cameraAngleInput.value}, ${cameraMovementInput.value}. ${character}${secondary ? ` reacting to ${secondary}` : ""}. Sequence: ${sequenceText}. Make each reaction occur only after its trigger is perceived and processed. Preserve gaze, breath, posture and movement continuity. Avoid simultaneous full-body reaction.`;
-
-}
-
-
-/* =========================================================
-   OUTPUT UI
-========================================================= */
-
-function updateComposer(){
-
-  let output;
-
-  if(outputMode==="full"){
-    output = fullPrompt();
-  }else if(outputMode==="acting"){
-    output = actingPrompt();
-  }else{
-    output = compactPrompt();
+  if(beat.timing !== "Auto"){
+    parts.push(`Use ${beat.timing.toLowerCase()} before the reaction becomes fully visible.`);
   }
 
-  document.getElementById("promptOutput").textContent = output;
+  if(beat.response !== "Auto"){
+    parts.push(`${beat.response} should be the first readable response channel.`);
+  }
 
-  document.getElementById("directorOutput").innerHTML =
-    `<strong>DIRECTOR NOTE</strong><br>
-    Ask four questions for every reaction: What exactly happened? When did the character perceive it? Where does the reaction leak out first? What happens only after that? If those answers are unclear, the beat is probably too generic.`;
+  if(beat.gaze !== "Auto"){
+    parts.push(`Gaze behaviour: ${beat.gaze}.`);
+  }
 
-  document.getElementById("timingOutput").innerHTML =
-    `<strong>REACTION DEPENDENCY</strong><br>${timingSummary().replaceAll("\n","<br>")}`;
+  if(beat.breath !== "Auto"){
+    parts.push(`Breath response: ${beat.breath}.`);
+  }
 
-  document.getElementById("avoidOutput").innerHTML =
-    `<strong>AVOID</strong><br>${avoidSummary()}`;
+  if(beat.movement !== "Auto"){
+    parts.push(`Body response: ${beat.movement}.`);
+  }
+
+  if(beat.proximity !== "Auto"){
+    parts.push(`Maintain interpersonal state: ${beat.proximity}.`);
+  }
+
+  if(beat.recovery !== "Auto"){
+    parts.push(`Recovery strategy: ${beat.recovery}.`);
+  }
+
+  return parts.join(" ");
 
 }
 
 
 /* =========================================================
-   TABS / COPY
+   VIDEO OUTPUT
 ========================================================= */
+
+function buildVideoPrompt(){
+
+  const character =
+    document.getElementById("character").value.trim() || "The character";
+
+  const scene =
+    document.getElementById("scene").value.trim();
+
+  const objective =
+    document.getElementById("objective").value.trim();
+
+  const shot =
+    document.getElementById("shotSize").value;
+
+  const angle =
+    document.getElementById("cameraAngle").value;
+
+  const movement =
+    document.getElementById("cameraMovement").value;
+
+  const activity =
+    document.getElementById("activity").value;
+
+  let timeline = "";
+
+  beats.forEach((beat,index) => {
+
+    timeline += `${index+1}. ${beat.happens} ${beat.subtext ? `Internally, ${beat.subtext.charAt(0).toLowerCase()+beat.subtext.slice(1)}` : ""} `;
+
+    const adv =
+      advancedBeatDirection(beat);
+
+    if(adv){
+      timeline += adv + " ";
+    }
+
+  });
+
+
+  return `Use the attached character and environment references if provided.
+
+Cinematic K-drama performance.
+
+Scene:
+${scene}
+
+Character:
+${character}
+
+Character objective:
+${objective}
+
+Relationship:
+${document.getElementById("relationship").value}
+
+Camera:
+${shot}, ${angle}, ${movement} camera.
+
+Character activity:
+${activity}.
+
+Performance style:
+${globalPerformanceStyle}.
+
+${performanceStyleInstruction()}
+
+${relationshipInstruction()}
+
+PERFORMANCE FLOW:
+
+${timeline.trim()}
+
+Keep the entire performance continuous and psychologically motivated. Do not present each beat as a separate facial pose. Let one emotional state dissolve into the next through gaze, breathing, facial tension, posture and movement.
+
+The character should perceive the trigger before visibly reacting to it. Avoid simultaneous full-body reactions. For restrained emotional beats, prioritize small changes in the eyes, breathing, lips, jaw, shoulders and posture.
+
+Maintain spatial continuity between beats. If the characters are already standing close, do not repeatedly make them move closer unless the beat specifically says so.
+
+Maintain emotional residue between beats. A recovery or fake-normal behaviour should conceal the previous emotion rather than erase it completely.
+
+Avoid exaggerated wide eyes, dramatic gasping, random gestures or unnecessary body movement unless the selected performance intensity requires it.`;
+
+}
+
+
+/* =========================================================
+   ACTING OUTPUT
+========================================================= */
+
+function buildActingDirection(){
+
+  const character =
+    document.getElementById("character").value.trim() || "The character";
+
+  let text =
+`${character}'s internal objective is: ${document.getElementById("objective").value.trim()}
+
+The performance should evolve through the following beats:
+
+`;
+
+  beats.forEach((beat,index) => {
+
+    text +=
+`BEAT ${index+1} — ${beat.role.toUpperCase()}
+Emotion: ${beat.emotion}
+Intensity: ${beat.intensity}/5
+
+What happens:
+${beat.happens}
+
+Subtext:
+${beat.subtext}
+
+Direction:
+Do not jump directly to the final expression. Let the character perceive the moment, process it, then allow the emotion to leak through behaviour.
+
+${advancedBeatDirection(beat)}
+
+`;
+
+  });
+
+  text +=
+`CONTINUITY:
+
+Carry gaze direction, breathing rhythm, body position, proximity awareness and unresolved emotion forward from one beat into the next.
+
+Visible behaviour and internal emotion do not have to match. When the character tries to appear normal, allow small traces of the underlying emotion to remain in the eyes, breath, mouth tension or posture.`;
+
+  return text;
+
+}
+
+
+/* =========================================================
+   TECHNICAL OUTPUT
+========================================================= */
+
+function buildTechnical(){
+
+  let text =
+`V8 PERFORMANCE STATE SUMMARY
+
+Relationship:
+${document.getElementById("relationship").value}
+
+Base activity:
+${document.getElementById("activity").value}
+
+Global performance style:
+${globalPerformanceStyle}
+
+BEAT STATES:
+
+`;
+
+  beats.forEach((beat,index) => {
+
+    text +=
+`Beat ${index+1}
+Role: ${beat.role}
+Emotion: ${beat.emotion}
+Intensity: ${beat.intensity}/5
+Timing: ${beat.timing}
+Response priority: ${beat.response}
+Gaze: ${beat.gaze}
+Breath: ${beat.breath}
+Movement: ${beat.movement}
+Proximity: ${beat.proximity}
+Recovery: ${beat.recovery}
+Action: ${beat.happens}
+Subtext: ${beat.subtext}
+
+`;
+
+  });
+
+  text +=
+`ENGINE RULES:
+
+Trigger → perception → internal recognition → first response → secondary response → body adjustment → recovery → emotional residue.
+
+Do not reset body position or interpersonal distance unless a later beat explicitly changes it.
+
+Do not interpret recovery as emotional deletion.
+
+Response priority should influence sequencing:
+Eyes First = gaze before larger face/body response.
+Breath First = breathing changes before visible movement.
+Face First = facial change before body.
+Freeze First = movement interruption before secondary reaction.
+
+Performance intensity governs scale:
+1 = micro
+2 = restrained
+3 = readable
+4 = heightened
+5 = expressive/extreme.`;
+
+  return text;
+
+}
+
+
+/* =========================================================
+   OUTPUT
+========================================================= */
+
+function updateOutput(){
+
+  let output = "";
+
+  if(outputMode === "video"){
+    output = buildVideoPrompt();
+  }
+
+  if(outputMode === "acting"){
+    output = buildActingDirection();
+  }
+
+  if(outputMode === "technical"){
+    output = buildTechnical();
+  }
+
+  document
+  .getElementById("promptOutput")
+  .textContent =
+  output;
+
+}
+
 
 function switchOutput(mode,button){
 
   outputMode = mode;
 
-  document.querySelectorAll(".tab-btn")
-  .forEach(btn=>btn.classList.remove("active"));
+  document
+  .querySelectorAll(".output-tab")
+  .forEach(btn =>
+    btn.classList.remove("active")
+  );
 
-  button.classList.add("active");
+  button
+  .classList
+  .add("active");
 
-  updateComposer();
+  updateOutput();
 
 }
 
+
+/* =========================================================
+   DEMO AUTO BUILD
+========================================================= */
+
+function autoBuildDemo(){
+
+  beats = [
+
+  {
+    role:"Setup",
+    emotion:"Neutral Observation",
+    intensity:1,
+    happens:"Maryam casually looks at Amir's phone.",
+    subtext:"She feels comfortable. Nothing unusual has happened yet.",
+    timing:"Immediate",
+    response:"Auto",
+    gaze:"Character → Object",
+    breath:"Natural Breathing",
+    movement:"Maintain Position",
+    proximity:"Conversational",
+    recovery:"None"
+  },
+
+  {
+    role:"Trigger",
+    emotion:"Attention Captured",
+    intensity:2,
+    happens:"Amir steps slightly closer while holding the phone between them.",
+    subtext:"She notices the distance has changed but has not yet interpreted the feeling.",
+    timing:"Micro Delay",
+    response:"Eyes First",
+    gaze:"Auto",
+    breath:"Natural Breathing",
+    movement:"Maintain Position",
+    proximity:"Close",
+    recovery:"None"
+  },
+
+  {
+    role:"Reaction",
+    emotion:"Flustered Attraction",
+    intensity:2,
+    happens:"Maryam realizes Amir is standing unusually close.",
+    subtext:"She is affected by the proximity but does not want him to notice.",
+    timing:"Short Processing Delay",
+    response:"Breath First",
+    gaze:"Object → Character",
+    breath:"Breath Catch",
+    movement:"Micro Stillness",
+    proximity:"Very Close",
+    recovery:"None"
+  },
+
+  {
+    role:"Recovery",
+    emotion:"Fake Normal",
+    intensity:2,
+    happens:"Maryam deliberately redirects her attention back to the phone.",
+    subtext:"Act normal. Don't let him notice.",
+    timing:"Micro Delay",
+    response:"Face First",
+    gaze:"Character → Object",
+    breath:"Controlled Exhale",
+    movement:"Recompose Posture",
+    proximity:"Very Close",
+    recovery:"Return To Task"
+  },
+
+  {
+    role:"Trigger",
+    emotion:"Micro Surprise",
+    intensity:2,
+    happens:"Amir stops explaining and looks directly at Maryam.",
+    subtext:"She thought she had recovered, but his gaze exposes the unresolved attraction.",
+    timing:"Micro Delay",
+    response:"Eyes First",
+    gaze:"Object → Character",
+    breath:"Breath Pause",
+    movement:"Micro Stillness",
+    proximity:"Very Close",
+    recovery:"None"
+  },
+
+  {
+    role:"Payoff",
+    emotion:"Restrained Affection",
+    intensity:2,
+    happens:"Their eye contact lingers briefly before Maryam looks away.",
+    subtext:"For a brief moment she allows the attraction to exist before self-consciousness returns.",
+    timing:"Micro Delay",
+    response:"Eyes First",
+    gaze:"Held Eye Contact",
+    breath:"Controlled Exhale",
+    movement:"Maintain Position",
+    proximity:"Very Close",
+    recovery:"Suppress Smile"
+  }
+
+  ];
+
+  renderBeats();
+
+  showToast("Demo beats rebuilt");
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetDemo(){
+
+  document.getElementById("character").value =
+    "Maryam";
+
+  document.getElementById("relationship").value =
+    "Romantic Tension";
+
+  document.getElementById("scene").value =
+    "Maryam and Amir are casually looking at something on Amir's phone. Amir steps closer so Maryam can see the screen clearly. Maryam initially remains focused on the phone, then gradually becomes aware that Amir is standing unusually close to her.";
+
+  document.getElementById("objective").value =
+    "Hide her growing attraction toward Amir while maintaining natural composure.";
+
+  document.getElementById("shotSize").value =
+    "Medium Close Up";
+
+  document.getElementById("cameraAngle").value =
+    "Eye Level";
+
+  document.getElementById("cameraMovement").value =
+    "Static";
+
+  document.getElementById("activity").value =
+    "Standing";
+
+  globalPerformanceStyle =
+    "Restrained";
+
+  document
+  .querySelectorAll(".level-btn")
+  .forEach(btn => {
+
+    btn.classList.toggle(
+      "active",
+      btn.dataset.style === "Restrained"
+    );
+
+  });
+
+  autoBuildDemo();
+
+}
+
+
+/* =========================================================
+   SIMPLE / ADVANCED MODE
+========================================================= */
+
+document
+.getElementById("simpleMode")
+.addEventListener("click",() => {
+
+  document
+  .getElementById("simpleMode")
+  .classList.add("active");
+
+  document
+  .getElementById("advancedMode")
+  .classList.remove("active");
+
+  document
+  .querySelectorAll(".advanced-panel")
+  .forEach(el =>
+    el.classList.remove("open")
+  );
+
+});
+
+
+document
+.getElementById("advancedMode")
+.addEventListener("click",() => {
+
+  document
+  .getElementById("advancedMode")
+  .classList.add("active");
+
+  document
+  .getElementById("simpleMode")
+  .classList.remove("active");
+
+  document
+  .querySelectorAll(".advanced-panel")
+  .forEach(el =>
+    el.classList.add("open")
+  );
+
+});
+
+
+/* =========================================================
+   LIVE INPUT EVENTS
+========================================================= */
+
+[
+  "character",
+  "relationship",
+  "scene",
+  "objective",
+  "shotSize",
+  "cameraAngle",
+  "cameraMovement",
+  "activity"
+]
+.forEach(id => {
+
+  const el =
+    document.getElementById(id);
+
+  el.addEventListener(
+    "input",
+    updateOutput
+  );
+
+  el.addEventListener(
+    "change",
+    updateOutput
+  );
+
+});
+
+
+/* =========================================================
+   COPY
+========================================================= */
 
 async function copyPrompt(){
 
   try{
 
-    await navigator.clipboard.writeText(
-      document.getElementById("promptOutput").textContent
+    await navigator
+    .clipboard
+    .writeText(
+      document
+      .getElementById("promptOutput")
+      .textContent
     );
 
     showToast("Prompt copied");
@@ -2532,165 +2224,34 @@ async function copyPrompt(){
 
 
 /* =========================================================
-   RESET
-========================================================= */
-
-function resetComposer(){
-
-  characterInput.value = "Maryam";
-  secondaryCharacterInput.value = "";
-
-  shotSizeInput.value = "Close Up";
-  cameraAngleInput.value = "High Angle";
-  cameraMovementInput.value = "Static";
-  characterMovementInput.value = "Background to Foreground";
-
-  transitionStyleInput.value = "Gradual";
-  styleInput.value = "Subtle K-Drama";
-
-  contextInput.value = "";
-  objectiveInput.value = "";
-
-  sequence = [
-
-  {
-    role:"Setup",
-    emotionId:"neutral01",
-    intensity:1,
-    hold:"Short",
-    breath:"Natural Breathing",
-    vocal:"None",
-    target:"",
-    eyeContact:"None",
-    proximity:"Not Applicable",
-    touch:"None",
-    dependency:"Independent",
-    otherAction:"No secondary character action.",
-    reactionDelay:"Immediate",
-    responsePriority:"Movement First",
-    interactionResponse:"No interpersonal interaction; attention remains on the environment.",
-    action:"Walk naturally into the Main Hall from the background toward the foreground.",
-    trigger:"Entering the space.",
-    purpose:"Orient herself to the unfamiliar environment without expecting anything unusual."
-  },
-
-  {
-    role:"Trigger",
-    emotionId:"cur01",
-    intensity:2,
-    hold:"Short",
-    breath:"Breath Pause",
-    vocal:"None",
-    target:"",
-    eyeContact:"None",
-    proximity:"Not Applicable",
-    touch:"None",
-    dependency:"React To Environmental Reveal",
-    otherAction:"The scale and vertical architecture of the Main Hall becomes visible.",
-    reactionDelay:"Micro Delay",
-    responsePriority:"Eyes First",
-    interactionResponse:"Her attention shifts from navigation toward the architecture.",
-    action:"She continues walking for a fraction longer while her eyes catch the structure.",
-    trigger:"She recognizes that the space is more impressive than expected.",
-    purpose:"Register the visual discovery before physically reacting."
-  },
-
-  {
-    role:"Emotional Shift",
-    emotionId:"awe01",
-    intensity:2,
-    hold:"Normal",
-    breath:"Soft Inhale",
-    vocal:"None",
-    target:"",
-    eyeContact:"None",
-    proximity:"Not Applicable",
-    touch:"None",
-    dependency:"React To Previous Beat",
-    otherAction:"Her initial visual registration develops into awareness of the hall's scale and beauty.",
-    reactionDelay:"Short Processing Delay",
-    responsePriority:"Breath First",
-    interactionResponse:"Her attention remains fully absorbed by the environment.",
-    action:"Her pace gradually slows while her chin follows the upward gaze.",
-    trigger:"The meaning of the visual impression settles internally.",
-    purpose:"Take in the space while maintaining composure."
-  },
-
-  {
-    role:"Payoff",
-    emotionId:"smile01",
-    intensity:1,
-    hold:"Normal",
-    breath:"Controlled Exhale",
-    vocal:"None",
-    target:"",
-    eyeContact:"None",
-    proximity:"Not Applicable",
-    touch:"None",
-    dependency:"React To Previous Beat",
-    otherAction:"The restrained awe resolves into genuine appreciation.",
-    reactionDelay:"Short Processing Delay",
-    responsePriority:"Face First",
-    interactionResponse:"The response remains private and inward.",
-    action:"She nearly settles to a stop and holds her gaze on the architecture.",
-    trigger:"The experience has fully registered emotionally.",
-    purpose:"Allow appreciation to leak through as a faint involuntary smile."
-  }
-
-  ];
-
-  renderSequence();
-
-}
-
-
-/* =========================================================
-   TOAST / EVENTS
+   TOAST
 ========================================================= */
 
 function showToast(message){
 
-  const toast = document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
 
-  toast.textContent = message;
+  toast.textContent =
+    message;
+
   toast.classList.add("show");
 
-  setTimeout(()=>{
+  setTimeout(() => {
+
     toast.classList.remove("show");
+
   },1500);
 
 }
-
-
-searchInput.addEventListener("input",renderCards);
-
-[
-characterInput,
-secondaryCharacterInput,
-shotSizeInput,
-cameraAngleInput,
-cameraMovementInput,
-characterMovementInput,
-contextInput,
-objectiveInput,
-transitionStyleInput,
-styleInput
-].forEach(el => {
-
-  el.addEventListener("input",updateComposer);
-  el.addEventListener("change",updateComposer);
-
-});
 
 
 /* =========================================================
    INIT
 ========================================================= */
 
-buildCategories();
-renderCards();
-renderSequence();
-updateComposer();
+renderBeats();
+updateOutput();
 
 </script>
 
