@@ -1,3400 +1,1993 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>K-Drama Performance Director V8.3.2</title>
-
-<style>
-:root{
-  --bg:#0d0f14;
-  --panel:#141821;
-  --panel2:#191e28;
-  --line:#2a303c;
-  --text:#f3f4f6;
-  --muted:#929aa8;
-  --accent:#df7d86;
-  --accent-soft:#2d2025;
-  --green:#8ccdb0;
-  --yellow:#e4bd72;
-  --danger:#d56d76;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 10% 0%,rgba(223,125,134,.09),transparent 28%),
-    var(--bg);
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-}
-
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-
-.app{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:235px minmax(520px,1fr) 440px;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:auto;
-  padding:24px 18px;
-  border-right:1px solid var(--line);
-  background:#0f1117;
-}
-
-.brand-badge{
-  color:var(--accent);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-
-.brand h1{
-  margin:7px 0 8px;
-  font-size:22px;
-  line-height:1.15;
-}
-
-.brand p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.55;
-}
-
-.nav-label{
-  margin:24px 8px 8px;
-  color:#707887;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}
-
-.nav-item{
-  width:100%;
-  padding:10px 11px;
-  margin-bottom:4px;
-  border:0;
-  border-radius:8px;
-  color:#b9c0ca;
-  background:transparent;
-  text-align:left;
-}
-
-.nav-item.active{
-  background:var(--accent-soft);
-  color:#ffdce0;
-}
-
-.mode-row{
-  display:flex;
-  gap:7px;
-}
-
-.mode-btn{
-  padding:8px 12px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:#9098a6;
-  background:#151922;
-  font-size:11px;
-  font-weight:700;
-}
-
-.mode-btn.active{
-  border-color:#6c454b;
-  color:#ffe3e6;
-  background:#2b1d22;
-}
-
-.version{
-  margin-top:24px;
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  color:#7d8592;
-  font-size:10px;
-  line-height:1.55;
-}
-
-/* MAIN */
-
-.main{
-  min-width:0;
-  padding:28px 30px 80px;
-}
-
-.page-title h2{
-  margin:0 0 6px;
-  font-size:29px;
-}
-
-.page-title p{
-  margin:0 0 24px;
-  max-width:820px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-}
-
-.section{margin-bottom:28px}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.section-head h3{
-  margin:0;
-  font-size:14px;
-}
-
-.section-head span{
-  color:#7d8593;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-
-.panel{
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#12161d;
-}
-
-.grid2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-}
-
-.grid3{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:11px;
-}
-
-.grid4{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-}
-
-.field{margin-bottom:12px}
-.field:last-child{margin-bottom:0}
-
-.field label{
-  display:block;
-  margin-bottom:6px;
-  color:#8f97a5;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.05em;
-  text-transform:uppercase;
-}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  padding:10px 11px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:#e9ebef;
-  background:var(--panel);
-  outline:none;
-}
-
-.field textarea{
-  min-height:82px;
-  resize:vertical;
-  line-height:1.5;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:#75525a;
-}
-
-/* PERFORMANCE LEVEL */
-
-.performance-level{
-  display:flex;
-  gap:6px;
-}
-
-.level-btn{
-  flex:1;
-  padding:9px 5px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:#868f9d;
-  background:#151922;
-  font-size:10px;
-}
-
-.level-btn.active{
-  border-color:#724b52;
-  color:#ffe2e5;
-  background:#2a1d21;
-}
-
-/* NATURALIZER */
-
-.simplifier-panel{
-  margin-bottom:14px;
-  padding:14px;
-  border:1px solid #3a3338;
-  border-radius:12px;
-  background:
-    linear-gradient(180deg,#171519,#11141a);
-}
-
-.simplifier-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:center;
-}
-
-.simplifier-title{
-  color:#d7c2c7;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.11em;
-  text-transform:uppercase;
-}
-
-.simplifier-copy{
-  margin-top:5px;
-  color:#858d99;
-  font-size:10px;
-  line-height:1.45;
-}
-
-.natural-score{
-  padding:6px 9px;
-  border-radius:999px;
-  color:#ccebdc;
-  background:#16231d;
-  font-size:10px;
-  font-weight:800;
-  white-space:nowrap;
-}
-
-.natural-score.warn{
-  color:#efd39c;
-  background:#261f14;
-}
-
-.natural-score.danger{
-  color:#efb4b9;
-  background:#29171a;
-}
-
-/* BUDGET */
-
-.budget-panel{
-  margin-bottom:14px;
-  padding:14px;
-  border:1px solid #353d49;
-  border-radius:12px;
-  background:linear-gradient(180deg,#151922,#10141a);
-}
-
-.budget-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-}
-
-.budget-title{
-  color:#c5ccd6;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-.budget-controls{
-  display:flex;
-  gap:7px;
-  align-items:center;
-}
-
-.budget-controls select{
-  padding:7px 9px;
-  border:1px solid #39414d;
-  border-radius:7px;
-  color:#d7dce4;
-  background:#12161d;
-  font-size:10px;
-}
-
-.fit-btn{
-  padding:7px 10px;
-  border:1px solid #73484f;
-  border-radius:7px;
-  color:#ffe3e6;
-  background:#2b1d22;
-  font-size:10px;
-  font-weight:800;
-}
-
-.budget-bar{
-  height:9px;
-  overflow:hidden;
-  border-radius:999px;
-  background:#232934;
-}
-
-.budget-fill{
-  height:100%;
-  width:0;
-  border-radius:999px;
-  background:var(--green);
-  transition:.2s;
-}
-
-.budget-fill.tight{background:var(--yellow)}
-.budget-fill.over{background:var(--danger)}
-
-.budget-meta{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  margin-top:8px;
-  color:#8e97a5;
-  font-size:10px;
-}
-
-.budget-status.ok{color:var(--green)}
-.budget-status.tight{color:var(--yellow)}
-.budget-status.over{color:var(--danger)}
-
-/* TIMELINE */
-
-.timeline-summary{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-  padding:10px 13px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#11151c;
-}
-
-.timeline-total{
-  color:#d5d9e1;
-  font-size:11px;
-  font-weight:700;
-}
-
-.timeline-help{
-  color:#747d8b;
-  font-size:10px;
-}
-
-.arc-summary{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
-  padding:11px 13px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#11151c;
-}
-
-.arc-chip{
-  padding:6px 9px;
-  border-radius:999px;
-  color:#c8ced8;
-  background:#181d26;
-  font-size:10px;
-  font-weight:700;
-}
-
-.arc-time{
-  margin-left:3px;
-  color:#7e8795;
-  font-size:9px;
-}
-
-.arc-arrow{
-  color:#596270;
-  font-size:11px;
-}
-
-/* BEATS */
-
-.beat-list{
-  display:flex;
-  flex-direction:column;
-  gap:0;
-}
-
-.beat-wrap{position:relative}
-
-.connector{
-  width:1px;
-  height:17px;
-  margin:0 auto;
-  background:#3a424f;
-}
-
-.beat-card{
-  overflow:hidden;
-  border:1px solid #303743;
-  border-radius:12px;
-  background:linear-gradient(180deg,#171b24,#12161d);
-}
-
-.beat-summary{padding:13px 14px}
-
-.beat-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
-}
-
-.beat-number{
-  color:#6d7583;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.08em;
-}
-
-.beat-role{
-  margin-top:3px;
-  color:var(--accent);
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.09em;
-}
-
-.beat-time{
-  display:inline-block;
-  margin-top:6px;
-  padding:4px 7px;
-  border-radius:6px;
-  color:#aeb7c6;
-  background:#0f1319;
-  font-size:9px;
-  font-weight:800;
-}
-
-.beat-title{
-  margin:6px 0 4px;
-  font-size:16px;
-  font-weight:800;
-}
-
-.beat-actions{
-  display:flex;
-  gap:5px;
-}
-
-.icon-btn{
-  width:29px;
-  height:29px;
-  padding:0;
-  border:1px solid #353d49;
-  border-radius:7px;
-  color:#9ea6b3;
-  background:#11151c;
-}
-
-.intensity-dots{
-  display:flex;
-  gap:5px;
-  margin:10px 0 11px;
-}
-
-.dot{
-  width:9px;
-  height:9px;
-  border:1px solid #626b79;
-  border-radius:50%;
-  background:transparent;
-  cursor:pointer;
-}
-
-.dot.on{
-  border-color:var(--accent);
-  background:var(--accent);
-}
-
-.beat-line{
-  margin-bottom:6px;
-  color:#d5d9e1;
-  font-size:11.5px;
-  line-height:1.45;
-}
-
-.beat-subtext{
-  padding:7px 9px;
-  border-radius:7px;
-  color:#9ea6b3;
-  background:#10141b;
-  font-size:10.5px;
-  line-height:1.45;
-}
-
-.dialogue-preview{
-  margin-top:8px;
-  padding:8px 10px;
-  border-left:2px solid #7c5760;
-  border-radius:0 7px 7px 0;
-  color:#d8c8cc;
-  background:#171319;
-  font-size:10.5px;
-  line-height:1.45;
-}
-
-.dialogue-meta{
-  display:block;
-  margin-bottom:3px;
-  color:#9d727a;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-
-.card-controls{
-  display:flex;
-  gap:6px;
-  margin-top:9px;
-}
-
-.small-btn{
-  padding:7px 10px;
-  border:1px solid #363d49;
-  border-radius:7px;
-  color:#aab1bc;
-  background:#12161d;
-  font-size:10px;
-  font-weight:700;
-}
-
-.small-btn.advanced{
-  color:#7f8794;
-  border-color:#2c333e;
-  background:#10141a;
-}
-
-.edit-panel{
-  display:none;
-  padding:14px 15px 15px;
-  border-top:1px solid #2b323d;
-  background:#11151c;
-}
-
-.edit-panel.open{display:block}
-
-.advanced-panel{
-  display:none;
-  margin:12px 15px 15px;
-  padding:12px;
-  border:1px solid #303845;
-  border-radius:9px;
-  background:#0e1218;
-}
-
-.advanced-panel.open{display:block}
-
-.advanced-title{
-  margin-bottom:10px;
-  color:#8793a4;
-  font-size:9px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.09em;
-}
-
-.dialogue-section{
-  margin-top:14px;
-  padding:12px;
-  border:1px solid #3b3035;
-  border-radius:9px;
-  background:#151116;
-}
-
-.dialogue-section-title{
-  margin-bottom:10px;
-  color:#bc858f;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-
-.optional{
-  color:#606977;
-  font-weight:500;
-}
-
-.add-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:14px;
-}
-
-.primary-btn,
-.secondary-btn{
-  padding:11px 14px;
-  border-radius:8px;
-  font-weight:800;
-}
-
-.primary-btn{
-  border:0;
-  color:#1a0c0f;
-  background:var(--accent);
-}
-
-.secondary-btn{
-  border:1px solid var(--line);
-  color:#b8bfca;
-  background:var(--panel);
-}
-
-/* OUTPUT */
-
-.output{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:auto;
-  padding:24px 20px 50px;
-  border-left:1px solid var(--line);
-  background:#10131a;
-}
-
-.output h2{
-  margin:0 0 5px;
-  font-size:19px;
-}
-
-.output-sub{
-  margin:0 0 18px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.5;
-}
-
-.output-tabs{
-  display:flex;
-  gap:6px;
-  margin-bottom:10px;
-}
-
-.output-tab{
-  padding:7px 9px;
-  border:1px solid var(--line);
-  border-radius:7px;
-  color:#89919e;
-  background:#151922;
-  font-size:10px;
-  font-weight:700;
-}
-
-.output-tab.active{
-  color:#ffe5e7;
-  border-color:#70454c;
-  background:#2b1d22;
-}
-
-.output-label{
-  margin:4px 0 7px;
-  color:#717b89;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-.prompt-box{
-  min-height:420px;
-  padding:15px;
-  border:1px solid #313744;
-  border-radius:10px;
-  color:#d7dce4;
-  background:#0b0e13;
-  white-space:pre-wrap;
-  font-size:11.5px;
-  line-height:1.66;
-}
-
-.output-footer{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:8px;
-  margin-top:12px;
-}
-
-.copy-btn{
-  padding:11px 13px;
-  border:0;
-  border-radius:8px;
-  color:#1a0c0f;
-  background:var(--accent);
-  font-weight:800;
-}
-
-.reset-btn{
-  padding:11px 13px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  color:#aeb6c2;
-  background:var(--panel);
-}
-
-.warning-box{
-  margin-top:10px;
-  padding:10px 12px;
-  border:1px solid #4c3e2d;
-  border-radius:8px;
-  color:#c7ae7d;
-  background:#18140e;
-  font-size:10px;
-  line-height:1.45;
-}
-
-.toast{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:100;
-  padding:10px 14px;
-  border-radius:8px;
-  color:#11151b;
-  background:#f1f2f5;
-  opacity:0;
-  transform:translateY(10px);
-  pointer-events:none;
-  transition:.2s;
-  font-size:12px;
-  font-weight:700;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-@media(max-width:1280px){
-  .app{grid-template-columns:220px 1fr}
-  .output{
-    position:relative;
-    grid-column:1/-1;
-    height:auto;
-    border-left:0;
-    border-top:1px solid var(--line);
-  }
-}
-
-@media(max-width:820px){
-  .app{display:block}
-  .sidebar{position:relative;height:auto}
-  .main{padding:22px}
-  .grid2,.grid3,.grid4{grid-template-columns:1fr}
-  .performance-level{flex-wrap:wrap}
-  .level-btn{min-width:90px}
-  .budget-head,.simplifier-top{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Emotion Acting Guide · V9</title>
+  <meta
+    name="description"
+    content="A practical emotion reference for acting performance. Choose an emotion, compare intensity, see how it looks, and copy a ready-to-use video prompt."
+  />
+
+  <style>
+    :root {
+      --bg: #0d0d11;
+      --panel: #15151c;
+      --panel-2: #1b1b24;
+      --panel-3: #22222d;
+      --border: #2b2b37;
+      --border-soft: #24242e;
+
+      --text: #f5f4f7;
+      --muted: #a3a1ad;
+      --soft: #787682;
+
+      --accent: #ff5b8d;
+      --accent-2: #ff86aa;
+      --accent-soft: rgba(255, 91, 141, 0.12);
+      --accent-border: rgba(255, 91, 141, 0.35);
+
+      --green: #75d6aa;
+      --yellow: #f3c969;
+      --blue: #83b9ff;
+
+      --radius: 18px;
+      --radius-sm: 12px;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% -10%, rgba(255,91,141,.10), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(115,98,255,.08), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .app {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 13px;
+      background:
+        linear-gradient(145deg, rgba(255,91,141,.25), rgba(255,91,141,.06));
+      border: 1px solid var(--accent-border);
+      box-shadow: inset 0 0 20px rgba(255,91,141,.07);
+      font-size: 20px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+
+    .brand-version {
+      margin-top: 2px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .top-pill {
+      color: var(--muted);
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      border-radius: 999px;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+
+    .hero {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 34px;
+      margin-bottom: 24px;
+      background:
+        linear-gradient(140deg, rgba(255,91,141,.09), transparent 45%),
+        rgba(21,21,28,.92);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 800px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+    }
+
+    .hero h1 span {
+      color: var(--accent-2);
+    }
+
+    .hero p {
+      margin: 17px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .hero-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .flow-chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: #d8d6de;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .flow-arrow {
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 430px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .library-panel,
+    .detail-panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(21,21,28,.92);
+      box-shadow: var(--shadow);
+    }
+
+    .library-panel {
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .detail-panel {
+      position: sticky;
+      top: 18px;
+      padding: 22px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -.025em;
+    }
+
+    .section-heading p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .count {
+      flex: 0 0 auto;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--soft);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      background: #101016;
+      color: var(--text);
+      padding: 0 15px 0 41px;
+      transition: .18s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 4px rgba(255,91,141,.06);
+    }
+
+    .search-input::placeholder {
+      color: #66646f;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .category-btn {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .18s ease;
+    }
+
+    .category-btn:hover {
+      color: var(--text);
+      border-color: #41414f;
+    }
+
+    .category-btn.active {
+      color: #fff;
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+    }
+
+    .emotion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .emotion-card {
+      position: relative;
+      text-align: left;
+      width: 100%;
+      min-height: 118px;
+      padding: 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 15px;
+      background: rgba(255,255,255,.018);
+      cursor: pointer;
+      transition:
+        transform .16s ease,
+        border-color .16s ease,
+        background .16s ease;
+    }
+
+    .emotion-card:hover {
+      transform: translateY(-1px);
+      border-color: #444352;
+      background: rgba(255,255,255,.032);
+    }
+
+    .emotion-card.active {
+      border-color: var(--accent-border);
+      background:
+        linear-gradient(140deg, rgba(255,91,141,.10), transparent 70%),
+        rgba(255,255,255,.025);
+    }
+
+    .emotion-category {
+      color: var(--accent-2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .emotion-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 6px;
+    }
+
+    .emotion-subtitle {
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .empty-state {
+      padding: 36px 18px;
+      border: 1px dashed var(--border);
+      border-radius: 15px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .detail-kicker {
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+
+    .detail-title {
+      margin: 5px 0 5px;
+      font-size: 27px;
+      letter-spacing: -.035em;
+      line-height: 1.12;
+    }
+
+    .detail-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .info-card {
+      margin-top: 17px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.018);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .info-label {
+      margin-bottom: 6px;
+      color: var(--soft);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .info-text {
+      color: #dbd9e0;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .good-for {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .good-chip {
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      font-size: 11px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-soft);
+      margin: 20px 0;
+    }
+
+    .intensity-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .intensity-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .intensity-hint {
+      color: var(--soft);
+      font-size: 11px;
+    }
+
+    .intensity-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .intensity-btn {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 30px 92px 1fr;
+      align-items: center;
+      gap: 9px;
+      text-align: left;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.016);
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+      transition: .16s ease;
+    }
+
+    .intensity-btn:hover {
+      border-color: #454451;
+    }
+
+    .intensity-btn.active {
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+    }
+
+    .intensity-number {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: #101016;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .intensity-btn.active .intensity-number {
+      border-color: var(--accent-border);
+      color: var(--accent-2);
+    }
+
+    .intensity-label {
+      color: #e5e3e8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .intensity-preview {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .acting-example {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(140deg, rgba(255,91,141,.055), transparent 65%),
+        #111117;
+      border-radius: 14px;
+      padding: 15px;
+    }
+
+    .example-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .example-title {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .level-badge {
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .example-copy {
+      color: #dedce3;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .prompt-box {
+      margin-top: 12px;
+      border: 1px solid var(--accent-border);
+      background: rgba(255,91,141,.055);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,91,141,.15);
+    }
+
+    .prompt-label {
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .copy-btn {
+      border: 1px solid var(--accent-border);
+      background: rgba(255,91,141,.10);
+      color: #ffe2eb;
+      border-radius: 9px;
+      padding: 7px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .16s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255,91,141,.18);
+    }
+
+    .prompt-text {
+      padding: 14px;
+      color: #eceaf0;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .related-title {
+      color: var(--soft);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      margin-bottom: 8px;
+    }
+
+    .related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .related-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: .16s ease;
+    }
+
+    .related-btn:hover {
+      color: var(--text);
+      border-color: var(--accent-border);
+      background: var(--accent-soft);
+    }
+
+    .footer-note {
+      max-width: 900px;
+      margin: 24px auto 8px;
+      text-align: center;
+      color: var(--soft);
+      font-size: 11px;
+    }
+
+    .mobile-detail-close {
+      display: none;
+    }
+
+    @media (max-width: 1000px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-panel {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .app {
+        padding: 14px;
+      }
+
+      .hero {
+        padding: 25px 20px;
+        border-radius: 19px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .top-pill {
+        display: none;
+      }
+
+      .emotion-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .library-panel,
+      .detail-panel {
+        padding: 15px;
+      }
+
+      .intensity-btn {
+        grid-template-columns: 30px 78px 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-<div class="app">
-
-<aside class="sidebar">
-
-  <div class="brand">
-    <div class="brand-badge">Performance Lab</div>
-    <h1>K-Drama Performance Director</h1>
-    <p>
-      Build natural short-form performance from dramatic action,
-      dialogue, subtext and a small number of visible changes.
-    </p>
-  </div>
-
-  <div class="nav-label">Composer</div>
-
-  <button class="nav-item active">Scene Composer</button>
-  <button class="nav-item">Performance Library</button>
-  <button class="nav-item">Presets</button>
-
-  <div class="nav-label">Mode</div>
-
-  <div class="mode-row">
-    <button class="mode-btn active" id="simpleMode">Simple</button>
-    <button class="mode-btn" id="advancedMode">Advanced</button>
-  </div>
-
-  <div class="version">
-    V8.3.2 · Natural Performance Simplifier<br>
-    Situation → Interaction → Payoff
-  </div>
-
-</aside>
-
-<main class="main">
-
-  <div class="page-title">
-    <h2>Natural Performance Composer</h2>
-    <p>
-      Keep the acting intelligence underneath, but give the video model
-      fewer, broader and more human performance events.
-    </p>
-  </div>
-
-  <!-- SCENE -->
-
-  <section class="section">
-
-    <div class="section-head">
-      <h3>Scene Setup</h3>
-      <span>Character + Situation + Objective</span>
-    </div>
-
-    <div class="panel">
-
-      <div class="grid2">
-
-        <div class="field">
-          <label>Main Character</label>
-          <input id="character" value="Maryam">
-        </div>
-
-        <div class="field">
-          <label>Relationship</label>
-          <select id="relationship">
-            <option>Strangers</option>
-            <option>Acquaintances</option>
-            <option>Friends</option>
-            <option>Close Friends</option>
-            <option selected>Romantic Tension</option>
-            <option>Couple</option>
-            <option>Family</option>
-            <option>Rivals</option>
-            <option>Professional</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="field">
-        <label>Scene / Action</label>
-        <textarea id="scene">Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam keeps avoiding his gaze. He casually teases her about it. Maryam tries to act unaffected.</textarea>
-      </div>
-
-      <div class="field">
-        <label>Character Objective</label>
-        <input
-          id="objective"
-          value="Hide that Amir's teasing affects her while maintaining casual confidence."
-        >
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- CAMERA -->
-
-  <section class="section">
-
-    <div class="section-head">
-      <h3>Camera & Performance</h3>
-      <span>Global setup</span>
-    </div>
-
-    <div class="panel">
-
-      <div class="grid4">
-
-        <div class="field">
-          <label>Shot Size</label>
-          <select id="shotSize">
-            <option>Close Up</option>
-            <option selected>Medium Close Up</option>
-            <option>Medium Shot</option>
-            <option>Full Shot</option>
-            <option>Wide Shot</option>
-            <option>POV Shot</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Camera Angle</label>
-          <select id="cameraAngle">
-            <option selected>Eye Level</option>
-            <option>High Angle</option>
-            <option>Low Angle</option>
-            <option>Over The Shoulder</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Camera Movement</label>
-          <select id="cameraMovement">
-            <option selected>Static</option>
-            <option>Slow Push In</option>
-            <option>Slow Pull Back</option>
-            <option>Tracking</option>
-            <option>Subtle Handheld</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Character Activity</label>
-          <select id="activity">
-            <option selected>Standing</option>
-            <option>Walking</option>
-            <option>Sitting</option>
-            <option>Moving Through Space</option>
-            <option>Leaning / Resting</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="field">
-        <label>Performance Style</label>
-
-        <div class="performance-level">
-
-          <button class="level-btn" data-style="Micro">
-            Micro
-          </button>
-
-          <button class="level-btn active" data-style="Restrained">
-            Restrained
-          </button>
-
-          <button class="level-btn" data-style="Readable">
-            Readable
-          </button>
-
-          <button class="level-btn" data-style="Heightened">
-            Heightened
-          </button>
-
-          <button class="level-btn" data-style="Expressive">
-            Expressive
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PERFORMANCE -->
-
-  <section class="section">
-
-    <div class="section-head">
-      <h3>Performance Beats</h3>
-      <span id="beatCount">3 beats</span>
-    </div>
-
-    <div class="simplifier-panel">
-
-      <div class="simplifier-top">
-
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">🎭</div>
         <div>
-          <div class="simplifier-title">
-            Natural Performance Simplifier
-          </div>
-
-          <div class="simplifier-copy">
-            Fewer visible changes usually produce more natural short-form acting.
-            Internal emotion can remain complex without becoming a separate animation.
-          </div>
+          <div class="brand-title">Emotion Acting Guide</div>
+          <div class="brand-version">V9 · Human Performance Reference</div>
         </div>
-
-        <div
-          class="natural-score"
-          id="naturalScore"
-        >
-          Natural · 3 beats
-        </div>
-
       </div>
 
-    </div>
+      <div class="top-pill">Simple outside · Acting intelligence inside</div>
+    </header>
 
-    <div class="budget-panel">
+    <section class="hero">
+      <div class="eyebrow">Performance Emotion Library</div>
+      <h1>
+        Choose an emotion.<br />
+        <span>See how it looks.</span> Copy the prompt.
+      </h1>
 
-      <div class="budget-head">
+      <p>
+        A practical acting reference for human emotion. Browse the feeling,
+        compare intensity levels, understand the visible behaviour, then use
+        the ready-made prompt in your scene.
+      </p>
 
-        <div class="budget-title">
-          Performance Budget
+      <div class="hero-flow">
+        <span class="flow-chip">1 · Choose Emotion</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-chip">2 · Compare Intensity</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-chip">3 · See Acting Example</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-chip">4 · Copy Prompt</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="library-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Emotion Library</h2>
+            <p>Pick the feeling that best matches the scene.</p>
+          </div>
+          <div class="count" id="emotionCount"></div>
         </div>
 
-        <div class="budget-controls">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input
+            id="searchInput"
+            class="search-input"
+            type="text"
+            placeholder="Search: worried, jealous, malu, awkward, suspicious..."
+            autocomplete="off"
+          />
+        </div>
 
-          <select id="targetDuration">
-            <option value="5">5 seconds</option>
-            <option value="10">10 seconds</option>
-            <option value="15" selected>15 seconds</option>
-          </select>
+        <div id="categories" class="categories"></div>
+        <div id="emotionGrid" class="emotion-grid"></div>
+      </div>
 
-          <button class="fit-btn" onclick="fitToBudget()">
-            Fit to 15s
+      <aside id="detailPanel" class="detail-panel"></aside>
+    </section>
+
+    <div class="footer-note">
+      Intensity describes observable performance, not the value of the emotion.
+      Restrained acting should remain mostly normal and allow emotion to leak through selectively.
+    </div>
+  </main>
+
+  <script>
+    const intensityLabels = [
+      "Barely There",
+      "Restrained",
+      "Readable",
+      "Strong",
+      "Heightened"
+    ];
+
+    const emotions = [
+      {
+        id: "flustered-attraction",
+        category: "Romance & Attraction",
+        name: "Flustered Attraction",
+        subtitle: "Attraction becomes noticeable and briefly disrupts composure.",
+        keywords: ["attraction","flustered","romance","malu","tertarik","crush","dekat"],
+        meaning:
+          "The person becomes consciously aware of attraction and suddenly feels more self-conscious, while still trying to behave normally.",
+        performance:
+          "The most convincing version comes from delayed awareness rather than instant embarrassment. Attraction leaks through gaze timing, softened attention, hesitation and imperfect recovery.",
+        goodFor: [
+          "Sudden proximity",
+          "Unexpected eye contact",
+          "A personal compliment",
+          "Romantic tension"
+        ],
+        related: ["hidden-attraction","shy-pleasure","embarrassment","restrained-affection"],
+        avoid:
+          "Avoid exaggerated nervousness, repeated expression changes, dramatic breathing or large embarrassed gestures unless the scene is intentionally heightened.",
+        levels: [
+          "The behaviour stays almost completely normal. Attention slips toward the person for a fraction longer than usual, then returns naturally.",
+          "A brief delayed glance appears after the attraction registers. Eye contact may become slightly difficult or last a little too long before composure returns.",
+          "The gaze visibly softens and returns more readily. A small smile or hesitation becomes noticeable before the person deliberately recovers.",
+          "Attraction clearly interrupts normal composure. Eye contact, speech or movement carries visible hesitation and the smile becomes harder to suppress.",
+          "The reaction is openly flustered: a clear freeze, quick gaze break, visible embarrassment and awkward recovery suitable for heightened romantic comedy."
+        ]
+      },
+
+      {
+        id: "hidden-attraction",
+        category: "Romance & Attraction",
+        name: "Hidden Attraction",
+        subtitle: "Interested, but deliberately trying not to reveal it.",
+        keywords: ["hidden attraction","secret crush","tertarik","sembunyi","romance"],
+        meaning:
+          "The attraction already exists, but the person has an active reason to conceal it. The performance is built around control rather than surprise.",
+        performance:
+          "Let attention repeatedly want to move toward the person, then get corrected. The attraction is visible through small failures of self-control rather than overt romantic posing.",
+        goodFor: [
+          "Unspoken feelings",
+          "Workplace romance",
+          "Friends-to-lovers",
+          "Secret crush"
+        ],
+        related: ["flustered-attraction","restrained-affection","longing","romantic-jealousy"],
+        avoid:
+          "Avoid constantly staring, smiling or acting obviously shy. Concealment should remain stronger than the visible attraction.",
+        levels: [
+          "Almost no outward sign. The eyes register the person briefly, but attention is corrected before it becomes noticeable.",
+          "A small extra glance or softened look escapes before the person deliberately returns to neutral behaviour.",
+          "Interest becomes readable through repeated but controlled attention, slightly longer eye contact and subtle self-correction.",
+          "The effort to hide attraction becomes obvious. The person repeatedly checks themselves after attention or warmth leaks through.",
+          "The secret is barely being contained. Attraction visibly affects gaze, smile, speech and body orientation despite attempts to hide it."
+        ]
+      },
+
+      {
+        id: "restrained-affection",
+        category: "Romance & Attraction",
+        name: "Restrained Affection",
+        subtitle: "Warm feelings are present but expressed with control.",
+        keywords: ["affection","sayang","warm","care","restrained","romance"],
+        meaning:
+          "The person feels genuine tenderness or affection but does not openly display it, often because of emotional restraint, uncertainty or circumstance.",
+        performance:
+          "The eyes soften before the rest of the face. Small acts of attention, brief pauses and almost-smiles carry more weight than overt romantic gestures.",
+        goodFor: [
+          "Quiet romantic scenes",
+          "Caring without confession",
+          "Reunion",
+          "Protective affection"
+        ],
+        related: ["hidden-attraction","tenderness","longing","shy-pleasure"],
+        avoid:
+          "Avoid continuous smiling, dreamy staring or exaggerated softness. The affection should emerge selectively.",
+        levels: [
+          "Warmth appears only in a slight softening of attention or an extra moment of patience.",
+          "The gaze softens briefly and an almost-smile may appear before the expression returns to neutral.",
+          "Affection becomes readable through longer gentle attention, warmer eye contact and a small controlled smile.",
+          "Warmth clearly changes the whole expression and body orientation, though the person still avoids overt declaration.",
+          "Affection becomes openly visible through sustained soft gaze, warm smiling and emotionally expressive closeness."
+        ]
+      },
+
+      {
+        id: "longing",
+        category: "Romance & Attraction",
+        name: "Longing",
+        subtitle: "Wanting closeness that cannot be fully acted upon.",
+        keywords: ["longing","rindu","yearning","miss","romance"],
+        meaning:
+          "The person deeply wants someone, something or a moment of connection, but cannot simply reach for it.",
+        performance:
+          "Longing works through sustained attention, delayed withdrawal and a slight heaviness after the desired connection is lost or unavailable.",
+        goodFor: [
+          "Separation",
+          "Unspoken love",
+          "Watching someone leave",
+          "Missed connection"
+        ],
+        related: ["restrained-affection","hurt","tenderness","hidden-attraction"],
+        avoid:
+          "Avoid turning longing immediately into sadness or crying. Desire should remain present underneath the ache.",
+        levels: [
+          "The eyes linger slightly longer than necessary before attention quietly moves away.",
+          "The gaze holds with gentle warmth, followed by a small delayed withdrawal that suggests reluctance to let the moment end.",
+          "The desire for connection is clearly readable in sustained gaze, softened expression and a slower emotional release afterward.",
+          "Longing noticeably weighs on the face and posture, making separation or distance difficult to hide.",
+          "The emotion becomes openly yearning, with strong sustained attention, visible ache and difficulty disengaging."
+        ]
+      },
+
+      {
+        id: "romantic-jealousy",
+        category: "Romance & Attraction",
+        name: "Romantic Jealousy",
+        subtitle: "A threat to closeness creates attention, comparison and restraint.",
+        keywords: ["jealous","jealousy","cemburu","romantic","rival"],
+        meaning:
+          "The person feels their emotional position threatened by another person's closeness, attention or importance.",
+        performance:
+          "Jealousy often begins with monitoring: a brief look toward the rival or interaction, followed by controlled withdrawal, lip tension or deliberate indifference.",
+        goodFor: [
+          "Love triangle",
+          "Seeing someone with a rival",
+          "Possessive tension",
+          "Unspoken relationship"
+        ],
+        related: ["hidden-attraction","annoyance","hurt","suspicion"],
+        avoid:
+          "Avoid immediately turning jealousy into anger. Low-intensity jealousy is usually quieter, watchful and self-conscious.",
+        levels: [
+          "Attention briefly checks the rival interaction, then returns elsewhere before the reaction is obvious.",
+          "A short monitoring glance, slight lip tension or deliberate look-away suggests discomfort while behaviour stays controlled.",
+          "Jealousy becomes readable through repeated checking, tighter expression and slightly more deliberate distance or indifference.",
+          "The emotional threat clearly affects tone, gaze and posture. The person struggles to appear unaffected.",
+          "Jealousy becomes openly possessive, wounded or confrontational, with strongly visible emotional reaction."
+        ]
+      },
+
+      {
+        id: "shy-pleasure",
+        category: "Romance & Attraction",
+        name: "Shy Pleasure",
+        subtitle: "Enjoying attention while feeling slightly exposed by it.",
+        keywords: ["shy","pleasure","malu","senang","compliment","romance"],
+        meaning:
+          "The person likes what is happening but becomes self-conscious about visibly enjoying it.",
+        performance:
+          "Pleasure appears first, then is partially hidden. A smile tries to form, eye contact briefly retreats, and the person recovers without rejecting the positive feeling.",
+        goodFor: [
+          "Receiving a compliment",
+          "Gentle teasing",
+          "Unexpected praise",
+          "Sweet romantic moments"
+        ],
+        related: ["flustered-attraction","embarrassment","restrained-affection","amusement"],
+        avoid:
+          "Do not play it as shame or distress. The underlying emotional color remains positive.",
+        levels: [
+          "A tiny warmth appears in the eyes or mouth before being quickly controlled.",
+          "A small smile almost forms, eye contact briefly retreats, then the person returns with quiet composure.",
+          "The pleasure is clearly visible through a shy smile, softened gaze and modest avoidance before reconnecting.",
+          "The person visibly enjoys the attention but struggles to stay composed, with stronger smiling and avoidance.",
+          "The reaction becomes openly bashful and playful, with obvious smiling, gaze avoidance and heightened romantic-comedy energy."
+        ]
+      },
+
+      {
+        id: "tenderness",
+        category: "Romance & Attraction",
+        name: "Tenderness",
+        subtitle: "Soft, caring attention toward someone emotionally important.",
+        keywords: ["tender","tenderness","lembut","care","caring","sayang"],
+        meaning:
+          "Tenderness is gentle emotional care without urgency. The person feels safe enough to soften.",
+        performance:
+          "Reduce unnecessary tension. Let the gaze become patient, the face soften and movements become slightly gentler rather than overtly romantic.",
+        goodFor: [
+          "Comforting someone",
+          "Quiet affection",
+          "Family warmth",
+          "Aftercare"
+        ],
+        related: ["restrained-affection","warmth","relief","longing"],
+        avoid:
+          "Avoid excessive smiling or sentimental posing. Tenderness is usually calm and attentive.",
+        levels: [
+          "A subtle softening of attention and slightly gentler response.",
+          "The eyes become warmer and the face relaxes while behaviour remains understated.",
+          "Tenderness is clearly readable through patient eye contact, soft expression and gentler pacing.",
+          "Warm care strongly affects voice, posture and movement, creating visible emotional closeness.",
+          "The tenderness becomes openly emotional and expressive, with sustained warmth and strong affectionate presence."
+        ]
+      },
+
+      {
+        id: "amusement",
+        category: "Light / Social / Comedy",
+        name: "Amusement",
+        subtitle: "Something is genuinely funny or pleasantly entertaining.",
+        keywords: ["amused","amusement","funny","kelakar","senyum","laugh"],
+        meaning:
+          "The person is entertained and is deciding how much of that reaction to show.",
+        performance:
+          "Amusement usually begins around the eyes and mouth. A suppressed smile or tiny exhale can be more natural than an immediate laugh.",
+        goodFor: [
+          "Dry comedy",
+          "Cute behaviour",
+          "Funny observation",
+          "Friendly banter"
+        ],
+        related: ["playful-teasing","disbelief","sarcasm","shy-pleasure"],
+        avoid:
+          "Avoid forcing laughter before the comic information has landed.",
+        levels: [
+          "Only a tiny eye-brightening or almost-smile suggests the person found something funny.",
+          "A restrained smile appears, perhaps with a small breath through the nose, then settles.",
+          "The amusement becomes readable through a clear smile, brief chuckle or relaxed eye contact.",
+          "The person visibly enjoys the humour, with stronger smiling, laughter and looser body language.",
+          "The comedy becomes heightened, allowing broader reaction, stronger laugh and playful physical response."
+        ]
+      },
+
+      {
+        id: "playful-teasing",
+        category: "Light / Social / Comedy",
+        name: "Playful Teasing",
+        subtitle: "Deliberately provoking someone while keeping the interaction light.",
+        keywords: ["teasing","playful","mengusik","romcom","flirt","banter"],
+        meaning:
+          "The person knows they are pushing another person's buttons, but the intention is playful rather than hostile.",
+        performance:
+          "Confidence is important. Use deliberate timing, an asymmetrical smile, controlled eye contact and a small pause to watch the other person's reaction.",
+        goodFor: [
+          "Rom-com banter",
+          "Flirting",
+          "Friends joking",
+          "Light provocation"
+        ],
+        related: ["amusement","sarcasm","shy-pleasure","disbelief"],
+        avoid:
+          "Avoid aggressive facial tension or loud exaggerated delivery unless the comedy style specifically calls for it.",
+        levels: [
+          "A tiny knowing look or slight asymmetrical smile suggests the line has a playful edge.",
+          "A side glance, small smile and deliberate pause make the teasing intention clear without becoming showy.",
+          "The person visibly enjoys provoking the reaction, holding eye contact long enough to watch the payoff.",
+          "Teasing becomes more confident and expressive, with clearer grin, timing and playful body orientation.",
+          "The performance becomes openly mischievous and heightened, suitable for broad romantic comedy."
+        ]
+      },
+
+      {
+        id: "embarrassment",
+        category: "Light / Social / Comedy",
+        name: "Embarrassment",
+        subtitle: "Feeling socially exposed after attention lands on something uncomfortable.",
+        keywords: ["embarrassed","embarrassment","malu","awkward","exposed"],
+        meaning:
+          "The person realizes that something about them has been noticed, revealed or judged, creating self-consciousness.",
+        performance:
+          "Embarrassment often combines a quick awareness response with an attempt to disappear socially: gaze breaks, lips press, head angle changes or hands become slightly occupied.",
+        goodFor: [
+          "Being caught",
+          "Awkward compliment",
+          "Public mistake",
+          "Personal question"
+        ],
+        related: ["awkwardness","shy-pleasure","flustered-attraction","defensiveness"],
+        avoid:
+          "Do not automatically turn embarrassment into panic. Mild embarrassment can remain extremely small.",
+        levels: [
+          "A tiny gaze break or lip press appears after realizing the attention is on them.",
+          "Eye contact becomes briefly difficult, the mouth tightens or a small self-conscious smile appears before recovery.",
+          "Embarrassment is clearly readable through avoidance, awkward smile and slightly altered posture or hand behaviour.",
+          "The person visibly struggles with being exposed, showing stronger avoidance and awkward recovery.",
+          "The reaction becomes broadly embarrassed, with obvious recoil, covering gestures or heightened comedy."
+        ]
+      },
+
+      {
+        id: "awkwardness",
+        category: "Light / Social / Comedy",
+        name: "Awkwardness",
+        subtitle: "The person does not know what the socially correct next move is.",
+        keywords: ["awkward","awkwardness","canggung","social","silence"],
+        meaning:
+          "Awkwardness comes from uncertainty about what to say, where to look or how to behave in the moment.",
+        performance:
+          "Use small timing failures: a pause that lasts a little too long, gaze searching for somewhere safe, an aborted movement or slightly over-deliberate recovery.",
+        goodFor: [
+          "Awkward silence",
+          "Unexpected intimacy",
+          "Social mistake",
+          "First meeting"
+        ],
+        related: ["embarrassment","disbelief","flustered-attraction","defensiveness"],
+        avoid:
+          "Avoid stacking random fidgeting gestures. One uncertain behaviour is usually enough.",
+        levels: [
+          "A tiny pause or brief uncertainty in where to look.",
+          "The response arrives slightly late, with a small gaze adjustment or overly careful return to normal.",
+          "Awkwardness becomes readable through longer pauses, uncertain eye contact and small aborted movement.",
+          "The person visibly struggles to recover socially, with noticeable hesitation and uncomfortable silence.",
+          "The awkwardness becomes intentionally comedic, allowing freeze, double-take or broad recovery."
+        ]
+      },
+
+      {
+        id: "sarcasm",
+        category: "Light / Social / Comedy",
+        name: "Sarcasm",
+        subtitle: "The spoken meaning and intended meaning deliberately do not match.",
+        keywords: ["sarcasm","sarcastic","sinis","dry","irony"],
+        meaning:
+          "The person communicates disbelief, criticism or humour by saying something that is intentionally at odds with what they really mean.",
+        performance:
+          "Sarcasm works through control: deliberate pause, small eyebrow movement, asymmetrical mouth shape, side glance and calm delivery.",
+        goodFor: [
+          "Dry humour",
+          "Annoyed banter",
+          "Rivalry",
+          "Deadpan comedy"
+        ],
+        related: ["playful-teasing","disbelief","annoyance","amusement"],
+        avoid:
+          "Avoid excessive eye rolling or exaggerated sneering unless the scene is deliberately broad.",
+        levels: [
+          "Only a small pause or eyebrow shift signals the intended double meaning.",
+          "A restrained side glance or asymmetrical smile makes the sarcasm readable while delivery stays calm.",
+          "The irony is clearly visible through timing, eyebrow movement and dry facial response.",
+          "The person openly undercuts the spoken line with stronger expression and dismissive confidence.",
+          "Sarcasm becomes broad and theatrical, allowing pronounced eye-roll, scoff or heightened comedic timing."
+        ]
+      },
+
+      {
+        id: "sulking",
+        category: "Light / Social / Comedy",
+        name: "Sulking / Merajuk",
+        subtitle: "Quietly showing displeasure while still wanting attention or repair.",
+        keywords: ["sulking","merajuk","pout","annoyed","cute"],
+        meaning:
+          "The person is displeased or hurt but does not fully withdraw. Part of the behaviour often still seeks recognition, comfort or apology.",
+        performance:
+          "Use controlled withdrawal: reduced eye contact, slightly closed posture, shorter responses or a restrained pout without turning the moment into genuine hostility.",
+        goodFor: [
+          "Rom-com disagreement",
+          "Feeling overlooked",
+          "Cute annoyance",
+          "Wanting reassurance"
+        ],
+        related: ["annoyance","hurt","playful-teasing","defensiveness"],
+        avoid:
+          "Avoid playing sulking as rage. The person is withholding warmth, not necessarily ending connection.",
+        levels: [
+          "Warmth drops slightly and attention turns away for a moment.",
+          "Eye contact is reduced, responses become shorter and the mouth may settle into a mild pout or pressed line.",
+          "The displeasure is clearly readable through closed-off attention and deliberately reduced engagement.",
+          "The person strongly withholds warmth, turns away more obviously and makes the sulking difficult to ignore.",
+          "The sulking becomes heightened and playful, allowing obvious pout, exaggerated turning-away or rom-com behaviour."
+        ]
+      },
+
+      {
+        id: "disbelief",
+        category: "Light / Social / Comedy",
+        name: "Disbelief",
+        subtitle: "What was heard or seen does not immediately fit expectations.",
+        keywords: ["disbelief","tak percaya","serious","really","surprise"],
+        meaning:
+          "The person needs a moment to verify that the information is real or was understood correctly.",
+        performance:
+          "A delayed reaction is often stronger than a big face. Let the eyes hold, blink once, re-check or shift focus before the response arrives.",
+        goodFor: [
+          "Unexpected confession",
+          "Absurd claim",
+          "Plot reveal",
+          "Comedy reaction"
+        ],
+        related: ["micro-surprise","suspicion","sarcasm","shock"],
+        avoid:
+          "Avoid immediate huge eyes unless the information is genuinely shocking.",
+        levels: [
+          "Attention holds for a fraction longer, as if checking whether the information was heard correctly.",
+          "A small pause, blink or second look shows the person is processing something unexpected.",
+          "Disbelief is clearly readable through delayed response, reassessment and slightly altered expression.",
+          "The person visibly struggles to accept the information, with stronger pause and questioning reaction.",
+          "Disbelief becomes highly expressive, allowing broad double-take, recoil or comedic reaction."
+        ]
+      },
+
+      {
+        id: "mild-concern",
+        category: "Concern & Vulnerability",
+        name: "Mild Concern",
+        subtitle: "Something matters enough to increase attention, but not create anxiety.",
+        keywords: ["concern","mild concern","risau sedikit","care","worried","worry"],
+        meaning:
+          "The person notices a possible problem or someone else's discomfort and becomes more attentive without feeling threatened or overwhelmed.",
+        performance:
+          "Keep most behaviour normal. Concern is best shown through longer attention, slight brow tension and a quieter, more focused response.",
+        goodFor: [
+          "Checking on someone",
+          "Small problem",
+          "Noticing discomfort",
+          "Early warning"
+        ],
+        related: ["worry","unease","tenderness","alertness"],
+        avoid:
+          "Avoid anxious breathing, wide eyes, frantic scanning or urgency. Mild concern is not fear.",
+        levels: [
+          "The gaze simply stays on the issue a little longer than normal.",
+          "Attention becomes more focused, with faint brow tension and a small pause before responding.",
+          "Concern is clearly readable through sustained attention, subtle facial tension and a more attentive posture.",
+          "The problem noticeably affects breathing, posture or movement, creating stronger visible concern.",
+          "Concern becomes urgent and emotionally strong, approaching active worry or distress."
+        ]
+      },
+
+      {
+        id: "worry",
+        category: "Concern & Vulnerability",
+        name: "Worry",
+        subtitle: "The mind keeps returning to a possible negative outcome.",
+        keywords: ["worry","worried","risau","concern","anxious"],
+        meaning:
+          "The person is mentally preoccupied with what might go wrong, even when no immediate threat is present.",
+        performance:
+          "Compared with mild concern, worry persists. Attention returns to the problem, breathing may become less settled and the face holds tension longer.",
+        goodFor: [
+          "Waiting for news",
+          "Uncertain outcome",
+          "Concern for someone",
+          "Anticipating trouble"
+        ],
+        related: ["mild-concern","unease","fear","hurt"],
+        avoid:
+          "Avoid jumping straight into panic. Worry can remain contained for a long time.",
+        levels: [
+          "Attention briefly returns to the problem even while the person tries to continue normally.",
+          "The gaze keeps checking back, facial tension lingers and the person becomes slightly quieter or more distracted.",
+          "Worry clearly occupies the person, affecting concentration, breathing and response timing.",
+          "The person visibly struggles to stay composed as concern repeatedly interrupts normal behaviour.",
+          "Worry becomes severe and difficult to control, approaching anxious distress."
+        ]
+      },
+
+      {
+        id: "unease",
+        category: "Concern & Vulnerability",
+        name: "Unease",
+        subtitle: "Something feels wrong, but the reason or threat is still unclear.",
+        keywords: ["unease","tak sedap hati","uncomfortable","wrong","suspense"],
+        meaning:
+          "The person senses that something is off before they have enough information to identify a specific threat.",
+        performance:
+          "Unease is a listening and checking state. Movement becomes slightly quieter, attention shifts toward uncertain information and the body may become less casual.",
+        goodFor: [
+          "Suspense setup",
+          "Strange silence",
+          "Unclear danger",
+          "Bad feeling"
+        ],
+        related: ["suspicion","mild-concern","alertness","controlled-fear"],
+        avoid:
+          "Avoid fear behaviour before a threat is identified. Unease is uncertainty, not terror.",
+        levels: [
+          "A brief attention shift suggests something feels slightly off.",
+          "The person checks the environment or sound once more while keeping breathing and posture controlled.",
+          "Unease becomes readable through repeated listening, quieter movement and reduced casualness.",
+          "The person becomes visibly guarded and increasingly certain that something is wrong.",
+          "Unease escalates close to fear, with strong vigilance and difficulty relaxing."
+        ]
+      },
+
+      {
+        id: "hurt",
+        category: "Concern & Vulnerability",
+        name: "Hurt",
+        subtitle: "An emotional wound lands before the person decides how to respond.",
+        keywords: ["hurt","terluka","sad","pain","emotional"],
+        meaning:
+          "Something personally meaningful has caused emotional pain, often because it touches trust, rejection, disappointment or attachment.",
+        performance:
+          "Hurt often arrives as stillness before expression. The eyes lose warmth, the mouth settles and the person may need a moment before speaking or looking away.",
+        goodFor: [
+          "Rejection",
+          "Cruel remark",
+          "Betrayal",
+          "Emotional disappointment"
+        ],
+        related: ["disappointment","quiet-anger","longing","defensiveness"],
+        avoid:
+          "Avoid immediate crying unless the emotional intensity and scene history justify it.",
+        levels: [
+          "A tiny loss of warmth or brief stillness reveals that the remark landed.",
+          "The expression settles, eye contact becomes harder and the person takes a small moment before responding.",
+          "The hurt becomes clearly visible through softened or lowered gaze, quietness and reduced emotional openness.",
+          "Pain strongly affects the face, voice and posture, though the person may still try to contain it.",
+          "The emotional wound becomes overwhelming, allowing tears, broken delivery or strong withdrawal."
+        ]
+      },
+
+      {
+        id: "disappointment",
+        category: "Concern & Vulnerability",
+        name: "Disappointment",
+        subtitle: "Reality falls short of what the person hoped or expected.",
+        keywords: ["disappointment","kecewa","let down","expected"],
+        meaning:
+          "The person recognizes that an expected outcome, promise or person has failed to meet what they hoped for.",
+        performance:
+          "Disappointment usually drops energy rather than raises it. The gaze may fall, shoulders lose a little lift and responses become quieter or flatter.",
+        goodFor: [
+          "Broken promise",
+          "Bad result",
+          "Let-down",
+          "Failed expectation"
+        ],
+        related: ["hurt","frustration","quiet-anger","relief"],
+        avoid:
+          "Avoid automatically turning disappointment into anger. The primary movement is often emotional deflation.",
+        levels: [
+          "Energy drops slightly and the person pauses before continuing.",
+          "The gaze lowers or moves away, the mouth settles and enthusiasm noticeably decreases.",
+          "Disappointment is clearly readable through reduced energy, quieter response and emotional withdrawal.",
+          "The person visibly struggles with the let-down, showing stronger heaviness or loss of engagement.",
+          "Disappointment becomes deeply emotional, potentially moving into grief, anger or open hurt."
+        ]
+      },
+
+      {
+        id: "relief",
+        category: "Concern & Vulnerability",
+        name: "Relief",
+        subtitle: "Held tension releases after uncertainty or danger passes.",
+        keywords: ["relief","lega","release","safe","okay"],
+        meaning:
+          "The person realizes that an anticipated problem, danger or emotional uncertainty has resolved.",
+        performance:
+          "Relief is best seen as release: shoulders soften, breath leaves more freely, the face unclenches and attention no longer needs to stay guarded.",
+        goodFor: [
+          "Good news",
+          "Danger passes",
+          "Reassurance",
+          "Successful outcome"
+        ],
+        related: ["mild-concern","tenderness","worry","controlled-fear"],
+        avoid:
+          "Do not add a large smile unless happiness is also part of the moment. Relief can be quiet.",
+        levels: [
+          "A small release around the eyes or shoulders shows that tension has eased.",
+          "A controlled exhale, softened face and slightly looser posture make the relief readable.",
+          "The body visibly releases tension and the person becomes warmer or more present again.",
+          "Relief strongly changes breathing, posture and expression, often followed by a smile or emotional release.",
+          "The release becomes overwhelming, potentially including laughter, tears, collapse into support or strong physical reaction."
+        ]
+      },
+
+      {
+        id: "annoyance",
+        category: "Conflict & Frustration",
+        name: "Annoyance",
+        subtitle: "Something is irritating, but emotional control remains intact.",
+        keywords: ["annoyed","annoyance","geram","irritated","irritation"],
+        meaning:
+          "The person dislikes what is happening and wants it to stop, but the situation has not yet escalated into anger.",
+        performance:
+          "Annoyance often appears through compression: lips press, eyes narrow slightly, responses shorten or attention deliberately moves away.",
+        goodFor: [
+          "Repeated interruption",
+          "Minor argument",
+          "Irritating behaviour",
+          "Dry conflict"
+        ],
+        related: ["frustration","sarcasm","quiet-anger","sulking"],
+        avoid:
+          "Avoid clenched fists, shouting or aggressive body language at low intensity.",
+        levels: [
+          "A tiny lip press or slightly flatter response suggests irritation.",
+          "The eyes narrow a little, responses shorten and patience becomes visibly thinner.",
+          "Annoyance is clearly readable through firmer tone, tighter expression and deliberate restraint.",
+          "The person is close to losing patience, with stronger facial tension and more direct confrontation.",
+          "Annoyance breaks into open anger, allowing forceful delivery and larger physical reaction."
+        ]
+      },
+
+      {
+        id: "frustration",
+        category: "Conflict & Frustration",
+        name: "Frustration",
+        subtitle: "Effort is blocked and the person cannot get the desired result.",
+        keywords: ["frustration","frustrated","geram","stuck","blocked"],
+        meaning:
+          "The person wants progress, understanding or control but repeatedly encounters resistance.",
+        performance:
+          "Frustration accumulates. Breath becomes more deliberate, movements less patient and the person may reset posture or pause before trying again.",
+        goodFor: [
+          "Argument",
+          "Repeated failure",
+          "Miscommunication",
+          "Blocked objective"
+        ],
+        related: ["annoyance","quiet-anger","determination","disappointment"],
+        avoid:
+          "Avoid playing frustration as constant anger. The blocked objective should remain visible underneath.",
+        levels: [
+          "A small pause or controlled exhale reveals that the obstacle is starting to irritate.",
+          "Patience visibly reduces; the person resets, presses lips or tries again with slightly more effort.",
+          "Frustration clearly affects pacing, breath and tone while the person continues pursuing the objective.",
+          "The struggle becomes openly difficult to contain, with stronger gestures, sharper delivery or forceful movement.",
+          "Frustration erupts into a major emotional release or breakdown of control."
+        ]
+      },
+
+      {
+        id: "quiet-anger",
+        category: "Conflict & Frustration",
+        name: "Quiet Anger",
+        subtitle: "Strong anger held under deliberate control.",
+        keywords: ["anger","quiet anger","marah","controlled anger","furious"],
+        meaning:
+          "The person is genuinely angry but chooses not to release it openly, often because control itself carries power.",
+        performance:
+          "Reduce unnecessary movement. Jaw tension, held eye contact, clipped speech and controlled breath create more threat than random aggression.",
+        goodFor: [
+          "Serious confrontation",
+          "Betrayal",
+          "Power struggle",
+          "Controlled threat"
+        ],
+        related: ["annoyance","frustration","resentment","determination"],
+        avoid:
+          "Avoid shouting, pacing and constant facial movement at restrained intensity. Stillness can be more dangerous.",
+        levels: [
+          "Only a slight hardening of the eyes or jaw shows that the person is displeased.",
+          "The jaw holds tension, gaze becomes firmer and responses become more controlled and precise.",
+          "Anger is clearly present beneath stillness, with clipped speech, direct gaze and restrained breath.",
+          "The person is visibly containing strong anger, creating tension through rigid control and deliberate movement.",
+          "Control finally breaks or becomes openly threatening, allowing forceful voice, movement or confrontation."
+        ]
+      },
+
+      {
+        id: "defensiveness",
+        category: "Conflict & Frustration",
+        name: "Defensiveness",
+        subtitle: "Protecting self-image, feelings or position after feeling challenged.",
+        keywords: ["defensive","defensiveness","protect","challenged","accused"],
+        meaning:
+          "The person feels exposed, criticized or threatened and shifts toward protecting themselves rather than openly receiving the other person's point.",
+        performance:
+          "The body may close slightly, answers arrive faster or more carefully, eye contact becomes selective and the person may redirect blame or minimize the issue.",
+        goodFor: [
+          "Being accused",
+          "Personal criticism",
+          "Caught hiding something",
+          "Argument"
+        ],
+        related: ["embarrassment","annoyance","hurt","sarcasm"],
+        avoid:
+          "Avoid making every defensive response aggressive. It can also be quiet, evasive or overly casual.",
+        levels: [
+          "A small hesitation or quicker-than-normal correction suggests self-protection.",
+          "The person becomes slightly more guarded, with selective eye contact and more careful wording.",
+          "Defensiveness is clearly readable through closed posture, sharper correction or deliberate minimization.",
+          "The person visibly resists the challenge, redirects pressure and becomes more confrontational.",
+          "Defensiveness becomes openly combative, emotional or strongly avoidant."
+        ]
+      },
+
+      {
+        id: "resentment",
+        category: "Conflict & Frustration",
+        name: "Resentment",
+        subtitle: "Old hurt remains active beneath present interaction.",
+        keywords: ["resentment","resentful","dendam","bitter","old hurt"],
+        meaning:
+          "The person carries unresolved hurt or unfairness that colors the current moment, even when the immediate interaction seems ordinary.",
+        performance:
+          "Resentment often appears in reduced warmth, delayed cooperation, restrained eye contact and small moments where past emotion leaks into present behaviour.",
+        goodFor: [
+          "Unresolved conflict",
+          "Family tension",
+          "Former lovers",
+          "Long-term rivalry"
+        ],
+        related: ["hurt","quiet-anger","disappointment","defensiveness"],
+        avoid:
+          "Avoid playing resentment as fresh rage. Its power comes from history and emotional residue.",
+        levels: [
+          "Warmth briefly disappears around a specific topic or person.",
+          "The response becomes slightly colder, with restrained eye contact or a small delay before cooperation.",
+          "Old hurt is clearly present beneath the conversation, affecting tone and willingness to engage.",
+          "Resentment strongly shapes the interaction, creating visible bitterness and emotional distance.",
+          "The accumulated hurt breaks into open accusation, anger or emotional confrontation."
+        ]
+      },
+
+      {
+        id: "determination",
+        category: "Conflict & Frustration",
+        name: "Determination",
+        subtitle: "The objective becomes more important than discomfort or hesitation.",
+        keywords: ["determination","determined","tekad","focus","resolve"],
+        meaning:
+          "The person decides to continue toward an objective despite resistance, fear, pain or uncertainty.",
+        performance:
+          "Focus narrows. Breath becomes controlled, posture organizes toward action and unnecessary movement decreases.",
+        goodFor: [
+          "Decision moment",
+          "Action preparation",
+          "Standing ground",
+          "Overcoming fear"
+        ],
+        related: ["quiet-anger","alertness","controlled-fear","frustration"],
+        avoid:
+          "Avoid automatically turning determination into aggression. It can be calm and quiet.",
+        levels: [
+          "Attention steadies and hesitation slightly reduces.",
+          "The gaze becomes more focused, posture firms and the next action is taken with clearer intention.",
+          "Determination is clearly readable through organized movement, steady eye contact and controlled breath.",
+          "The person visibly pushes through resistance, pain or fear with strong focus and commitment.",
+          "Resolve becomes heroic or heightened, allowing powerful stance, forceful action and dramatic momentum."
+        ]
+      },
+
+      {
+        id: "alertness",
+        category: "Suspense & Threat",
+        name: "Alertness",
+        subtitle: "Attention sharpens because something may require immediate response.",
+        keywords: ["alert","alertness","watch","listen","suspense","ready"],
+        meaning:
+          "The person has detected a potentially relevant change and becomes ready to notice or respond, without necessarily feeling afraid.",
+        performance:
+          "Eyes and listening behaviour lead. Casual movement reduces, head orientation becomes more purposeful and posture prepares without overreacting.",
+        goodFor: [
+          "Hearing a sound",
+          "Entering unknown space",
+          "Action setup",
+          "Security awareness"
+        ],
+        related: ["unease","suspicion","controlled-fear","determination"],
+        avoid:
+          "Avoid treating alertness as panic. Breathing can remain normal and controlled.",
+        levels: [
+          "Attention shifts briefly toward the new stimulus.",
+          "The person listens or looks more carefully while keeping the rest of the body mostly relaxed.",
+          "Alertness is clearly visible through focused gaze, reduced casual movement and ready posture.",
+          "The person becomes strongly prepared for action, monitoring the environment with deliberate tension.",
+          "Alertness becomes urgent and highly reactive, approaching active threat response."
+        ]
+      },
+
+      {
+        id: "suspicion",
+        category: "Suspense & Threat",
+        name: "Suspicion",
+        subtitle: "The person begins to believe someone or something may not be trustworthy.",
+        keywords: ["suspicious","suspicion","curiga","trust","lie"],
+        meaning:
+          "The person notices an inconsistency and begins testing whether the situation, information or another person can be trusted.",
+        performance:
+          "Suspicion is investigative. The gaze re-checks, pauses become more deliberate and warmth reduces while the person compares information.",
+        goodFor: [
+          "Possible lie",
+          "Hidden motive",
+          "Mystery",
+          "Interrogation"
+        ],
+        related: ["unease","disbelief","alertness","romantic-jealousy"],
+        avoid:
+          "Avoid instantly narrowing the eyes into a villain expression. Suspicion can begin with simple reassessment.",
+        levels: [
+          "A brief second look suggests that something did not fully make sense.",
+          "The gaze returns to check again, expression becomes slightly less relaxed and the response becomes more deliberate.",
+          "Suspicion is clearly readable through probing attention, longer pauses and reduced trust.",
+          "The person strongly monitors inconsistencies and becomes visibly guarded or challenging.",
+          "Suspicion becomes open accusation or intense distrust."
+        ]
+      },
+
+      {
+        id: "controlled-fear",
+        category: "Suspense & Threat",
+        name: "Controlled Fear",
+        subtitle: "Fear is present, but the person actively manages it.",
+        keywords: ["controlled fear","fear","takut","brave","suspense"],
+        meaning:
+          "The person perceives a real threat but is trying to stay functional, quiet or strategically composed.",
+        performance:
+          "Let fear appear through increased listening, smaller breathing changes, protective posture and careful movement rather than immediate panic.",
+        goodFor: [
+          "Hiding from danger",
+          "Facing a threat",
+          "Protecting someone",
+          "Thriller confrontation"
+        ],
+        related: ["fear","alertness","unease","determination"],
+        avoid:
+          "Avoid wide eyes, shaking and gasping by default. Controlled fear means the person is still operating.",
+        levels: [
+          "The threat registers through a tiny pause and more focused attention.",
+          "Breathing becomes slightly more controlled, movement reduces and the person monitors the threat carefully.",
+          "Fear is clearly visible beneath functional behaviour, with guarded posture and deliberate movement.",
+          "The person struggles to maintain control, showing stronger breath tension and defensive readiness.",
+          "Control is close to breaking, with fear becoming highly visible despite continued effort to function."
+        ]
+      },
+
+      {
+        id: "fear",
+        category: "Suspense & Threat",
+        name: "Fear",
+        subtitle: "A real threat creates a protective emotional and physical response.",
+        keywords: ["fear","afraid","takut","danger","threat"],
+        meaning:
+          "The person recognizes danger to themselves, someone else or something deeply important.",
+        performance:
+          "Fear changes attention first. The person tracks the threat, movement becomes protective and breathing changes according to intensity.",
+        goodFor: [
+          "Threat encounter",
+          "Danger revealed",
+          "Horror",
+          "Physical risk"
+        ],
+        related: ["controlled-fear","panic","alertness","shock"],
+        avoid:
+          "Do not use maximum fear behaviour at low intensity. Fear has a wide range before panic.",
+        levels: [
+          "Attention locks onto the threat slightly longer and casual behaviour drops.",
+          "The eyes monitor the danger, posture becomes more protective and breathing changes subtly.",
+          "Fear is clearly readable through guarded movement, increased breath and difficulty looking away from the threat.",
+          "The body enters a strong defensive response, with visible tension, faster breathing and urgent decision-making.",
+          "Fear becomes overwhelming and may produce screaming, freezing, fleeing or other extreme survival behaviour."
+        ]
+      },
+
+      {
+        id: "panic",
+        category: "Suspense & Threat",
+        name: "Panic",
+        subtitle: "Fear overwhelms normal regulation and organized response begins to break down.",
+        keywords: ["panic","panicked","cemas","terror","overwhelmed"],
+        meaning:
+          "The person is experiencing a threat strongly enough that breathing, attention and coordinated decision-making become difficult to control.",
+        performance:
+          "Panic should feel like loss of regulation, not simply 'more fear'. Breath becomes harder to organize, attention jumps and movements become urgent or inefficient.",
+        goodFor: [
+          "Immediate life threat",
+          "Trapped situation",
+          "Severe emergency",
+          "Loss of control"
+        ],
+        related: ["fear","controlled-fear","shock","alertness"],
+        avoid:
+          "Use sparingly. If the scene only requires worry, unease or controlled fear, panic will feel false.",
+        levels: [
+          "The first signs of regulation failure appear: breathing shortens and attention becomes harder to hold.",
+          "Urgency disrupts normal pacing; breath is less steady and movement becomes less controlled.",
+          "Panic is clearly active, with rapid scanning, unstable breath and difficulty making calm decisions.",
+          "The person is strongly overwhelmed, moving or speaking urgently with poor emotional control.",
+          "Full panic dominates the body and attention, producing extreme survival behaviour or near-total loss of composure."
+        ]
+      },
+
+      {
+        id: "shock",
+        category: "Suspense & Threat",
+        name: "Shock",
+        subtitle: "Information or an event overwhelms expectation before emotion fully organizes.",
+        keywords: ["shock","shocked","terkejut","reveal","stunned"],
+        meaning:
+          "The event is too large or unexpected to process immediately, creating a temporary interruption before a fuller emotional response.",
+        performance:
+          "Shock often works best as stillness: attention locks, blink rate changes, breath pauses and the next movement or line arrives late.",
+        goodFor: [
+          "Major reveal",
+          "Sudden loss",
+          "Unexpected event",
+          "Plot twist"
+        ],
+        related: ["micro-surprise","disbelief","fear","hurt"],
+        avoid:
+          "Avoid immediately layering every emotion. Let the initial processing interruption happen first.",
+        levels: [
+          "A brief freeze or delayed blink marks the unexpected information.",
+          "Attention locks for a moment, breathing pauses slightly and the next response arrives late.",
+          "Shock is clearly visible through stillness, delayed processing and temporarily reduced expression.",
+          "The event strongly disrupts speech, posture or movement as the person struggles to process it.",
+          "Shock becomes overwhelming, producing major physical or emotional reaction after the initial freeze."
+        ]
+      },
+
+      {
+        id: "micro-surprise",
+        category: "Suspense & Threat",
+        name: "Micro Surprise",
+        subtitle: "A small unexpected change briefly interrupts the current state.",
+        keywords: ["surprise","micro surprise","terkejut sedikit","unexpected","small"],
+        meaning:
+          "Something unexpected happens, but it is not large enough to justify shock or fear.",
+        performance:
+          "Use a tiny interruption: a brief eye widening, blink, breath pause or head shift, followed by quick recovery.",
+        goodFor: [
+          "Unexpected compliment",
+          "Sudden proximity",
+          "Small reveal",
+          "Someone calling their name"
+        ],
+        related: ["disbelief","shock","flustered-attraction","alertness"],
+        avoid:
+          "Avoid a full gasp, recoil or large eye widening for a minor surprise.",
+        levels: [
+          "Only a tiny focus change or slightly delayed blink registers the surprise.",
+          "A brief eye or breath interruption occurs, followed almost immediately by recovery.",
+          "The surprise is clearly readable through a small freeze, eye change or short intake of breath.",
+          "The person visibly startles before recovering, with a stronger head or body response.",
+          "The reaction becomes a broad startle or comedic surprise with obvious physical response."
+        ]
+      }
+    ];
+
+    let activeCategory = "All";
+    let searchQuery = "";
+    let selectedEmotionId = "flustered-attraction";
+    let selectedIntensity = 2;
+
+    const categoryOrder = [
+      "All",
+      "Romance & Attraction",
+      "Light / Social / Comedy",
+      "Concern & Vulnerability",
+      "Conflict & Frustration",
+      "Suspense & Threat"
+    ];
+
+    function getEmotion(id) {
+      return emotions.find(e => e.id === id);
+    }
+
+    function intensityShort(levelText) {
+      const text = levelText.trim();
+      const firstSentence = text.split(".")[0];
+      return firstSentence.length > 78
+        ? firstSentence.slice(0, 75) + "..."
+        : firstSentence + ".";
+    }
+
+    function generatePrompt(emotion, intensity) {
+      const label = intensityLabels[intensity - 1];
+      const behaviour = emotion.levels[intensity - 1];
+
+      let opening = `${emotion.name}, ${label.toLowerCase()} intensity.`;
+
+      if (intensity === 1) {
+        opening += " Keep the overall performance almost completely natural.";
+      } else if (intensity === 2) {
+        opening += " Keep the overall performance restrained and believable.";
+      } else if (intensity === 3) {
+        opening += " Make the emotion clearly readable without overplaying it.";
+      } else if (intensity === 4) {
+        opening += " Let the emotion noticeably affect the performance while preserving human timing.";
+      } else {
+        opening += " Use a heightened, clearly expressive performance appropriate to a stronger dramatic or comedic style.";
+      }
+
+      return `${opening} ${behaviour} ${emotion.avoid}`;
+    }
+
+    function filteredEmotions() {
+      return emotions.filter(emotion => {
+        const categoryMatch =
+          activeCategory === "All" || emotion.category === activeCategory;
+
+        const haystack = [
+          emotion.name,
+          emotion.subtitle,
+          emotion.category,
+          emotion.meaning,
+          ...(emotion.keywords || [])
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        const searchMatch =
+          !searchQuery || haystack.includes(searchQuery.toLowerCase());
+
+        return categoryMatch && searchMatch;
+      });
+    }
+
+    function renderCategories() {
+      const el = document.getElementById("categories");
+
+      el.innerHTML = categoryOrder
+        .map(category => `
+          <button
+            class="category-btn ${activeCategory === category ? "active" : ""}"
+            onclick="setCategory('${category.replace(/'/g, "\\'")}')"
+          >
+            ${category}
           </button>
-
-        </div>
-
-      </div>
-
-      <div class="budget-bar">
-        <div id="budgetFill" class="budget-fill"></div>
-      </div>
-
-      <div class="budget-meta">
-
-        <div id="budgetUsage">
-          Used 0.0 / 15.0s
-        </div>
-
-        <div id="budgetStatus" class="budget-status ok">
-          Within Budget
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="timeline-summary">
-
-      <div class="timeline-total" id="timelineTotal">
-        Estimated duration: 00:00
-      </div>
-
-      <div class="timeline-help">
-        Broad events, not micro-expression checkpoints.
-      </div>
-
-    </div>
-
-    <div class="arc-summary" id="arcSummary"></div>
-
-    <div id="beatList" class="beat-list"></div>
-
-    <div class="add-row">
-
-      <button class="primary-btn" onclick="loadNaturalDemo()">
-        ✦ Load Natural 3-Beat Demo
-      </button>
-
-      <button class="secondary-btn" onclick="addBeat()">
-        + Add Beat
-      </button>
-
-    </div>
-
-  </section>
-
-</main>
-
-<!-- OUTPUT -->
-
-<aside class="output">
-
-  <h2>Generated Direction</h2>
-
-  <p class="output-sub">
-    Video output is simplified for natural generation.
-    Acting and Technical retain deeper performance logic.
-  </p>
-
-  <div class="output-tabs">
-
-    <button
-      class="output-tab active"
-      onclick="switchOutput('video',this)"
-    >
-      🎬 Video Prompt
-    </button>
-
-    <button
-      class="output-tab"
-      onclick="switchOutput('acting',this)"
-    >
-      🎭 Acting
-    </button>
-
-    <button
-      class="output-tab"
-      onclick="switchOutput('technical',this)"
-    >
-      ⚙ Technical
-    </button>
-
-  </div>
-
-  <div class="output-label" id="outputLabel">
-    NATURAL GENERATION PROMPT
-  </div>
-
-  <div id="promptOutput" class="prompt-box"></div>
-
-  <div
-    id="warningBox"
-    class="warning-box"
-    style="display:none"
-  ></div>
-
-  <div class="output-footer">
-
-    <button class="copy-btn" onclick="copyPrompt()">
-      Copy Prompt
-    </button>
-
-    <button class="reset-btn" onclick="resetDemo()">
-      Reset
-    </button>
-
-  </div>
-
-</aside>
-
-</div>
-
-<div id="toast" class="toast">
-  Prompt copied
-</div>
-
-<script>
-
-/* =========================================================
-   OPTIONS
-========================================================= */
-
-const roleOptions = [
-  "Setup",
-  "Interaction",
-  "Reaction",
-  "Payoff"
-];
-
-const emotionOptions = [
-  "Neutral Observation",
-  "Fake Normal",
-  "Attention Captured",
-  "Flustered Attraction",
-  "Restrained Affection",
-  "Micro Surprise",
-  "Dry Sarcasm",
-  "Playful Provocation",
-  "Hidden Jealousy",
-  "Awkwardness",
-  "Quiet Unease",
-  "Subtle Relief"
-];
-
-const speakerOptions = [
-  "None",
-  "Main Character",
-  "Other Character",
-  "Off-screen"
-];
-
-const lineFunctionOptions = [
-  "Neutral",
-  "Ask",
-  "Tease",
-  "Deflect",
-  "Challenge",
-  "Confess",
-  "Reveal",
-  "Comfort",
-  "Dismiss",
-  "Hide Emotion"
-];
-
-const voiceOptions = [
-  "Auto",
-  "Natural",
-  "Soft",
-  "Controlled",
-  "Playful",
-  "Dry",
-  "Firm",
-  "Quiet",
-  "Warm"
-];
-
-const gazeOptions = [
-  "Auto",
-  "Forward / Object Focus",
-  "Avoided Eye Contact",
-  "Brief Glance",
-  "Direct Eye Contact",
-  "Held Eye Contact",
-  "Look Away"
-];
-
-const breathOptions = [
-  "Auto",
-  "Natural",
-  "Tiny Change",
-  "Controlled Exhale"
-];
-
-const movementOptions = [
-  "Auto",
-  "Maintain Position",
-  "Small Weight Shift",
-  "Subtle Recompose",
-  "Step Forward",
-  "Step Back"
-];
-
-const recoveryOptions = [
-  "Auto",
-  "None",
-  "Return To Task",
-  "Fake Normal",
-  "Suppress Smile",
-  "Look Away"
-];
-
-const durationOptions = [
-  "Auto",
-  "2",
-  "2.5",
-  "3",
-  "3.5",
-  "4",
-  "4.5",
-  "5",
-  "6"
-];
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let outputMode = "video";
-let globalPerformanceStyle = "Restrained";
-let targetDuration = 15;
-let fitted = false;
-
-let beats = createNaturalDemo();
-
-
-/* =========================================================
-   NATURAL 3-BEAT DEMO
-========================================================= */
-
-function createNaturalDemo(){
-
-  return [
-
-    {
-      role:"Setup",
-      emotion:"Fake Normal",
-      intensity:1,
-
-      happens:
-      "Maryam waits beside Amir, facing the elevator doors while trying to appear completely casual.",
-
-      subtext:
-      "She is aware of Amir beside her, but her objective is simply to look normal.",
-
-      duration:"2.5",
-      fittedDuration:null,
-
-      speaker:"Other Character",
-      dialogue:"Awak ni dari tadi elak tengok saya.",
-      lineFunction:"Tease",
-      voice:"Playful",
-
-      gaze:"Forward / Object Focus",
-      breath:"Natural",
-      movement:"Maintain Position",
-      recovery:"None"
-    },
-
-    {
-      role:"Interaction",
-      emotion:"Fake Normal",
-      intensity:2,
-
-      happens:
-      "After Amir's comment lands, Maryam briefly looks at him, answers dryly, then returns her attention forward. Amir responds with another teasing line while she keeps facing the elevator.",
-
-      subtext:
-      "She has been caught. Instead of showing embarrassment, she protects herself by acting dismissive.",
-
-      duration:"7",
-      fittedDuration:null,
-
-      speaker:"Main Character",
-      dialogue:"Perasan.",
-      secondarySpeaker:"Other Character",
-      secondaryDialogue:"Oh, jadi awak memang sedar.",
-      lineFunction:"Deflect",
-      voice:"Dry",
-
-      gaze:"Brief Glance",
-      breath:"Auto",
-      movement:"Maintain Position",
-      recovery:"Fake Normal"
-    },
-
-    {
-      role:"Payoff",
-      emotion:"Restrained Affection",
-      intensity:2,
-
-      happens:
-      "Only after Amir's second tease does Maryam finally look at him. Their eye contact lasts slightly longer than ordinary conversation. A small smile nearly appears; she catches it and looks back toward the elevator.",
-
-      subtext:
-      "She almost lets him see that he is affecting her, then quietly restores control.",
-
-      duration:"4",
-      fittedDuration:null,
-
-      speaker:"None",
-      dialogue:"",
-      lineFunction:"Neutral",
-      voice:"Auto",
-
-      gaze:"Held Eye Contact",
-      breath:"Natural",
-      movement:"Maintain Position",
-      recovery:"Suppress Smile"
+        `)
+        .join("");
     }
 
-  ];
-
-}
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-function escapeAttribute(value){
-  return escapeHtml(value);
-}
-
-function optionList(items,current){
-
-  return items.map(item => `
-    <option
-      value="${escapeAttribute(item)}"
-      ${String(item) === String(current) ? "selected" : ""}
-    >
-      ${escapeHtml(item)}
-    </option>
-  `).join("");
-
-}
-
-function clamp(value,min,max){
-  return Math.max(min,Math.min(max,value));
-}
-
-function round1(value){
-  return Math.round(value * 10) / 10;
-}
-
-function formatTime(seconds){
-
-  const value =
-    Math.max(0,Number(seconds) || 0);
-
-  const min =
-    Math.floor(value / 60);
-
-  const sec =
-    value - min * 60;
-
-  const text =
-    sec % 1 === 0
-      ? String(sec).padStart(2,"0")
-      : sec.toFixed(1).padStart(4,"0");
-
-  return `${String(min).padStart(2,"0")}:${text}`;
-
-}
-
-
-/* =========================================================
-   DURATION ENGINE
-========================================================= */
-
-function estimateDialogueDuration(text){
-
-  const words =
-    String(text || "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .length;
-
-  if(!words){
-    return 0;
-  }
-
-  return clamp(
-    round1(words / 2.7),
-    .6,
-    5
-  );
-
-}
-
-function naturalMinimumDuration(beat){
-
-  const roleBase = {
-    Setup:2,
-    Interaction:3,
-    Reaction:2,
-    Payoff:2.5
-  };
-
-  let minimum =
-    roleBase[beat.role] || 2;
-
-  if(beat.dialogue){
-    minimum =
-      Math.max(
-        minimum,
-        estimateDialogueDuration(beat.dialogue) + 1
-      );
-  }
-
-  if(beat.secondaryDialogue){
-    minimum +=
-      estimateDialogueDuration(
-        beat.secondaryDialogue
-      ) + .8;
-  }
-
-  if(
-    beat.role === "Payoff" &&
-    beat.gaze === "Held Eye Contact"
-  ){
-    minimum =
-      Math.max(minimum,2.5);
-  }
-
-  return round1(minimum);
-
-}
-
-function getBeatDuration(beat){
-
-  if(
-    fitted &&
-    beat.fittedDuration != null
-  ){
-    return Number(
-      beat.fittedDuration
-    );
-  }
-
-  if(
-    beat.duration !== "Auto"
-  ){
-    return Number(
-      beat.duration
-    );
-  }
-
-  return naturalMinimumDuration(beat);
-
-}
-
-function calculateTimeline(){
-
-  let cursor = 0;
-
-  return beats.map((beat,index) => {
-
-    const duration =
-      getBeatDuration(beat);
-
-    const start =
-      round1(cursor);
-
-    const end =
-      round1(start + duration);
-
-    cursor = end;
-
-    return {
-      index,
-      start,
-      end,
-      duration
-    };
-
-  });
-
-}
-
-
-/* =========================================================
-   FIT TO BUDGET
-========================================================= */
-
-function fitToBudget(){
-
-  targetDuration =
-    Number(
-      document
-      .getElementById("targetDuration")
-      .value
-    ) || 15;
-
-  fitted = true;
-
-  beats.forEach(beat => {
-
-    beat.fittedDuration =
-      beat.duration === "Auto"
-        ? naturalMinimumDuration(beat)
-        : Number(beat.duration);
-
-  });
-
-  let total =
-    beats.reduce(
-      (sum,beat) =>
-        sum + Number(beat.fittedDuration),
-      0
-    );
-
-  if(total <= targetDuration){
-
-    showToast(
-      `Already within ${targetDuration}s budget`
-    );
-
-    renderAll();
-    return;
-  }
-
-  let excess =
-    round1(total-targetDuration);
-
-  const compressionOrder =
-    beats
-    .map((beat,index) => ({
-      index,
-      priority:
-        beat.role === "Setup" ? 1 :
-        beat.role === "Reaction" ? 2 :
-        beat.role === "Interaction" ? 3 :
-        4
-    }))
-    .sort(
-      (a,b) =>
-        a.priority-b.priority
-    );
-
-  let safety = 0;
-
-  while(
-    excess > .01 &&
-    safety < 300
-  ){
-
-    let changed = false;
-
-    for(const item of compressionOrder){
-
-      const beat =
-        beats[item.index];
-
-      const current =
-        Number(beat.fittedDuration);
-
-      const minimum =
-        naturalMinimumDuration(beat);
-
-      if(current <= minimum){
-        continue;
+    function renderEmotionGrid() {
+      const list = filteredEmotions();
+      const grid = document.getElementById("emotionGrid");
+      const count = document.getElementById("emotionCount");
+
+      count.textContent = `${list.length} emotion${list.length === 1 ? "" : "s"}`;
+
+      if (!list.length) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1;">
+            No emotion found.<br />
+            Try a simpler word such as <strong>worry</strong>,
+            <strong>malu</strong>, <strong>jealous</strong> or
+            <strong>fear</strong>.
+          </div>
+        `;
+        return;
       }
 
-      const cut =
-        Math.min(
-          .1,
-          current-minimum,
-          excess
-        );
-
-      beat.fittedDuration =
-        round1(current-cut);
-
-      excess =
-        round1(excess-cut);
-
-      changed = true;
-
-      if(excess <= .01){
-        break;
-      }
-
+      grid.innerHTML = list
+        .map(emotion => `
+          <button
+            class="emotion-card ${emotion.id === selectedEmotionId ? "active" : ""}"
+            onclick="selectEmotion('${emotion.id}')"
+          >
+            <div class="emotion-category">${emotion.category}</div>
+            <div class="emotion-name">${emotion.name}</div>
+            <div class="emotion-subtitle">${emotion.subtitle}</div>
+          </button>
+        `)
+        .join("");
     }
 
-    if(!changed){
-      break;
-    }
+    function renderDetail() {
+      const emotion = getEmotion(selectedEmotionId);
+      if (!emotion) return;
 
-    safety++;
+      const panel = document.getElementById("detailPanel");
 
-  }
+      const goodForHTML = emotion.goodFor
+        .map(item => `<span class="good-chip">${item}</span>`)
+        .join("");
 
-  renderAll();
+      const intensityHTML = emotion.levels
+        .map((level, index) => {
+          const intensity = index + 1;
 
-  if(excess > .01){
-
-    showToast(
-      "Dialogue needs more than the target budget"
-    );
-
-  }else{
-
-    showToast(
-      `Fitted within ${targetDuration}s`
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   NATURALNESS ENGINE
-========================================================= */
-
-function naturalnessState(){
-
-  const count =
-    beats.length;
-
-  if(count <= 3){
-    return {
-      label:`Natural · ${count} beats`,
-      className:""
-    };
-  }
-
-  if(count === 4){
-    return {
-      label:"Moderate · 4 beats",
-      className:"warn"
-    };
-  }
-
-  return {
-    label:`Mechanical risk · ${count} beats`,
-    className:"danger"
-  };
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function intensityDots(index,value){
-
-  let html = "";
-
-  for(let i=1;i<=5;i++){
-
-    html += `
-      <span
-        class="dot ${i<=value ? "on" : ""}"
-        onclick="setIntensity(${index},${i})"
-        title="${i}/5"
-      ></span>
-    `;
-
-  }
-
-  return html;
-
-}
-
-function renderArc(){
-
-  const timeline =
-    calculateTimeline();
-
-  document
-  .getElementById("arcSummary")
-  .innerHTML =
-    beats.map((beat,index) => `
-      <span class="arc-chip">
-        ${escapeHtml(beat.role)}
-        <span class="arc-time">
-          ${formatTime(timeline[index].start)}
-          –
-          ${formatTime(timeline[index].end)}
-        </span>
-      </span>
-      ${
-        index < beats.length-1
-          ? `<span class="arc-arrow">→</span>`
-          : ""
-      }
-    `).join("");
-
-}
-
-function renderBudget(){
-
-  const timeline =
-    calculateTimeline();
-
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
-
-  const ratio =
-    total / targetDuration;
-
-  const fill =
-    document.getElementById("budgetFill");
-
-  fill.style.width =
-    `${clamp(ratio*100,0,100)}%`;
-
-  fill.className =
-    "budget-fill";
-
-  const status =
-    document.getElementById("budgetStatus");
-
-  if(total > targetDuration){
-
-    fill.classList.add("over");
-
-    status.className =
-      "budget-status over";
-
-    status.textContent =
-      `Over by ${round1(total-targetDuration)}s`;
-
-  }else if(
-    total > targetDuration-1
-  ){
-
-    fill.classList.add("tight");
-
-    status.className =
-      "budget-status tight";
-
-    status.textContent =
-      "Tight";
-
-  }else{
-
-    status.className =
-      "budget-status ok";
-
-    status.textContent =
-      `${round1(targetDuration-total)}s buffer`;
-
-  }
-
-  document
-  .getElementById("budgetUsage")
-  .textContent =
-    `Used ${total.toFixed(1)} / ${targetDuration.toFixed(1)}s`;
-
-}
-
-function renderNaturalScore(){
-
-  const state =
-    naturalnessState();
-
-  const element =
-    document.getElementById("naturalScore");
-
-  element.textContent =
-    state.label;
-
-  element.className =
-    `natural-score ${state.className}`;
-
-}
-
-function renderBeats(){
-
-  const list =
-    document.getElementById("beatList");
-
-  const timeline =
-    calculateTimeline();
-
-  list.innerHTML = "";
-
-  beats.forEach((beat,index) => {
-
-    const time =
-      timeline[index];
-
-    const dialoguePreview =
-      beat.dialogue
-        ? `
-          <div class="dialogue-preview">
-            <span class="dialogue-meta">
-              ${escapeHtml(beat.speaker)}
-              · ${escapeHtml(beat.lineFunction)}
-            </span>
-            “${escapeHtml(beat.dialogue)}”
-
-            ${
-              beat.secondaryDialogue
-                ? `<br><br>
-                   <span class="dialogue-meta">
-                     OTHER CHARACTER · FOLLOW-UP
-                   </span>
-                   “${escapeHtml(beat.secondaryDialogue)}”`
-                : ""
-            }
-          </div>
-        `
-        : "";
-
-    const wrap =
-      document.createElement("div");
-
-    wrap.className =
-      "beat-wrap";
-
-    wrap.innerHTML = `
-
-      <div class="beat-card">
-
-        <div class="beat-summary">
-
-          <div class="beat-top">
-
-            <div>
-
-              <div class="beat-number">
-                ${String(index+1).padStart(2,"0")}
-              </div>
-
-              <div class="beat-role">
-                ${escapeHtml(beat.role)}
-              </div>
-
-              <div class="beat-time">
-                ${formatTime(time.start)}
-                –
-                ${formatTime(time.end)}
-              </div>
-
-              <div class="beat-title">
-                ${escapeHtml(beat.emotion)}
-              </div>
-
-            </div>
-
-            <div class="beat-actions">
-
-              <button
-                class="icon-btn"
-                onclick="moveBeat(${index},-1)"
-              >
-                ↑
-              </button>
-
-              <button
-                class="icon-btn"
-                onclick="moveBeat(${index},1)"
-              >
-                ↓
-              </button>
-
-              <button
-                class="icon-btn"
-                onclick="removeBeat(${index})"
-              >
-                ×
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="intensity-dots">
-            ${intensityDots(index,beat.intensity)}
-          </div>
-
-          <div class="beat-line">
-            ${escapeHtml(beat.happens)}
-          </div>
-
-          <div class="beat-subtext">
-            <strong>Subtext:</strong>
-            ${escapeHtml(beat.subtext)}
-          </div>
-
-          ${dialoguePreview}
-
-          <div class="card-controls">
-
+          return `
             <button
-              class="small-btn"
-              onclick="toggleEdit(${index})"
+              class="intensity-btn ${selectedIntensity === intensity ? "active" : ""}"
+              onclick="setIntensity(${intensity})"
             >
-              Edit
+              <span class="intensity-number">${intensity}</span>
+              <span class="intensity-label">${intensityLabels[index]}</span>
+              <span class="intensity-preview">${intensityShort(level)}</span>
             </button>
+          `;
+        })
+        .join("");
 
-            <button
-              class="small-btn advanced"
-              onclick="toggleAdvanced(${index})"
-            >
-              Advanced ▾
+      const relatedHTML = emotion.related
+        .map(id => {
+          const related = getEmotion(id);
+          if (!related) return "";
+
+          return `
+            <button class="related-btn" onclick="selectEmotion('${related.id}')">
+              ${related.name}
             </button>
+          `;
+        })
+        .join("");
 
-          </div>
+      panel.innerHTML = `
+        <div class="detail-kicker">${emotion.category}</div>
+        <h2 class="detail-title">${emotion.name}</h2>
+        <p class="detail-subtitle">${emotion.subtitle}</p>
 
+        <div class="info-card">
+          <div class="info-label">What it means</div>
+          <div class="info-text">${emotion.meaning}</div>
         </div>
 
-        <div
-          class="edit-panel"
-          id="edit-${index}"
-        >
+        <div class="info-card">
+          <div class="info-label">What the camera sees</div>
+          <div class="info-text">${emotion.performance}</div>
 
-          <div class="grid3">
-
-            <div class="field">
-              <label>Beat Purpose</label>
-              <select
-                onchange="updateBeat(${index},'role',this.value,true)"
-              >
-                ${optionList(roleOptions,beat.role)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Emotional State</label>
-              <select
-                onchange="updateBeat(${index},'emotion',this.value,true)"
-              >
-                ${optionList(emotionOptions,beat.emotion)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Duration</label>
-              <select
-                onchange="updateBeat(${index},'duration',this.value,true)"
-              >
-                ${optionList(durationOptions,beat.duration)}
-              </select>
-            </div>
-
+          <div class="good-for">
+            ${goodForHTML}
           </div>
-
-          <div class="field">
-            <label>Continuous Action</label>
-            <textarea
-              oninput="updateBeat(${index},'happens',this.value,false)"
-            >${escapeHtml(beat.happens)}</textarea>
-          </div>
-
-          <div class="field">
-            <label>Subtext / Objective</label>
-            <textarea
-              oninput="updateBeat(${index},'subtext',this.value,false)"
-            >${escapeHtml(beat.subtext)}</textarea>
-          </div>
-
-          <div class="dialogue-section">
-
-            <div class="dialogue-section-title">
-              Dialogue
-              <span class="optional">
-                · keep dialogue inside the broad action
-              </span>
-            </div>
-
-            <div class="grid2">
-
-              <div class="field">
-                <label>Speaker</label>
-                <select
-                  onchange="updateBeat(${index},'speaker',this.value,true)"
-                >
-                  ${optionList(speakerOptions,beat.speaker)}
-                </select>
-              </div>
-
-              <div class="field">
-                <label>Line Function</label>
-                <select
-                  onchange="updateBeat(${index},'lineFunction',this.value,true)"
-                >
-                  ${optionList(lineFunctionOptions,beat.lineFunction)}
-                </select>
-              </div>
-
-            </div>
-
-            <div class="field">
-              <label>Primary Dialogue</label>
-              <input
-                value="${escapeAttribute(beat.dialogue || "")}"
-                oninput="updateBeat(${index},'dialogue',this.value,true)"
-              >
-            </div>
-
-            <div class="field">
-              <label>Follow-up Dialogue · Optional</label>
-              <input
-                value="${escapeAttribute(beat.secondaryDialogue || "")}"
-                placeholder="Optional second line inside the same interaction"
-                oninput="updateBeat(${index},'secondaryDialogue',this.value,true)"
-              >
-            </div>
-
-          </div>
-
         </div>
 
-        <div
-          class="advanced-panel"
-          id="advanced-${index}"
-        >
+        <div class="divider"></div>
 
-          <div class="advanced-title">
-            Internal Acting Intelligence
-          </div>
-
-          <div class="grid2">
-
-            <div class="field">
-              <label>Dominant Gaze</label>
-              <select
-                onchange="updateBeat(${index},'gaze',this.value,false)"
-              >
-                ${optionList(gazeOptions,beat.gaze)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Breath</label>
-              <select
-                onchange="updateBeat(${index},'breath',this.value,false)"
-              >
-                ${optionList(breathOptions,beat.breath)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Body</label>
-              <select
-                onchange="updateBeat(${index},'movement',this.value,false)"
-              >
-                ${optionList(movementOptions,beat.movement)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Recovery</label>
-              <select
-                onchange="updateBeat(${index},'recovery',this.value,false)"
-              >
-                ${optionList(recoveryOptions,beat.recovery)}
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Voice</label>
-              <select
-                onchange="updateBeat(${index},'voice',this.value,false)"
-              >
-                ${optionList(voiceOptions,beat.voice)}
-              </select>
-            </div>
-
-          </div>
-
+        <div class="intensity-title-row">
+          <div class="intensity-title">Choose Intensity</div>
+          <div class="intensity-hint">Compare before choosing</div>
         </div>
 
-      </div>
+        <div class="intensity-list">
+          ${intensityHTML}
+        </div>
 
-      ${
-        index < beats.length-1
-          ? `<div class="connector"></div>`
-          : ""
+        <div class="acting-example">
+          <div class="example-head">
+            <div class="example-title">How this intensity looks</div>
+            <div class="level-badge">
+              ${selectedIntensity} · ${intensityLabels[selectedIntensity - 1]}
+            </div>
+          </div>
+
+          <div class="example-copy">
+            ${emotion.levels[selectedIntensity - 1]}
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-head">
+            <div class="prompt-label">Ready-to-use prompt</div>
+            <button class="copy-btn" id="copyButton" onclick="copyPrompt()">
+              Copy Prompt
+            </button>
+          </div>
+
+          <div class="prompt-text" id="promptText">${generatePrompt(
+            emotion,
+            selectedIntensity
+          )}</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="related-title">Related emotions</div>
+        <div class="related-list">
+          ${relatedHTML}
+        </div>
+      `;
+    }
+
+    function setCategory(category) {
+      activeCategory = category;
+      renderCategories();
+      renderEmotionGrid();
+    }
+
+    function selectEmotion(id) {
+      selectedEmotionId = id;
+      selectedIntensity = 2;
+
+      renderEmotionGrid();
+      renderDetail();
+
+      if (window.innerWidth < 1000) {
+        document
+          .getElementById("detailPanel")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
       }
-
-    `;
-
-    list.appendChild(wrap);
-
-  });
-
-  document
-  .getElementById("beatCount")
-  .textContent =
-    `${beats.length} beats`;
-
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
-
-  document
-  .getElementById("timelineTotal")
-  .textContent =
-    `Estimated duration: ${formatTime(total)}`;
-
-}
-
-function renderAll(){
-
-  renderBeats();
-  renderArc();
-  renderBudget();
-  renderNaturalScore();
-  updateOutput();
-
-}
-
-
-/* =========================================================
-   BEAT ACTIONS
-========================================================= */
-
-function clearFit(){
-
-  fitted = false;
-
-  beats.forEach(beat => {
-    beat.fittedDuration = null;
-  });
-
-}
-
-function updateBeat(
-  index,
-  key,
-  value,
-  rerender
-){
-
-  beats[index][key] =
-    value;
-
-  if(
-    key === "duration" ||
-    key === "dialogue" ||
-    key === "secondaryDialogue" ||
-    key === "role"
-  ){
-    clearFit();
-  }
-
-  if(rerender){
-    renderAll();
-  }else{
-    updateOutput();
-  }
-
-}
-
-function setIntensity(index,value){
-
-  beats[index].intensity =
-    value;
-
-  renderAll();
-
-}
-
-function toggleEdit(index){
-
-  document
-  .getElementById(`edit-${index}`)
-  .classList
-  .toggle("open");
-
-}
-
-function toggleAdvanced(index){
-
-  document
-  .getElementById(`advanced-${index}`)
-  .classList
-  .toggle("open");
-
-}
-
-function moveBeat(index,direction){
-
-  const target =
-    index + direction;
-
-  if(
-    target < 0 ||
-    target >= beats.length
-  ){
-    return;
-  }
-
-  [
-    beats[index],
-    beats[target]
-  ] = [
-    beats[target],
-    beats[index]
-  ];
-
-  clearFit();
-  renderAll();
-
-}
-
-function removeBeat(index){
-
-  if(beats.length <= 1){
-
-    showToast(
-      "At least one beat is required"
-    );
-
-    return;
-  }
-
-  beats.splice(index,1);
-
-  clearFit();
-  renderAll();
-
-}
-
-function addBeat(){
-
-  beats.push({
-
-    role:"Reaction",
-    emotion:"Attention Captured",
-    intensity:2,
-
-    happens:
-    "Describe one continuous piece of behaviour, not several separate emotional poses.",
-
-    subtext:
-    "What is the character trying to achieve or conceal during this action?",
-
-    duration:"Auto",
-    fittedDuration:null,
-
-    speaker:"None",
-    dialogue:"",
-    secondaryDialogue:"",
-    lineFunction:"Neutral",
-    voice:"Auto",
-
-    gaze:"Auto",
-    breath:"Auto",
-    movement:"Maintain Position",
-    recovery:"None"
-
-  });
-
-  clearFit();
-  renderAll();
-
-}
-
-
-/* =========================================================
-   NATURAL VIDEO TRANSLATION
-========================================================= */
-
-function voicePhrase(value){
-
-  const map = {
-    Auto:"",
-    Natural:"naturally",
-    Soft:"softly",
-    Controlled:"with controlled delivery",
-    Playful:"with light playful teasing",
-    Dry:"dryly",
-    Firm:"firmly",
-    Quiet:"quietly",
-    Warm:"warmly"
-  };
-
-  return map[value] || "";
-
-}
-
-function simpleBehaviour(beat){
-
-  const pieces = [];
-
-  /*
-    IMPORTANT:
-    Video output intentionally selects only
-    dominant visible behaviour.
-  */
-
-  if(beat.role === "Setup"){
-
-    if(
-      beat.gaze === "Forward / Object Focus"
-    ){
-      pieces.push(
-        "Keep the main character naturally occupied with the existing situation rather than visibly performing an emotion."
-      );
     }
 
-    if(
-      beat.gaze === "Avoided Eye Contact"
-    ){
-      pieces.push(
-        "Avoid sustained eye contact without making the avoidance conspicuous."
-      );
+    function setIntensity(intensity) {
+      selectedIntensity = intensity;
+      renderDetail();
     }
 
-  }
+    async function copyPrompt() {
+      const prompt = document.getElementById("promptText").innerText;
+      const button = document.getElementById("copyButton");
 
-  if(beat.role === "Interaction"){
+      try {
+        await navigator.clipboard.writeText(prompt);
 
-    if(
-      beat.gaze === "Brief Glance"
-    ){
-      pieces.push(
-        "Let one brief look happen only after the preceding comment has registered."
-      );
-    }
+        const oldText = button.textContent;
+        button.textContent = "Copied ✓";
 
-    if(
-      beat.gaze === "Avoided Eye Contact"
-    ){
-      pieces.push(
-        "Keep most of the attention elsewhere, allowing the avoidance itself to carry the subtext."
-      );
-    }
+        setTimeout(() => {
+          if (button) button.textContent = oldText;
+        }, 1300);
+      } catch (error) {
+        const textArea = document.createElement("textarea");
+        textArea.value = prompt;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
 
-  }
+        button.textContent = "Copied ✓";
 
-  if(beat.role === "Reaction"){
-
-    if(
-      beat.gaze === "Brief Glance"
-    ){
-      pieces.push(
-        "Use one delayed glance as the main visible reaction."
-      );
-    }
-
-    if(
-      beat.gaze === "Direct Eye Contact"
-    ){
-      pieces.push(
-        "Let direct eye contact become the main visible change."
-      );
-    }
-
-  }
-
-  if(beat.role === "Payoff"){
-
-    if(
-      beat.gaze === "Held Eye Contact"
-    ){
-      pieces.push(
-        "Let the eye contact last slightly longer than ordinary conversation."
-      );
-    }
-
-    if(
-      beat.recovery === "Suppress Smile"
-    ){
-      pieces.push(
-        "A faint smile may almost appear; catch it before it fully forms and return attention naturally."
-      );
-    }
-
-    if(
-      beat.recovery === "Look Away"
-    ){
-      pieces.push(
-        "After the moment lands, look away naturally rather than making a dramatic break."
-      );
-    }
-
-  }
-
-  /*
-    Breath and body are intentionally NOT
-    automatically exported unless they are essential.
-  */
-
-  if(
-    beat.movement === "Step Forward"
-  ){
-    pieces.push(
-      "Take one motivated step forward."
-    );
-  }
-
-  if(
-    beat.movement === "Step Back"
-  ){
-    pieces.push(
-      "Take one small motivated step back."
-    );
-  }
-
-  return pieces.join(" ");
-
-}
-
-function buildVideoPrompt(){
-
-  const character =
-    document
-    .getElementById("character")
-    .value
-    .trim()
-    || "The main character";
-
-  const scene =
-    document
-    .getElementById("scene")
-    .value
-    .trim();
-
-  const objective =
-    document
-    .getElementById("objective")
-    .value
-    .trim();
-
-  const shot =
-    document
-    .getElementById("shotSize")
-    .value;
-
-  const angle =
-    document
-    .getElementById("cameraAngle")
-    .value;
-
-  const cameraMovement =
-    document
-    .getElementById("cameraMovement")
-    .value;
-
-  const relationship =
-    document
-    .getElementById("relationship")
-    .value;
-
-  const activity =
-    document
-    .getElementById("activity")
-    .value;
-
-  const timeline =
-    calculateTimeline();
-
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
-
-  const events =
-    beats.map((beat,index) => {
-
-      const time =
-        timeline[index];
-
-      let text =
-`${formatTime(time.start)}–${formatTime(time.end)}
-${beat.happens}`;
-
-      if(beat.dialogue){
-
-        const speakerLabel =
-          beat.speaker === "Main Character"
-            ? character
-            : beat.speaker === "Other Character"
-            ? "The other character"
-            : beat.speaker;
-
-        text +=
-`\n${speakerLabel} says, “${beat.dialogue}” ${voicePhrase(beat.voice)}.`;
-
+        setTimeout(() => {
+          button.textContent = "Copy Prompt";
+        }, 1300);
       }
+    }
 
-      if(beat.secondaryDialogue){
-
-        text +=
-`\nThe other character replies, “${beat.secondaryDialogue}” naturally.`;
-
-      }
-
-      const behaviour =
-        simpleBehaviour(beat);
-
-      if(behaviour){
-        text +=
-`\n${behaviour}`;
-      }
-
-      return text;
-
-    }).join("\n\n");
-
-  return `Cinematic K-drama scene.
-
-CAMERA
-${shot}, ${angle}, ${cameraMovement}.
-
-MAXIMUM VIDEO DURATION
-${targetDuration} seconds.
-
-ESTIMATED PERFORMANCE
-${total.toFixed(1)} seconds.
-
-SCENE
-${scene}
-
-MAIN CHARACTER
-${character}
-
-RELATIONSHIP
-${relationship}
-
-ACTIVITY
-${activity}
-
-OBJECTIVE
-${objective}
-
-ACTING STYLE
-${globalPerformanceStyle}, natural and continuous.
-
-PERFORMANCE EVENTS
-
-${events}
-
-NATURAL PERFORMANCE RULES
-
-Treat each section as one continuous piece of behaviour, not a sequence of separate facial reactions.
-
-Do not animate every internal emotion.
-
-Keep most emotional processing internal. Show only the most important behavioural leak.
-
-Do not add repeated eyebrow changes, breath catches, micro-freezes, head movements, posture resets or multiple gaze changes unless the action explicitly requires them.
-
-For concealed attraction, prefer delayed eye contact and one restrained almost-smile over repeated signs of nervousness.
-
-Dialogue should feel conversational. The listener may remain visually still while listening instead of reacting continuously.
-
-Avoid exaggerated eye widening, obvious fluster acting, dramatic gasps, sudden recoils or pose-like romantic expressions.
-
-Let transitions happen naturally inside the action rather than treating every emotional state as a new performance pose.`;
-
-}
-
-
-/* =========================================================
-   ACTING OUTPUT
-========================================================= */
-
-function buildActingDirection(){
-
-  const character =
     document
-    .getElementById("character")
-    .value
-    .trim()
-    || "The character";
-
-  const timeline =
-    calculateTimeline();
-
-  let output =
-`${character} — ACTING DIRECTION
-
-Objective:
-${document.getElementById("objective").value}
-
-Director principle:
-Do less externally than the character feels internally.
-
-The scene should read through intention and small behavioural failures, not through repeated emotion displays.
-
-`;
-
-  beats.forEach((beat,index) => {
-
-    const time =
-      timeline[index];
-
-    output +=
-`BEAT ${index+1} · ${formatTime(time.start)}–${formatTime(time.end)}
-${beat.role.toUpperCase()} — ${beat.emotion}
-Intensity: ${beat.intensity}/5
-
-Internal intention:
-${beat.subtext}
-
-Continuous action:
-${beat.happens}
-
-`;
-
-    if(beat.dialogue){
-
-      output +=
-`Dialogue:
-${beat.speaker}: “${beat.dialogue}”
-
-Line function:
-${beat.lineFunction}
-
-Voice:
-${beat.voice}
-
-`;
-
-    }
-
-    if(beat.secondaryDialogue){
-
-      output +=
-`Follow-up dialogue:
-Other Character: “${beat.secondaryDialogue}”
-
-`;
-
-    }
-
-    output +=
-`Internal performance options:
-Gaze: ${beat.gaze}
-Breath: ${beat.breath}
-Body: ${beat.movement}
-Recovery: ${beat.recovery}
-
-Director note:
-These are acting resources, not mandatory separate visible actions. Choose the smallest behaviour that communicates the beat.
-
-----------------------------------------
-
-`;
-
-  });
-
-  output +=
-`OVERALL
-
-The character should not visibly change emotion every time the internal state changes.
-
-Allow listening, thinking and concealment to remain largely invisible.
-
-When attraction is being hidden, the most effective performance is often:
-normal behaviour → one involuntary leak → recovery.
-
-Transitions should feel continuous and motivated.`;
-
-  return output;
-
-}
-
-
-/* =========================================================
-   TECHNICAL OUTPUT
-========================================================= */
-
-function buildTechnical(){
-
-  const timeline =
-    calculateTimeline();
-
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
-
-  let output =
-`V8.3.2 · NATURAL PERFORMANCE SIMPLIFIER
-
-Target duration:
-${targetDuration}s
-
-Calculated duration:
-${total}s
-
-Internal beat count:
-${beats.length}
-
-Naturalness:
-${naturalnessState().label}
-
-CORE RULE
-
-Internal acting complexity does not equal visible animation complexity.
-
-VIDEO TRANSLATION
-
-Internal beat:
-Subtext + emotion + gaze + breath + body + recovery
-
-Generation output:
-One broad dramatic action + one dominant visible behaviour.
-
-DEFAULT 15-SECOND GUIDELINE
-
-2 beats:
-Very simple.
-
-3 beats:
-Preferred natural default.
-
-4 beats:
-Usable for more complex interaction.
-
-5+ beats:
-Mechanical-performance risk.
-
-TIMELINE
-
-`;
-
-  beats.forEach((beat,index) => {
-
-    const time =
-      timeline[index];
-
-    output +=
-`BEAT ${index+1}
-
-Time:
-${formatTime(time.start)}–${formatTime(time.end)}
-
-Role:
-${beat.role}
-
-Emotion:
-${beat.emotion}
-
-Intensity:
-${beat.intensity}/5
-
-Action:
-${beat.happens}
-
-Subtext:
-${beat.subtext}
-
-Speaker:
-${beat.speaker}
-
-Dialogue:
-${beat.dialogue || "None"}
-
-Follow-up Dialogue:
-${beat.secondaryDialogue || "None"}
-
-Line Function:
-${beat.lineFunction}
-
-Voice:
-${beat.voice}
-
-Gaze:
-${beat.gaze}
-
-Breath:
-${beat.breath}
-
-Movement:
-${beat.movement}
-
-Recovery:
-${beat.recovery}
-
-Exported Video Behaviour:
-${simpleBehaviour(beat) || "No extra micro-direction exported."}
-
-----------------------------------------
-
-`;
-
-  });
-
-  output +=
-`SIMPLIFIER RULES
-
-1. Prefer one continuous behavioural action per beat.
-
-2. Do not export every acting parameter into the video prompt.
-
-3. Breath, posture and facial micro-expression remain internal unless dramatically essential.
-
-4. Concealment reduces visible cues.
-
-5. If multiple internal reactions serve the same dramatic purpose, merge them into one visible action.
-
-6. Dialogue listening does not require continuous facial animation.
-
-7. Payoff should be clearer than setup, but still restrained at low intensity.
-
-8. The 15-second budget is a maximum, not a target that must be filled.
-
-9. Adding more than four beats should trigger a naturalness warning.
-
-10. Video Prompt optimizes generation simplicity. Acting output preserves director-level detail.`;
-
-  return output;
-
-}
-
-
-/* =========================================================
-   WARNINGS
-========================================================= */
-
-function validate(){
-
-  const warnings = [];
-
-  const timeline =
-    calculateTimeline();
-
-  const total =
-    timeline.length
-      ? timeline[timeline.length-1].end
-      : 0;
-
-  if(total > targetDuration){
-
-    warnings.push(
-      `Timeline exceeds ${targetDuration}s by ${round1(total-targetDuration)}s.`
-    );
-
-  }
-
-  if(beats.length >= 5){
-
-    warnings.push(
-      `${beats.length} performance beats may create too many visible state changes in a short generated video. Consider merging adjacent beats.`
-    );
-
-  }
-
-  beats.forEach((beat,index) => {
-
-    if(
-      beat.dialogue &&
-      beat.speaker === "None"
-    ){
-
-      warnings.push(
-        `Beat ${index+1}: dialogue exists but speaker is None.`
-      );
-
-    }
-
-  });
-
-  return warnings;
-
-}
-
-function renderWarnings(){
-
-  const warnings =
-    validate();
-
-  const box =
-    document.getElementById("warningBox");
-
-  if(!warnings.length){
-
-    box.style.display =
-      "none";
-
-    box.textContent =
-      "";
-
-    return;
-  }
-
-  box.style.display =
-    "block";
-
-  box.textContent =
-    warnings.join(" ");
-
-}
-
-
-/* =========================================================
-   OUTPUT
-========================================================= */
-
-function updateOutput(){
-
-  let output = "";
-
-  if(outputMode === "video"){
-    output = buildVideoPrompt();
-  }
-
-  if(outputMode === "acting"){
-    output = buildActingDirection();
-  }
-
-  if(outputMode === "technical"){
-    output = buildTechnical();
-  }
-
-  document
-  .getElementById("promptOutput")
-  .textContent =
-    output;
-
-  renderWarnings();
-
-}
-
-function switchOutput(mode,button){
-
-  outputMode =
-    mode;
-
-  document
-  .querySelectorAll(".output-tab")
-  .forEach(btn => {
-
-    btn.classList.remove("active");
-
-  });
-
-  button.classList.add("active");
-
-  const label =
-    document.getElementById("outputLabel");
-
-  if(mode === "video"){
-    label.textContent =
-      "NATURAL GENERATION PROMPT";
-  }
-
-  if(mode === "acting"){
-    label.textContent =
-      "ACTING DIRECTION";
-  }
-
-  if(mode === "technical"){
-    label.textContent =
-      "TECHNICAL STATE";
-  }
-
-  updateOutput();
-
-}
-
-
-/* =========================================================
-   DEMO / RESET
-========================================================= */
-
-function loadNaturalDemo(){
-
-  beats =
-    createNaturalDemo();
-
-  fitted =
-    false;
-
-  document
-  .getElementById("targetDuration")
-  .value =
-    "15";
-
-  targetDuration =
-    15;
-
-  renderAll();
-
-  showToast(
-    "Natural 3-beat demo loaded"
-  );
-
-}
-
-function resetDemo(){
-
-  document
-  .getElementById("character")
-  .value =
-    "Maryam";
-
-  document
-  .getElementById("relationship")
-  .value =
-    "Romantic Tension";
-
-  document
-  .getElementById("scene")
-  .value =
-    "Amir and Maryam are waiting for the elevator after work. Amir notices that Maryam keeps avoiding his gaze. He casually teases her about it. Maryam tries to act unaffected.";
-
-  document
-  .getElementById("objective")
-  .value =
-    "Hide that Amir's teasing affects her while maintaining casual confidence.";
-
-  document
-  .getElementById("shotSize")
-  .value =
-    "Medium Close Up";
-
-  document
-  .getElementById("cameraAngle")
-  .value =
-    "Eye Level";
-
-  document
-  .getElementById("cameraMovement")
-  .value =
-    "Static";
-
-  document
-  .getElementById("activity")
-  .value =
-    "Standing";
-
-  document
-  .getElementById("targetDuration")
-  .value =
-    "15";
-
-  targetDuration =
-    15;
-
-  globalPerformanceStyle =
-    "Restrained";
-
-  document
-  .querySelectorAll(".level-btn")
-  .forEach(btn => {
-
-    btn.classList.toggle(
-      "active",
-      btn.dataset.style === "Restrained"
-    );
-
-  });
-
-  beats =
-    createNaturalDemo();
-
-  fitted =
-    false;
-
-  renderAll();
-
-  showToast(
-    "V8.3.2 reset"
-  );
-
-}
-
-
-/* =========================================================
-   GLOBAL CONTROLS
-========================================================= */
-
-document
-.querySelectorAll(".level-btn")
-.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    () => {
-
-      document
-      .querySelectorAll(".level-btn")
-      .forEach(btn => {
-
-        btn.classList.remove("active");
-
+      .getElementById("searchInput")
+      .addEventListener("input", event => {
+        searchQuery = event.target.value.trim();
+        renderEmotionGrid();
       });
 
-      button.classList.add("active");
-
-      globalPerformanceStyle =
-        button.dataset.style;
-
-      updateOutput();
-
-    }
-  );
-
-});
-
-document
-.getElementById("targetDuration")
-.addEventListener(
-  "change",
-  () => {
-
-    targetDuration =
-      Number(
-        document
-        .getElementById("targetDuration")
-        .value
-      ) || 15;
-
-    document
-    .querySelector(".fit-btn")
-    .textContent =
-      `Fit to ${targetDuration}s`;
-
-    clearFit();
-    renderAll();
-
-  }
-);
-
-[
-  "character",
-  "relationship",
-  "scene",
-  "objective",
-  "shotSize",
-  "cameraAngle",
-  "cameraMovement",
-  "activity"
-]
-.forEach(id => {
-
-  const element =
-    document.getElementById(id);
-
-  element.addEventListener(
-    "input",
-    updateOutput
-  );
-
-  element.addEventListener(
-    "change",
-    updateOutput
-  );
-
-});
-
-
-/* =========================================================
-   SIMPLE / ADVANCED
-========================================================= */
-
-document
-.getElementById("simpleMode")
-.addEventListener(
-  "click",
-  () => {
-
-    document
-    .getElementById("simpleMode")
-    .classList
-    .add("active");
-
-    document
-    .getElementById("advancedMode")
-    .classList
-    .remove("active");
-
-    document
-    .querySelectorAll(".advanced-panel")
-    .forEach(panel => {
-
-      panel.classList.remove("open");
-
-    });
-
-  }
-);
-
-document
-.getElementById("advancedMode")
-.addEventListener(
-  "click",
-  () => {
-
-    document
-    .getElementById("advancedMode")
-    .classList
-    .add("active");
-
-    document
-    .getElementById("simpleMode")
-    .classList
-    .remove("active");
-
-    document
-    .querySelectorAll(".advanced-panel")
-    .forEach(panel => {
-
-      panel.classList.add("open");
-
-    });
-
-  }
-);
-
-
-/* =========================================================
-   COPY / TOAST
-========================================================= */
-
-async function copyPrompt(){
-
-  const text =
-    document
-    .getElementById("promptOutput")
-    .textContent;
-
-  try{
-
-    await navigator
-      .clipboard
-      .writeText(text);
-
-    showToast(
-      "Prompt copied"
-    );
-
-  }catch(error){
-
-    const temp =
-      document.createElement("textarea");
-
-    temp.value =
-      text;
-
-    document.body.appendChild(temp);
-
-    temp.select();
-
-    document.execCommand("copy");
-
-    document.body.removeChild(temp);
-
-    showToast(
-      "Prompt copied"
-    );
-
-  }
-
-}
-
-function showToast(message){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent =
-    message;
-
-  toast.classList.add("show");
-
-  setTimeout(
-    () => {
-
-      toast.classList.remove("show");
-
-    },
-    1500
-  );
-
-}
-
-
-/* =========================================================
-   INIT
-========================================================= */
-
-renderAll();
-
-</script>
-
+    renderCategories();
+    renderEmotionGrid();
+    renderDetail();
+  </script>
 </body>
 </html>
